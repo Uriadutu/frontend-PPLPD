@@ -1,56 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./component/Login";
+import Admin from "./pages/Admin";
+import Cabor from "./pages/Cabor";
+import Pelatih from "./pages/Pelatih";
+import Atlet from "./pages/Atlet";
+import Addadmin from "./pages/Addadmin";
+import Editadmin from "./pages/Editadmin";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/daftaradmin" element={<Admin />} />
+          <Route path="/cabor" element={<Cabor />} />
+          <Route path="/daftarpelatih" element={<Pelatih />} />
+          <Route path="/daftaratlet" element={<Atlet />} />
+          <Route path="/daftaradmin/tambah" element={<Addadmin />} />
+          <Route path="/daftaradmin/edit/:id" element={<Editadmin />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
