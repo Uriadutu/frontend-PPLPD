@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import {loginUser, reset} from "../features/authSlice";
 import Bg from "../img/Background.png";
-import Logo_pl from "../img/Logosiatlet.png";
+import Logo_pl from "../img/PPLPDlogo.png";
 import Dispora from "../img/Dispora.png";
 
 

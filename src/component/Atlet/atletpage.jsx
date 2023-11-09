@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 
-const Pelatihlist = () => {
+const Atletpage = () => {
    const [cabors, setCabor] = useState([]);
 
   useEffect(()=> {
@@ -18,8 +18,8 @@ const getCabor = async () => {
 
   return (
     <div>
-      <h1 className="title">Pelatih</h1>
-      <h2 className="subtitle">List Pelatih</h2>
+      <h1 className="title">Atlet</h1>
+      <h2 className="subtitle">List Atlet</h2>
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
@@ -42,4 +42,4 @@ const getCabor = async () => {
   );
 }
 
-export default Pelatihlist
+export default Atletpage

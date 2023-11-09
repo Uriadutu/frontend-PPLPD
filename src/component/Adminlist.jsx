@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { IoEyeOutline, IoPencil, IoTrash, IoTrashOutline, IoTrashSharp } from 'react-icons/io5';
+import {FaPencil} from 'react-icons/fa6'
 
 
 const Adminlist = () => {
   const [adminn, setAdmin] = useState([]);
+  
 
   useEffect(()=>{
     getAdmin();
@@ -47,16 +50,16 @@ const Adminlist = () => {
               <td>
                 <Link
                   to={`/daftaradmin/edit/${admin.uuid}`}
-                  className="is-info is-small button mr-3"
+                  className=" mr-3"
                 >
-                  Edit
+
+                  <FaPencil/>
                 </Link>
-                <button
+                <Link
                   onClick={() => deleteAdmin(admin.uuid)}
-                  className="is-info is-small button"
                 >
-                  Hapus
-                </button>
+                   <IoTrashSharp/>
+                </Link>
               </td>
             </tr>
           ))}

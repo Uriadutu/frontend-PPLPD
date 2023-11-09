@@ -22,6 +22,14 @@ const Formeditadmin = () => {
               </div>
               <div className="field">
                 <label htmlFor="" className="label">
+                  Nomor Handphone
+                </label>
+                <div className="control">
+                  <input type="text" className="input" />
+                </div>
+              </div>
+              <div className="field">
+                <label htmlFor="" className="label">
                   Username
                 </label>
                 <div className="control">

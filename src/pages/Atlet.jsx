@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react'
 import Layout from './Layout'
-import Atletlist from '../component/Atletlist'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../features/authSlice';
+import AnakLayout from './AnakLayout';
+import ListAtlet from '../component/Atlet/ListAtlet';
 
 const Atlet = () => {
   const dispatch = useDispatch();
@@ -18,13 +19,10 @@ const Atlet = () => {
    if (isError) {
      navigate("/");
    }
-   if (user && user.role !== "Admin") {
-     navigate("/dashboard");
-   }
  }, [isError, user, navigate]);
   return (
     <Layout>
-        <Atletlist/>
+        <ListAtlet/>
     </Layout>
   )
 }
