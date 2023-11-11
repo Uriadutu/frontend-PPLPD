@@ -3,6 +3,7 @@ import { Link, useParams, useLocation } from "react-router-dom"; // Import useLo
 import User from "../../img/Person.png";
 import axios from "axios";
 import { IoDice, IoPerson, IoTrashOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 const ModalUsers = ({ Muncul, tidakMuncul }) => {
   const [caborr, setCabor] = useState([]); // Mengubah tipe data caborr menjadi array
   const { id } = useParams();
@@ -10,6 +11,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
   const [msg, setMsg] = useState("");
   const location = useLocation(); // Gunakan useLocation untuk mengambil lokasi saat ini
 
+  const {user} =  useSelector((state) => state.auth);
   const [atlet, setAtlet] = useState("");
 
 
@@ -49,7 +51,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
 
   const deleteCabor = async (queryId) => {
     try {
-      await axios.delete(`http://localhost:5000/cabor/${queryId}`);
+      await axios.delete(`http://localhost:5000/komponen/cabor/${queryId}`);
       tidakMuncul();
       window.location.reload();
     } catch (error) {
@@ -135,7 +137,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
             </div>
           </section>
           <footer className="modal-card-foot">
-            {atlet && atlet.role === "Admin" && (
+            {user && user.role === "Admin" && (
               <div className="">
                 <button
                   className="button is-danger"

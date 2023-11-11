@@ -1,20 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 
 const Pelatihlist = () => {
    const [cabors, setCabor] = useState([]);
 
-  useEffect(()=> {
+   const getCabor = async () => {
+     const response = await axios.get("http://localhost:5000/cabor");
+     // Mengambil data cabor dari respons server
+     const caborData = response.data;
+
+     // Mengambil data jumlah atlet dari server
+     const atletCountResponse = await axios.get(
+       "http://localhost:5000/atlet/countByCabor"
+     );
+     const atletCountData = atletCountResponse.data;
+
+     // Menggabungkan data jumlah atlet dengan data cabor
+     const caborWithAtletCount = caborData.map((cabor) => ({
+       ...cabor,
+       jumlahAtlet: atletCountData[cabor.kodeCabor] || 0,
+     }));
+
+     setCabor(caborWithAtletCount);
+   };
+
+  useEffect(()=> { 
     getCabor();
   }, []);
 
 
-const getCabor = async () => {
-  const response = await axios.get('http://localhost:5000/cabor');
-    setCabor(response.data);
-};
+
 
   return (
     <div>
@@ -25,7 +43,7 @@ const getCabor = async () => {
           <tr>
             <th>No</th>
             <th>Jenis Cabang Olahraga</th>
-            <th>Jumlah Atlet</th>
+            <th className="has-text-centered">Jumlah Atlet</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +51,7 @@ const getCabor = async () => {
             <tr key={cabor.id_cabor}>
               <td>{index + 1}</td>
               <td>{cabor.namaCabor}</td>
-              <td></td>
+              <td className="has-text-centered">{cabor.jumlahAtlet}</td>
             </tr>
           ))}
         </tbody>

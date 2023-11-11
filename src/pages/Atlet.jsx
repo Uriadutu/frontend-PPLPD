@@ -3,7 +3,6 @@ import Layout from './Layout'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../features/authSlice';
-import AnakLayout from './AnakLayout';
 import ListAtlet from '../component/Atlet/ListAtlet';
 
 const Atlet = () => {

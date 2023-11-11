@@ -9,6 +9,12 @@ import Addadmin from "./pages/Addadmin";
 import Editadmin from "./pages/Editadmin";
 import PanduanPelaksanaan from "./pages/PanduanPelaksanaan";
 import AtletCaborlist from "./pages/AtletCaborlist";
+import Akun from "./pages/Akun";
+import Perkembangan from "./pages/latihan/Perkembangan";
+import PageIndikator from "./pages/latihan/komponen/PageIndikator";
+import PengaturanIndikator from "./pages/latihan/komponen/Pengaturanindikator";
+import RecordLatihan from "./pages/latihan/RecordLatidan";
+
 
 function App() {
   return (
@@ -23,9 +29,19 @@ function App() {
           <Route path="/cabor/atlet/:id" element={<Atlet />} />
           <Route path="/daftaradmin/tambah" element={<Addadmin />} />
           <Route path="/daftaradmin/edit/:id" element={<Editadmin />} />
-          <Route path="/panduan" element ={<PanduanPelaksanaan/>}/>
-          <Route path="/daftaratlet" element ={<AtletCaborlist/>}/>
-
+          <Route path="/panduan" element={<PanduanPelaksanaan />} />
+          <Route path="/daftaratlet" element={<AtletCaborlist />} />
+          <Route path="/akunsaya" element={<Akun />} />
+          <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
+          <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
+          <Route
+            path="/cabor/komponen-indikator/atur/:id"
+            element={<PengaturanIndikator />}
+          />
+          <Route 
+            path="/cabor/atlet/:id/:id/tambah-perkembangan-latihan/:id"
+            element={<RecordLatihan />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

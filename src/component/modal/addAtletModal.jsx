@@ -88,8 +88,12 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
   const handleRadioChange = (e) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
   };
+  const handleRadioChanges = (e) => {
+     setPendidikanTerakhirAtlet(e.target.value);
+  };
 
   const LoadImage = (e) => {
+    
     e.preventDefault();
     const selectedFile = e.target.files[0];
       setFile(selectedFile);
@@ -204,8 +208,9 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
         },
       });
       
-      window.location.reload();
-      navigate("/cabor/atlet");
+
+      // navigate(`/cabor/atlet/${cabors.id_cabor}`);
+      // window.location.reload();
       tidakMuncul();
       
       await axios.post("http://localhost:5000/atlet", {
@@ -233,7 +238,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
 
         pendidikan: Pendidikan,
         nama_sklh: NamaSekolahAtlet,
-        pend_terakir: PendidikanTerakhirAtlet,
+        pend_terakhir: PendidikanTerakhirAtlet,
         alumni: NamaAlumniAtlet,
         tahun_lulus: TahunLulusAtlet,
 
@@ -833,9 +838,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="TK"
                               checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">TK</label>
                           </div>
@@ -848,9 +851,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="SD"
                               checked={PendidikanTerakhirAtlet === "SD"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">SD</label>
                           </div>
@@ -863,9 +864,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="SMP"
                               checked={PendidikanTerakhirAtlet === "SMP"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">SMP</label>
                           </div>
@@ -878,9 +877,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="SMA"
                               checked={PendidikanTerakhirAtlet === "SMA"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">SMA</label>
                           </div>
@@ -893,9 +890,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="SMK"
                               checked={PendidikanTerakhirAtlet === "SMK"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">SMK</label>
                           </div>
@@ -908,9 +903,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
                               name="alumni"
                               value="S1"
                               checked={PendidikanTerakhirAtlet === "S1"} // Mengecek apakah radio ini yang dipilih
-                              onChange={(e) =>
-                                setPendidikanTerakhirAtlet(e.target.value)
-                              }
+                              onChange={handleRadioChanges}
                             />
                             <label className="">S1</label>
                           </div>

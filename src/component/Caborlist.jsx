@@ -95,6 +95,11 @@ const Caborlist = () => {
       <h1 className="title">Cabang Olahraga</h1>
       <h2 className="subtitle">List Cabang Olahraga</h2>
       <div className="container mt-5">
+        {user && user.role === "Admin" && (
+          <Link to={`/cabor/komponen-indikator`} className="button mb-3">
+            Komponen Dan Indikator
+          </Link>
+        )}
         <div className="columns is-multiline">
           {caborr.map((cabor, index) => (
             <div className="column is-one-quarter" key={cabor.id}>
