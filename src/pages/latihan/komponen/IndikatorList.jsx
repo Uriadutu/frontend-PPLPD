@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react'
-import Layout from './Layout'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getMe } from '../features/authSlice';
-import ListAtlet from '../component/Atlet/ListAtlet';
+import React, { useEffect } from "react";
+import Layout from "../../Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "../../../features/authSlice";
+import ListIndikator from "../../../component/indikator/ListIndikator";
 
-const Atlet = () => {
+const IndikatorList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
@@ -24,9 +24,9 @@ const Atlet = () => {
   }, [isError, user, navigate]);
   return (
     <Layout>
-        <ListAtlet/>
+      <ListIndikator/>
     </Layout>
-  )
-}
+  );
+};
 
-export default Atlet
+export default IndikatorList;

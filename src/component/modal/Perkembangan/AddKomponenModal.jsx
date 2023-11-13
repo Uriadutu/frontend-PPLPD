@@ -47,7 +47,6 @@ const AddKomponenModal = ({Muncul, tidakMuncul}) => {
                     </label>
                     <div className="control">
                       <input
-                        title="Nama Cabang Olahraga"
                         autoComplete="off"
                         type="text"
                         className="input"

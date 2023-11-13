@@ -33,12 +33,7 @@ const AkunAtlet = () => {
           <div className="column">
             <div className="card-header">
               <p>Hai, {user && user.nama}</p>
-              {atlet && (
-                <div>
-                  <p>ID Atlet: {atlet.nama}</p>
-                  {/* Tambahkan informasi lainnya tentang atlet sesuai kebutuhan */}
-                </div>
-              )}
+              
             </div>
           </div>
         </div>

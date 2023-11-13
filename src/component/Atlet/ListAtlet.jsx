@@ -43,6 +43,7 @@ const ListAtlet = () => {
       try {
         await axios.delete(`http://localhost:5000/gambar/${atletId}`);
         getAtletsbyCabor();
+        window.location.reload();
       } catch (error) {
         console.error("Error:", error);
       }

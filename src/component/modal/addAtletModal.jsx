@@ -80,7 +80,6 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
   const [ NamaEvent, setNamaEvent ] = useState("");
   const [ TahunPrestasi, setTahunPrestasi ] = useState("");
   const [ Pencapaian, setPencapaian ] = useState("");
-  const Password = "123456";
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -291,7 +290,6 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
         nama_event: NamaEvent,
         tahun_prestasi: TahunPrestasi,
         capai_prestasi: Pencapaian,
-        password: Password,
       });
 
       

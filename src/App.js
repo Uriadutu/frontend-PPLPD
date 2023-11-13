@@ -14,6 +14,7 @@ import Perkembangan from "./pages/latihan/Perkembangan";
 import PageIndikator from "./pages/latihan/komponen/PageIndikator";
 import PengaturanIndikator from "./pages/latihan/komponen/Pengaturanindikator";
 import RecordLatihan from "./pages/latihan/RecordLatidan";
+import IndikatorList from "./pages/latihan/komponen/IndikatorList";
 
 
 function App() {
@@ -41,6 +42,10 @@ function App() {
           <Route 
             path="/cabor/atlet/:id/:id/tambah-perkembangan-latihan/:id"
             element={<RecordLatihan />}
+          />
+          <Route 
+            path="cabor/komponen-indikator/atur/:id/cabor/komponen-indikator/atur/:id"
+            element={<IndikatorList />}
           />
         </Routes>
       </BrowserRouter>
