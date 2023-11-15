@@ -32,7 +32,7 @@ const DataAtlet = () => {
 
   const Getatlet = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/atlet/${id}`);
+      const response = await axios.get(`http://localhost:5000/atlet/uuid/${id}`);
       setAtlet(response.data);
     } catch (error) {
         console.log(error);

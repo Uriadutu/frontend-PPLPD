@@ -15,6 +15,7 @@ import PageIndikator from "./pages/latihan/komponen/PageIndikator";
 import PengaturanIndikator from "./pages/latihan/komponen/Pengaturanindikator";
 import RecordLatihan from "./pages/latihan/RecordLatidan";
 import IndikatorList from "./pages/latihan/komponen/IndikatorList";
+import AkunHak from "./pages/AkunHak";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/panduan" element={<PanduanPelaksanaan />} />
           <Route path="/daftaratlet" element={<AtletCaborlist />} />
           <Route path="/akunsaya" element={<Akun />} />
+          <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
           <Route

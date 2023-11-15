@@ -1,3 +1,7 @@
 .gambar-atlet {
     border: 1px solid #666;
 }
+
+.berita {
+  background: linear-gradient(to bottom left, rgb(219, 21, 21), rgb(255, 99, 99));
+}

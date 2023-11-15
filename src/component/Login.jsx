@@ -29,6 +29,11 @@ const Login = () => {
   const Auth = (e) =>{
   e.preventDefault();
   dispatch(loginUser({username, password}));
+
+  if (!user || user.nama_akhir !== "active") {
+    navigate("/");
+    return;
+  }
   };
 
   return (
