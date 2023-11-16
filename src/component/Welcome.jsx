@@ -2,10 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AddBerita from "./modal/AddBerita.jsx";
 
 const Welcome = () => { 
   const { user } = useSelector((state) => state.auth)
-  const navigate = useNavigate();
+  const [modalActive, setModalActive] = useState(false);
+  const [msg, setMsg] = useState("");
+
+
+  const openModal = () => {
+    setModalActive(true);
+  };
+
+  const closeModal = () => {
+    setModalActive(false);
+    setMsg("");
+  };
 
 
   return (
@@ -39,6 +51,11 @@ const Welcome = () => {
               <p class="subtitle is-6">{user.email}</p>
             </div>
           </div>
+        )}
+        {user && user.role === "Admin" && (
+          <button className="button" onClick={openModal}>
+            Tambah Berita
+          </button>
         )}
       </div>
       <div className="tile is-ancestor">
@@ -76,13 +93,12 @@ const Welcome = () => {
           <article className="tile is-child notification berita">
             <div className="content">
               <p className="title">Berita</p>
-              <div className="content">
-
-              </div>
+              <div className="content"></div>
             </div>
           </article>
         </div>
       </div>
+      <AddBerita isActive={modalActive} onClose={closeModal} />
     </div>
   );
 };

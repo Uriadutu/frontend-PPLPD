@@ -5,3 +5,10 @@
 .berita {
   background: linear-gradient(to bottom left, rgb(219, 21, 21), rgb(255, 99, 99));
 }
+
+.latihan-th {
+  display: inline-block;
+}
+.latihan-td {
+  display: inline-block;
+}

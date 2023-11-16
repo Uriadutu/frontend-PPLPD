@@ -209,7 +209,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
       
 
       // navigate(`/cabor/atlet/${cabors.id_cabor}`);
-      // window.location.reload();
+      window.location.reload();
       tidakMuncul();
       
       await axios.post("http://localhost:5000/atlet", {

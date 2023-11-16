@@ -56,7 +56,6 @@ const ListAtlet = () => {
 
   const tutupModal = () => {
     setModalUsersAktif(false);
-    getAtletsbyCabor();
   };
 
   return (
