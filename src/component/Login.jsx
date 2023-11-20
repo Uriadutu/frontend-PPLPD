@@ -5,6 +5,7 @@ import {loginUser, reset} from "../features/authSlice";
 import Bg from "../img/Background.png";
 import Logo_pl from "../img/PPLPDlogo.png";
 import Dispora from "../img/Dispora.png";
+import LogoPemkot from "../img/LogoPemkot.png";
 
 
 const lebar = 100; 
@@ -49,12 +50,19 @@ const Login = () => {
       <div className="hero-body">
         <div className="container">
           <div className="judul mb-6">
-            <img
-              className="mt-0"
-              src={Dispora}
-              alt=""
-              style={{ width: `${lebar}px`, height: `${tinggi}px` }}
-            />
+            <div className="is-flex">
+              <img
+                className="mt-0"
+                src={Dispora}
+                alt=""
+                style={{ width: `${lebar}px`, height: `${tinggi}px` }}
+              />
+              {/* <img
+                src={LogoPemkot}
+                alt=""
+                style={{ width: `${lebar}px`, height: `${tinggi}px` }}
+              /> */}
+            </div>
             <p className="" style={{ color: "white", fontSize: "30px" }}>
               Dinas Pemuda Dan Olahraga
             </p>
@@ -79,7 +87,16 @@ const Login = () => {
                 </div>
                 {isError && (
                   <div className="erro is-flex is-justify-content-center">
-                    <p className="" style={{padding : "1px 5px", background: "red", color: "white", position:"absolute", fontSize:"15px" }}>
+                    <p
+                      className=""
+                      style={{
+                        padding: "1px 5px",
+                        background: "red",
+                        color: "white",
+                        position: "absolute",
+                        fontSize: "15px",
+                      }}
+                    >
                       {message}
                     </p>
                   </div>

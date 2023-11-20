@@ -16,6 +16,9 @@ import PengaturanIndikator from "./pages/latihan/komponen/Pengaturanindikator";
 import RecordLatihan from "./pages/latihan/RecordLatidan";
 import IndikatorList from "./pages/latihan/komponen/IndikatorList";
 import AkunHak from "./pages/AkunHak";
+import Program from "./pages/Program";
+import DataDiri from "./pages/latihan/Atlet/DataDiri";
+import ListPelatihCabor from "./pages/Pelatih/ListPelatihCabor";
 
 
 function App() {
@@ -26,15 +29,18 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/daftaradmin" element={<Admin />} />
+          <Route path="/datadiriatlet" element={<DataDiri />} />
           <Route path="/cabor" element={<Cabor />} />
           <Route path="/daftarpelatih" element={<Pelatih />} />
           <Route path="/cabor/atlet/:id" element={<Atlet />} />
+          <Route path="/cabor/pelatih/:id" element={<ListPelatihCabor />} />
           <Route path="/daftaradmin/tambah" element={<Addadmin />} />
           <Route path="/daftaradmin/edit/:id" element={<Editadmin />} />
           <Route path="/panduan" element={<PanduanPelaksanaan />} />
           <Route path="/daftaratlet" element={<AtletCaborlist />} />
           <Route path="/akunsaya" element={<Akun />} />
           <Route path="/kontrolatlet" element={<AkunHak />} />
+          <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
           <Route

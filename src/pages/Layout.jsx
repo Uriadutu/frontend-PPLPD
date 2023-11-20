@@ -27,7 +27,7 @@ const Layout = ({children}) => {
             background: "#D5D5D5",
           }}
         >
-          <main className="" style={{ minHeight: "100vh" }}>
+          <main className="" style={{ minHeight: "100vh", maxWidth: "100%"}}>
             {children}
           </main>
         </div>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../../Navbar";
 import { useParams , Link} from "react-router-dom";
 
 const Latihan = () => {
   const { id } = useParams();
   const [tgl, setTanggal] = useState("");
   const [hasilTes, setHasilTes] = useState("");
+  const [namaLatihan, setNamaLatihan] = useState("");
   const [atlets, setAtlet] = useState("");
   const [indikators, setIndikator] = useState([]);
   const [komponens, setKomponen] = useState([]);
@@ -81,9 +83,39 @@ const Latihan = () => {
     }
   }, [idCabor]);
 
+  const saveLatihan = async (e)=>{
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:5000:/latihan", {
+        id_cabor :idCabor ,
+        id_komponen : idKomponen,
+        namaLatihan : namaLatihan,
+      });
+
+      // await axios.post("http://localhost:5000/perkembangan", {
+      //   id_atlet : id,
+      //   id_indikator : ,
+      //   id_latihan : ,
+      //   tgl : tgl,
+      //   hasilTes : hasilTes,
+      // })
+
+
+      
+    } catch (error) {
+      
+    }
+  }
+
   return (
-    <div>
-      <h1 className="title">
+    <div
+      className="has-background-grey-light p-3 mt-5"
+    >
+      <div className="mb-3">
+        <Navbar />
+      </div>
+      <h1 className="title mt-5">
         Perkembangan latihan{" "}
         {/* {indikators.length > 0 && indikators[0].namaIndikator} */}
       </h1>
@@ -94,25 +126,26 @@ const Latihan = () => {
       >
         Kembali
       </Link>
-      <div className="card">
-        <header className="card-header">
+
+      <div className="card latihan-card" style={{ maxWidth: "100%" }}>
+        <header className="card-header column">
           <p className="card-header-title">
             Input Perkembangan {atlets && atlets.nama}{" "}
           </p>
-          <a href="#" className="card-header-icon" aria-label="more options">
-            <span className="icon">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </a>
         </header>
-        <div className="card-content is-overflow-auto">
+        <div
+          className="card-content"
+          // style={{ maxHeight: "90vh", overflowY: "auto" }}
+        >
           <div className="content">
             {komponens.map((komponen) => (
               <div key={komponen.id_komponen}>
                 <h2>{komponen.namaKomponen}</h2>
-                <div>
-                  <form></form>
-                  <table className="table is-bordered mb-5">
+                <div style={{ overflowX: "auto" }}>
+                  <table
+                    className="table is-bordered mb-5"
+                    style={{ minWidth: "800px" }}
+                  >
                     <thead>
                       <tr>
                         <th colSpan={2} className="has-text-centered">
@@ -134,16 +167,15 @@ const Latihan = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {Array.from({ length: 5 }).map((_, index) => (
+                      {Array.from({ length: 1 }).map((_, index) => (
                         <tr>
-                          <td>
-                            <input
-                              type="text"
-                              placeholder={`Latihan ${index + 1}...`}
-                            />
+                          <td className="is-flex is-justify-content-center">
+                            <input type="text" placeholder={`Latihan...`} />
                           </td>
                           <td>
-                            <input type="date" name="" id="" />
+                            <div className="is-flex is-justify-content-center">
+                              <input type="date" name="" id="" />
+                            </div>
                           </td>
                           {indikators
                             .filter(
@@ -152,8 +184,14 @@ const Latihan = () => {
                                 komponen.id_komponen
                             )
                             .map((indiKomponenFiltered) => (
-                              <td key={indiKomponenFiltered.id_indikator}>
-                                <input type="text" />
+                              <td
+                                key={indiKomponenFiltered.id_indikator}
+                                className=""
+                              >
+                                <div className="is-flex is-justify-content-center">
+                                  <input type="text" />
+                                </div>
+
                                 {/* Tambahkan konten sesuai kebutuhan */}
                               </td>
                             ))}

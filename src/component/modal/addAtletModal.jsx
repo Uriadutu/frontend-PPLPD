@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const AddAtletModal = ({Muncul, tidakMuncul}) => {
+const AddAtletModal = ({ Muncul, tidakMuncul }) => {
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("data-diri");
@@ -43,61 +43,58 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
   const [TglLahirAyah, setTglLahirAyah] = useState("");
   const [AgamaAyah, setAgamaAyah] = useState("");
   const [PekerjaanAyah, setPekerjaanAyah] = useState("");
-  const [ NotelpAyah, setNotelpAyah ] = useState("");
-  const [ NohpAyah, setNohpAyah ] = useState("");
-  const [ EmailAyah, setEmailAyah ] = useState("");
+  const [NotelpAyah, setNotelpAyah] = useState("");
+  const [NohpAyah, setNohpAyah] = useState("");
+  const [EmailAyah, setEmailAyah] = useState("");
   const [NamaIbu, setNamaIbu] = useState("");
   const [TempatLahirIbu, setTempatLahirIbu] = useState("");
   const [TglLahirIbu, setTglLahirIbu] = useState("");
   const [AgamaIbu, setAgamaIbu] = useState("");
   const [PekerjaanIbu, setPekerjaanIbu] = useState("");
-  const [ NotelpIbu, setNotelpIbu] = useState("");
-  const [ NohpIbu, setNohpIbu ] = useState("");
-  const [ EmailIbu, setEmailIbu ] = useState("");
-  const [ ProvinsiOrtu, setProvinsiOrtu ] = useState("");
-  const [ KotaOrtu, setKotaOrtu ] = useState("");
-  const [ KecamatanOrtu, setKecamatanOrtu ] = useState("");
-  const [ KelurahanOrtu, setKelurahanOrtu ] = useState("");
-  const [ DesaOrtu, setDesaOrtu ] = useState("");
-  const [ NamaJalanOrtu, setNamaJalanOrtu ] = useState("");
-  const [ NamaWali, setNamaWali ] = useState("");
-  const [ HubKeluargaWali, setHubKeluargaWali ] = useState("");
-  const [ TempatLahirWali, setTempatLahirWali ] = useState("");
-  const [ TglLahirWali, setTglLahirWali ] = useState("");
-  const [ AgamaWali, setAgamaWali ] = useState("");
-  const [ JenisKelaminWali, setJenisKelaminWali ] = useState("");
-  const [ PekerjaanWali, setPekerjaanWali ] = useState("");
-  const [ NotelpWali, setNotelpWali ] = useState("");
-  const [ NohpWali, setNohpWali ] = useState("");
-  const [ EmailWali, setEmailWali ] = useState("");
-  const [ ProvinsiWali, setProvinsiWali ] = useState("");
-  const [ KotaWali, setKotaWali ] = useState("");
-  const [ KecamatanWali, setKecamatanWali ] = useState("");
-  const [ KelurahanWali, setKelurahanWali ] = useState("");
-  const [ DesaWali, setDesaWali ] = useState("");
-  const [ NamaJalanWali, setNamaJalanWali ] = useState("");
-  const [ NamaClub, setNamaClub ] = useState("");
-  const [ NamaEvent, setNamaEvent ] = useState("");
-  const [ TahunPrestasi, setTahunPrestasi ] = useState("");
-  const [ Pencapaian, setPencapaian ] = useState("");
+  const [NotelpIbu, setNotelpIbu] = useState("");
+  const [NohpIbu, setNohpIbu] = useState("");
+  const [EmailIbu, setEmailIbu] = useState("");
+  const [ProvinsiOrtu, setProvinsiOrtu] = useState("");
+  const [KotaOrtu, setKotaOrtu] = useState("");
+  const [KecamatanOrtu, setKecamatanOrtu] = useState("");
+  const [KelurahanOrtu, setKelurahanOrtu] = useState("");
+  const [DesaOrtu, setDesaOrtu] = useState("");
+  const [NamaJalanOrtu, setNamaJalanOrtu] = useState("");
+  const [NamaWali, setNamaWali] = useState("");
+  const [HubKeluargaWali, setHubKeluargaWali] = useState("");
+  const [TempatLahirWali, setTempatLahirWali] = useState("");
+  const [TglLahirWali, setTglLahirWali] = useState("");
+  const [AgamaWali, setAgamaWali] = useState("");
+  const [JenisKelaminWali, setJenisKelaminWali] = useState("");
+  const [PekerjaanWali, setPekerjaanWali] = useState("");
+  const [NotelpWali, setNotelpWali] = useState("");
+  const [NohpWali, setNohpWali] = useState("");
+  const [EmailWali, setEmailWali] = useState("");
+  const [ProvinsiWali, setProvinsiWali] = useState("");
+  const [KotaWali, setKotaWali] = useState("");
+  const [KecamatanWali, setKecamatanWali] = useState("");
+  const [KelurahanWali, setKelurahanWali] = useState("");
+  const [DesaWali, setDesaWali] = useState("");
+  const [NamaJalanWali, setNamaJalanWali] = useState("");
+  const [NamaClub, setNamaClub] = useState("");
+  const [NamaEvent, setNamaEvent] = useState("");
+  const [TahunPrestasi, setTahunPrestasi] = useState("");
+  const [Pencapaian, setPencapaian] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
-
 
   const handleRadioChange = (e) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
   };
   const handleRadioChanges = (e) => {
-     setPendidikanTerakhirAtlet(e.target.value);
+    setPendidikanTerakhirAtlet(e.target.value);
   };
 
   const LoadImage = (e) => {
-    
     e.preventDefault();
     const selectedFile = e.target.files[0];
-      setFile(selectedFile);
-      setPreview(URL.createObjectURL(selectedFile));
-  
+    setFile(selectedFile);
+    setPreview(URL.createObjectURL(selectedFile));
   };
 
   const saveAtlet = async (e) => {
@@ -153,7 +150,7 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
     // formData.append("noHp_ibu", NohpIbu);
     // formData.append("notlp_ibu", NotelpIbu);
     // formData.append("email_ibu", EmailIbu);
-    
+
     // formData.append("provinsi_ortu", ProvinsiOrtu);
     // formData.append("kota_ortu", KotaOrtu);
     // formData.append("kecamatan_ortu", KecamatanOrtu);
@@ -184,7 +181,6 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
     // formData.append("capai_prestasi", Pencapaian);
     // formData.append("password", Password);
 
-    
     // formData.append("file", file);
     // try {
     //   await axios.post("http://localhost:5000/gambar", formData, {
@@ -200,18 +196,16 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-     
       await axios.post("http://localhost:5000/gambar", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
       });
-      
 
       // navigate(`/cabor/atlet/${cabors.id_cabor}`);
-      window.location.reload();
+      // window.location.reload();
       tidakMuncul();
-      
+
       await axios.post("http://localhost:5000/atlet", {
         name_awal: NamaDepan,
         id_cabor: id,
@@ -291,14 +285,11 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
         tahun_prestasi: TahunPrestasi,
         capai_prestasi: Pencapaian,
       });
-
-      
     } catch (error) {
       console.log(error);
       setMsg(error.response.data.msg);
     }
-
-  }
+  };
 
   useEffect(() => {
     getCabor();
@@ -310,9 +301,6 @@ const AddAtletModal = ({Muncul, tidakMuncul}) => {
       setCabor(response.data);
     } catch (error) {}
   };
-
-  
-  
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);

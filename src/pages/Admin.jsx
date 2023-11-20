@@ -19,7 +19,7 @@ const Admin = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "Admin"){
+    if (user && user.role === "Atlet"){
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);

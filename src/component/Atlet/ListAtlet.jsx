@@ -62,9 +62,7 @@ const ListAtlet = () => {
     <div>
       <h1 className="title">Atlet</h1>
 
-        <h2 className="subtitle">
-          List Atlet {cabors && cabors.namaCabor}
-        </h2>
+      <h2 className="subtitle">List Atlet {cabors && cabors.namaCabor}</h2>
 
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">
@@ -86,24 +84,28 @@ const ListAtlet = () => {
             <th>No</th>
             <th>Nama</th>
             <th>No HP</th>
-            {user && user.role === "Admin" && <th>Aksi</th>}
+            <th>Email</th>
+            {user && user.role === "Admin" && (
+              <th className="has-text-centered">Aksi</th>
+            )}
           </tr>
         </thead>
         {atlets.map((atlet, index) => (
           <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={atlet.uuid} className="">
+            <tr key={atlet && atlet.uuid} className="">
               <td>{index + 1}</td>
               <Link
                 to={`/cabor/atlet/${
                   atlet && atlet.Cabor && atlet.Cabor.id_cabor
                 }/${atlet.uuid}`}
               >
-                <td>{atlet.nama}</td>
+                <td>{atlet && atlet.nama}</td>
               </Link>
-              <td>{atlet.role}</td>
+              <td>{atlet && atlet.hp_mobile}</td>
+              <td>{atlet && atlet.email}</td>
               {user && user.role === "Admin" && (
-                <td>
-                  <Link onClick={() => deleteAtlet(atlet.id_atlet)}>
+                <td className="has-text-centered">
+                  <Link onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
                     <IoTrashSharp />
                   </Link>
                 </td>

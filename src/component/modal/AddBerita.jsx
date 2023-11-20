@@ -40,39 +40,33 @@ const AddBerita = ({isActive, onClose}) => {
           <form onSubmit={saveBerita}>
             <section className="modal-card-body">
               <div className="box is-flex columns is-justify-content-space-between">
-                <div className="komp">
-                  <div className="field">
-                    <label htmlFor="namaBerita" className="label">
-                      Judul Berita
-                    </label>
-                    <div className="control">
-                      <input
-                        title="Judul Berita"
-                        autoComplete="off"
-                        type="text"
-                        className="input"
-                        id="namaBerita"
-                        value={judul}
-                        onChange={(e) => setJudul(e.target.value)}
-                      />
-                    </div>
+                <div className="field">
+                  <label htmlFor="namaBerita" className="label">
+                    Judul Berita
+                  </label>
+                  <div className="control is-full">
+                    <input
+                      title="Judul Berita"
+                      autoComplete="off"
+                      type="text"
+                      className="input"
+                      aria-rowspan={10}
+                      id="namaBerita"
+                      value={judul}
+                      onChange={(e) => setJudul(e.target.value)}
+                    />
                   </div>
-                  <div className="field">
-                    <label htmlFor="iconCabang" className="label">
-                      Isi Berita
-                    </label>
-                    <div className="control">
-                      <input
-                        autoComplete="off"
-                        type="text"
-                        className="input"
-                        
-                      />
-                    </div>
+                </div>
+                <div className="field  is-full">
+                  <label htmlFor="iconCabang" className="label">
+                    Isi Berita
+                  </label>
+                  <div className="control">
+                    <input autoComplete="off" type="text" className="input " />
                   </div>
                 </div>
               </div>
-              {/* <p>This is a Bulma modal.</p> */}
+              
             </section>
             <footer className="modal-card-foot">
               <div className="is-flex">

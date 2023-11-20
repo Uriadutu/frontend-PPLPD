@@ -4,6 +4,8 @@ import {IoPerson, IoHome, IoLogOut, IoBook, IoAlbums} from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
 import { useMediaQuery } from 'react-responsive';
+import { GiSprint } from "react-icons/gi";
+import { TbBarbell } from "react-icons/tb";
 
 
 const Sidebar = () => {
@@ -42,16 +44,33 @@ const Sidebar = () => {
             </p>
           </li>
           <ul className="menu-list pl-2">
-            <li>
-              <NavLink to={"/cabor"}>
-                <IoAlbums /> Cabang Olahraga
-              </NavLink>
-              {user && user.role === "Admin" && (
+            {user && user.role === "Admin" && (
+              <li>
+                <NavLink to={"/cabor"}>
+                  <IoAlbums /> Cabang Olahraga
+                </NavLink>
                 <NavLink to={"/panduan"}>
                   <IoBook /> Panduan Pelaksanaan
                 </NavLink>
-              )}
-            </li>
+              </li>
+            )}
+            {user && user.role === "Atlet" && (
+              <li>
+                <NavLink to={"/datadiriatlet"}>
+                  <IoPerson /> Data Atlet
+                </NavLink>
+                <NavLink to={`/perkembangan-latihan/${user && user.id_atlet}`}>
+                  <GiSprint /> Perkembangan Latihan
+                </NavLink>
+                <NavLink
+                  to={`/cabor/program/${
+                    user && user.Cabor && user.Cabor.id_cabor
+                  }`}
+                >
+                  <TbBarbell /> Program Latihan
+                </NavLink>
+              </li>
+            )}
           </ul>
         </ul>
         {user && user.role === "Admin" && (
@@ -89,6 +108,23 @@ const Sidebar = () => {
             </ul>
           </div>
         )}
+        {user && user.role === "SuperAdmin" && (
+          <div>
+            <p className="menu-label">Admin</p>
+            <ul className="menu-list">
+              <li>
+                <p className="pl-3 is-size-9">Users</p>
+              </li>
+              <ul className="menu-list pl-2">
+                <li>
+                  <NavLink to={"/daftaradmin"}>
+                    <IoPerson /> Admin
+                  </NavLink>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        )}
         <p className="menu-label">Settings</p>
         <ul className="menu-list">
           {user && user.role === "Atlet" && (
@@ -112,7 +148,6 @@ const Sidebar = () => {
           </li>
         </ul>
       </aside>
-     
     </div>
   );
 };

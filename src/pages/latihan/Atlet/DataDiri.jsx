@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react'
-import Layout from './Layout'
-import Formaddadmin from '../component/Formaddadmin'
+import React, { useEffect } from "react";
+import Navbar from "../../../component/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import { getMe } from "../../../features/authSlice";
+import DataDiriAtlet from "../../../component/Atlet/AtletOnly/DataDiriAtlet";
 
-const Addadmin = () => {
+const DataDiri = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
@@ -18,16 +18,13 @@ const Addadmin = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role === "Atlet") {
-      navigate("/dashboard");
-    }
   }, [isError, user, navigate]);
-
   return (
-    <Layout>
-        <Formaddadmin/>
-    </Layout>
-  )
-}
+    <div className="">
+      <Navbar/>
+      <DataDiriAtlet/>
+    </div>
+  );
+};
 
-export default Addadmin
+export default DataDiri;

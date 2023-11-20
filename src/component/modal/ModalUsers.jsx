@@ -92,7 +92,6 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                         }}
                       >
                         <div className="header p-2 m-0">
-                          <p>Atlet</p>
                         </div>
                         <img
                           src={User}
@@ -107,7 +106,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                         </a>
                       </div>
                     </Link>
-                    <Link to={`/cabor/atlet/${queryId}`} className="column">
+                    <Link to={`/cabor/pelatih/${queryId}`} className="column">
                       <div
                         className="card"
                         style={{
@@ -116,7 +115,6 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                         }}
                       >
                         <div className="header p-2 m-0">
-                          <p>Pelatih</p>
                         </div>
                         <img
                           src={User}
@@ -145,9 +143,10 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                 >
                   <IoTrashOutline /> Hapus {caborr.namaCabor}
                 </button>
-                <p>{msg}</p>
               </div>
             )}
+            <Link to={`/cabor/program/${queryId}`} className="button is-dark ml-3">Program Latihan</Link>
+            <p>{msg}</p>
           </footer>
         </div>
       </div>
