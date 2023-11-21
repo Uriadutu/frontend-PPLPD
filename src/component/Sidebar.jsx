@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, useNavigate } from "react-router-dom";
-import {IoPerson, IoHome, IoLogOut, IoBook, IoAlbums} from "react-icons/io5"
+import {IoPerson, IoHome, IoLogOut, IoBook, IoAlbums, IoChatbox} from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
 import { useMediaQuery } from 'react-responsive';
@@ -37,6 +37,9 @@ const Sidebar = () => {
           <li>
             <NavLink to={"/dashboard"}>
               <IoHome /> Dashboard
+            </NavLink>
+            <NavLink to={"/forum"}>
+              <IoChatbox /> Forum
             </NavLink>
 
             <p className="pl-3 is-size-9" style={{ padding: "10px 0px 5px" }}>

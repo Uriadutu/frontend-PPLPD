@@ -51,3 +51,57 @@
 .cont-tabs {
   border: 1px solid #777;
 }
+
+.forumku {
+  
+  border: none;
+  /* border-bottom: 1px solid #666; */
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+  background-color: rgb(247, 247, 247);
+  transition: .5s;
+}
+.forumku:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.chat-forum-right{
+  background-color: #f3f3f3;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  text-align: left;
+  
+}
+
+
+.chat-forum-left {
+  background-color: #DCF8C6;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: right;
+}
+
+.hover-chat {
+  display: inline-block;
+  border: 1px solid #777;
+  overflow: hidden;
+  height: 310px;
+  position: relative; /* Menjadikan posisi gambar sebagai referensi untuk transform */
+}
+
+.hover-chat img {
+  width: 200%; 
+  height: auto;
+  object-fit: cover;
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-chat:hover img {
+  transform: scale(1.5);
+  transform-origin: center; /* Mengatur titik tengah sebagai titik transformasi */
+}
+
+
+

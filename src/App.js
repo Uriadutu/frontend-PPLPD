@@ -19,6 +19,8 @@ import AkunHak from "./pages/AkunHak";
 import Program from "./pages/Program";
 import DataDiri from "./pages/latihan/Atlet/DataDiri";
 import ListPelatihCabor from "./pages/Pelatih/ListPelatihCabor";
+import PageForum from "./pages/Forum-Pages/PageForum";
+import DataForum from "./pages/Forum-Pages/DataForum";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/forum" element={<PageForum />} />
+          <Route path="/forum/:id" element={<DataForum />} />
           <Route path="/daftaradmin" element={<Admin />} />
           <Route path="/datadiriatlet" element={<DataDiri />} />
           <Route path="/cabor" element={<Cabor />} />

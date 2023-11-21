@@ -5,7 +5,6 @@ import {loginUser, reset} from "../features/authSlice";
 import Bg from "../img/Background.png";
 import Logo_pl from "../img/PPLPDlogo.png";
 import Dispora from "../img/Dispora.png";
-import LogoPemkot from "../img/LogoPemkot.png";
 
 
 const lebar = 100; 
@@ -57,11 +56,6 @@ const Login = () => {
                 alt=""
                 style={{ width: `${lebar}px`, height: `${tinggi}px` }}
               />
-              {/* <img
-                src={LogoPemkot}
-                alt=""
-                style={{ width: `${lebar}px`, height: `${tinggi}px` }}
-              /> */}
             </div>
             <p className="" style={{ color: "white", fontSize: "30px" }}>
               Dinas Pemuda Dan Olahraga

@@ -83,23 +83,26 @@ const Latihan = () => {
     }
   }, [idCabor]);
 
+
   const saveLatihan = async (e)=>{
     e.preventDefault();
+    const idIndi = indikators && indikators.id_indikator;
 
     try {
-      await axios.post("http://localhost:5000:/latihan", {
+      const latihanResponse = await axios.post("http://localhost:5000:/latihan", {
         id_cabor :idCabor ,
         id_komponen : idKomponen,
         namaLatihan : namaLatihan,
       });
+      const id_latihan = latihanResponse.data.id_latihan;
 
-      // await axios.post("http://localhost:5000/perkembangan", {
-      //   id_atlet : id,
-      //   id_indikator : ,
-      //   id_latihan : ,
-      //   tgl : tgl,
-      //   hasilTes : hasilTes,
-      // })
+      await axios.post("http://localhost:5000/perkembangan", {
+        id_atlet: id,
+        id_indikator: idIndi,
+        id_latihan: id_latihan,
+        tgl: tgl,
+        hasilTes: hasilTes,
+      });
 
 
       
@@ -109,74 +112,47 @@ const Latihan = () => {
   }
 
   return (
-    <div
-      className="has-background-grey-light p-3 mt-5"
-    >
-      <div className="mb-3">
-        <Navbar />
-      </div>
-      <h1 className="title mt-5">
-        Perkembangan latihan{" "}
-        {/* {indikators.length > 0 && indikators[0].namaIndikator} */}
-      </h1>
-      <h2 className="subtitle">Input Perkembangan Latihan Atlet</h2>
-      <Link
-        to={`/cabor/atlet/${idCabor}/${atlets && atlets.uuid}`}
-        className="button is-dark mb-3"
-      >
-        Kembali
-      </Link>
-
-      <div className="card latihan-card" style={{ maxWidth: "100%" }}>
-        <header className="card-header column">
-          <p className="card-header-title">
-            Input Perkembangan {atlets && atlets.nama}{" "}
-          </p>
-        </header>
-        <div
-          className="card-content"
-          // style={{ maxHeight: "90vh", overflowY: "auto" }}
+    <div className="has-background-grey-light p-3 mt-5">
+      <form onSubmit={saveLatihan}>
+        <div className="mb-3">
+          <Navbar />
+        </div>
+        <h1 className="title mt-5">
+          Perkembangan latihan{" "}
+          {/* {indikators.length > 0 && indikators[0].namaIndikator} */}
+        </h1>
+        <h2 className="subtitle">Input Perkembangan Latihan Atlet</h2>
+        <Link
+          to={`/cabor/atlet/${idCabor}/${atlets && atlets.uuid}`}
+          className="button is-dark mb-3"
         >
-          <div className="content">
-            {komponens.map((komponen) => (
-              <div key={komponen.id_komponen}>
-                <h2>{komponen.namaKomponen}</h2>
-                <div style={{ overflowX: "auto" }}>
-                  <table
-                    className="table is-bordered mb-5"
-                    style={{ minWidth: "800px" }}
-                  >
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="has-text-centered">
-                          Nama Latihan / Tgl
-                        </th>
-                        {indikators
-                          .filter(
-                            (indiKomponen) =>
-                              indiKomponen.id_komponen === komponen.id_komponen
-                          )
-                          .map((indiKomponenFiltered) => (
-                            <th
-                              key={indiKomponenFiltered.id_indikator}
-                              className="is-vcentered has-text-centered"
-                            >
-                              {indiKomponenFiltered.namaIndikator}
-                            </th>
-                          ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Array.from({ length: 1 }).map((_, index) => (
+          Kembali
+        </Link>
+
+        <div className="card latihan-card" style={{ maxWidth: "100%" }}>
+          <header className="card-header column">
+            <p className="card-header-title">
+              Input Perkembangan {atlets && atlets.nama}{" "}
+            </p>
+          </header>
+          <div
+            className="card-content"
+            // style={{ maxHeight: "90vh", overflowY: "auto" }}
+          >
+            <div className="content">
+              {komponens.map((komponen) => (
+                <div key={komponen.id_komponen}>
+                  <h2>{komponen.namaKomponen}</h2>
+                  <div style={{ overflowX: "auto" }}>
+                    <table
+                      className="table is-bordered mb-5"
+                      style={{ minWidth: "800px" }}
+                    >
+                      <thead>
                         <tr>
-                          <td className="is-flex is-justify-content-center">
-                            <input type="text" placeholder={`Latihan...`} />
-                          </td>
-                          <td>
-                            <div className="is-flex is-justify-content-center">
-                              <input type="date" name="" id="" />
-                            </div>
-                          </td>
+                          <th colSpan={2} className="has-text-centered">
+                            Nama Latihan / Tgl
+                          </th>
                           {indikators
                             .filter(
                               (indiKomponen) =>
@@ -184,33 +160,74 @@ const Latihan = () => {
                                 komponen.id_komponen
                             )
                             .map((indiKomponenFiltered) => (
-                              <td
+                              <th
                                 key={indiKomponenFiltered.id_indikator}
-                                className=""
+                                className="is-vcentered has-text-centered"
                               >
-                                <div className="is-flex is-justify-content-center">
-                                  <input type="text" />
-                                </div>
-
-                                {/* Tambahkan konten sesuai kebutuhan */}
-                              </td>
+                                {indiKomponenFiltered.namaIndikator}
+                              </th>
                             ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {Array.from({ length: 1 }).map((_, index) => (
+                          <tr>
+                            <td className="is-flex is-justify-content-center">
+                              <input
+                                value={namaLatihan}
+                                onChange={(e) => setNamaLatihan(e.target.value)}
+                                type="text"
+                                placeholder={`Latihan...`}
+                              />
+                            </td>
+                            <td>
+                              <div className="is-flex is-justify-content-center">
+                                <input
+                                  value={tgl}
+                                  onChange={(e) => setTanggal(e.target.value)}
+                                  type="date"
+                                  name=""
+                                  id=""
+                                />
+                              </div>
+                            </td>
+                            {indikators
+                              .filter(
+                                (indiKomponen) =>
+                                  indiKomponen.id_komponen ===
+                                  komponen.id_komponen
+                              )
+                              .map((indiKomponenFiltered) => (
+                                <td
+                                  key={indiKomponenFiltered.id_indikator}
+                                  className=""
+                                >
+                                  <div className="is-flex is-justify-content-center">
+                                    <input
+                                      value={hasilTes}
+                                      onChange={(e) =>
+                                        setHasilTes(e.target.value)
+                                      }
+                                      type="text"
+                                    />
+                                  </div>
+                                </td>
+                              ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <footer className="card-footer">
-          <a href="#" className="card-footer-item">
-            Save
-          </a>
-        </footer>
-      </div>
+          <footer className="card-footer">
+            <button type="submit"></button>
+          </footer>
+        </div>
+      </form>
     </div>
   );
 };

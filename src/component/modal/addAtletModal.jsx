@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 const AddAtletModal = ({ Muncul, tidakMuncul }) => {
-  const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("data-diri");
   const [msg, setMsg] = useState("");
