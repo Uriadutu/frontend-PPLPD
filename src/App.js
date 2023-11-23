@@ -21,6 +21,8 @@ import DataDiri from "./pages/latihan/Atlet/DataDiri";
 import ListPelatihCabor from "./pages/Pelatih/ListPelatihCabor";
 import PageForum from "./pages/Forum-Pages/PageForum";
 import DataForum from "./pages/Forum-Pages/DataForum";
+import AddPelatihModal from "./component/modal/AddPelatihModal";
+import ListAtletPelatih from "./pages/Pelatih/ListAtletPelatih";
 
 
 function App() {
@@ -42,11 +44,13 @@ function App() {
           <Route path="/daftaradmin/edit/:id" element={<Editadmin />} />
           <Route path="/panduan" element={<PanduanPelaksanaan />} />
           <Route path="/daftaratlet" element={<AtletCaborlist />} />
+          <Route path="/daftaratlet-cabor" element={<ListAtletPelatih />} />
           <Route path="/akunsaya" element={<Akun />} />
           <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
+          <Route path="/pelatih/add/11" element={<AddPelatihModal />} />
           <Route
             path="/cabor/komponen-indikator/atur/:id"
             element={<PengaturanIndikator />}

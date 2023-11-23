@@ -18,21 +18,11 @@ const DataAtlet = () => {
 
   const [showAll, setShowAll] = useState(false);
 
-  const getGambar = async(id) => {
-    try {
-      const response = await axios.get(`http://localhost:5000/gambar/${id}`);
-      setGambar(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
 
   useEffect(() => {
-      getGambar(id);
       Getatlet(id);
   }, []);
 
@@ -91,20 +81,21 @@ const DataAtlet = () => {
             <div className=" is-flex is-justify-content-space-between">
               <div className="is-flex">
                 <div className="field mr-5">
-                  <p>Nama Awal</p>
-                  <p>Nama Tangah</p>
-                  <p>Nama Belakang</p>
+                  <p>Nama</p>
                   <p>Nama Panggilan</p>
+                  <p>Status</p>
+                  <p>Atlet</p>
                   <p>Tempat Lahir</p>
                   <p>Tanggal Lahir</p>
                   <p>Agama</p>
                   <p>Alamat</p>
+                  
                 </div>
                 <div className="isi">
-                  <p>: {atlets && atlets.name_awal}</p>
-                  <p>: {atlets && atlets.nama_tengah}</p>
-                  <p>: {atlets && atlets.nama_akhir}</p>
+                  <p>: {atlets && atlets.name_awal} {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}</p>
                   <p>: {atlets && atlets.nama_panggil}</p>
+                  <p>: {atlets && atlets.status}</p>
+                  <p>: {atlets && atlets.Cabor && atlets.Cabor.namaCabor}</p>
                   <p>: {atlets && atlets.tmp_lahir}</p>
                   <p>: {atlets && atlets.tgl_lahir}</p>
                   <p>: {atlets && atlets.agama}</p>
@@ -118,7 +109,7 @@ const DataAtlet = () => {
               <div className="column is-one-quarter">
                 <figure className="image is-1by1 card gambar-atlet">
                   <img
-                    src={atlets && atlets.Gambar && atlets.Gambar.url}
+                    src={atlets && atlets.url}
                     alt="Foto Atlet"
                   />
                 </figure>

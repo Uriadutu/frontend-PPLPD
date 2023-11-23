@@ -18,7 +18,7 @@ const Editadmin = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "Admin") {
+    if (user && user.role !== "SuperAdmin") {
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);

@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const Atletpage = () => {
-  const [atlets, setAtlet] = useState([]);
+const PelatihPage = () => {
+  const [pelatihs, setPelatih] = useState([]);
   const [sortBy, setSortBy] = useState("nama");
   const [searchText, setSearchText] = useState("");
-  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-      getAtlet();
+    getPelatih();
   }, []);
 
-  const getAtlet = async () => {
-    try {
-        const response = await axios.get("http://localhost:5000/atlet");
-      setAtlet(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const getPelatih = async () => {
+    const response = await axios.get("http://localhost:5000/pelatih");
+    setPelatih(response.data);
   };
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
 
-  const filteredAndSortedAtlets = atlets
-    .filter((atlet) => {
+  const filteredAndSortedPelatihs = pelatihs
+    .filter((pelatih) => {
       const lowerCaseSearchText = searchText.toLowerCase();
       return (
-        atlet.nama.toLowerCase().includes(lowerCaseSearchText) ||
-        (atlet.username &&
-          atlet.username.toLowerCase().includes(lowerCaseSearchText))
+        pelatih.nama.toLowerCase().includes(lowerCaseSearchText) ||
+        (pelatih.username &&
+          pelatih.username.toLowerCase().includes(lowerCaseSearchText))
       );
     })
     .sort((a, b) => {
@@ -46,16 +40,10 @@ const Atletpage = () => {
       return 0;
     });
 
-    function capitalizeWords(sentence) {
-      return sentence
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    }
   return (
     <div>
-      <h1 className="title">Atlet</h1>
-      <h2 className="subtitle">List Atlet</h2>
+      <h1 className="title">Pelatih</h1>
+      <h2 className="subtitle">List Pelatih</h2>
 
       <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
         <div className="is-flex is-align-items-center">
@@ -91,7 +79,7 @@ const Atletpage = () => {
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama Atlet</th>
+            <th>Nama Pelatih</th>
             <th>Username</th>
             <th>Create by</th>
             <th>Cabang Olahraga</th>
@@ -100,14 +88,16 @@ const Atletpage = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredAndSortedAtlets.map((atlet, index) => (
-            <tr key={atlet.id_atlet}>
+          {filteredAndSortedPelatihs.map((pelatih, index) => (
+            <tr key={pelatih.id_pelatih}>
               <td>{index + 1}</td>
-              <td>{capitalizeWords(atlet.nama)}</td>
-              <td>{atlet.username}</td>
-              <td>{atlet && atlet.Admin && atlet.Admin.nama}</td>
-              <td>{atlet && atlet.Cabor && atlet.Cabor.namaCabor}</td>
-              <td>{atlet && atlet.status}</td>
+              <td>
+                {pelatih.nama.charAt(0).toUpperCase() + pelatih.nama.slice(1)}
+              </td>
+              <td>{pelatih.username}</td>
+              <td>{pelatih && pelatih.Admin && pelatih.Admin.nama}</td>
+              <td>{pelatih && pelatih.Cabor && pelatih.Cabor.namaCabor}</td>
+              <td>{pelatih && pelatih.status}</td>
               <td className="has-text-centered">
                 <a href="#">Lihat</a>
                 <a href="#">Hapus</a>
@@ -120,4 +110,4 @@ const Atletpage = () => {
   );
 };
 
-export default Atletpage;
+export default PelatihPage;

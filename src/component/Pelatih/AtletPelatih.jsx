@@ -9,13 +9,14 @@ const Atletpage = () => {
   const [searchText, setSearchText] = useState("");
   const { user } = useSelector((state) => state.auth);
 
+  const idCabor = user && user.Cabor && user.Cabor.id_cabor;
   useEffect(() => {
-      getAtlet();
-  }, []);
+    getAtlet(idCabor);
+  }, [idCabor]);
 
-  const getAtlet = async () => {
+  const getAtlet = async (idcabor) => {
     try {
-        const response = await axios.get("http://localhost:5000/atlet");
+      const response = await axios.get(`http://localhost:5000/cabor/atlet/${idcabor}`);
       setAtlet(response.data);
     } catch (error) {
       console.log(error);
@@ -46,12 +47,12 @@ const Atletpage = () => {
       return 0;
     });
 
-    function capitalizeWords(sentence) {
-      return sentence
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    }
+  function capitalizeWords(sentence) {
+    return sentence
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
   return (
     <div>
       <h1 className="title">Atlet</h1>

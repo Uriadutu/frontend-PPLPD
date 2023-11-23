@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const AddAtletModal = ({ Muncul, tidakMuncul }) => {
-
+const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [activeTab, setActiveTab] = useState("data-diri");
   const [msg, setMsg] = useState("");
   const [cabors, setCabor] = useState("");
@@ -34,6 +33,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
   const [UkuranSepatu, setUkuranSepatu] = useState("");
   const [Pendidikan, setPendidikan] = useState("");
   const [NamaSekolahAtlet, setNamaSekolahAtlet] = useState("");
+  const [PendidikanTerakhirAtlet, setPendidikanTerakhirAtlet] = useState("");
+  const [NamaAlumniAtlet, setNamaAlumniAtlet] = useState("");
+  const [TahunLulusAtlet, setTahunLulusAtlet] = useState("");
   const [NamaAyah, setNamaAyah] = useState("");
   const [TempatLahirAyah, setTempatLahirAyah] = useState("");
   const [TglLahirAyah, setTglLahirAyah] = useState("");
@@ -79,6 +81,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
   };
 
+  const handleRadioChanges = (e) => {
+    setPendidikanTerakhirAtlet(e.target.value);
+  };
   const LoadImage = (e) => {
     e.preventDefault();
     const selectedFile = e.target.files[0];
@@ -114,6 +119,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
     // pendidikan
     formData.append("pendidikan", Pendidikan);
     formData.append("nama_sklh", NamaSekolahAtlet);
+    formData.append("pend_terakhir", PendidikanTerakhirAtlet);
+    formData.append("alumni", NamaAlumniAtlet);
+    formData.append("tahun_lulus", TahunLulusAtlet);
     formData.append("ukuran_baju", UkuranBaju);
 
     formData.append("ukuran_sepatu", UkuranSepatu);
@@ -162,15 +170,13 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
     formData.append("namaJalan_wali", NamaJalanWali);
     formData.append("file", file);
     try {
-
-      await axios.post("http://localhost:5000/atlet", formData, {
+      await axios.post("http://localhost:5000/pelatih", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
       });
-      tidakMuncul();
       window.location.reload();
-
+      tidakMuncul();
     } catch (error) {
       console.log(error);
       setMsg(error.response.data.msg);
@@ -199,7 +205,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">
-                Tambah Atlet {cabors.namaCabor}
+                Tambah Pelatih {cabors.namaCabor}
               </p>
               <Link
                 className="delete"
@@ -218,7 +224,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                       className={activeTab === "data-diri" ? "is-active" : ""}
                       onClick={() => handleTabClick("data-diri")}
                     >
-                      <a>Data Atlet</a>
+                      <a>Data Pelatih</a>
                     </li>
                     <li
                       className={
@@ -697,8 +703,113 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           />
                         </div>
                       </div>
+                    </div><label className="column label">Jika Sudah lulus</label>
+                      <label className="column">Pendidikan Terakhir :</label>
+                      <div className="field is-full is-justify-content-space-between is-flex column">
+                        <div className=" is-full is-justify-content-space-between is-flex column">
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="TK"
+                              checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">TK</label>
+                          </div>
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="SD"
+                              checked={PendidikanTerakhirAtlet === "SD"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">SD</label>
+                          </div>
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="SMP"
+                              checked={PendidikanTerakhirAtlet === "SMP"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">SMP</label>
+                          </div>
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="SMA"
+                              checked={PendidikanTerakhirAtlet === "SMA"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">SMA</label>
+                          </div>
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="SMK"
+                              checked={PendidikanTerakhirAtlet === "SMK"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">SMK</label>
+                          </div>
+                          <div
+                            className="is-flex"
+                            style={{ alignItems: "center", gap: "10px" }}
+                          >
+                            <input
+                              type="radio"
+                              name="alumni"
+                              value="S1"
+                              checked={PendidikanTerakhirAtlet === "S1"} // Mengecek apakah radio ini yang dipilih
+                              onChange={handleRadioChanges}
+                            />
+                            <label className="">S1</label>
+                          </div>
+                        </div>
                       </div>
+                      <div className="field is-full is-justify-content-space-between is-flex column">
+                        <label className="">Nama Sekolah / Universitas</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            type="text"
+                            value={NamaAlumniAtlet}
+                            onChange={(e) => setNamaAlumniAtlet(e.target.value)}
+                          />
+                        </div>
                       </div>
+                      <div className="field is-full is-justify-content-space-between is-flex column">
+                        <label className="">Tahun Lulus</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={TahunLulusAtlet}
+                            onChange={(e) => setTahunLulusAtlet(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                  </div>
                 )}
                 {activeTab === "data-orang-tua" && (
                   <div>
@@ -1193,9 +1304,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                   </div>
                 )}
-                {activeTab === "data-prestasi" && (
-                  <div className=""></div>
-                )}
+                {activeTab === "data-prestasi" && <div className=""></div>}
               </div>
             </section>
             <footer className="modal-card-foot">
@@ -1221,4 +1330,4 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
   );
 };
 
-export default AddAtletModal;
+export default AddPelatihModal;

@@ -38,7 +38,7 @@ const DataDiriAtlet = () => {
       <Link to={"/dashboard"} className="button mr-3">
         Dashboard
       </Link>
-      
+
       <div className="card mt-3">
         <header className="card-header">
           <p className="card-header-title">Data Diri</p>
@@ -75,7 +75,7 @@ const DataDiriAtlet = () => {
               <div className="">
                 <figure className=" image is-128x128">
                   <img
-                    src={atlets && atlets.Gambar && atlets.Gambar.url}
+                    src={atlets && atlets.url}
                     alt="Foto Atlet"
                     className="gambar-atlet"
                   />

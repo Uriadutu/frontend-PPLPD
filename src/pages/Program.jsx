@@ -18,9 +18,6 @@ const Program = () => {
    if (isError) {
      navigate("/");
    }
-   if (user && user.role !== "Admin") {
-     navigate("/dashboard");
-   }
    
  }, [isError, user, navigate]);
   return (

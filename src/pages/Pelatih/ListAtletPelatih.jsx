@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import PelatihCabor from '../../component/Pelatih/PelatihCabor'
 import Layout from "../Layout"
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../features/authSlice';
+import AtletPelatih from '../../component/Pelatih/AtletPelatih';
 
 
 
-const ListPelatihCabor = () => {
+const ListAtletPelatih = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
@@ -28,10 +28,10 @@ const ListPelatihCabor = () => {
     <div>
       <Layout>
 
-        <PelatihCabor/>
+        <AtletPelatih/>
       </Layout>
     </div>
   )
 }
 
-export default ListPelatihCabor
+export default ListAtletPelatih

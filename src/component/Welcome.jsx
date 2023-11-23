@@ -38,7 +38,7 @@ const Welcome = () => {
             <div class="media-left">
               <img
                 className="image is-64x64 is-rounded"
-                src={user && user.Gambar && user.Gambar.url}
+                src={user && user.url}
                 style={{
                   objectFit: "cover",
                   borderRadius: "50%",

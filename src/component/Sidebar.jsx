@@ -1,12 +1,18 @@
-import React from 'react'
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {IoPerson, IoHome, IoLogOut, IoBook, IoAlbums, IoChatbox} from "react-icons/io5"
+import {
+  IoPerson,
+  IoHome,
+  IoLogOut,
+  IoBook,
+  IoAlbums,
+  IoChatbox,
+} from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import { GiSprint } from "react-icons/gi";
 import { TbBarbell } from "react-icons/tb";
-
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -38,13 +44,16 @@ const Sidebar = () => {
             <NavLink to={"/dashboard"}>
               <IoHome /> Dashboard
             </NavLink>
-            <NavLink to={"/forum"}>
-              <IoChatbox /> Forum
-            </NavLink>
-
-            <p className="pl-3 is-size-9" style={{ padding: "10px 0px 5px" }}>
-              PPLPD
-            </p>
+            {user && user.role !== "SuperAdmin" && (
+              <NavLink to={"/forum"}>
+                <IoChatbox /> Forum
+              </NavLink>
+            )}
+            {user && (user.role !== "Pelatih" &&  user.role !== "SuperAdmin") && (
+              <p className="pl-3 is-size-9" style={{ padding: "10px 0px 5px" }}>
+                PPLPD
+              </p>
+            )}
           </li>
           <ul className="menu-list pl-2">
             {user && user.role === "Admin" && (
@@ -85,12 +94,17 @@ const Sidebar = () => {
               </li>
               <ul className="menu-list pl-2">
                 <li>
-                  <NavLink to={"/daftaradmin"}>
-                    <IoPerson /> Admin
-                  </NavLink>
-                  <NavLink to={"/daftarpelatih"}>
-                    <IoPerson /> Pelatih
-                  </NavLink>
+                  {user && user.role !== "Pelatih" && (
+                    <div className="">
+                      <NavLink to={"/daftaradmin"}>
+                        <IoPerson /> Admin
+                      </NavLink>
+
+                      <NavLink to={"/daftarpelatih"}>
+                        <IoPerson /> Pelatih
+                      </NavLink>
+                    </div>
+                  )}
                   <NavLink to={"/daftaratlet"}>
                     <IoPerson /> Atlet
                   </NavLink>
@@ -111,6 +125,39 @@ const Sidebar = () => {
             </ul>
           </div>
         )}
+        {user && user.role === "Pelatih" && (
+          <div>
+            <p className="menu-label">Pelatih</p>
+            <ul className="menu-list">
+              <NavLink to={"/datadiriatlet"}>
+                <IoPerson /> Data Pelatih
+              </NavLink>
+              <li>
+                <p className="pl-3 is-size-9">Users</p>
+              </li>
+              <ul className="menu-list pl-2">
+                <li>
+                  <NavLink to={"/daftaratlet-cabor"}>
+                    <IoPerson /> Atlet
+                  </NavLink>
+                </li>
+                <ul className="menu-list mt-3">
+                  <li className="pl-1">
+                    <p>Control</p>
+                  </li>
+                  <ul className="menu-list">
+                    <li>
+                      <NavLink to={"/kontrolatlet"}>
+                        <IoPerson /> Pengaturan Cabor
+                      </NavLink>
+                    </li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+          </div>
+        )}
+
         {user && user.role === "SuperAdmin" && (
           <div>
             <p className="menu-label">Admin</p>
@@ -155,4 +202,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar
+export default Sidebar;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice";
 import Latihan from "../../component/Atlet/Perkembangan/Latihan";
+import PerkembanganLatihan from "../../component/Atlet/Perkembangan/PerkembanganLatihan";
 
 const RecordLatihan = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,8 @@ const RecordLatihan = () => {
   }, [isError, navigate]);
 
   return (
-    <div className="has-background-grey-light" style={{ maxHeight: "100vh" }}>
-      <Latihan />
+    <div className="has-background-grey-light" style={{ minHeight: "100vh" }}>
+      <PerkembanganLatihan />
     </div>
   );
 };

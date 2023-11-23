@@ -4,6 +4,7 @@ import Pelatihlist from '../component/Pelatihlist'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../features/authSlice';
+import PelatihPage from '../component/Pelatih/PelatihPage';
 
 const Pelatih = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Pelatih = () => {
  }, [isError, user, navigate]);
   return (
     <Layout>
-        <Pelatihlist/>
+        <PelatihPage/>
     </Layout>
   )
 }

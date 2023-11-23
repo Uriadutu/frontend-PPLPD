@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { IoAdd, IoTrashSharp } from "react-icons/io5";
-import AddAtletModal from "../modal/addAtletModal";
 import { useSelector } from "react-redux";
+import AddPelatihModal from "../modal/AddPelatihModal";
 
-const ListAtlet = () => {
+const ListPelatih = () => {
   const [atlets, setAtlets] = useState([]);
   const [cabors, setCabor] = useState("");
   const { user } = useSelector((state) => state.auth);
@@ -20,12 +20,10 @@ const ListAtlet = () => {
 
   const getCaborById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/cabor/${id}`)
+      const response = await axios.get(`http://localhost:5000/cabor/${id}`);
       setCabor(response.data);
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
 
   const getAtletsbyCabor = async (id) => {
     try {
@@ -115,9 +113,9 @@ const ListAtlet = () => {
           </tbody>
         ))}
       </table>
-      <AddAtletModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
+      <AddPelatihModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
     </div>
   );
 };
 
-export default ListAtlet;
+export default ListPelatih;
