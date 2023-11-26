@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Indikator = () => {
     const [cabors, setCabor] = useState([]);
+    const {id}=useParams();
 
     const getCabor = async () => {
       const response = await axios.get("http://localhost:5000/cabor");
@@ -28,6 +29,8 @@ const Indikator = () => {
     useEffect(() => {
       getCabor();
     }, []);
+
+    
   return (
     <div>
       <h1 className="title">Komponen dan Indikator</h1>

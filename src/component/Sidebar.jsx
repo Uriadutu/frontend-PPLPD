@@ -30,6 +30,8 @@ const Sidebar = () => {
     return null;
   }
 
+  const idCabor = user && user.Cabor && user.Cabor.id_cabor;
+
   return (
     <div>
       <aside
@@ -49,7 +51,7 @@ const Sidebar = () => {
                 <IoChatbox /> Forum
               </NavLink>
             )}
-            {user && (user.role !== "Pelatih" &&  user.role !== "SuperAdmin") && (
+            {user && user.role !== "Pelatih" && user.role !== "SuperAdmin" && (
               <p className="pl-3 is-size-9" style={{ padding: "10px 0px 5px" }}>
                 PPLPD
               </p>
@@ -147,7 +149,7 @@ const Sidebar = () => {
                   </li>
                   <ul className="menu-list">
                     <li>
-                      <NavLink to={"/kontrolatlet"}>
+                      <NavLink to={`/cabor/komponen-indikator/atur/${idCabor}`}>
                         <IoPerson /> Pengaturan Cabor
                       </NavLink>
                     </li>

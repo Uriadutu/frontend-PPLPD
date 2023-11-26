@@ -18,9 +18,9 @@ const PengaturanIndikator = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "Admin") {
-      navigate("/dashboard");
-    }
+        if (user && user.role !== "Admin" && user.role !== "Pelatih") {
+          navigate("/dashboard");
+        }
   }, [isError, user, navigate]);
   return (
     <Layout>

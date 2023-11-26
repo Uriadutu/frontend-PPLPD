@@ -108,7 +108,6 @@ const ListIndikator = () => {
         <thead>
           <tr>
             <th>No</th>
-            <th>Komponen</th>
             <th className="has-text-centered">Indikator</th>
             <th className="has-text-centered">Aksi</th>
           </tr>
@@ -117,11 +116,6 @@ const ListIndikator = () => {
           {indikators.map((indikator, index) => (
             <tr key={indikator.id_indikator}>
               <td>{index + 1}</td>
-              <td>
-                {indikator &&
-                  indikator.Komponen &&
-                  indikator.Komponen.namaKomponen}
-              </td>
               <td className="has-text-centered">{indikator.namaIndikator}</td>
               <td className="has-text-centered">
                 <Link onClick={() => deleteIndi(indikator.id_indikator)}>

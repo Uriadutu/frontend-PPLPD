@@ -18,7 +18,7 @@ const PageIndikator = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "Admin") {
+    if (user && user.role !== "Admin" ) {
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);

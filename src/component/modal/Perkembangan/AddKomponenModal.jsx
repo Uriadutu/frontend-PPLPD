@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const AddKomponenModal = ({Muncul, tidakMuncul}) => {
 
     const [namaKomponen, setNamaKomponen] = useState("");
+    const [periode, setPeriode] = useState("");
     const [msg, setMsg] = useState("");
     const {id} = useParams();
 
@@ -14,6 +15,7 @@ const AddKomponenModal = ({Muncul, tidakMuncul}) => {
             await axios.post("http://localhost:5000/komponen", {
                 namaKomponen : namaKomponen,
                 id_cabor : id,
+                periode : periode,
             });
             window.location.reload();
         } catch (error) {
@@ -53,6 +55,19 @@ const AddKomponenModal = ({Muncul, tidakMuncul}) => {
                         id="namaCabang"
                         value={namaKomponen}
                         onChange={(e) => setNamaKomponen(e.target.value)}
+                      />
+                    </div>
+                    <label htmlFor="namaCabang" className="label">
+                      Tanggal
+                    </label>
+                    <div className="control">
+                      <input
+                        autoComplete="off"
+                        type="date"
+                        className="input"
+                        id="namaCabang"
+                        value={periode}
+                        onChange={(e) => setPeriode(e.target.value)}
                       />
                     </div>
                   </div>
