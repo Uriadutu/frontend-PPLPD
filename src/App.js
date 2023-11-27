@@ -21,8 +21,9 @@ import DataDiri from "./pages/latihan/Atlet/DataDiri";
 import ListPelatihCabor from "./pages/Pelatih/ListPelatihCabor";
 import PageForum from "./pages/Forum-Pages/PageForum";
 import DataForum from "./pages/Forum-Pages/DataForum";
-import AddPelatihModal from "./component/modal/AddPelatihModal";
 import ListAtletPelatih from "./pages/Pelatih/ListAtletPelatih";
+import IndikatorListPage from "./pages/latihan/IndikatorListPage";
+import PengaturanAkun from "./pages/Pengaturan/PengaturanAkun";
 
 
 function App() {
@@ -47,22 +48,23 @@ function App() {
           <Route path="/daftaratlet-cabor" element={<ListAtletPelatih />} />
           <Route path="/akunsaya" element={<Akun />} />
           <Route path="/kontrolatlet" element={<AkunHak />} />
+          <Route path="/kontrolatlet/:idCabor" element={<PengaturanAkun />} />
           <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
-          <Route path="/pelatih/add/11" element={<AddPelatihModal />} />
           <Route
             path="/cabor/komponen-indikator/atur/:id"
             element={<PengaturanIndikator />}
           />
-          <Route 
-            path="/cabor/atlet/:id/:id/tambah-perkembangan-latihan/:id"
+          <Route
+            path="/cabor/atlet/:idCabor/:uuid/tambah-perkembangan-latihan/:id"
             element={<RecordLatihan />}
           />
-          <Route 
+          <Route
             path="cabor/komponen-indikator/atur/:id/cabor/komponen-indikator/atur/:id"
             element={<IndikatorList />}
           />
+        <Route path="/komponen-indikator/:uuid/:idAtlet/:id" element={<IndikatorListPage />} />
         </Routes>
       </BrowserRouter>
     </div>

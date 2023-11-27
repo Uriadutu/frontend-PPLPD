@@ -97,13 +97,15 @@ const ProgramLatihan = () => {
                 >
                   Lihat
                 </Link>
-
+                {user && user.role === "Admin" && (
+                  
                 <button
                   className="card-footer-item button is-dark has-text-light"
                   onClick={() => hapusProgram(program.id_program)} // Perbaikan di sini, kirim ID ke fungsi hapusKomponen
                 >
                   Hapus
                 </button>
+                )}
               </footer>
             </div>
           </div>

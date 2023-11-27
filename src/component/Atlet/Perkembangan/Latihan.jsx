@@ -132,7 +132,9 @@ const Latihan = () => {
         <div className="card latihan-card" style={{ maxWidth: "100%" }}>
           <header className="card-header column">
             <p className="card-header-title">
-              Input Perkembangan {atlets && atlets.nama}{" "}
+              Input Perkembangan {atlets && atlets.nam_awal}
+              {atlets && atlets.nama_tengah}
+              {atlets && atlets.nama_akhir}{" "}
             </p>
           </header>
           <div

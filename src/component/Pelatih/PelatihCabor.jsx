@@ -57,9 +57,9 @@ const PelatihCabor = () => {
 
   return (
     <div>
-      <h1 className="title">Atlet</h1>
+      <h1 className="title">Pelatih</h1>
 
-      <h2 className="subtitle">List Atlet {cabors && cabors.namaCabor}</h2>
+      <h2 className="subtitle">List Pelatih {cabors && cabors.namaCabor}</h2>
 
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">

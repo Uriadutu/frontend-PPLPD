@@ -40,7 +40,10 @@ const DataAtlet = () => {
       <h1 className="title">
         Data Atlet - {atlets && atlets.Cabor && atlets.Cabor.namaCabor}
       </h1>
-      <h2 className="subtitle mb-5">{atlets && atlets.nama} </h2>
+      <h2 className="subtitle mb-5">
+         {atlets && atlets.name_awal}{" "}
+        {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+      </h2>
       <Link
         className="button is-dark mb-3"
         to={`/cabor/atlet/${atlets && atlets.Cabor && atlets.Cabor.id_cabor}`}
@@ -89,10 +92,12 @@ const DataAtlet = () => {
                   <p>Tanggal Lahir</p>
                   <p>Agama</p>
                   <p>Alamat</p>
-                  
                 </div>
                 <div className="isi">
-                  <p>: {atlets && atlets.name_awal} {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}</p>
+                  <p>
+                    : {atlets && atlets.name_awal}{" "}
+                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+                  </p>
                   <p>: {atlets && atlets.nama_panggil}</p>
                   <p>: {atlets && atlets.status}</p>
                   <p>: {atlets && atlets.Cabor && atlets.Cabor.namaCabor}</p>
@@ -108,42 +113,36 @@ const DataAtlet = () => {
               </div>
               <div className="column is-one-quarter">
                 <figure className="image is-1by1 card gambar-atlet">
-                  <img
-                    src={atlets && atlets.url}
-                    alt="Foto Atlet"
-                  />
+                  <img src={atlets && atlets.url} alt="Foto Atlet" />
                 </figure>
               </div>
             </div>
             {showAll && (
               <div className="mt-5 cont-tabs">
                 <div className="tabs tabs-data">
-                  
-                    <ul>
-                      <li
-                        className={activeTab === "dataDiri" ? "is-active" : ""}
-                      >
-                        <a onClick={() => toggleTab("dataDiri")}>Data Diri</a>
-                      </li>
-                      <li
-                        className={
-                          activeTab === "dataOrangTua" ? "is-active" : ""
-                        }
-                      >
-                        <a onClick={() => toggleTab("dataOrangTua")}>
-                          Data Orang Tua
-                        </a>
-                      </li>
-                      <li
-                        className={
-                          activeTab === "dataPendidikan" ? "is-active" : ""
-                        }
-                      >
-                        <a onClick={() => toggleTab("dataPendidikan")}>
-                          Data Pendidikan
-                        </a>
-                      </li>
-                    </ul>
+                  <ul>
+                    <li className={activeTab === "dataDiri" ? "is-active" : ""}>
+                      <a onClick={() => toggleTab("dataDiri")}>Data Diri</a>
+                    </li>
+                    <li
+                      className={
+                        activeTab === "dataOrangTua" ? "is-active" : ""
+                      }
+                    >
+                      <a onClick={() => toggleTab("dataOrangTua")}>
+                        Data Orang Tua
+                      </a>
+                    </li>
+                    <li
+                      className={
+                        activeTab === "dataPendidikan" ? "is-active" : ""
+                      }
+                    >
+                      <a onClick={() => toggleTab("dataPendidikan")}>
+                        Data Pendidikan
+                      </a>
+                    </li>
+                  </ul>
                 </div>
                 {activeTab === "dataDiri" && (
                   <div className="is-flex is-justify-content-space-between p-3">
@@ -168,9 +167,7 @@ const DataAtlet = () => {
                       </div>
                     </div>
                     <div className="isi">
-                      <label className="label ">
-                        Perlengkapan (Outfit)
-                      </label>
+                      <label className="label ">Perlengkapan (Outfit)</label>
                       <div className="is-flex">
                         <div className="field mr-5">
                           <p>Ukuran Baju</p>

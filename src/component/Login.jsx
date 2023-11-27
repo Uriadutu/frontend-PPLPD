@@ -30,10 +30,6 @@ const Login = () => {
   e.preventDefault();
   dispatch(loginUser({username, password}));
 
-  if (!user || user.nama_akhir !== "active") {
-    navigate("/");
-    return;
-  }
   };
 
   return (

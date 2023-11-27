@@ -1203,11 +1203,12 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                 to={`/cabor/atlet/${id}`}
                 className="button is-dark"
                 onClick={() => {
+        getCabor();
                   tidakMuncul();
                   setMsg(""); // Mengatur pesan menjadi string kosong saat tombol ditutup
                 }}
               >
-                Kembali
+                Batal
               </Link>
               <button className="button is-success" type="submit">
                 Simpan

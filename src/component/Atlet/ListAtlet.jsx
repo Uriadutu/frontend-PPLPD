@@ -42,8 +42,7 @@ const ListAtlet = () => {
     if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
       try {
         await axios.delete(`http://localhost:5000/atlet/${atletId}`);
-        getAtletsbyCabor();
-        window.location.reload();
+        getAtletsbyCabor(id);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -56,7 +55,8 @@ const ListAtlet = () => {
 
   const tutupModal = () => {
     setModalUsersAktif(false);
-    getAtletsbyCabor();
+    getAtletsbyCabor(id);
+
   };
 
   return (
@@ -100,7 +100,10 @@ const ListAtlet = () => {
                   atlet && atlet.Cabor && atlet.Cabor.id_cabor
                 }/${atlet.uuid}`}
               >
-                <td>{atlet && atlet.nama}</td>
+                <td>
+                  {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
+                  {atlet && atlet.nama_akhir}
+                </td>
               </Link>
               <td>{atlet && atlet.hp_mobile}</td>
               <td>{atlet && atlet.email}</td>

@@ -145,7 +145,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                 </button>
               </div>
             )}
-            <Link to={`/cabor/program/${queryId}`} className="button is-dark ml-3">Program Latihan</Link>
+            <Link to={`/cabor/program/${queryId}`} className="button is-primary ml-3">Program Latihan</Link>
             <p>{msg}</p>
           </footer>
         </div>

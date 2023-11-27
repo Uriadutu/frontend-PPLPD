@@ -59,9 +59,9 @@ const ListPelatih = () => {
 
   return (
     <div>
-      <h1 className="title">Atlet</h1>
+      <h1 className="title">Pelatih</h1>
 
-      <h2 className="subtitle">List Atlet {cabors && cabors.namaCabor}</h2>
+      <h2 className="subtitle">List Pelatih {cabors && cabors.namaCabor}</h2>
 
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">
@@ -98,7 +98,10 @@ const ListPelatih = () => {
                   atlet && atlet.Cabor && atlet.Cabor.id_cabor
                 }/${atlet.uuid}`}
               >
-                <td>{atlet && atlet.nama}</td>
+                <td>
+                  {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
+                  {atlets && atlets.nama_akhir}
+                </td>
               </Link>
               <td>{atlet && atlet.hp_mobile}</td>
               <td>{atlet && atlet.email}</td>

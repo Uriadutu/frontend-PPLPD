@@ -34,7 +34,10 @@ const DataDiriAtlet = () => {
   return (
     <div className="has-background-grey-light p-3 mt-5">
       <h1 className="title mt-5">Data Atlet</h1>
-      <h2 className="subtitle">{atlets && atlets.nama}</h2>
+      <h2 className="subtitle">
+        {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
+        {atlets && atlets.nama_akhir}
+      </h2>
       <Link to={"/dashboard"} className="button mr-3">
         Dashboard
       </Link>
@@ -58,7 +61,10 @@ const DataDiriAtlet = () => {
                   <p>Alamat</p>
                 </div>
                 <div className="isi">
-                  <p>: {atlets && atlets.nama}</p>
+                  <p>
+                    : {atlets && atlets.name_awal}{" "}
+                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+                  </p>
                   <p>: {atlets && atlets.nama_panggil}</p>
                   <p>: {atlets && atlets.Cabor && atlets.Cabor.namaCabor}</p>
                   <p>: {atlets && atlets.tahun_daftar}</p>

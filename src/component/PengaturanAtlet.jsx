@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const PengaturanAtlet = () => {
 
     const [atlets, setAtlet] = useState([]);
+    const [cabors, setCabor] = useState([]);
     
     useEffect(()=> {
         getAtlet();
+        getCabor();
     },[])
     const getAtlet = async()=> {
        try {
@@ -16,27 +19,60 @@ const PengaturanAtlet = () => {
         console.log(error);
        }
     }
+
+    const getCabor = async () => {
+      const response = await axios.get("http://localhost:5000/cabor");
+      // Mengambil data cabor dari respons server
+      const caborData = response.data;
+
+      // Mengambil data jumlah atlet dari server
+      const atletCountResponse = await axios.get(
+        "http://localhost:5000/atlet/countByCabor"
+      );
+      const atletCountData = atletCountResponse.data;
+
+      // Menggabungkan data jumlah atlet dengan data cabor
+      const caborWithAtletCount = caborData.map((cabor) => ({
+        ...cabor,
+        jumlahAtlet: atletCountData[cabor.kodeCabor] || 0,
+      }));
+
+      setCabor(caborWithAtletCount);
+    };
   return (
     <div>
       <h1 className="title">Pengaturan Akun</h1>
       <h2 className="subtitle">Kontrol Akun</h2>
       <div className="card">
-        <header className="card-header">
-            <p className="card-header-title">Atur Hak Akses Atlet</p>
-        </header>
         <div className="card-content">
-            <div className="content">
-                <select name="" id="" className="select">
-                    <option value=""></option>
-                    {atlets.map((atlet)=> (
-                        <option key={atlet && atlet.id_atlet}>{atlet && atlet.nama}</option>
-                    ))}
-                </select>
-            </div>
+          <div className="content">
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Cabang Olahraga</th>
+                  <th className="has-text-centered">Jumlah Atlet</th>
+                  <th className="has-text-centered">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cabors.map((cabor, index) => (
+                  <tr key={cabor && cabor.id_cabor}>
+                    <td>{index + 1}</td>
+                    <td>{cabor && cabor.namaCabor}</td>
+                    <td className="has-text-centered">{cabor.jumlahAtlet}</td>
+                    <td className="has-text-centered">
+                      <Link to={`${cabor.id_cabor}`} className="button is-small is-primary">Lihat</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PengaturanAtlet

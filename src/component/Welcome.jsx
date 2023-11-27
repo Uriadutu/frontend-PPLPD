@@ -47,7 +47,9 @@ const Welcome = () => {
               />
             </div>
             <div class="media-content">
-              <p class="title is-4">{user.nama}</p>
+              <p class="title is-4">
+                {user.name_awal}{""} {user.nama_tengah}{""} {user.nama_akhir}{""}
+              </p>
               <p class="subtitle is-6">{user.email}</p>
             </div>
           </div>
