@@ -24,6 +24,7 @@ import DataForum from "./pages/Forum-Pages/DataForum";
 import ListAtletPelatih from "./pages/Pelatih/ListAtletPelatih";
 import IndikatorListPage from "./pages/latihan/IndikatorListPage";
 import PengaturanAkun from "./pages/Pengaturan/PengaturanAkun";
+import Club from "./pages/Club";
 
 
 function App() {
@@ -49,8 +50,9 @@ function App() {
           <Route path="/akunsaya" element={<Akun />} />
           <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/kontrolatlet/:idCabor" element={<PengaturanAkun />} />
-          <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
+          <Route path="/cabor/program/:id" element={<Program />} />
+          <Route path="/cabor/club/:id" element={<Club />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
           <Route
             path="/cabor/komponen-indikator/atur/:id"

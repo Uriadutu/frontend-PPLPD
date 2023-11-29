@@ -77,7 +77,9 @@ const ListAtlet = () => {
           >
             <IoAdd /> Tambah Atlet
           </Link>
+          
         )}
+        {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
       <table className="table is-striped is-fullwidth">
         <thead>

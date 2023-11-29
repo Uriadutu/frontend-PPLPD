@@ -129,7 +129,7 @@ const Atletpage = () => {
               <td>{atlet.username}</td>
               <td>{atlet?.Admin?.nama}</td>
               <td>{atlet?.Cabor?.namaCabor}</td>
-              <td>{atlet.status}</td>
+              <td>{capitalizeWords(atlet.status)}</td>
               <td className="has-text-centered">
                 <Link onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
                   <IoTrashSharp />

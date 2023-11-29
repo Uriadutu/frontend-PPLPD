@@ -47,8 +47,7 @@ const LayoutForum = ({ children }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      getForum(id);
-      window.location.reload();
+      getForum();
     } catch (error) {
       console.log(error);
     }

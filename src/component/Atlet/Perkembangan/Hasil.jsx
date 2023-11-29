@@ -4,16 +4,19 @@ import { useParams } from "react-router-dom";
 
 const Hasil = () => {
   const [komponens, setKomponen] = useState([]);
+  const {idKomp, setIdKomp}= useState([]);
   const {idCabor} = useParams;
   const getKomponenByCabor = async(id)=> {
     try {
       const response= await axios.get(`http://localhost:5000/komponen/cabor${id}`)
       setKomponen(response.data)
+      setIdKomp(response.data.id_komponen)
     } catch (error) {
      console.log(error); 
     }
   }
 
+  console.log("idkomp", idKomp);
   useEffect(()=>{
     getKomponenByCabor(idCabor);
   },[idCabor])

@@ -146,6 +146,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
               </div>
             )}
             <Link to={`/cabor/program/${queryId}`} className="button is-primary ml-3">Program Latihan</Link>
+            <Link to={`/cabor/club/${queryId}`} className="button is-primary">Club</Link>
             <p>{msg}</p>
           </footer>
         </div>

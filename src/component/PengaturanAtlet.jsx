@@ -43,6 +43,9 @@ const PengaturanAtlet = () => {
     <div>
       <h1 className="title">Pengaturan Akun</h1>
       <h2 className="subtitle">Kontrol Akun</h2>
+      <Link to={"/dashboard"} className="button mb-3">
+        Dashboard
+      </Link>
       <div className="card">
         <div className="card-content">
           <div className="content">
@@ -62,7 +65,12 @@ const PengaturanAtlet = () => {
                     <td>{cabor && cabor.namaCabor}</td>
                     <td className="has-text-centered">{cabor.jumlahAtlet}</td>
                     <td className="has-text-centered">
-                      <Link to={`${cabor.id_cabor}`} className="button is-small is-primary">Lihat</Link>
+                      <Link
+                        to={`/kontrolatlet/${cabor.id_cabor}`}
+                        className="button is-small is-primary"
+                      >
+                        Lihat
+                      </Link>
                     </td>
                   </tr>
                 ))}

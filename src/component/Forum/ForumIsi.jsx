@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { parseAndFormatDateString } from "../../utils/helper";
 
 const ForumIsi = () => {
   const [chats, setChat] = useState([]);
@@ -82,7 +83,7 @@ const ForumIsi = () => {
                     : "is-flex is-justify-content-end"
                 }
               >
-                <p>{chat && chat.jam}</p>
+                <p>{chat && parseAndFormatDateString(chat.jam)}</p>
               </footer>
             </div>
           </div>

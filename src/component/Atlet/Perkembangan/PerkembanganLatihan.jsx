@@ -15,6 +15,7 @@ const PerkembanganLatihan = () => {
   const idCabor = atlets && atlets.id_cabor;
   const[hasils, setHasil] = useState([]);
 
+    const {idKomp, setIdKomp}= useState([]);
   const handleSelectChange = (e) => {
     setSelectedPeriode(e.target.value);
   };
@@ -50,7 +51,8 @@ const PerkembanganLatihan = () => {
       console.log(error);
     }
   };
-
+const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
+  console.log("idkomp", idk);
   useEffect(() => {
     getIndibyCabor(idCabor);
     getKomponenByCabor(idCabor);
@@ -255,7 +257,7 @@ console.log(hasils, "hayy", id);
                   {Array.from({ length: 1 }).map((_, index) => (
                     <tr>
                       <td className="is-flex is-justify-content-center">
-                        
+                        haha
                       </td>
                       <td>
                         <div className="is-flex is-justify-content-center">
@@ -273,7 +275,7 @@ console.log(hasils, "hayy", id);
                             className=""
                           >
                             <div className="is-flex is-justify-content-center">
-                              
+                              aha
                             </div>
                           </td>
                         ))}

@@ -179,20 +179,7 @@ const Sidebar = () => {
         )}
         <p className="menu-label">Settings</p>
         <ul className="menu-list">
-          {user && user.role === "Atlet" && (
-            <div className="">
-              <li>
-                <p className="pl-3 is-size-9">Privasi</p>
-              </li>
-              <ul className="menu-list pl-2">
-                <li>
-                  <NavLink to={"/akunsaya"}>
-                    <IoPerson /> Akun saya
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          )}
+          
           <li className="pl-3">
             <button onClick={logout} className="button is-white pl-0">
               <IoLogOut /> Log Out

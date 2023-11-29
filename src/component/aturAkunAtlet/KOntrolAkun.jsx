@@ -1,145 +1,125 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { IoTrashSharp } from "react-icons/io5";
-import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 const KontrolAkun = () => {
-    const [atlets, setAtlet] = useState([]);
-    const [sortBy, setSortBy] = useState("nama");
-    const [searchText, setSearchText] = useState("");
-    const { user } = useSelector((state) => state.auth);
-    const {idCabor} = useParams();
+  const [status, setStatus] = useState({}); // State untuk menyimpan status setiap atlet
+  const [atlets, setAtlets] = useState([]);
+  const { idCabor } = useParams();
 
-    useEffect(() => {
-      getAtlet(idCabor);
-    }, [idCabor]);
+  useEffect(() => {
+    getAtlet(idCabor);
+  }, [idCabor]);
 
-    const getAtlet = async (id) => {
-      try {
-        const response = await axios.get(`http://localhost:5000/cabor/atlet/${id}`);
-        setAtlet(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const getAtlet = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/cabor/atlet/${id}`
+      );
+      const atletData = response.data;
 
-    const handleSortChange = (e) => {
-      setSortBy(e.target.value);
-    };
-
-    const filteredAndSortedAtlets = atlets
-      .filter((atlet) => {
-        const lowerCaseSearchText = searchText.toLowerCase();
-        return (
-          atlet.nama.toLowerCase().includes(lowerCaseSearchText) ||
-          (atlet.username &&
-            atlet.username.toLowerCase().includes(lowerCaseSearchText))
-        );
-      })
-      .sort((a, b) => {
-        if (sortBy === "nama") {
-          return a.nama.localeCompare(b.nama);
-        } else if (sortBy === "username") {
-          const usernameA = a.username || "";
-          const usernameB = b.username || "";
-          return usernameA.localeCompare(usernameB);
-        }
-        return 0;
+      // Membuat objek status untuk setiap atlet
+      const statusData = {};
+      atletData.forEach((atlet) => {
+        statusData[atlet.id_atlet] = atlet.status;
       });
 
-    function capitalizeWords(sentence) {
-      return sentence
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+      setStatus(statusData); // Menetapkan status awal dari database
+      setAtlets(atletData); // Menetapkan data atlet
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateStatus = async (e, atletId) => {
+    e.preventDefault();
+    if (!atletId || !status[atletId]) {
+      console.error("ID Atlet tidak valid atau status tidak ditemukan");
+      return;
     }
 
-    const deleteAtlet = async (atletId) => {
-      if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
-        try {
-          await axios.delete(`http://localhost:5000/atlet/${atletId}`);
-          getAtlet();
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
-    };
-    
+    try {
+      const formData = new FormData();
+      formData.append("status", status[atletId]);
+
+      await axios.patch(`http://localhost:5000/atlet/${atletId}`, formData, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      });
+
+      getAtlet(idCabor); // Ambil kembali data atlet setelah pembaruan
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <h1 className="title">Pengaturan Akun</h1>
       <h2 className="subtitle">Kontrol Akun</h2>
-      <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
-        <div className="is-flex is-align-items-center">
-          <Link to={"/kontrolatlet"} className="button mr-3 is-dark">
-            Kembali
-          </Link>
+      <Link to={"/kontrolatlet"} className="button mb-3 is-dark">
+        Kembali
+      </Link>
+      {atlets.length === 0 ? (
+        <p>Tidak ada atlet di cabor ini.</p>
+      ) : (
+          <form onSubmit={updateStatus}>
+        <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
+            <table className="table is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Status</th>
+                  <td className="has-text-centered">Aksi</td>
+                </tr>
+              </thead>
+              <tbody>
+                {atlets.map((atlet, index) => {
+                  const namaLengkap = `${atlet.name_awal || ""} ${
+                    atlet.nama_tengah || ""
+                  } ${atlet.nama_akhir || ""}`;
 
-          <div className="is-flex is-align-items-center">
-            <label className="mr-2">Sort By:</label>
-            <select
-              className="is-normal select"
-              value={sortBy}
-              onChange={handleSortChange}
-            >
-              <option value="nama">Nama</option>
-              <option value="username">Username</option>
-            </select>
-          </div>
+                  return (
+                    <tr key={atlet.id_atlet}>
+                      <td>{index + 1}</td>
+                      <td>{namaLengkap}</td>
+                      <td>{atlet.username}</td>
+                      <td>
+                        <select
+                          className="select is-small"
+                          value={status[atlet.id_atlet] || ""}
+                          onChange={(e) => {
+                            const newStatus = {
+                              ...status,
+                              [atlet.id_atlet]: e.target.value,
+                            };
+                            setStatus(newStatus);
+                          }}
+                        >
+                          <option value="Aktif">Aktif</option>
+                          <option value="Tidak Aktif">Tidak Aktif</option>
+                        </select>
+                      </td>
+                      <td className="has-text-centered">
+                        <button
+                          type="submit"
+                          className="is-success button is-small"
+                          onClick={(e) => updateStatus(e, atlet.id_atlet)}
+                        >
+                          Simpan
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
         </div>
-
-        <div className="">
-          <input
-            type="text"
-            className="input is-normal"
-            placeholder="Cari Nama / ID Username"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </div>
-      </div>
-      <table className="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Username</th>
-            <th>Status</th>
-            <td className="has-text-centered">Aksi</td>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAndSortedAtlets.map((atlet, index) => {
-            // Memformat nama lengkap di setiap iterasi
-            const namaLengkap = capitalizeWords(
-              `${atlet.name_awal || ""} ${atlet.nama_tengah || ""} ${
-                atlet.nama_akhir || ""
-              }`
-            );
-
-            return (
-              <tr key={atlet.id_atlet}>
-                <td>{index + 1}</td>
-                {/* Menggunakan variabel 'namaLengkap' langsung di sini */}
-                <td>{namaLengkap}</td>
-                <td>{atlet.username}</td>
-                <td>
-                  <select className="select is-small">
-                    <option value="">Aktif</option>
-                    <option value="">Tidak Aktif</option>
-                  </select>
-                </td>
-                <td className="has-text-centered">
-                  <button className="is-success button is-small ">
-                    Simpan
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+          </form>
+      )}
     </div>
   );
 };
