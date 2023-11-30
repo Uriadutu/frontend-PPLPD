@@ -34,6 +34,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
   const [UkuranSepatu, setUkuranSepatu] = useState("");
   const [Pendidikan, setPendidikan] = useState("");
   const [NamaSekolahAtlet, setNamaSekolahAtlet] = useState("");
+   const [PendidikanTerakhirAtlet, setPendidikanTerakhirAtlet] = useState("");
+   const [NamaAlumniAtlet, setNamaAlumniAtlet] = useState("");
+   const [TahunLulusAtlet, setTahunLulusAtlet] = useState("");
   const [NamaAyah, setNamaAyah] = useState("");
   const [TempatLahirAyah, setTempatLahirAyah] = useState("");
   const [TglLahirAyah, setTglLahirAyah] = useState("");
@@ -78,7 +81,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
   const handleRadioChange = (e) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
   };
-
+const handleRadioChanges = (e) => {
+  setPendidikanTerakhirAtlet(e.target.value);
+};
   const LoadImage = (e) => {
     e.preventDefault();
     const selectedFile = e.target.files[0];
@@ -114,6 +119,10 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
     // pendidikan
     formData.append("pendidikan", Pendidikan);
     formData.append("nama_sklh", NamaSekolahAtlet);
+    formData.append("pend_terakhir", PendidikanTerakhirAtlet);
+     formData.append("alumni", NamaAlumniAtlet);
+     formData.append("tahun_lulus", TahunLulusAtlet);
+     formData.append("ukuran_baju", UkuranBaju);
     formData.append("ukuran_baju", UkuranBaju);
 
     formData.append("ukuran_sepatu", UkuranSepatu);
@@ -259,7 +268,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Data Diri :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Depan</label>
+                        <label className="">
+                          Nama Depan<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -281,7 +292,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Belakang</label>
+                        <label className="">
+                          Nama Belakang<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -303,7 +316,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tempat Lahir</label>
+                        <label className="">
+                          Tempat Lahir<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -316,7 +331,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tanggal Lahir</label>
+                        <label className="">
+                          Tanggal Lahir<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -327,7 +344,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Agama</label>
+                        <label className="">
+                          Agama<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -349,7 +368,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Jenis Kelamin</label>
+                        <label className="">
+                          Jenis Kelamin<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -396,7 +417,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Provinsi</label>
+                          <label className="">
+                            Provinsi<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -407,7 +430,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Kota</label>
+                          <label className="">
+                            Kota<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -420,7 +445,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Kecamatan</label>
+                          <label className="">
+                            Kecamatan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -489,7 +516,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No HP / Mobile</label>
+                        <label className="">
+                          No HP / Mobile<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -515,7 +544,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Tinggi Badan</label>
+                          <label className="">
+                            Tinggi Badan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -529,7 +560,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Berat Badan</label>
+                          <label className="">
+                            Berat Badan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -544,7 +577,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tahun Bergabung</label>
+                        <label className="">
+                          Tahun Bergabung<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -558,7 +593,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label className="">Ukuran Baju</label>
+                          <label className="">
+                            Ukuran Baju<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -577,7 +614,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label className="">Ukuran Sepatu</label>
+                          <label className="">
+                            Ukuran Sepatu<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -599,7 +638,9 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                       </div>
-                      <div className="column label">Gambar</div>
+                      <div className="column label">
+                        Gambar<wajib>*</wajib>
+                      </div>
                       <div className="control">
                         <div className="file">
                           <label className="file-label">
@@ -613,6 +654,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                               <span className="file-label">Pilih Gambar</span>
                             </span>
                           </label>
+                          <p>jpg, png, jpeg</p>
                         </div>
                       </div>
                       {file && (
@@ -697,8 +739,114 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                           />
                         </div>
                       </div>
+                    </div>
+                    <label className="column label">Jika Sudah lulus</label>
+                    <label className="column">Pendidikan Terakhir :</label>
+                    <div className="field is-full is-justify-content-space-between is-flex column">
+                      <div className=" is-full is-justify-content-space-between is-flex column">
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="TK"
+                            checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">TK</label>
+                        </div>
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="SD"
+                            checked={PendidikanTerakhirAtlet === "SD"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">SD</label>
+                        </div>
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="SMP"
+                            checked={PendidikanTerakhirAtlet === "SMP"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">SMP</label>
+                        </div>
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="SMA"
+                            checked={PendidikanTerakhirAtlet === "SMA"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">SMA</label>
+                        </div>
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="SMK"
+                            checked={PendidikanTerakhirAtlet === "SMK"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">SMK</label>
+                        </div>
+                        <div
+                          className="is-flex"
+                          style={{ alignItems: "center", gap: "10px" }}
+                        >
+                          <input
+                            type="radio"
+                            name="alumni"
+                            value="S1"
+                            checked={PendidikanTerakhirAtlet === "S1"} // Mengecek apakah radio ini yang dipilih
+                            onChange={handleRadioChanges}
+                          />
+                          <label className="">S1</label>
+                        </div>
                       </div>
+                    </div>
+                    <div className="field is-full is-justify-content-space-between is-flex column">
+                      <label className="">Nama Sekolah / Universitas</label>
+                      <div className="control">
+                        <input
+                          className="input is-small"
+                          type="text"
+                          value={NamaAlumniAtlet}
+                          onChange={(e) => setNamaAlumniAtlet(e.target.value)}
+                        />
                       </div>
+                    </div>
+                    <div className="field is-full is-justify-content-space-between is-flex column">
+                      <label className="">Tahun Lulus</label>
+                      <div className="control">
+                        <input
+                          className="input is-small"
+                          value={TahunLulusAtlet}
+                          onChange={(e) => setTahunLulusAtlet(e.target.value)}
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 )}
                 {activeTab === "data-orang-tua" && (
                   <div>
@@ -1193,9 +1341,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                   </div>
                 )}
-                {activeTab === "data-prestasi" && (
-                  <div className=""></div>
-                )}
+                {activeTab === "data-prestasi" && <div className=""></div>}
               </div>
             </section>
             <footer className="modal-card-foot">
@@ -1203,7 +1349,7 @@ const AddAtletModal = ({ Muncul, tidakMuncul }) => {
                 to={`/cabor/atlet/${id}`}
                 className="button is-dark"
                 onClick={() => {
-        getCabor();
+                  getCabor();
                   tidakMuncul();
                   setMsg(""); // Mengatur pesan menjadi string kosong saat tombol ditutup
                 }}

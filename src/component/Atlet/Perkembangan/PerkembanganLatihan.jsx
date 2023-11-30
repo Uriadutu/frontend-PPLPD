@@ -3,6 +3,7 @@ import Navbar from "../../Navbar";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import IndikatorEdit from "./IndikatorEdit";
+import TabelPerkembangan from "../../FileTerpisah/TabelPerkemabangan";
 
 const PerkembanganLatihan = () => {
   const [komponens, setKomponen] = useState([]);
@@ -98,8 +99,59 @@ const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
   }
 
 console.log(hasils, "hayy", id);
+
+//  const groupHasilByTanggal = (hasilList) => {
+//    const groupedHasil = {};
+//    hasilList.forEach((hasil) => {
+//      const { tgl } = hasil;
+//      if (!groupedHasil[tgl]) {
+//        groupedHasil[tgl] = [];
+//      }
+//      groupedHasil[tgl].push(hasil);
+//    });
+//    return groupedHasil;
+//  };
+
+//  // Mendapatkan semua indikator yang unik
+//  const uniqueIndikators = Array.from(
+//    new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
+//  );
+ const groupHasilByKomponen = (hasilList) => {
+   const groupedHasil = {};
+   hasilList.forEach((hasil) => {
+     const komponenId = hasil.Indikator.Komponen.id_komponen;
+     if (!groupedHasil[komponenId]) {
+       groupedHasil[komponenId] = [];
+     }
+     groupedHasil[komponenId].push(hasil);
+   });
+   return groupedHasil;
+ };
+
+//  // Mendapatkan semua komponen yang unik
+ const uniqueKomponen = Array.from(
+   new Set(hasils.map((hasil) => hasil.Indikator.Komponen.namaKomponen))
+ );
+const groupHasilByTanggal = (hasilList) => {
+  const groupedHasil = {};
+  hasilList.forEach((hasil) => {
+    const { tgl } = hasil;
+    if (!groupedHasil[tgl]) {
+      groupedHasil[tgl] = [];
+    }
+    groupedHasil[tgl].push(hasil);
+  });
+  return groupedHasil;
+};
+
+// Mendapatkan semua indikator yang unik
+const uniqueIndikators = Array.from(
+  new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
+);
+
+ 
   return (
-    <div className="has-background-grey-light p-3 mt-5">
+    <div className=" p-3 mt-5" style={{ background: "#f5f5f5" }}>
       <div className="mb-3">
         <Navbar />
       </div>
@@ -124,7 +176,10 @@ console.log(hasils, "hayy", id);
           </select>
         </div>
       </div>
-      <div className="card latihan-card" style={{ maxWidth: "100%" }}>
+      <div
+        className="card latihan-card"
+        style={{ maxWidth: "100%", border: "1px solid #ccc" }}
+      >
         <header className="card-header column">
           <p className="card-header-title">Input Perkembangan</p>
         </header>
@@ -173,119 +228,81 @@ console.log(hasils, "hayy", id);
           </div>
         </div>
       </div>
-      <div
-        className="card latihan-card mt-5 tampil"
-        style={{ maxWidth: "100%" }}
-      >
-        <header className="card-header column">
-          <p className="card-header-title">
-            Perkembangan Latihan {atlets && atlets.name_awal}{" "}
-            {atlets && atlets.nama_akhir}
-          </p>
-        </header>
-        <div className="card-content">
-          <div className="content" style={{ overflowX: "auto" }}>
-            {komponens.map((komp) => (
-              <div key={komp.id_komponen}>
-                <h3>Komponen: {komp.namaKomponen}</h3>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Indikator</th>
-                      <th>Tanggal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {indikators
-                      .filter(
-                        (hasil) =>
-                          hasil &&
-                          hasil.Indikator &&
-                          hasil.Indikator.Komponen &&
-                          hasil.Indikator.Komponen.id_komponen ===
-                            komp.id_komponen
-                      )
-                      .map((filteredHasil) => (
-                        <tr key={filteredHasil.id_atlet}>
-                          <td>
-                            {filteredHasil &&
-                              filteredHasil.Indikator &&
-                              filteredHasil.Indikator.namaIndikator}
-                          </td>
-                          <td>{filteredHasil.tgl}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       <IndikatorEdit Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
-      <div className="content">
-        {komponens.map((komponen) => (
-          <div key={komponen.id_komponen}>
-            <h2>{komponen.namaKomponen}</h2>
-            <div style={{ overflowX: "auto" }}>
-              <table
-                className="table is-bordered mb-5"
-                style={{ minWidth: "800px" }}
-              >
-                <thead>
-                  <tr>
-                    <th colSpan={2} className="has-text-centered">
-                      Nama Latihan / Tgl
-                    </th>
-                    {indikators
-                      .filter(
-                        (indiKomponen) =>
-                          indiKomponen.id_komponen === komponen.id_komponen
+      <div className="box card">
+
+      {uniqueKomponen.map((komponen, index) => (
+        <div key={index} className="content">
+          <h3 className="subtitle">{komponen}</h3>
+          {hasils.length > 0 ? (
+            <table className="table is-bordered is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Nama Latihan</th>
+                  {/* Menampilkan kolom indikator yang unik untuk setiap komponen */}
+                  {uniqueIndikators
+                    .filter((indikator) =>
+                      hasils.find(
+                        (hasil) =>
+                          hasil.Indikator.Komponen.namaKomponen === komponen &&
+                          hasil.Indikator.namaIndikator === indikator
                       )
-                      .map((indiKomponenFiltered) => (
-                        <th
-                          key={indiKomponenFiltered.id_indikator}
-                          className="is-vcentered has-text-centered"
-                        >
-                          {indiKomponenFiltered.namaIndikator}
-                        </th>
-                      ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {Array.from({ length: 1 }).map((_, index) => (
-                    <tr>
-                      <td className="is-flex is-justify-content-center">
-                        haha
-                      </td>
-                      <td>
-                        <div className="is-flex is-justify-content-center">
-                        
-                        </div>
-                      </td>
-                      {indikators
-                        .filter(
-                          (indiKomponen) =>
-                            indiKomponen.id_komponen === komponen.id_komponen
-                        )
-                        .map((indiKomponenFiltered) => (
-                          <td
-                            key={indiKomponenFiltered.id_indikator}
-                            className=""
-                          >
-                            <div className="is-flex is-justify-content-center">
-                              aha
-                            </div>
-                          </td>
-                        ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        ))}
+                    )
+                    .map((indikator, index) => (
+                      <th key={index}>{indikator}</th>
+                    ))}
+                </tr>
+              </thead>
+              <tbody>
+                {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
+                {Object.entries(groupHasilByTanggal(hasils)).map(
+                  ([tgl, hasilByTanggal], index) => {
+                    const hasTanggal = hasilByTanggal.find(
+                      (hasil) =>
+                        hasil.Indikator.Komponen.namaKomponen === komponen
+                    );
+                    return (
+                      <tr key={index}>
+                        {/* Menampilkan tanggal hanya di komponen yang sesuai */}
+                        <td>{hasTanggal ? tgl : null}</td>
+                        {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
+                        {uniqueIndikators
+                          .filter((indikator) =>
+                            hasilByTanggal.find(
+                              (hasil) =>
+                                hasil.Indikator.Komponen.namaKomponen ===
+                                  komponen &&
+                                hasil.Indikator.namaIndikator === indikator
+                            )
+                          )
+                          .map((indikator, index) => (
+                            <td key={index}>
+                              {hasilByTanggal
+                                .filter(
+                                  (hasil) =>
+                                    hasil.Indikator.Komponen.namaKomponen ===
+                                      komponen &&
+                                    hasil.Indikator.namaIndikator ===
+                                      indikator &&
+                                    hasil.tgl === tgl
+                                )
+                                .map((hasil, index) => (
+                                  <div key={index}>{hasil.hasilTes}</div>
+                                ))}
+                            </td>
+                          ))}
+                      </tr>
+                    );
+                  }
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <p>Tidak ada data yang tersedia.</p>
+          )}
+        </div>
+      ))}
       </div>
     </div>
   );

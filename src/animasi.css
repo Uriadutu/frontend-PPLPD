@@ -103,5 +103,6 @@
   transform-origin: center; /* Mengatur titik tengah sebagai titik transformasi */
 }
 
-
-
+wajib {
+  color: red;
+}
