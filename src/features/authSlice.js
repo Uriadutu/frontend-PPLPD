@@ -60,7 +60,6 @@ export const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log("Data Pengguna:", action.payload);
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;
@@ -75,7 +74,6 @@ export const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
-      console.log("Respons Server:", action.payload);
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Modal from "../modal/Modal-forum/AddForum";
 import axios from "axios";
-import { IoAtSharp, IoTrashSharp } from "react-icons/io5";
+import KomentarModal from "../modal/Modal-forum/KomentarModal";
+import { MdMessage } from "react-icons/md";
+import { parseAndFormatDateString } from "../../utils/helper";
 
 const IsiForumAtlet = () => {
   const [showModal, setShowModal] = useState(false);
+  const [lihatModal, setLihatModal] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const [cabors, setCabor] = useState([]);
   const [forums, setForum] = useState([]);
   const [forumadmin, setForumadmin] = useState([]);
   const { idCabor } = useParams();
-  const idCaboratlet = user && user.Cabor && user.Cabor.id_cabor
+  const idCaboratlet = user && user.Cabor && user.Cabor.id_cabor; // Memeriksa apakah user ada sebelum mengakses properti id_cabor
 
   const getForumByCabor = async (id) => {
     try {
@@ -34,30 +38,61 @@ const IsiForumAtlet = () => {
     }
   };
 
-  console.log(forums);
+  const getCaborbyId = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/cabor/${id}`);
+      setCabor(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-    getForumByCabor(idCaboratlet);
+    getCaborbyId(idCabor)
     getForumByCaboradmin(idCabor);
+    getForumByCabor(idCaboratlet);
   }, [idCabor, idCaboratlet]);
   const handleClose = () => {
     setShowModal();
   };
+  const tutupmodal = () => {
+    setLihatModal();
+  };
   return (
     <div>
       <h1 className="title">Forum</h1>
-      <h2 className="subtitle">Diskusi Cabang Olahraga</h2>
-      <Link className="mb-3 button is-dark" to={"/forum"}>
-        Kembali
-      </Link>
-      {user && user.role !== "Admin" && (
-        <Link
-          className="mb-3 button is-success ml-3"
-          onClick={() => setShowModal(true)}
-        >
-          Tambah Post
-        </Link>
-      )}
+      <h2 className="subtitle">
+        Diskusi Cabang Olahraga {cabors && cabors.namaCabor}
+      </h2>
+      <div className="is-flex is-justify-content-space-between mb-3">
+        <div className="">
+          <Link className="button is-dark" to={"/forum"}>
+            Kembali
+          </Link>
+          {user && user.role !== "Admin" && (
+            <Link
+              className="mb-3 button is-success ml-3"
+              onClick={() => setShowModal(true)}
+            >
+              Tambah Post
+            </Link>
+          )}
+        </div>
+        {user && user.role !== "Admin" && (
+          <Link
+            to={`/forum/cabor/komentar/${idCabor}/${
+              user && user.id_atlet
+                ? user.id_atlet
+                : user && user.id_pelatih
+                ? user.id_pelatih
+                : null
+            }`}
+            className="button"
+          >
+            <MdMessage size={20} />
+          </Link>
+        )}
+      </div>
       <div className="">
         <div className="">
           <div className="">
@@ -110,12 +145,21 @@ const IsiForumAtlet = () => {
                           </p>
                         </div>
                         <div className="">
-                          <button className="button is-small is-primary">
+                          <Link
+                            className="button is-small is-primary"
+                            to={`/forum/cabor/${idCabor}?Komen=${forum.id_ForumCabor}`}
+                            onClick={() => setLihatModal(true)}
+                          >
                             Komentar
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
+                    <footer className="card-foot">
+                      <p className="is-flex is-justify-content-end">
+                        {forum && parseAndFormatDateString(forum.createdAt)}
+                      </p>
+                    </footer>
                   </div>
                 ))
               ))}
@@ -173,6 +217,7 @@ const IsiForumAtlet = () => {
         </div>
       </div>
       <Modal show={showModal} handleClose={handleClose} />
+      <KomentarModal Lihat={lihatModal} tutupmodal={tutupmodal} />
     </div>
   );
 };

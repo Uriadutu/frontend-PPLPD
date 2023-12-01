@@ -11,7 +11,6 @@ const ForumAtlet = () => {
     const [countforum, setCountForum] = useState([]);
     const idCabor = user && user.id_cabor;
 
-    console.log(caborsaja, "idcabor");
     const getCabor = async()=> {
         try {
             const response = await axios.get(`http://localhost:5000/cabor`)
@@ -44,7 +43,6 @@ const ForumAtlet = () => {
         getCountForum();
     },[idCabor])
     
-    console.log(cabors, "hay");
     const [searchTerm, setSearchTerm] = useState("");
 
     // ... (state dan useEffect lainnya)
@@ -53,9 +51,6 @@ const ForumAtlet = () => {
       setSearchTerm(e.target.value);
     };
 
-    const clearSearch = () => {
-      setSearchTerm("");
-    };
 
     const filteredCabors = cabors.filter((cabor) =>
       cabor.namaCabor.toLowerCase().includes(searchTerm.toLowerCase())
