@@ -73,7 +73,7 @@ const ListPelatih = () => {
             to={`/cabor/atlet/${id}`}
             className="button is-success"
           >
-            <IoAdd /> Tambah Atlet
+            <IoAdd /> Tambah Pelatih
           </Link>
         )}
       </div>

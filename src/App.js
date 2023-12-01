@@ -25,6 +25,9 @@ import ListAtletPelatih from "./pages/Pelatih/ListAtletPelatih";
 import IndikatorListPage from "./pages/latihan/IndikatorListPage";
 import PengaturanAkun from "./pages/Pengaturan/PengaturanAkun";
 import Club from "./pages/Club";
+import IsiClubAtlet from "./pages/IsiClubAtlet";
+import DataDiriPelatih from "./pages/Pelatih/DataDiriPelatih";
+import ForumCabor from "./pages/Forum-Cabor/ForumCabor";
 
 
 function App() {
@@ -34,8 +37,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/forum" element={<PageForum />} />
-          <Route path="/forum/:id" element={<DataForum />} />
+          <Route path="/pengumuman" element={<PageForum />} />
+          <Route path="/forum" element={<ForumCabor />} />
+          <Route path="/pengumuman/:id" element={<DataForum />} />
           <Route path="/daftaradmin" element={<Admin />} />
           <Route path="/datadiriatlet" element={<DataDiri />} />
           <Route path="/cabor" element={<Cabor />} />
@@ -51,8 +55,10 @@ function App() {
           <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/kontrolatlet/:idCabor" element={<PengaturanAkun />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
+          <Route path="/cabor/pelatih/:idcabor/:uuid" element={<DataDiriPelatih  />} />
           <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/club/:id" element={<Club />} />
+          <Route path="/cabor/club/:idCabor/:idClub" element={<IsiClubAtlet />} />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
           <Route
             path="/cabor/komponen-indikator/atur/:id"

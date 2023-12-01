@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { HiSpeakerphone } from "react-icons/hi";
 import {
   IoPerson,
   IoHome,
@@ -46,6 +47,11 @@ const Sidebar = () => {
             <NavLink to={"/dashboard"}>
               <IoHome /> Dashboard
             </NavLink>
+            {user && user.role !== "SuperAdmin" && (
+              <NavLink to={"/pengumuman"}>
+                <HiSpeakerphone /> Pengumuman
+              </NavLink>
+            )}
             {user && user.role !== "SuperAdmin" && (
               <NavLink to={"/forum"}>
                 <IoChatbox /> Forum
@@ -179,7 +185,6 @@ const Sidebar = () => {
         )}
         <p className="menu-label">Settings</p>
         <ul className="menu-list">
-          
           <li className="pl-3">
             <button onClick={logout} className="button is-white pl-0">
               <IoLogOut /> Log Out
