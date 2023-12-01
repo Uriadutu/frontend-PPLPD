@@ -28,6 +28,7 @@ import Club from "./pages/Club";
 import IsiClubAtlet from "./pages/IsiClubAtlet";
 import DataDiriPelatih from "./pages/Pelatih/DataDiriPelatih";
 import ForumCabor from "./pages/Forum-Cabor/ForumCabor";
+import IsiForumPage from "./pages/Forum-Cabor/IsiForumPage";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pengumuman" element={<PageForum />} />
           <Route path="/forum" element={<ForumCabor />} />
+          <Route path="/forum/cabor/:idCabor" element={<IsiForumPage />} />
           <Route path="/pengumuman/:id" element={<DataForum />} />
           <Route path="/daftaradmin" element={<Admin />} />
           <Route path="/datadiriatlet" element={<DataDiri />} />

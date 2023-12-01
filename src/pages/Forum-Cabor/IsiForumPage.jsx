@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import Layout from '../Layout'
-import ForumAtlet from '../../component/forum-cabor/ForumAtlet'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../features/authSlice';
+import IsiForumAtlet from '../../component/forum-cabor/IsiForumAtlet';
 
-const ForumCabor = () => {
-    
-  const dispatch = useDispatch();
+
+const IsiForumPage = () => {
+ const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -23,9 +23,10 @@ const ForumCabor = () => {
 
   return (
     <Layout>
-        <ForumAtlet />      
+        <IsiForumAtlet/>
+      
     </Layout>
   )
 }
 
-export default ForumCabor
+export default IsiForumPage
