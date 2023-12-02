@@ -29,6 +29,8 @@ import IsiClubAtlet from "./pages/IsiClubAtlet";
 import DataDiriPelatih from "./pages/Pelatih/DataDiriPelatih";
 import ForumCabor from "./pages/Forum-Cabor/ForumCabor";
 import IsiForumPage from "./pages/Forum-Cabor/IsiForumPage";
+import PerkembanganAtlet from "./pages/latihan/Atlet/PerkembanganAtlet";
+import IsiKomentarPage from "./pages/Forum-Cabor/IsiKomentarPage";
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
           <Route path="/pengumuman" element={<PageForum />} />
           <Route path="/forum" element={<ForumCabor />} />
           <Route path="/forum/cabor/:idCabor" element={<IsiForumPage />} />
+          <Route path="/forum/cabor/komentar/:idCabor/:idAtlet" element={<IsiKomentarPage />} />
           <Route path="/pengumuman/:id" element={<DataForum />} />
           <Route path="/daftaradmin" element={<Admin />} />
           <Route path="/datadiriatlet" element={<DataDiri />} />
@@ -57,11 +60,21 @@ function App() {
           <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/kontrolatlet/:idCabor" element={<PengaturanAkun />} />
           <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
-          <Route path="/cabor/pelatih/:idcabor/:uuid" element={<DataDiriPelatih  />} />
+          <Route
+            path="/cabor/pelatih/:idcabor/:uuid"
+            element={<DataDiriPelatih />}
+          />
           <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/club/:id" element={<Club />} />
-          <Route path="/cabor/club/:idCabor/:idClub" element={<IsiClubAtlet />} />
+          <Route
+            path="/cabor/club/:idCabor/:idClub"
+            element={<IsiClubAtlet />}
+          />
           <Route path="/cabor/komponen-indikator" element={<PageIndikator />} />
+          <Route
+            path="/perkembangan-latihan/:idAtlet"
+            element={<PerkembanganAtlet />}
+          />
           <Route
             path="/cabor/komponen-indikator/atur/:id"
             element={<PengaturanIndikator />}
@@ -74,7 +87,10 @@ function App() {
             path="cabor/komponen-indikator/atur/:id/cabor/komponen-indikator/atur/:id"
             element={<IndikatorList />}
           />
-        <Route path="/komponen-indikator/:uuid/:idAtlet/:id" element={<IndikatorListPage />} />
+          <Route
+            path="/komponen-indikator/:uuid/:idAtlet/:id"
+            element={<IndikatorListPage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -123,8 +123,6 @@ const handleRadioChanges = (e) => {
      formData.append("alumni", NamaAlumniAtlet);
      formData.append("tahun_lulus", TahunLulusAtlet);
      formData.append("ukuran_baju", UkuranBaju);
-    formData.append("ukuran_baju", UkuranBaju);
-
     formData.append("ukuran_sepatu", UkuranSepatu);
     formData.append("tahun_daftar", TahunGabungAtlet);
     // ayah
@@ -673,6 +671,13 @@ const handleRadioChanges = (e) => {
                         <p className="label">Pendidikan Formal :</p>
                       </div>
                       <div className=" is-full is-justify-content-space-between is-flex column">
+                        <input
+                          type="radio"
+                          name="sekolah"
+                          value=""
+                          checked={Pendidikan === ""} // Mengecek apakah radio ini yang dipilih
+                          onChange={handleRadioChange}
+                        />
                         <div
                           className="is-flex"
                           style={{ alignItems: "center", gap: "10px" }}
