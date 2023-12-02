@@ -148,7 +148,7 @@ const IsiForumAtlet = () => {
                         <div className="">
                           <Link
                             className="button is-small is-primary"
-                            to={`/forum/cabor/${idCabor}?Komen=${forum.id_ForumCabor}?penulis=${forum &&
+                            to={`/forum/cabor/${idCabor}?Komen=${forum.id_ForumCabor}&penulis=${forum &&
                               (forum.Atlet && forum.Atlet.uuid
                                 ? forum.Atlet.uuid
                                 : forum.Pelatih && forum.Pelatih.uuid
@@ -164,9 +164,6 @@ const IsiForumAtlet = () => {
                     <footer className="card-foot">
                       <p className="is-flex is-justify-content-end">
                         {forum && parseAndFormatDateString(forum.createdAt)}
-                          <button className=" is-small ml-3">
-                            <IoTrashSharp size={12} />
-                          </button>
                       </p>
                     </footer>
                   </div>

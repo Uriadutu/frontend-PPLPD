@@ -10,6 +10,8 @@ const IsiKomen = () => {
   const [comments, setComments] = useState([]);
   const { idAtlet } = useParams();
   const { user } = useSelector((state) => state.auth);
+  const uuidPenulis = user && user.uuid;
+  const idCabor = user && user.Cabor && user.Cabor.id_cabor;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,9 +22,8 @@ const IsiKomen = () => {
         setForums(forumResponse.data);
 
         if (forumResponse.data.length > 0) {
-          const idForum = forumResponse.data[0].id_ForumCabor;
           const commentResponse = await axios.get(
-            `http://localhost:5000/komentar/forum/${idForum}`
+            `http://localhost:5000/komentar/uuid/${uuidPenulis}`
           );
           setComments(commentResponse.data);
         }
@@ -32,11 +33,25 @@ const IsiKomen = () => {
     };
 
     fetchData();
-  }, [idAtlet]);
+  }, [idAtlet, uuidPenulis]);
+  const deleteForumKomen = async (id) => {
+    if(window.confirm("Apakah Anda yakin ingin menghapus komentar ini?")) {
+
+      try {
+        await axios.delete(`http://localhost:5000/forumcabor/${id}`);
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
   return (
     <div>
       <h1 className="title">Balasan / Komentar</h1>
       <h2 className="subtitle">Postingan Anda</h2>
+      <Link to={`/forum/cabor/${idCabor}`} className="button is-dark mb-3">
+        Kembali
+      </Link>
 
       {forums.map((forum) => (
         <div className="box card" key={forum.id_ForumCabor}>
@@ -79,19 +94,24 @@ const IsiKomen = () => {
               </div>
             </div>
           </div>
-          <footer className="card-foot">
+          <div className="box">
+            <p>Komentar :</p>
             {comments
               .filter(
                 (comment) => comment.id_forumCabor === forum.id_ForumCabor
               )
               .map((comment) => (
-                <div className="box" key={comment.id_komen}>
-                  <p>{comment.isi_komen}</p>
+                <div className="">
+                  <p key={comment.id_komen}>{comment.isi_komen}</p>
                 </div>
               ))}
-
+          </div>
+          <footer className="card-foot">
             <p className="is-flex is-justify-content-end">
-              <button className=" is-small ml-3">
+              <button
+                onClick={() => deleteForumKomen(forum.id_ForumCabor)}
+                className=" is-small ml-3"
+              >
                 <IoTrashSharp />
               </button>
             </p>

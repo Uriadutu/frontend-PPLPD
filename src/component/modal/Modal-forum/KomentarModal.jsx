@@ -6,6 +6,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
     const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const newQueryId = searchParams.get("Komen");
+  const uuidTulis = searchParams.get("penulis");
   const [isi, setIsi] = useState("");
   const [msg, setMsg] = useState("");
   const createForum = async (e) => {
@@ -15,6 +16,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
       await axios.post("http://localhost:5000/komentar", {
         id_forumCabor :newQueryId,
         isi_komen :isi,
+        uuid_penulis :uuidTulis
       });
       tutupmodal();
       window.location.reload();
