@@ -57,7 +57,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
               <div className="control">
                 <textarea
                   className="textarea"
-                  placeholder="Isi Post"
+                  placeholder="Isi Komentar"
                   rows={10}
                   style={{ resize: "none" }}
                   value={isi}

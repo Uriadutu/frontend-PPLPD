@@ -15,6 +15,7 @@ const ForumCabor = () => {
     dispatch(getMe());
   }, [dispatch]);
 
+  {user && user.role !== "Admin" && navigate(`/forum/cabor/${user.id_cabor}`)}
   useEffect(() => {
     if (isError) {
       navigate("/");

@@ -67,9 +67,18 @@ const IsiForumAtlet = () => {
       </h2>
       <div className="is-flex is-justify-content-space-between mb-3">
         <div className="">
+          {user && user.role !== "Admin" && (
+
+          <Link className="button" to={"/dashboard"}>
+            Dashboard
+          </Link>
+          )}
+          {user && user.role === "Admin" && (
+
           <Link className="button is-dark" to={"/forum"}>
             Kembali
           </Link>
+          )}
           {user && user.role !== "Admin" && (
             <Link
               className="mb-3 button is-success ml-3"
@@ -133,14 +142,14 @@ const IsiForumAtlet = () => {
                           </p>
                         </figure>
                       </div>
-                      <div className="media-content is-flex is-justify-content-space-between is-align-items-end">
+                      <div className="media-content is-flex is-justify-content-space-between is-align-items-">
                         <div className="pl-3">
                           <p className="title is-4">
                             {forum && forum.judul_forum}
                           </p>
                           <p
                             className="subtitle is-6"
-                            style={{ maxWidth: "90%" }}
+                            style={{ maxWidth: "96%" }}
                           >
                             {forum && forum.isi_forum}
                           </p>

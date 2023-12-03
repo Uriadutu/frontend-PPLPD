@@ -58,7 +58,7 @@ const ForumAtlet = () => {
   return (
     <div>
       <h1 className="title">Forum</h1>
-      <h2 className="subtitle">List Cabang Olahraga</h2>
+      <h2 className="subtitle">Cabang Olahraga {cabors && cabors.namaCabor}</h2>
       <div className="is-flex is-justify-content-space-between is-align-items-center  mb-3">
         <Link to="/dashboard" className="button">
           Dashboard

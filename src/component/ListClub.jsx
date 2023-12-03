@@ -60,6 +60,15 @@ const ListClub = () => {
           </select>
       <div className="columns is-multiline mt-3">
         {clubs.map((club) => (
+          <table className="table is-bordered is-fullwidth">
+            <thead>
+              <tr>
+                <th>{club && club.nama_club}</th>  
+              </tr>
+            </thead>
+          </table>
+        ))}
+        {clubs.map((club) => (
           <div className="column is-one-fifth" key={club && club.id_club}>
             <div
               className="card"

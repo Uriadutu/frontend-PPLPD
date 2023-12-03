@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { parseAndFormatDateString } from "../../utils/helper";
 import { IoTrashSharp } from "react-icons/io5";
+import axios from "axios";
 
 const IsiKomen = () => {
   const [forums, setForums] = useState([]);
@@ -34,9 +34,9 @@ const IsiKomen = () => {
 
     fetchData();
   }, [idAtlet, uuidPenulis]);
-  const deleteForumKomen = async (id) => {
-    if(window.confirm("Apakah Anda yakin ingin menghapus komentar ini?")) {
 
+  const deleteForumKomen = async (id) => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus komentar ini?")) {
       try {
         await axios.delete(`http://localhost:5000/forumcabor/${id}`);
         window.location.reload();
@@ -44,7 +44,18 @@ const IsiKomen = () => {
         console.log(error);
       }
     }
-  }
+  };
+
+  // Status showAllComments untuk setiap forum
+  const [showAllCommentsStatus, setShowAllCommentsStatus] = useState({});
+
+  const toggleShowAllComments = (forumId) => {
+    setShowAllCommentsStatus({
+      ...showAllCommentsStatus,
+      [forumId]: !showAllCommentsStatus[forumId],
+    });
+  };
+
   return (
     <div>
       <h1 className="title">Balasan / Komentar</h1>
@@ -87,33 +98,91 @@ const IsiKomen = () => {
             <div className="media-content is-flex is-justify-content-space-between is-align-items-end">
               <div className="pl-3">
                 <p className="title is-4">{forum && forum.judul_forum}</p>
-                <p className="subtitle is-6" style={{ maxWidth: "90%" }}>
+                <p className="subtitle is-6 mb-3" style={{ maxWidth: "90%" }}>
                   {forum && forum.isi_forum}
                 </p>
                 {forum && parseAndFormatDateString(forum.createdAt)}
               </div>
             </div>
           </div>
-          <div className="box">
+          <div className="">
             <p>Komentar :</p>
             {comments
               .filter(
                 (comment) => comment.id_forumCabor === forum.id_ForumCabor
               )
-              .map((comment) => (
-                <div className="">
-                  <p key={comment.id_komen}>{comment.isi_komen}</p>
+              .map((comment, index) => (
+                <div
+                  key={comment.id_komen}
+                  className={`box is-flex mb-1 ${
+                    showAllCommentsStatus[forum.id_ForumCabor] || index < 2
+                      ? ""
+                      : "is-hidden"
+                  }`}
+                >
+                  <img
+                    className="image is-48x48"
+                    style={{ objectFit: "cover", borderRadius: "50%" }}
+                    src={
+                      comment &&
+                      (comment.Atlet && comment.Atlet.url
+                        ? comment.Atlet.url
+                        : comment.Pelatih && comment.Pelatih.url
+                        ? comment.Pelatih.url
+                        : null)
+                    }
+                    alt=""
+                  />
+                  <div className="ml-3">
+                    <p className="label mb-0">
+                      {comment &&
+                        (comment.Atlet && comment.Atlet.name_awal
+                          ? comment.Atlet.name_awal
+                          : comment.Pelatih && comment.Pelatih.name_awal
+                          ? comment.Pelatih.name_awal
+                          : null)}{" "}
+                      {comment &&
+                        (comment.Atlet && comment.Atlet.nama_akhir
+                          ? comment.Atlet.nama_akhir
+                          : comment.Pelatih && comment.Pelatih.nama_akhir
+                          ? comment.Pelatih.nama_akhir
+                          : null)}
+                    </p>
+                    <p>{comment.isi_komen}</p>
+                  </div>
                 </div>
               ))}
           </div>
+          {comments.filter(
+            (comment) => comment.id_forumCabor === forum.id_ForumCabor
+          ).length > 2 && (
+            <footer className="card-foot">
+              <div className="is-flex is-justify-content-space-between mt-2">
+                <button
+                  onClick={() => toggleShowAllComments(forum.id_ForumCabor)}
+                  className="button is-small mt-2"
+                >
+                  {showAllCommentsStatus[forum.id_ForumCabor]
+                    ? "Tutup"
+                    : `Lihat (${
+                        comments.filter(
+                          (comment) =>
+                            comment.id_forumCabor === forum.id_ForumCabor
+                        ).length - 2
+                      } lainnya)`}
+                </button>
+              </div>
+            </footer>
+          )}
           <footer className="card-foot">
             <p className="is-flex is-justify-content-end">
-              <button
-                onClick={() => deleteForumKomen(forum.id_ForumCabor)}
-                className=" is-small ml-3"
-              >
-                <IoTrashSharp />
-              </button>
+                <button
+                  onClick={() => deleteForumKomen(forum.id_ForumCabor)}
+                  className="is-small ml-3 p-2"
+                >
+                  Hapus Post dan Komentar <IoTrashSharp />
+                </button>
+
             </p>
           </footer>
         </div>

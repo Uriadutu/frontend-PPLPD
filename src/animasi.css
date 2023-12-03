@@ -106,3 +106,50 @@
 wajib {
   color: red;
 }
+
+.none {
+  display: none;
+}
+.tutup-print {
+  display: block;
+}
+
+@media print {
+  .none {
+    display: block;
+  }
+  .tutup-print {
+    display: none;
+  }
+}
+
+.headerprint {
+  border-bottom: 2px solid black;
+}
+
+.sub-print h2 {
+  font-style: italic;
+}
+
+.headerprint img {
+  object-fit: cover;
+  width: 100px;
+  height: auto;
+}
+.sub-print {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+
+}
+.sub-print{
+  margin-right: 55px;
+}
+
+.title-print {
+  text-align: center;
+}
+
+.cont-print{
+  margin-bottom: 0;
+}

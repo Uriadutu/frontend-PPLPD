@@ -14,9 +14,9 @@ const PerkembanganLatihan = () => {
   const { id } = useParams();
   const [selectedPeriode, setSelectedPeriode] = useState(""); // State untuk menyimpan periode yang dipilih
   const idCabor = atlets && atlets.id_cabor;
-  const[hasils, setHasil] = useState([]);
+  const [hasils, setHasil] = useState([]);
 
-    const {idKomp, setIdKomp}= useState([]);
+  const { idKomp, setIdKomp } = useState([]);
   const handleSelectChange = (e) => {
     setSelectedPeriode(e.target.value);
   };
@@ -52,7 +52,7 @@ const PerkembanganLatihan = () => {
       console.log(error);
     }
   };
-const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
+  const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
   console.log("idkomp", idk);
   useEffect(() => {
     getIndibyCabor(idCabor);
@@ -68,7 +68,7 @@ const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
 
   useEffect(() => {
     getAtlet(id);
-    getHasilByAtlet(id)
+    getHasilByAtlet(id);
   }, [id]);
 
   const getAtlet = async (idatlet) => {
@@ -89,67 +89,68 @@ const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
   const tutupModal = () => {
     setModalUsersAktif(false);
   };
-  const getHasilByAtlet = async (id)=> {
+  const getHasilByAtlet = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/perkembangan/atlet/${id}`);
+      const response = await axios.get(
+        `http://localhost:5000/perkembangan/atlet/${id}`
+      );
       setHasil(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-console.log(hasils, "hayy", id);
+  console.log(hasils, "hayy", id);
 
-//  const groupHasilByTanggal = (hasilList) => {
-//    const groupedHasil = {};
-//    hasilList.forEach((hasil) => {
-//      const { tgl } = hasil;
-//      if (!groupedHasil[tgl]) {
-//        groupedHasil[tgl] = [];
-//      }
-//      groupedHasil[tgl].push(hasil);
-//    });
-//    return groupedHasil;
-//  };
+  //  const groupHasilByTanggal = (hasilList) => {
+  //    const groupedHasil = {};
+  //    hasilList.forEach((hasil) => {
+  //      const { tgl } = hasil;
+  //      if (!groupedHasil[tgl]) {
+  //        groupedHasil[tgl] = [];
+  //      }
+  //      groupedHasil[tgl].push(hasil);
+  //    });
+  //    return groupedHasil;
+  //  };
 
-//  // Mendapatkan semua indikator yang unik
-//  const uniqueIndikators = Array.from(
-//    new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
-//  );
- const groupHasilByKomponen = (hasilList) => {
-   const groupedHasil = {};
-   hasilList.forEach((hasil) => {
-     const komponenId = hasil.Indikator.Komponen.id_komponen;
-     if (!groupedHasil[komponenId]) {
-       groupedHasil[komponenId] = [];
-     }
-     groupedHasil[komponenId].push(hasil);
-   });
-   return groupedHasil;
- };
+  //  // Mendapatkan semua indikator yang unik
+  //  const uniqueIndikators = Array.from(
+  //    new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
+  //  );
+  const groupHasilByKomponen = (hasilList) => {
+    const groupedHasil = {};
+    hasilList.forEach((hasil) => {
+      const komponenId = hasil.Indikator.Komponen.id_komponen;
+      if (!groupedHasil[komponenId]) {
+        groupedHasil[komponenId] = [];
+      }
+      groupedHasil[komponenId].push(hasil);
+    });
+    return groupedHasil;
+  };
 
-//  // Mendapatkan semua komponen yang unik
- const uniqueKomponen = Array.from(
-   new Set(hasils.map((hasil) => hasil.Indikator.Komponen.namaKomponen))
- );
-const groupHasilByTanggal = (hasilList) => {
-  const groupedHasil = {};
-  hasilList.forEach((hasil) => {
-    const { tgl } = hasil;
-    if (!groupedHasil[tgl]) {
-      groupedHasil[tgl] = [];
-    }
-    groupedHasil[tgl].push(hasil);
-  });
-  return groupedHasil;
-};
+  //  // Mendapatkan semua komponen yang unik
+  const uniqueKomponen = Array.from(
+    new Set(hasils.map((hasil) => hasil.Indikator.Komponen.namaKomponen))
+  );
+  const groupHasilByTanggal = (hasilList) => {
+    const groupedHasil = {};
+    hasilList.forEach((hasil) => {
+      const { tgl } = hasil;
+      if (!groupedHasil[tgl]) {
+        groupedHasil[tgl] = [];
+      }
+      groupedHasil[tgl].push(hasil);
+    });
+    return groupedHasil;
+  };
 
-// Mendapatkan semua indikator yang unik
-const uniqueIndikators = Array.from(
-  new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
-);
+  // Mendapatkan semua indikator yang unik
+  const uniqueIndikators = Array.from(
+    new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
+  );
 
- 
   return (
     <div className=" p-3 mt-5" style={{ background: "#f5f5f5" }}>
       <div className="mb-3">
@@ -231,55 +232,49 @@ const uniqueIndikators = Array.from(
 
       <IndikatorEdit Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
       <div className="box card">
-
-      {uniqueKomponen.map((komponen, index) => (
-        <div key={index} className="content">
-          <h3 className="subtitle">{komponen}</h3>
-          {hasils.length > 0 ? (
-            <table className="table is-bordered is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Nama Latihan</th>
-                  {/* Menampilkan kolom indikator yang unik untuk setiap komponen */}
-                  {uniqueIndikators
-                    .filter((indikator) =>
-                      hasils.find(
+        // Bagian rendering tabel pada setiap komponen
+        {uniqueKomponen.map((komponen, index) => (
+          <div key={index} className="content">
+            <h3 className="subtitle">{komponen}</h3>
+            {hasils.length > 0 ? (
+              <table className="table is-bordered is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    {/* Menampilkan kolom indikator yang unik untuk setiap komponen */}
+                    {uniqueIndikators
+                      .filter((indikator) =>
+                        hasils.find(
+                          (hasil) =>
+                            hasil.Indikator.Komponen.namaKomponen ===
+                              komponen &&
+                            hasil.Indikator.namaIndikator === indikator
+                        )
+                      )
+                      .map((indikator, index) => (
+                        <th key={index}>{indikator}</th>
+                      ))}
+                    <th className="has-text-centered">Aksi</th> {/* Kolom untuk tombol delete */}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
+                  {Object.entries(groupHasilByTanggal(hasils)).map(
+                    ([tgl, hasilByTanggal], index) => {
+                      const hasTanggal = hasilByTanggal.find(
                         (hasil) =>
                           hasil.Indikator.Komponen.namaKomponen === komponen &&
-                          hasil.Indikator.namaIndikator === indikator
-                      )
-                    )
-                    .map((indikator, index) => (
-                      <th key={index}>{indikator}</th>
-                    ))}
-                </tr>
-              </thead>
-              <tbody>
-                {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
-                {Object.entries(groupHasilByTanggal(hasils)).map(
-                  ([tgl, hasilByTanggal], index) => {
-                    const hasTanggal = hasilByTanggal.find(
-                      (hasil) =>
-                        hasil.Indikator.Komponen.namaKomponen === komponen
-                    );
-                    return (
-                      <tr key={index}>
-                        {/* Menampilkan tanggal hanya di komponen yang sesuai */}
-                        <td>{hasTanggal ? tgl : null}</td>
-                        {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
-                        {uniqueIndikators
-                          .filter((indikator) =>
-                            hasilByTanggal.find(
-                              (hasil) =>
-                                hasil.Indikator.Komponen.namaKomponen ===
-                                  komponen &&
-                                hasil.Indikator.namaIndikator === indikator
-                            )
-                          )
-                          .map((indikator, index) => (
-                            <td key={index}>
-                              {hasilByTanggal
-                                .filter(
+                          hasil.tgl === tgl
+                      );
+                      // Menampilkan baris hanya jika tanggal ada pada komponen tertentu
+                      if (hasTanggal) {
+                        return (
+                          <tr key={index}>
+                            <td>{tgl}</td>
+                            {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
+                            {uniqueIndikators
+                              .filter((indikator) =>
+                                hasilByTanggal.find(
                                   (hasil) =>
                                     hasil.Indikator.Komponen.namaKomponen ===
                                       komponen &&
@@ -287,22 +282,45 @@ const uniqueIndikators = Array.from(
                                       indikator &&
                                     hasil.tgl === tgl
                                 )
-                                .map((hasil, index) => (
-                                  <div key={index}>{hasil.hasilTes}</div>
-                                ))}
+                              )
+                              .map((indikator, index) => (
+                                <td key={index}>
+                                  {hasilByTanggal
+                                    .filter(
+                                      (hasil) =>
+                                        hasil.Indikator.Komponen
+                                          .namaKomponen === komponen &&
+                                        hasil.Indikator.namaIndikator ===
+                                          indikator &&
+                                        hasil.tgl === tgl
+                                    )
+                                    .map((hasil, index) => (
+                                      <div key={index}>{hasil.hasilTes}</div>
+                                    ))}
+                                </td>
+                              ))}
+                            <td className="has-text-centered">
+                              {/* Tombol delete yang mengambil ID dari data */}
+                              <button
+                                // onClick={() =>} // Sesuaikan dengan logika Anda
+                                className="button is-small is-danger"
+                              >
+                                Delete
+                              </button>
                             </td>
-                          ))}
-                      </tr>
-                    );
-                  }
-                )}
-              </tbody>
-            </table>
-          ) : (
-            <p>Tidak ada data yang tersedia.</p>
-          )}
-        </div>
-      ))}
+                          </tr>
+                        );
+                      }
+                      return null; // Jika tidak ada tanggal pada komponen ini, lewati baris
+                    }
+                  )}
+                </tbody>
+              </table>
+            ) : (
+              <p>Tidak ada data yang tersedia.</p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
