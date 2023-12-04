@@ -89,7 +89,7 @@ const PelatihCabor = () => {
         </thead>
         {pelatihs.map((pelatih, index) => (
           <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={pelatih && pelatih.uuid} className="">
+            <tr key={pelatih && pelatih.uuid}  >
               <td>{index + 1}</td>
               <Link
                 to={`/cabor/pelatih/${

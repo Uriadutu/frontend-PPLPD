@@ -53,7 +53,6 @@ const Panduan = () => {
               {panduanP.map((panduan) => (
                 <div className="column is-one-quarter" key={panduan.id_panduan}>
                   <div
-                    className=""
                     style={{
                       boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
                       border: "solid 1px black",

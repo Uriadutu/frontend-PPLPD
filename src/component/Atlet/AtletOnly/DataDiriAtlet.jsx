@@ -78,7 +78,7 @@ const DataDiriAtlet = () => {
                   </p>
                 </div>
               </div>
-              <div className="">
+              <div  >
                 <figure className=" image is-128x128">
                   <img
                     src={atlets && atlets.url}

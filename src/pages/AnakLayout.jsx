@@ -38,7 +38,7 @@ const AnakLayout = ({children}) => {
         </ul>
       </div>
       <div className="columns mt-6 p-3" style={{ minHeight: "100vh" }}>
-        <div className="">
+        <div  >
           <main>{children}</main>
         </div>
       </div>

@@ -105,7 +105,7 @@ const IsiKomen = () => {
               </div>
             </div>
           </div>
-          <div className="">
+          <div  >
             <p>Komentar :</p>
             {comments
               .filter(

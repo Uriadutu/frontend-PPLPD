@@ -71,7 +71,7 @@ const Adminlist = () => {
         </thead>
         <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
           {filteredAdmin.map((admin, index) => (
-            <tr key={admin.uuid} className="">
+            <tr key={admin.uuid} >
               <td>{index + 1}</td>
               <td>{admin.nama}</td>
               <td>{admin.no_hp}</td>

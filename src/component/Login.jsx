@@ -53,7 +53,7 @@ const Login = () => {
                 style={{ width: `${lebar}px`, height: `${tinggi}px` }}
               />
             </div>
-            <p className="" style={{ color: "white", fontSize: "30px" }}>
+            <p  style={{ color: "white", fontSize: "30px" }}>
               Dinas Pemuda Dan Olahraga
             </p>
           </div>
@@ -78,7 +78,6 @@ const Login = () => {
                 {isError && (
                   <div className="erro is-flex is-justify-content-center">
                     <p
-                      className=""
                       style={{
                         padding: "1px 5px",
                         background: "red",

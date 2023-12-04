@@ -84,7 +84,7 @@ const renderTablesByKomponen = () => {
   return (
     <div>
       {uniqueKomponen.map((komponen) => (
-        <div className="">
+        <div  >
           <div className="mt-1 box tutup-print" key={komponen}>
             <h1 className="subtitle mt-1">{komponen}</h1>
             <table
@@ -135,7 +135,7 @@ const renderTablesByKomponen = () => {
               className="table is-fullwidth is-bordered "
               style={{ border: "1px solid #ccc" }}
             >
-              <thead className="">
+              <thead  >
                 <tr>
                   <th style={{ color: "" }}>Indikator</th>
                   {tableData[komponen] &&
@@ -192,8 +192,10 @@ const renderTablesByKomponen = () => {
       <Link to={"/dashboard"} className="button mr-3">
         Dashboard
       </Link>
-      
-      <div className="" ref={ComponentToPDF}>
+      <button className="button mb-3" onClick={handleExportPDF}>
+        Cetak
+      </button>
+      <div   ref={ComponentToPDF}>
         <div className="print-ini">
           <div className=" pr-5 pl-5 pt-5 pb-0 none mb-1">
             <div className="headerprint p-3 is-flex">
@@ -262,9 +264,6 @@ const renderTablesByKomponen = () => {
           {renderTablesByKomponen()}
         </div>
       </div>
-      <button className="button mb-3" onClick={handleExportPDF}>
-        Cetak
-      </button>
     </div>
   );
 };

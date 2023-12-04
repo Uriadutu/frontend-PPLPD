@@ -23,7 +23,7 @@ const Welcome = () => {
   return (
     <div>
       <div className="is-flex is-justify-content-space-between mb-5">
-        <div className="">
+        <div >
           <h1 className="title">Dashboard</h1>
           <h2 className="subtitle">Selamat datang di SI Atlet PPLPD</h2>
         </div>

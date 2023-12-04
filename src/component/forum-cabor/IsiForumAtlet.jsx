@@ -66,7 +66,7 @@ const IsiForumAtlet = () => {
         Diskusi Cabang Olahraga {cabors && cabors.namaCabor}
       </h2>
       <div className="is-flex is-justify-content-space-between mb-3">
-        <div className="">
+        <div  >
           {user && user.role !== "Admin" && (
 
           <Link className="button" to={"/dashboard"}>
@@ -103,9 +103,9 @@ const IsiForumAtlet = () => {
           </Link>
         )}
       </div>
-      <div className="">
-        <div className="">
-          <div className="">
+      <div  >
+        <div  >
+          <div  >
             {user &&
               user.role !== "Admin" &&
               (forums.length === 0 ? (
@@ -154,7 +154,7 @@ const IsiForumAtlet = () => {
                             {forum && forum.isi_forum}
                           </p>
                         </div>
-                        <div className="">
+                        <div  >
                           <Link
                             className="button is-small is-primary"
                             to={`/forum/cabor/${idCabor}?Komen=${forum.id_ForumCabor}&penulis=${forum &&
@@ -215,7 +215,7 @@ const IsiForumAtlet = () => {
                         </figure>
                       </div>
                       <div className="media-content is-flex is-justify-content-space-between">
-                        <div className="">
+                        <div  >
                           <p className="title is-4">
                             {forum && forum.judul_forum}
                           </p>

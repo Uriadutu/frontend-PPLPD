@@ -20,7 +20,7 @@ const SidebarForum = () => {
 
   return (
     <div
-      className=""
+       
       style={{
         position: "sticky",
         top: "0",
@@ -68,9 +68,9 @@ const SidebarForum = () => {
         }}
       >
         {forums.map((Forum) => (
-          <div className="" key={Forum && Forum.id_forum}>
+          <div   key={Forum && Forum.id_forum}>
             <Link to={`/pengumuman/${Forum && Forum.id_forum}`} className="button mb-1 forumku p-5 has-text-left is-justify-content-flex-start is-align-items-center">
-              <div className="">{Forum && Forum.namaForum}</div>
+              <div  >{Forum && Forum.namaForum}</div>
             </Link>
           </div>
         ))}

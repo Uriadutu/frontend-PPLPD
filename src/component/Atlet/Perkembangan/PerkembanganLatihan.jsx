@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import IndikatorEdit from "./IndikatorEdit";
 import TabelPerkembangan from "../../FileTerpisah/TabelPerkemabangan";
+import { IoTrashBin, IoTrashSharp } from "react-icons/io5";
 
 const PerkembanganLatihan = () => {
   const [komponens, setKomponen] = useState([]);
@@ -15,6 +16,7 @@ const PerkembanganLatihan = () => {
   const [selectedPeriode, setSelectedPeriode] = useState(""); // State untuk menyimpan periode yang dipilih
   const idCabor = atlets && atlets.id_cabor;
   const [hasils, setHasil] = useState([]);
+  const [hapusdata, setDatahapus] =useState([])
 
   const { idKomp, setIdKomp } = useState([]);
   const handleSelectChange = (e) => {
@@ -52,8 +54,10 @@ const PerkembanganLatihan = () => {
       console.log(error);
     }
   };
+
+  
+
   const idk = komponennya.length > 0 ? komponennya[0].id_komponen : null;
-  console.log("idkomp", idk);
   useEffect(() => {
     getIndibyCabor(idCabor);
     getKomponenByCabor(idCabor);
@@ -100,7 +104,6 @@ const PerkembanganLatihan = () => {
     }
   };
 
-  console.log(hasils, "hayy", id);
 
   //  const groupHasilByTanggal = (hasilList) => {
   //    const groupedHasil = {};
@@ -151,6 +154,34 @@ const PerkembanganLatihan = () => {
     new Set(hasils.map((hasil) => hasil.Indikator.namaIndikator))
   );
 
+
+  const hapusPerkembangan = async (datahapus) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/perkembangan/${datahapus}`
+      );
+      const hapusData = response.data;
+      const hapusku = hapusData && hapusData.datahapus;
+
+      if (hapusku) {
+        try {
+          await axios.delete(`http://localhost:5000/perkembangan/${hapusku}`);
+          window.location.reload();
+        } catch (error) {
+          console.error("Gagal menghapus data", error);
+        }
+      } else {
+        console.error("Data hapus tidak ditemukan");
+      }
+    } catch (error) {
+      console.error("Gagal mengambil data untuk dihapus", error);
+    }
+  };
+
+
+  // useEffect(()=>{
+  //   getdataHapusbyId(datahapus)
+  // },[])
   return (
     <div className=" p-3 mt-5" style={{ background: "#f5f5f5" }}>
       <div className="mb-3">
@@ -231,8 +262,7 @@ const PerkembanganLatihan = () => {
       </div>
 
       <IndikatorEdit Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
-      <div className="box card">
-        // Bagian rendering tabel pada setiap komponen
+      <div className="box card mt-3">
         {uniqueKomponen.map((komponen, index) => (
           <div key={index} className="content">
             <h3 className="subtitle">{komponen}</h3>
@@ -276,11 +306,8 @@ const PerkembanganLatihan = () => {
                               .filter((indikator) =>
                                 hasilByTanggal.find(
                                   (hasil) =>
-                                    hasil.Indikator.Komponen.namaKomponen ===
-                                      komponen &&
-                                    hasil.Indikator.namaIndikator ===
-                                      indikator &&
-                                    hasil.tgl === tgl
+                                    hasil.Indikator.Komponen.namaKomponen === komponen &&  hasil.Indikator.namaIndikator === indikator &&
+                                    hasil.tgl === tgl 
                                 )
                               )
                               .map((indikator, index) => (
@@ -300,12 +327,13 @@ const PerkembanganLatihan = () => {
                                 </td>
                               ))}
                             <td className="has-text-centered">
-                              {/* Tombol delete yang mengambil ID dari data */}
                               <button
-                                // onClick={() =>} // Sesuaikan dengan logika Anda
+                                onClick={() =>
+                                  hapusPerkembangan(hasTanggal.id_perkem)
+                                }
                                 className="button is-small is-danger"
                               >
-                                Delete
+                                <IoTrashSharp />
                               </button>
                             </td>
                           </tr>

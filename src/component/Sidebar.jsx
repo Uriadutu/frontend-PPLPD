@@ -103,7 +103,7 @@ const Sidebar = () => {
               <ul className="menu-list pl-2">
                 <li>
                   {user && user.role !== "Pelatih" && (
-                    <div className="">
+                    <div>
                       <NavLink to={"/daftaradmin"}>
                         <IoPerson /> Admin
                       </NavLink>

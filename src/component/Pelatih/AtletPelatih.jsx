@@ -77,7 +77,7 @@ const Atletpage = () => {
           </div>
         </div>
 
-        <div className="">
+        <div  >
           <input
             type="text"
             className="input is-normal"

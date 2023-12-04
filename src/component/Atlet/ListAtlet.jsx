@@ -95,7 +95,7 @@ const ListAtlet = () => {
         </thead>
         {atlets.map((atlet, index) => (
           <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={atlet && atlet.uuid} className="">
+            <tr key={atlet && atlet.uuid}  >
               <td>{index + 1}</td>
               <Link
                 to={`/cabor/atlet/${

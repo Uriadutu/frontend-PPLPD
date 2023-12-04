@@ -20,7 +20,7 @@ const DataDiri = () => {
     }
   }, [isError, user, navigate]);
   return (
-    <div className="">
+    <div  >
       <Navbar/>
       <DataDiriAtlet/>
     </div>

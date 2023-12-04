@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SidebarForum from "../../component/Forum/SidebarForum";
-import NavForum from "../../component/Forum/NavForum";
-import { Link, useParams } from "react-router-dom";
-import { IoArrowBack, IoImageOutline, IoSend } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import { IoImageOutline, IoSend } from "react-icons/io5";
 import axios from "axios";
 
 const LayoutForum = ({ children }) => {
@@ -94,7 +93,7 @@ const LayoutForum = ({ children }) => {
             </div>
           </div>
           <main
-            className=""
+             
             style={{
               minHeight: "100vh",
               maxWidth: "100%",

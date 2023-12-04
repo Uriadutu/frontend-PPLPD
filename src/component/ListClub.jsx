@@ -27,20 +27,8 @@ const ListClub = () => {
   }
   useEffect(() => {
     getClub(id);
-    getAPIProv();
   },[id])
-
-  const [prov, setProv] = useState([]);
-
-  const getAPIProv = async ()=> {
-    try {
-      await axios.get("https://wilayah.id/api/provinces.json");
-      setProv();
-    } catch (error) {
-      
-    }
-  }
-  console.log(prov);
+ 
   return (
     <div>
       <h1 className="title">Club</h1>
@@ -53,43 +41,29 @@ const ListClub = () => {
         <IoAdd />
         Tambah Club
       </Link>
-      <select>
-      {prov.map((provinsi) => (
-          <option key={provinsi.code}> {provinsi && provinsi.data && provinsi.data.nama}</option>
-          ))}
-          </select>
-      <div className="columns is-multiline mt-3">
-        {clubs.map((club) => (
-          <table className="table is-bordered is-fullwidth">
+      <div className=" mt-3">
+          <table className="table is-striped is-fullwidth">
             <thead>
               <tr>
-                <th>{club && club.nama_club}</th>  
+                <th>No</th>
+                <th>Nama Club</th>
+                <th>Jumlah Atlet</th>
+                <th  colSpan={3}>Aksi</th>
               </tr>
             </thead>
+            <tbody>
+        {clubs.map((club, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{club && club.nama_club}</td>
+                <td></td>
+                <td>
+                  <button onClick={() => club && club.id_club} className="button is-small is-primary">Atur</button>
+                </td>
+              </tr>
+              ))}
+            </tbody>
           </table>
-        ))}
-        {clubs.map((club) => (
-          <div className="column is-one-fifth" key={club && club.id_club}>
-            <div
-              className="card"
-              style={{
-                boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                border: "1px solid #888",
-              }}
-            >
-              <Link
-                to={`/cabor/club/${id}/${club && club.id_club}`}
-                className="has-text-dark"
-              >
-                <div className="image has-text-centered">
-                  <h1 className="p-6 has-text-centered label">
-                    {club && club.nama_club}
-                  </h1>
-                </div>
-              </Link>
-            </div>
-          </div>
-        ))}
       </div>
       <AddClub Muncul={modalUsersAktif} TidakMuncul={tutupModal} />
     </div>

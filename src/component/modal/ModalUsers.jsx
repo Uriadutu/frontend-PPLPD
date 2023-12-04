@@ -136,7 +136,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
           </section>
           <footer className="modal-card-foot">
             {user && user.role === "Admin" && (
-              <div className="">
+              <div  >
                 <button
                   className="button is-danger"
                   onClick={() => deleteCabor(queryId)}

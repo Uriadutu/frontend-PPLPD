@@ -202,7 +202,7 @@ const Latihan = () => {
                               .map((indiKomponenFiltered) => (
                                 <td
                                   key={indiKomponenFiltered.id_indikator}
-                                  className=""
+                                   
                                 >
                                   <div className="is-flex is-justify-content-center">
                                     <input

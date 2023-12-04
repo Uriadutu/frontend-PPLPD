@@ -66,7 +66,6 @@ const IndikatorEdit = ({ Muncul, tidakMuncul }) => {
       console.log(error);
     }
   };
-  console.log(id_atlet, id, idIndikatorArray, hasilTesDataArray );
 
   const getKomponenByid = async (id) => {
     try {
@@ -92,7 +91,6 @@ const IndikatorEdit = ({ Muncul, tidakMuncul }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const newQueryId = searchParams.get("id");
-    console.log("laku",newQueryId);
     if (newQueryId){
         getKomponenByid(newQueryId);
         getIndikatorByKomponen(newQueryId);

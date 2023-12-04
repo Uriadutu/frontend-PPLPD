@@ -265,7 +265,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Data Diri :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Depan</label>
+                        <label  >Nama Depan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -276,7 +276,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Tengah</label>
+                        <label  >Nama Tengah</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -287,7 +287,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Belakang</label>
+                        <label  >Nama Belakang</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -298,7 +298,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Panggilan</label>
+                        <label  >Nama Panggilan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -309,7 +309,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tempat Lahir</label>
+                        <label  >Tempat Lahir</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -322,7 +322,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tanggal Lahir</label>
+                        <label  >Tanggal Lahir</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -333,7 +333,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Agama</label>
+                        <label  >Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -355,7 +355,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Jenis Kelamin</label>
+                        <label  >Jenis Kelamin</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -371,7 +371,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Golongan Darah</label>
+                        <label  >Golongan Darah</label>
                         <div className="control">
                           <select
                             className="is-small input"
@@ -402,7 +402,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Provinsi</label>
+                          <label  >Provinsi</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -413,7 +413,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Kota</label>
+                          <label  >Kota</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -426,7 +426,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Kecamatan</label>
+                          <label  >Kecamatan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -439,7 +439,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Kelurahan</label>
+                          <label  >Kelurahan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -454,7 +454,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Desa</label>
+                          <label  >Desa</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -465,7 +465,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Nama Jalan</label>
+                          <label  >Nama Jalan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -479,12 +479,12 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="">
+                    <div  >
                       <div className="column">
                         <label className="label">Kontak</label>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No Telepon</label>
+                        <label  >No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -495,7 +495,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No HP / Mobile</label>
+                        <label  >No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -506,7 +506,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Email</label>
+                        <label  >Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -521,7 +521,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Tinggi Badan</label>
+                          <label  >Tinggi Badan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -535,7 +535,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label className="">Berat Badan</label>
+                          <label  >Berat Badan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -550,7 +550,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tahun Bergabung</label>
+                        <label  >Tahun Bergabung</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -564,7 +564,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label className="">Ukuran Baju</label>
+                          <label  >Ukuran Baju</label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -583,7 +583,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label className="">Ukuran Sepatu</label>
+                          <label  >Ukuran Sepatu</label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -648,7 +648,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                             checked={Pendidikan === "SD"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label className="">SD</label>
+                          <label  >SD</label>
                         </div>
                         <div
                           className="is-flex"
@@ -661,7 +661,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                             checked={Pendidikan === "SMP"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label className="">SMP</label>
+                          <label  >SMP</label>
                         </div>
                         <div
                           className="is-flex"
@@ -674,7 +674,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                             checked={Pendidikan === "SMA"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label className="">SMA</label>
+                          <label  >SMA</label>
                         </div>
                         <div
                           className="is-flex"
@@ -687,11 +687,11 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                             checked={Pendidikan === "SMK"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label className="">SMK</label>
+                          <label  >SMK</label>
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Sekolah</label>
+                        <label  >Nama Sekolah</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -718,7 +718,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">TK</label>
+                            <label  >TK</label>
                           </div>
                           <div
                             className="is-flex"
@@ -731,7 +731,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "SD"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">SD</label>
+                            <label  >SD</label>
                           </div>
                           <div
                             className="is-flex"
@@ -744,7 +744,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "SMP"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">SMP</label>
+                            <label  >SMP</label>
                           </div>
                           <div
                             className="is-flex"
@@ -757,7 +757,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "SMA"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">SMA</label>
+                            <label  >SMA</label>
                           </div>
                           <div
                             className="is-flex"
@@ -770,7 +770,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "SMK"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">SMK</label>
+                            <label  >SMK</label>
                           </div>
                           <div
                             className="is-flex"
@@ -783,12 +783,12 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               checked={PendidikanTerakhirAtlet === "S1"} // Mengecek apakah radio ini yang dipilih
                               onChange={handleRadioChanges}
                             />
-                            <label className="">S1</label>
+                            <label  >S1</label>
                           </div>
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama Sekolah / Universitas</label>
+                        <label  >Nama Sekolah / Universitas</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -799,7 +799,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tahun Lulus</label>
+                        <label  >Tahun Lulus</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -818,7 +818,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Data Ayah :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama</label>
+                        <label  >Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -829,7 +829,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tempat / Tanggal Lahir</label>
+                        <label  >Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -849,7 +849,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Agama</label>
+                        <label  >Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -871,7 +871,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Pekerjaan</label>
+                        <label  >Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -882,7 +882,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No Telepon</label>
+                        <label  >No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -893,7 +893,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No HP / Mobile</label>
+                        <label  >No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -904,7 +904,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Email</label>
+                        <label  >Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -920,7 +920,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Data Ibu :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama</label>
+                        <label  >Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -931,7 +931,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tempat / Tanggal Lahir</label>
+                        <label  >Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -951,7 +951,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Agama</label>
+                        <label  >Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -973,7 +973,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Pekerjaan</label>
+                        <label  >Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -984,7 +984,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No Telepon</label>
+                        <label  >No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -995,7 +995,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No HP / Mobile</label>
+                        <label  >No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1006,7 +1006,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Email</label>
+                        <label  >Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1022,7 +1022,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Provinsi</label>
+                        <label  >Provinsi</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1033,7 +1033,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kota</label>
+                        <label  >Kota</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1046,7 +1046,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kecamatan</label>
+                        <label  >Kecamatan</label>
                         <div className="control">
                           <input
                             className="input is-small "
@@ -1057,7 +1057,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kelurahan</label>
+                        <label  >Kelurahan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1070,7 +1070,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Desa</label>
+                        <label  >Desa</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1081,7 +1081,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Nama Jalan</label>
+                        <label  >Nama Jalan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1102,7 +1102,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <label className="label">Data Wali :</label>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Nama</label>
+                        <label  >Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1113,7 +1113,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Hubungan Keluarga</label>
+                        <label  >Hubungan Keluarga</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1124,7 +1124,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Tempat / Tanggal Lahir</label>
+                        <label  >Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -1145,7 +1145,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
 
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Agama</label>
+                        <label  >Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -1167,7 +1167,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Jenis Kelamin</label>
+                        <label  >Jenis Kelamin</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -1183,7 +1183,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Pekerjaan</label>
+                        <label  >Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -1194,7 +1194,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No Telepon</label>
+                        <label  >No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1205,7 +1205,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">No HP / Mobile</label>
+                        <label  >No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1216,7 +1216,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label className="">Email</label>
+                        <label  >Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1232,7 +1232,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Provinsi</label>
+                        <label  >Provinsi</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1243,7 +1243,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kota</label>
+                        <label  >Kota</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1256,7 +1256,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kecamatan</label>
+                        <label  >Kecamatan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1267,7 +1267,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Kelurahan</label>
+                        <label  >Kelurahan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1280,7 +1280,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Desa</label>
+                        <label  >Desa</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1291,7 +1291,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label className="">Nama Jalan</label>
+                        <label  >Nama Jalan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1304,7 +1304,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                   </div>
                 )}
-                {activeTab === "data-prestasi" && <div className=""></div>}
+                {activeTab === "data-prestasi" && <div  ></div>}
               </div>
             </section>
             <footer className="modal-card-foot">
