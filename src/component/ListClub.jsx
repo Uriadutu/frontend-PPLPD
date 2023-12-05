@@ -58,7 +58,7 @@ const ListClub = () => {
                 <td>{club && club.nama_club}</td>
                 <td></td>
                 <td>
-                  <button onClick={() => club && club.id_club} className="button is-small is-primary">Atur</button>
+                  <Link to={`/cabor/club/${id}/${club && club.id_club}`} onClick={() => club && club.id_club} className="button is-small is-primary">Atur</Link>
                 </td>
               </tr>
               ))}

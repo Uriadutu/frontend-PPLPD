@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { IoAdd, IoArrowBack } from "react-icons/io5";
+import { IoAdd, IoArrowBack, IoTrashSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SidebarForum = () => {
   const [forums, setForum] = useState([]);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     getForum();
@@ -18,9 +20,19 @@ const SidebarForum = () => {
     }
   };
 
+  const hapusForum = async (id_forum) => {
+    if(window.confirm("Apakah Anda yakin ingin menghapus forum ini?")){
+      try {
+        await axios.delete(`http://localhost:5000/forum/${id_forum}`);
+        getForum();
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  }
+
   return (
     <div
-       
       style={{
         position: "sticky",
         top: "0",
@@ -54,9 +66,11 @@ const SidebarForum = () => {
               <span className="has-text-weight-semibold">Forum PPLPD</span>
             </div>
           </div>
-          <button className="button is-small" title="Tambah Forum">
-            <IoAdd size={20} />
-          </button>
+          {user && user.role === "Admin" && (
+            <button className="button is-small" title="Tambah Forum">
+              <IoAdd size={20} />
+            </button>
+          )}
         </div>
       </header>
       <aside
@@ -68,10 +82,16 @@ const SidebarForum = () => {
         }}
       >
         {forums.map((Forum) => (
-          <div   key={Forum && Forum.id_forum}>
-            <Link to={`/pengumuman/${Forum && Forum.id_forum}`} className="button mb-1 forumku p-5 has-text-left is-justify-content-flex-start is-align-items-center">
-              <div  >{Forum && Forum.namaForum}</div>
+          <div className="is-flex is-justify-content-space-between" key={Forum && Forum.id_forum}>
+            <Link
+              to={`/pengumuman/${Forum && Forum.id_forum}`}
+              className="button mb-1 forumku p-5 has-text-left is-justify-content-flex-start is-align-items-center"
+            >
+              <div>{Forum && Forum.namaForum} </div>
             </Link>
+            <button onlclick={() => hapusForum(Forum && Forum.id_forum)}>
+              <IoTrashSharp />
+            </button>
           </div>
         ))}
       </aside>

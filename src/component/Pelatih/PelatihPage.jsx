@@ -52,7 +52,7 @@ const PelatihPage = () => {
           </Link>
 
           <div className="is-flex is-align-items-center">
-            <label className="mr-2">Sort By:</label>
+            <label className="mr-2">Urut Berdasarkan:</label>
             <select
               className="is-normal select"
               value={sortBy}

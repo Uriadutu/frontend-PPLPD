@@ -22,7 +22,7 @@ const IsiClubAtlet = () => {
     }
   }, [isError, user, navigate]);
   return (
-    <div className="has-background-grey-light" style={{ minHeight: "100vh" }}>
+    <div className="" style={{ minHeight: "100vh", background : "#e7e7e7" }}>
       <IsiClub />
     </div>
   );

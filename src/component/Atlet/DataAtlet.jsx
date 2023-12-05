@@ -41,27 +41,32 @@ const DataAtlet = () => {
         Data Atlet - {atlets && atlets.Cabor && atlets.Cabor.namaCabor}
       </h1>
       <h2 className="subtitle mb-5">
-         {atlets && atlets.name_awal}{" "}
-        {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+        {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
+        {atlets && atlets.nama_akhir}
       </h2>
-      <Link
-        className="button is-dark mb-3"
-        to={`/cabor/atlet/${atlets && atlets.Cabor && atlets.Cabor.id_cabor}`}
-      >
-        Kembali
-      </Link>
-      {user && user.role === "Admin" && (
+      <div className="is-flex">
         <Link
-          className="button ml-3 is-success"
-          to={`/cabor/atlet/${
-            atlets && atlets.Cabor && atlets.Cabor.id_cabor
-          }/${atlets && atlets.uuid}/tambah-perkembangan-latihan/${
-            atlets && atlets.id_atlet
-          }`}
+          className="button is-dark mb-3"
+          to={`/cabor/atlet/${atlets && atlets.Cabor && atlets.Cabor.id_cabor}`}
         >
-          Tambah Perkembangan Latihan
+          Kembali
         </Link>
-      )}
+        {user && user.role === "Admin" && (
+          <div className="is-flex">
+            <Link
+              className="button ml-3 is-success mr-3"
+              to={`/cabor/atlet/${
+                atlets && atlets.Cabor && atlets.Cabor.id_cabor
+              }/${atlets && atlets.uuid}/tambah-perkembangan-latihan/${
+                atlets && atlets.id_atlet
+              }`}
+            >
+              Tambah Perkembangan Latihan
+            </Link>
+            <Link className="button is-success">Tambah Prestasi</Link>
+          </div>
+        )}
+      </div>
       {user && user.role === "Atlet" && (
         <Link
           className="button ml-3 is-success"
@@ -140,6 +145,15 @@ const DataAtlet = () => {
                     >
                       <a onClick={() => toggleTab("dataPendidikan")}>
                         Data Pendidikan
+                      </a>
+                    </li>
+                    <li
+                      className={
+                        activeTab === "dataPrestasi" ? "is-active" : ""
+                      }
+                    >
+                      <a onClick={() => toggleTab("dataPrestasi")}>
+                        Data Prestasi
                       </a>
                     </li>
                   </ul>
@@ -239,6 +253,38 @@ const DataAtlet = () => {
                   </div>
                 )}
                 {activeTab === "dataPendidikan" && (
+                  <div className="is-flex is-justify-content-space-between p-3">
+                    <div className="isi">
+                      <label className="label">Pendidikan Formal</label>
+                      <p>Pendidikan sekarang</p>
+                      <div className="is-flex">
+                        <div className="isi">
+                          <div className="is-flex">
+                            <div className="field mr-5">
+                              <p>Pendidikan</p>
+                              <p>Nama Sekolah</p>
+                              <p>Jika sudah lulus</p>
+                              <p>Pendidikan Terakhir</p>
+                              <p>Nama Sekolah</p>
+                              <p>Tahun Lulus</p>
+                            </div>
+                            <div className="isi">
+                              <p>: {atlets && atlets.pendidikan}</p>
+                              <p>: {atlets && atlets.nama_sklh}</p>
+                              <p>
+                                <br />
+                              </p>
+                              <p>: {atlets && atlets.pend_terakhir}</p>
+                              <p>: {atlets && atlets.alumni}</p>
+                              <p>: {atlets && atlets.tahun_lulus}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "dataParestasi" && (
                   <div className="is-flex is-justify-content-space-between p-3">
                     <div className="isi">
                       <label className="label">Pendidikan Formal</label>
