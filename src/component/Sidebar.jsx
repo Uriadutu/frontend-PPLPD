@@ -14,6 +14,7 @@ import { LogOut, reset } from "../features/authSlice";
 import { useMediaQuery } from "react-responsive";
 import { GiSprint } from "react-icons/gi";
 import { TbBarbell } from "react-icons/tb";
+import { MdContactPage } from "react-icons/md";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,11 @@ const Sidebar = () => {
             {user && user.role !== "SuperAdmin" && (
               <NavLink to={"/forum"}>
                 <IoChatbox /> Forum
+              </NavLink>
+            )}
+            {user && user.role === "Pelatih" && (
+              <NavLink to={`/lisensi/${user && user.uuid}`}>
+                <MdContactPage /> Lisensi
               </NavLink>
             )}
             {user && user.role !== "Pelatih" && user.role !== "SuperAdmin" && (

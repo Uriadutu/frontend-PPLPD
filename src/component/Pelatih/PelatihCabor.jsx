@@ -40,7 +40,7 @@ const PelatihCabor = () => {
     if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
       try {
         await axios.delete(`http://localhost:5000/pelatih/${idpelatih}`);
-        getPelatihbyCabor();
+        getPelatihbyCabor(id);
       } catch (error) {
         console.error("Error:", error);
       }

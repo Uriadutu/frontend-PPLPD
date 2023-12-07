@@ -1,35 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { IoAdd, IoEye, IoTrashBinSharp } from 'react-icons/io5';
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import AddLisensi from '../modal/AddLisensi';
+import { IoEye } from 'react-icons/io5';
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 
-const LisensiPelatih = () => {
-  const {idPelatih} = useParams();
-  const [modalAktif, setmodalAktif] = useState(false);
-  const [lisensi, setlisensi] = useState([])
-  const [Pelatih, seetPelatih] = useState([])
-  const {uuid} = useParams();
-  const {idcabor} =useParams();
-  const navigate = useNavigate();
+const ListLisensi = () => {
+    const {user} = useSelector((state)=>state.auth)
+    const idPelatih = user && user.id_pelatih;
+    const [lisensi, setLisensi] = useState([])
+    const [Pelatih, seetPelatih] = useState([])
 
-const bukaModal = () => {
-  setmodalAktif(true);
-};
 
-  const TutupModal = () => {
-    setmodalAktif(false);
-    navigate(`/cabor/pelatih/${idcabor}/${uuid}/lisensi/${idPelatih}`);
-  };
-  const getLisensiByPelatih = async (id) => {
-    try {
-      const response = await axios.get(`http://localhost:5000/lisensi/pelatih/${id}`)
-      setlisensi(response.data)
-    } catch (error) {
-      console.log(error);
+    const getLisensiByPelatih = async (id)=> {
+        try {
+            const response = await axios.get(`http://localhost:5000/lisensi/pelatih/${id}`);
+            setLisensi(response.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
-  }
-  const getpelatihbyid = async (id) => {
+
+    const getpelatihbyid = async (id) => {
     try {
       const response = await axios.get(`http://localhost:5000/pelatih/${id}`);
       seetPelatih(response.data);
@@ -38,35 +29,20 @@ const bukaModal = () => {
     console.log(error);
     }
   }
-
-  const hapusLisensi = async(id_Lisensi)=> {
-    if(window.confirm("Apakah anda yakin ingin menghapus data ini?")) {
-      try {
-        await axios.delete(`http://localhost:5000/lisensi/${id_Lisensi}`)
-        getLisensiByPelatih(idPelatih)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
-  useEffect(()=> {
-    getLisensiByPelatih(idPelatih)
-    getpelatihbyid(idPelatih)
-  },[idPelatih])
+    useEffect(()=> {
+        getpelatihbyid(idPelatih);
+        getLisensiByPelatih(idPelatih);
+    },[idPelatih]);
   return (
     <div>
-      <h1 className="title">Lisensi Pelatih</h1>
+      <h1 className="title">List Lisensi</h1>
       <h2 className="subtitle">
         {Pelatih && Pelatih.name_awal} {Pelatih && Pelatih.nama_tengah}{" "}
         {Pelatih && Pelatih.nama_akhir}
       </h2>
-      <Link className="button is-dark" to={`/cabor/pelatih/${idcabor}/${uuid}`}>
-        Kembali
+      <Link to={"/dashboard"} className="button">
+        Dashboard
       </Link>
-      <button className="button is-success ml-3" onClick={() => bukaModal()}>
-        <IoAdd /> Tambah Lisensi
-      </button>
-
       <div className="mt-3">
         <div
           className="is-flex is-justify-content-space-between box mb-0"
@@ -112,9 +88,7 @@ const bukaModal = () => {
                 <th>No</th>
                 <th>Lisensi</th>
                 <th>File</th>
-                <th colSpan={2} className="has-text-centered">
-                  Aksi
-                </th>
+                <th className="has-text-centered">Aksi</th>
               </tr>
             </thead>
             {lisensi.map((item, index) => (
@@ -128,20 +102,14 @@ const bukaModal = () => {
                       <IoEye />
                     </Link>
                   </td>
-                  <td className="has-text-centered">
-                    <Link onClick={() => hapusLisensi(item && item.id_Lisensi)}>
-                      <IoTrashBinSharp />
-                    </Link>
-                  </td>
                 </tr>
               </tbody>
             ))}
           </table>
         </div>
       </div>
-      <AddLisensi Muncul={modalAktif} TidakMuncul={TutupModal} />
     </div>
   );
 }
 
-export default LisensiPelatih
+export default ListLisensi

@@ -249,14 +249,6 @@ const handleRadioChanges = (e) => {
                     >
                       <a>Data Wali</a>
                     </li>
-                    <li
-                      className={
-                        activeTab === "data-prestasi" ? "is-active" : ""
-                      }
-                      onClick={() => handleTabClick("data-prestasi")}
-                    >
-                      <a>Data Prestasi</a>
-                    </li>
                   </ul>
                 </div>
                 {activeTab === "data-diri" && (
@@ -266,7 +258,7 @@ const handleRadioChanges = (e) => {
                         <p className="label">Data Diri :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Nama Depan<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -279,7 +271,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama Tengah</label>
+                        <label>Nama Tengah</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -290,7 +282,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Nama Belakang<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -303,7 +295,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama Panggilan</label>
+                        <label>Nama Panggilan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -314,7 +306,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Tempat Lahir<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -329,7 +321,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Tanggal Lahir<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -342,7 +334,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Agama<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -366,7 +358,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Jenis Kelamin<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -384,7 +376,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Golongan Darah</label>
+                        <label>Golongan Darah</label>
                         <div className="control">
                           <select
                             className="is-small input"
@@ -415,7 +407,7 @@ const handleRadioChanges = (e) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Provinsi<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -428,7 +420,7 @@ const handleRadioChanges = (e) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Kota<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -443,7 +435,7 @@ const handleRadioChanges = (e) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Kecamatan<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -458,7 +450,7 @@ const handleRadioChanges = (e) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >Kelurahan</label>
+                          <label>Kelurahan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -473,7 +465,7 @@ const handleRadioChanges = (e) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >Desa</label>
+                          <label>Desa</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -484,7 +476,7 @@ const handleRadioChanges = (e) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >Nama Jalan</label>
+                          <label>Nama Jalan</label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -498,12 +490,12 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                     </div>
-                    <div  >
+                    <div>
                       <div className="column">
                         <label className="label">Kontak</label>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No Telepon</label>
+                        <label>No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -514,7 +506,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           No HP / Mobile<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -527,7 +519,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Email</label>
+                        <label>Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -542,7 +534,7 @@ const handleRadioChanges = (e) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Tinggi Badan<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -558,7 +550,7 @@ const handleRadioChanges = (e) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Berat Badan<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -575,7 +567,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >
+                        <label>
                           Tahun Bergabung<wajib>*</wajib>
                         </label>
                         <div className="control">
@@ -591,7 +583,7 @@ const handleRadioChanges = (e) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Ukuran Baju<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -612,7 +604,7 @@ const handleRadioChanges = (e) => {
                           </div>
                         </div>
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label  >
+                          <label>
                             Ukuran Sepatu<wajib>*</wajib>
                           </label>
                           <div className="control">
@@ -689,7 +681,7 @@ const handleRadioChanges = (e) => {
                             checked={Pendidikan === "SD"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label  >SD</label>
+                          <label>SD</label>
                         </div>
                         <div
                           className="is-flex"
@@ -702,7 +694,7 @@ const handleRadioChanges = (e) => {
                             checked={Pendidikan === "SMP"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label  >SMP</label>
+                          <label>SMP</label>
                         </div>
                         <div
                           className="is-flex"
@@ -715,7 +707,7 @@ const handleRadioChanges = (e) => {
                             checked={Pendidikan === "SMA"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label  >SMA</label>
+                          <label>SMA</label>
                         </div>
                         <div
                           className="is-flex"
@@ -728,11 +720,11 @@ const handleRadioChanges = (e) => {
                             checked={Pendidikan === "SMK"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChange}
                           />
-                          <label  >SMK</label>
+                          <label>SMK</label>
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama Sekolah</label>
+                        <label>Nama Sekolah</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -749,6 +741,13 @@ const handleRadioChanges = (e) => {
                     <label className="column">Pendidikan Terakhir :</label>
                     <div className="field is-full is-justify-content-space-between is-flex column">
                       <div className=" is-full is-justify-content-space-between is-flex column">
+                        <input
+                          type="radio"
+                          name="alumni"
+                          value=""
+                          checked={PendidikanTerakhirAtlet === ""} // Mengecek apakah radio ini yang dipilih
+                          onChange={handleRadioChanges}
+                        />
                         <div
                           className="is-flex"
                           style={{ alignItems: "center", gap: "10px" }}
@@ -760,7 +759,7 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >TK</label>
+                          <label>TK</label>
                         </div>
                         <div
                           className="is-flex"
@@ -773,7 +772,7 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "SD"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >SD</label>
+                          <label>SD</label>
                         </div>
                         <div
                           className="is-flex"
@@ -786,7 +785,7 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "SMP"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >SMP</label>
+                          <label>SMP</label>
                         </div>
                         <div
                           className="is-flex"
@@ -799,7 +798,7 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "SMA"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >SMA</label>
+                          <label>SMA</label>
                         </div>
                         <div
                           className="is-flex"
@@ -812,7 +811,7 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "SMK"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >SMK</label>
+                          <label>SMK</label>
                         </div>
                         <div
                           className="is-flex"
@@ -825,12 +824,12 @@ const handleRadioChanges = (e) => {
                             checked={PendidikanTerakhirAtlet === "S1"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
-                          <label  >S1</label>
+                          <label>S1</label>
                         </div>
                       </div>
                     </div>
                     <div className="field is-full is-justify-content-space-between is-flex column">
-                      <label  >Nama Sekolah / Universitas</label>
+                      <label>Nama Sekolah / Universitas</label>
                       <div className="control">
                         <input
                           className="input is-small"
@@ -841,7 +840,7 @@ const handleRadioChanges = (e) => {
                       </div>
                     </div>
                     <div className="field is-full is-justify-content-space-between is-flex column">
-                      <label  >Tahun Lulus</label>
+                      <label>Tahun Lulus</label>
                       <div className="control">
                         <input
                           className="input is-small"
@@ -860,7 +859,7 @@ const handleRadioChanges = (e) => {
                         <p className="label">Data Ayah :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama</label>
+                        <label>Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -871,7 +870,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Tempat / Tanggal Lahir</label>
+                        <label>Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -891,7 +890,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Agama</label>
+                        <label>Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -913,7 +912,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Pekerjaan</label>
+                        <label>Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -924,7 +923,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No Telepon</label>
+                        <label>No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -935,7 +934,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No HP / Mobile</label>
+                        <label>No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -946,7 +945,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Email</label>
+                        <label>Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -962,7 +961,7 @@ const handleRadioChanges = (e) => {
                         <p className="label">Data Ibu :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama</label>
+                        <label>Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -973,7 +972,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Tempat / Tanggal Lahir</label>
+                        <label>Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -993,7 +992,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Agama</label>
+                        <label>Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -1015,7 +1014,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Pekerjaan</label>
+                        <label>Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -1026,7 +1025,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No Telepon</label>
+                        <label>No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1037,7 +1036,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No HP / Mobile</label>
+                        <label>No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1048,7 +1047,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Email</label>
+                        <label>Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1064,7 +1063,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Provinsi</label>
+                        <label>Provinsi</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1075,7 +1074,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kota</label>
+                        <label>Kota</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1088,7 +1087,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kecamatan</label>
+                        <label>Kecamatan</label>
                         <div className="control">
                           <input
                             className="input is-small "
@@ -1099,7 +1098,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kelurahan</label>
+                        <label>Kelurahan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1112,7 +1111,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Desa</label>
+                        <label>Desa</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1123,7 +1122,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Nama Jalan</label>
+                        <label>Nama Jalan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1144,7 +1143,7 @@ const handleRadioChanges = (e) => {
                         <label className="label">Data Wali :</label>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Nama</label>
+                        <label>Nama</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1155,7 +1154,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Hubungan Keluarga</label>
+                        <label>Hubungan Keluarga</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1166,7 +1165,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Tempat / Tanggal Lahir</label>
+                        <label>Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
                           style={{ gap: "10px" }}
@@ -1187,7 +1186,7 @@ const handleRadioChanges = (e) => {
                       </div>
 
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Agama</label>
+                        <label>Agama</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -1209,7 +1208,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Jenis Kelamin</label>
+                        <label>Jenis Kelamin</label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -1225,7 +1224,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Pekerjaan</label>
+                        <label>Pekerjaan</label>
                         <div className="control is-flex">
                           <input
                             className="input is-small"
@@ -1236,7 +1235,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No Telepon</label>
+                        <label>No Telepon</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1247,7 +1246,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >No HP / Mobile</label>
+                        <label>No HP / Mobile</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1258,7 +1257,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label  >Email</label>
+                        <label>Email</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1274,7 +1273,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Provinsi</label>
+                        <label>Provinsi</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1285,7 +1284,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kota</label>
+                        <label>Kota</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1298,7 +1297,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kecamatan</label>
+                        <label>Kecamatan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1309,7 +1308,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Kelurahan</label>
+                        <label>Kelurahan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1322,7 +1321,7 @@ const handleRadioChanges = (e) => {
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Desa</label>
+                        <label>Desa</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1333,7 +1332,7 @@ const handleRadioChanges = (e) => {
                         </div>
                       </div>
                       <div className="field is-justify-content-space-between is-flex column">
-                        <label  >Nama Jalan</label>
+                        <label>Nama Jalan</label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -1346,7 +1345,6 @@ const handleRadioChanges = (e) => {
                     </div>
                   </div>
                 )}
-                {activeTab === "data-prestasi" && <div  ></div>}
               </div>
             </section>
             <footer className="modal-card-foot">

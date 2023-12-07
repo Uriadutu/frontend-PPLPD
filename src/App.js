@@ -31,6 +31,8 @@ import ForumCabor from "./pages/Forum-Cabor/ForumCabor";
 import IsiForumPage from "./pages/Forum-Cabor/IsiForumPage";
 import PerkembanganAtlet from "./pages/latihan/Atlet/PerkembanganAtlet";
 import IsiKomentarPage from "./pages/Forum-Cabor/IsiKomentarPage";
+import PageLisensi from "./pages/Pelatih/PageLisensi";
+import LisensiPelatih from "./pages/Pelatih/LisensiPelatih";
 
 
 function App() {
@@ -63,6 +65,14 @@ function App() {
           <Route
             path="/cabor/pelatih/:idcabor/:uuid"
             element={<DataDiriPelatih />}
+          />
+          <Route
+            path="/cabor/pelatih/:idcabor/:uuid/lisensi/:idPelatih"
+            element={<PageLisensi />}
+          />
+          <Route
+            path="/lisensi/:uuid"
+            element={<LisensiPelatih />}
           />
           <Route path="/cabor/program/:id" element={<Program />} />
           <Route path="/cabor/club/:id" element={<Club />} />

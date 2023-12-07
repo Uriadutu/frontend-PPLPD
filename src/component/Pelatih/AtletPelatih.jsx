@@ -23,29 +23,8 @@ const Atletpage = () => {
     }
   };
 
-  const handleSortChange = (e) => {
-    setSortBy(e.target.value);
-  };
-
-  const filteredAndSortedAtlets = atlets
-    .filter((atlet) => {
-      const lowerCaseSearchText = searchText.toLowerCase();
-      return (
-        atlet.nama.toLowerCase().includes(lowerCaseSearchText) ||
-        (atlet.username &&
-          atlet.username.toLowerCase().includes(lowerCaseSearchText))
-      );
-    })
-    .sort((a, b) => {
-      if (sortBy === "nama") {
-        return a.nama.localeCompare(b.nama);
-      } else if (sortBy === "username") {
-        const usernameA = a.username || "";
-        const usernameB = b.username || "";
-        return usernameA.localeCompare(usernameB);
-      }
-      return 0;
-    });
+  
+  
 
   function capitalizeWords(sentence) {
     return sentence
@@ -64,17 +43,7 @@ const Atletpage = () => {
             Dashboard
           </Link>
 
-          <div className="is-flex is-align-items-center">
-            <label className="mr-2">Sort By:</label>
-            <select
-              className="is-normal select"
-              value={sortBy}
-              onChange={handleSortChange}
-            >
-              <option value="nama">Nama</option>
-              <option value="username">Username</option>
-            </select>
-          </div>
+         
         </div>
 
         <div  >
@@ -93,19 +62,17 @@ const Atletpage = () => {
           <tr>
             <th>No</th>
             <th>Nama Atlet</th>
-            <th>Username</th>
-            <th>Create by</th>
+            <th>Dibuat Oleh</th>
             <th>Cabang Olahraga</th>
             <th>Status</th>
             <th className="has-text-centered">Aksi</th>
           </tr>
         </thead>
         <tbody>
-          {filteredAndSortedAtlets.map((atlet, index) => (
+          {atlets.map((atlet, index) => (
             <tr key={atlet.id_atlet}>
               <td>{index + 1}</td>
               <td>{capitalizeWords(atlet.nama)}</td>
-              <td>{atlet.username}</td>
               <td>{atlet && atlet.Admin && atlet.Admin.nama}</td>
               <td>{atlet && atlet.Cabor && atlet.Cabor.namaCabor}</td>
               <td>{atlet && atlet.status}</td>
