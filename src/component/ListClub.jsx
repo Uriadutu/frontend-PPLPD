@@ -28,6 +28,19 @@ const ListClub = () => {
   useEffect(() => {
     getClub(id);
   },[id])
+
+  const hapusClub = async(id_club)=> {
+    getClub(id);
+    if(window.confirm("Apakah Anda yakin ingin menghapus data ini?")){
+      try {
+        await axios.delete(`http://localhost:5000/club/${id_club}`);
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+  }
  
   return (
     <div>
@@ -41,14 +54,15 @@ const ListClub = () => {
         <IoAdd />
         Tambah Club
       </Link>
+
       <div className=" mt-3">
-          <table className="table is-striped is-fullwidth">
+          <table className="table is- is-fullwidth is-bordered">
             <thead>
               <tr>
                 <th>No</th>
                 <th>Nama Club</th>
                 <th>Jumlah Atlet</th>
-                <th  colSpan={3}>Aksi</th>
+                <th  colSpan={2}>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -60,6 +74,7 @@ const ListClub = () => {
                 <td>
                   <Link to={`/cabor/club/${id}/${club && club.id_club}`} onClick={() => club && club.id_club} className="button is-small is-primary">Atur</Link>
                 </td>
+                <td><Link className="button is-danger is-small" onClick={()=> hapusClub(club && club.id_club)}>Hapus</Link></td>
               </tr>
               ))}
             </tbody>

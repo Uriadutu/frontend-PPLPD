@@ -39,7 +39,7 @@ const ListIndikator = () => {
       if (window.confirm("Apakah Anda yakin ingin menghapus Indikator ini?")) {
         try {
           await axios.delete(`http://localhost:5000/indikator/${idIndi}`);
-          getIndikator();
+          getIndikator(id);
         } catch (error) {
           console.error("Error:", error)
         }
@@ -64,7 +64,8 @@ const ListIndikator = () => {
            id_komponen: id,
            id_cabor: idCabor,
          });
-         window.location.reload();
+         getIndikator(id)
+         setNamaIndikator("")
        } else {
          console.log("ID Cabor tidak ditemukan.");
        }
@@ -78,7 +79,7 @@ const ListIndikator = () => {
     <div>
       <h1 className="title">Indikator</h1>
       <h2 className="subtitle">
-        List Indikator {komponens && komponens.namaKomponen}
+        List Indikator {komponens && komponens.namaKomponen.split("-")[0].slice(0, -4)}
       </h2>
 
       <div className="tombol mb-5 is-flex is-justify-content-space-between">

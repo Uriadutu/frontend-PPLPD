@@ -30,6 +30,7 @@ const PerkembanganLatihan = () => {
     }
   };
 
+  console.log(rekams);
   const getAtletById = async (id) => {
     try {
       const response = await axios.get(`http://localhost:5000/atlet/${id}`);
@@ -84,9 +85,12 @@ const renderTablesByKomponen = () => {
   return (
     <div>
       {uniqueKomponen.map((komponen) => (
-        <div  >
+        <div>
           <div className="mt-1 box tutup-print" key={komponen}>
-            <h1 className="subtitle mt-1">{komponen}</h1>
+            <h1 className="subtitle mt-1">
+              {" "}
+              {komponen.slice(0, -7)}
+            </h1>
             <table
               className="table is-fullwidth is-striped is-hoverable "
               style={{ border: "1px solid #ccc" }}
@@ -130,12 +134,14 @@ const renderTablesByKomponen = () => {
             </table>
           </div>
           <div className="mt-1 pl-5 pr-5 pb-5 mt-0 pt-0 none" key={komponen}>
-            <h1 className="subtitle mt-2">{komponen}</h1>
+            <h1 className="subtitle mt-2">
+              {komponen.slice(0, -7)}
+            </h1>
             <table
               className="table is-fullwidth is-bordered "
               style={{ border: "1px solid #ccc" }}
             >
-              <thead  >
+              <thead>
                 <tr>
                   <th style={{ color: "" }}>Indikator</th>
                   {tableData[komponen] &&

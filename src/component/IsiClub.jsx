@@ -39,28 +39,80 @@ const IsiClub = () => {
       <Link to={`/cabor/club/${idCabor}`} className="button is-dark mb-3">
         Kembali
       </Link>
-      <div className="box is-full-width">
-        <table className="table is-bordered is-full-width">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nama Atlet</th>
-            </tr>
-          </thead>
-          <tbody>
-            {atlets.map((atlet) => (
-              <tr key={atlet && atlet.id_atlet}>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>
-                  {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
-                  {atlet && atlet.nama_akhir}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="">
+        <div class="columns is-gapless is-multiline is-mobile">
+          <div class="column is-half card">
+            <div className="column">
+              <label htmlFor="" className="label">
+                Daftar Atlet
+              </label>
+              <div className="box is-fullwidth">
+                <table className="table is-bordered is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Atlet</th>
+                      <th className="has-text-centered">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {atlets.map((atlet, index) => (
+                      <tr key={atlet && atlet.id_atlet}>
+                        <td>{index + 1}</td>
+                        <td>
+                          {atlet && atlet.name_awal}{" "}
+                          {atlet && atlet.nama_tengah}{" "}
+                          {atlet && atlet.nama_akhir}
+                        </td>
+                        <td className="has-text-centered">
+                          <button className="button is-primary is-small">
+                            Pindah
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="column card">
+            <div className="column">
+              <label htmlFor="" className="label">
+                Atlet Terdaftar
+              </label>
+              <div className="box is-fullwidth">
+                <table className="table is-bordered is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Atlet</th>
+                      <th className="has-text-centered">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {atlets.map((atlet, index) => (
+                      <tr key={atlet && atlet.id_atlet}>
+                        <td>{index + 1}</td>
+                        <td>
+                          {atlet && atlet.name_awal}{" "}
+                          {atlet && atlet.nama_tengah}{" "}
+                          {atlet && atlet.nama_akhir}
+                        </td>
+                        <td className="has-text-centered">
+                          <button className="button is-danger is-small">
+                            Hapus
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

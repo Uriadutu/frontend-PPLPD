@@ -63,6 +63,12 @@ const Navbar = () => {
                     <label className="label ml-1 "> Atlet</label>
                   </div>
                 )}
+                {user && user.role === "Admin" && (
+                  <div className=" is-flex is-align-items-center mr-4">
+                    <p>{user.nama} -</p>
+                    <label htmlFor="" className="label ml-1"> Admin</label>
+                  </div>
+                )}
                 <img src={Dispora} alt="" />
               </div>
             </div>

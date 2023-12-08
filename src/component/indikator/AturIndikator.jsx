@@ -133,7 +133,7 @@ const AturIndikator = () => {
               >
                 <div className="image has-text-centered">
                   <h1 className="is-1 p-6 has-text-centered">
-                    {komponen.namaKomponen}
+                    {komponen.namaKomponen.split("-")[0].slice(0, -4)}
                   </h1>
                 </div>
               </Link>

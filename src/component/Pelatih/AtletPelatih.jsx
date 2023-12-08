@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { IoEye } from "react-icons/io5";
 
 const Atletpage = () => {
   const [atlets, setAtlet] = useState([]);
@@ -77,8 +78,9 @@ const Atletpage = () => {
               <td>{atlet && atlet.Cabor && atlet.Cabor.namaCabor}</td>
               <td>{atlet && atlet.status}</td>
               <td className="has-text-centered">
-                <a href="#">Lihat</a>
-                <a href="#">Hapus</a>
+                <Link>
+                <IoEye/>
+                </Link>
               </td>
             </tr>
           ))}

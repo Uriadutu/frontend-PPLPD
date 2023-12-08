@@ -166,7 +166,10 @@ const PerkembanganLatihan = () => {
       if (hapusku) {
         try {
           await axios.delete(`http://localhost:5000/perkembangan/${hapusku}`);
-          window.location.reload();
+          getAtlet(id);
+          getHasilByAtlet(id)
+          getIndibyCabor(idCabor);
+          getKomponenByCabor(idCabor);
         } catch (error) {
           console.error("Gagal menghapus data", error);
         }
@@ -241,7 +244,11 @@ const PerkembanganLatihan = () => {
                     {komponens.map((komponen, index) => (
                       <tr key={komponen && komponen.id_komponen}>
                         <td>{index + 1}</td>
-                        <td>{komponen && komponen.namaKomponen}</td>
+                        <td>
+                          {" "}
+                          {komponen &&
+                            komponen.namaKomponen.split("-")[0].slice(0, -4)}
+                        </td>
                         <td className="has-text-centered">
                           <Link
                             className="button is-small"
@@ -263,92 +270,80 @@ const PerkembanganLatihan = () => {
 
       <IndikatorEdit Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
       <div className="box card mt-3">
-        {uniqueKomponen.map((komponen, index) => (
-          <div key={index} className="content">
-            <h3 className="subtitle">{komponen}</h3>
-            {hasils.length > 0 ? (
-              <table className="table is-bordered is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>Tanggal</th>
-                    {/* Menampilkan kolom indikator yang unik untuk setiap komponen */}
-                    {uniqueIndikators
-                      .filter((indikator) =>
-                        hasils.find(
-                          (hasil) =>
-                            hasil.Indikator.Komponen.namaKomponen ===
-                              komponen &&
-                            hasil.Indikator.namaIndikator === indikator
-                        )
-                      )
-                      .map((indikator, index) => (
-                        <th key={index}>{indikator}</th>
+        {uniqueKomponen.map((komponen, index) => {
+          const filteredHasilsByKomponen = hasils.filter(
+            (hasil) => hasil.Indikator.Komponen.namaKomponen === komponen
+          );
+
+          const uniqueIndikatorsForKomponen = uniqueIndikators.filter(
+            (indikator) =>
+              filteredHasilsByKomponen.some(
+                (hasil) => hasil.Indikator.namaIndikator === indikator
+              )
+          );
+
+          return (
+            <div key={index} className="content">
+              <h3 className="subtitle">{komponen.slice(0, -7)}</h3>
+              {filteredHasilsByKomponen.length > 0 ? (
+                <table className="table is-bordered is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Tanggal</th>
+                      {uniqueIndikatorsForKomponen.map((indikator, idx) => (
+                        <th key={idx}>{indikator}</th>
                       ))}
-                    <th className="has-text-centered">Aksi</th> {/* Kolom untuk tombol delete */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
-                  {Object.entries(groupHasilByTanggal(hasils)).map(
-                    ([tgl, hasilByTanggal], index) => {
-                      const hasTanggal = hasilByTanggal.find(
-                        (hasil) =>
-                          hasil.Indikator.Komponen.namaKomponen === komponen &&
-                          hasil.tgl === tgl
-                      );
-                      // Menampilkan baris hanya jika tanggal ada pada komponen tertentu
-                      if (hasTanggal) {
-                        return (
-                          <tr key={index}>
-                            <td>{tgl}</td>
-                            {/* Menampilkan hasil tes untuk setiap indikator pada setiap tanggal */}
-                            {uniqueIndikators
-                              .filter((indikator) =>
+                      <th className="has-text-centered">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(
+                      groupHasilByTanggal(filteredHasilsByKomponen)
+                    ).map(([tgl, hasilByTanggal], idx) => {
+                      return (
+                        <tr key={idx}>
+                          <td>{tgl}</td>
+                          {uniqueIndikatorsForKomponen.map(
+                            (indikator, idx2) => {
+                              const hasilForIndikatorAndTanggal =
                                 hasilByTanggal.find(
                                   (hasil) =>
-                                    hasil.Indikator.Komponen.namaKomponen === komponen &&  hasil.Indikator.namaIndikator === indikator &&
-                                    hasil.tgl === tgl 
-                                )
-                              )
-                              .map((indikator, index) => (
-                                <td key={index}>
-                                  {hasilByTanggal
-                                    .filter(
-                                      (hasil) =>
-                                        hasil.Indikator.Komponen
-                                          .namaKomponen === komponen &&
-                                        hasil.Indikator.namaIndikator ===
-                                          indikator &&
-                                        hasil.tgl === tgl
-                                    )
-                                    .map((hasil, index) => (
-                                      <div key={index}>{hasil.hasilTes}</div>
-                                    ))}
+                                    hasil.Indikator.namaIndikator ===
+                                      indikator && hasil.tgl === tgl
+                                );
+
+                              return (
+                                <td key={idx2}>
+                                  {hasilForIndikatorAndTanggal ? (
+                                    hasilForIndikatorAndTanggal.hasilTes
+                                  ) : (
+                                    <div>-</div>
+                                  )}
                                 </td>
-                              ))}
-                            <td className="has-text-centered">
-                              <button
-                                onClick={() =>
-                                  hapusPerkembangan(hasTanggal.id_perkem)
-                                }
-                                className="button is-small is-danger"
-                              >
-                                <IoTrashSharp />
-                              </button>
-                            </td>
-                          </tr>
-                        );
-                      }
-                      return null; // Jika tidak ada tanggal pada komponen ini, lewati baris
-                    }
-                  )}
-                </tbody>
-              </table>
-            ) : (
-              <p>Tidak ada data yang tersedia.</p>
-            )}
-          </div>
-        ))}
+                              );
+                            }
+                          )}
+                          <td className="has-text-centered">
+                            <button
+                              onClick={() =>
+                                hapusPerkembangan(hasilByTanggal[0].id_perkem)
+                              }
+                              className="button is-small is-danger"
+                            >
+                              <IoTrashSharp />
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <p>Tidak ada data yang tersedia.</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
