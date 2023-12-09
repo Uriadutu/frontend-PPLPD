@@ -8,6 +8,7 @@ import {
   IoBook,
   IoAlbums,
   IoChatbox,
+  IoSettings,
 } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
@@ -130,7 +131,7 @@ const Sidebar = () => {
                   <ul className="menu-list">
                     <li>
                       <NavLink to={"/kontrolatlet"}>
-                        <IoPerson /> Pengaturan Akun
+                        <IoSettings /> Pengaturan Akun
                       </NavLink>
                     </li>
                   </ul>

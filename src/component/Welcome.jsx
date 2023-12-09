@@ -119,53 +119,53 @@ const Welcome = () => {
 
 
 
-  // const data = [
-  //   {
-  //     "name" : "Atlet",
-  //     "Atlet" : jmlAtlet,
-  //   }, {
-  //     "name" : "Pelatih",
-  //     "Pelatih" : jmlPelatih,
-  //   }, {
-  //     "name" : "Admin",
-  //     "Admin" : jmlAdmin,
-  //   }
+  const data = [
+    {
+      "name" : "Atlet",
+      "Atlet" : jmlAtlet,
+    }, {
+      "name" : "Pelatih",
+      "Pelatih" : jmlPelatih,
+    }, {
+      "name" : "Admin",
+      "Admin" : jmlAdmin,
+    }
 
-  // ]
- const groupedData = hasilTes.reduce((acc, item) => {
-   const { tgl, Indikator, hasilTes } = item;
-   const namaIndikator = Indikator && Indikator.namaIndikator;
+  ]
+//  const groupedData = hasilTes.reduce((acc, item) => {
+//    const { tgl, Indikator, hasilTes } = item;
+//    const namaIndikator = Indikator && Indikator.namaIndikator;
 
-   if (!acc[tgl]) {
-     acc[tgl] = { tgl };
-   }
+//    if (!acc[tgl]) {
+//      acc[tgl] = { tgl };
+//    }
 
-   acc[tgl][namaIndikator] = hasilTes;
-   return acc;
- }, {});
+//    acc[tgl][namaIndikator] = hasilTes;
+//    return acc;
+//  }, {});
 
- // Mengonversi objek hasil kelompokan ke dalam array
- const transformedData = Object.values(groupedData);
-//  console.log(transformedData);
+//  // Mengonversi objek hasil kelompokan ke dalam array
+//  const transformedData = Object.values(groupedData);
+// //  console.log(transformedData);
  
- const data = [];
+//  const data = [];
 
- transformedData.forEach((item) => {
-   const { tgl, ...indikatorHasil } = item;
-   Object.entries(indikatorHasil).forEach(([indikator, hasil]) => {
-     data.push({ tgl, indikator, hasil });
-   });
- });
+//  transformedData.forEach((item) => {
+//    const { tgl, ...indikatorHasil } = item;
+//    Object.entries(indikatorHasil).forEach(([indikator, hasil]) => {
+//      data.push({ tgl, indikator, hasil });
+//    });
+//  });
 
- console.log(data);
+//  console.log(data);
 
- const hasil = data.map((item) => [
-    {tgl : item.tgl},
-    {indikator : item.indikator},
-    {nilai : item.hasil},
- ])
+//  const hasil = data.map((item) => [
+//     {tgl : item.tgl},
+//     {indikator : item.indikator},
+//     {nilai : item.hasil},
+//  ])
 
- console.log(hasil);
+//  console.log(hasil);
 
   return (
     <div>

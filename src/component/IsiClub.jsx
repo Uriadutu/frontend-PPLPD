@@ -8,6 +8,8 @@ const IsiClub = () => {
   const [club, setClub] = useState([]);
   const {idClub} = useParams();
   const [atlets, setAtlet]= useState([]);
+  const [clubnol, setClubnol] = useState([]);
+  const [clubisi, setClubisi] = useState([]);
 
   const getClub = async (idClub) => {
     try {
@@ -17,11 +19,17 @@ const IsiClub = () => {
       console.log(error);
     }
   };
-  
+  const clubsnol = idCabor + "0";
+  const clubsisi = idCabor + "0" + idClub;
   useEffect(()=>{
     getClub(idClub)
     getAtletbyCabor(idCabor);
+    getAtletbyclubnol(clubsnol)
+    getAtletbyclubisi(clubsisi);
   },[idClub, idCabor])
+
+  console.log(clubsnol, "ini");
+  console.log(clubsisi, "itu");
 
   const getAtletbyCabor = async (idCabor)=> {
     try {
@@ -32,6 +40,60 @@ const IsiClub = () => {
       
     }
   }
+  
+  const getAtletbyclubnol = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/atlet/club/nol/${id}`
+        );
+        setClubnol(response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const getAtletbyclubisi = async (id) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/atlet/club/isi/${id}`
+          );
+          setClubisi(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      
+      const pindah = async (id) => {
+        try {
+          const formData = new FormData();
+          formData.append("club", clubsisi);
+
+          await axios.patch(`http://localhost:5000/atlet/${id}`, formData, {
+            headers: {
+              "Content-type": "multipart/form-data",
+            },
+          });
+          getAtletbyclubisi(clubsisi);
+          getAtletbyclubnol(clubsnol);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      const hapus = async (id) => {
+        try {
+          const formData = new FormData();
+          formData.append("club", clubsnol);
+
+          await axios.patch(`http://localhost:5000/atlet/${id}`, formData, {
+            headers: {
+              "Content-type": "multipart/form-data",
+            },
+          });
+          getAtletbyclubisi(clubsisi);
+          getAtletbyclubnol(clubsnol);
+        } catch (error) {
+          console.log(error);
+        }
+      };
   return (
     <div className="mt-5 p-3">
       <Navbar />
@@ -56,7 +118,7 @@ const IsiClub = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {atlets.map((atlet, index) => (
+                    {clubnol.map((atlet, index) => (
                       <tr key={atlet && atlet.id_atlet}>
                         <td>{index + 1}</td>
                         <td>
@@ -65,7 +127,7 @@ const IsiClub = () => {
                           {atlet && atlet.nama_akhir}
                         </td>
                         <td className="has-text-centered">
-                          <button className="button is-primary is-small">
+                          <button className="button is-primary is-small" onClick={()=> pindah(atlet && atlet.id_atlet)}>
                             Pindah
                           </button>
                         </td>
@@ -92,7 +154,7 @@ const IsiClub = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {atlets.map((atlet, index) => (
+                    {clubisi.map((atlet, index) => (
                       <tr key={atlet && atlet.id_atlet}>
                         <td>{index + 1}</td>
                         <td>
@@ -101,7 +163,7 @@ const IsiClub = () => {
                           {atlet && atlet.nama_akhir}
                         </td>
                         <td className="has-text-centered">
-                          <button className="button is-danger is-small">
+                          <button className="button is-danger is-small" onClick={()=> hapus(atlet && atlet.id_atlet)}>
                             Hapus
                           </button>
                         </td>

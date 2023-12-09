@@ -13,7 +13,8 @@ const AddClub = ({ Muncul, TidakMuncul }) => {
         id_cabor: id,
         nama_club: clubNama,
       });
-      window.location.reload();
+      TidakMuncul();
+      setClubNama("")
       setMsg("")
     } catch (error) {
         if(error){
