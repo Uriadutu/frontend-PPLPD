@@ -33,6 +33,7 @@ import PerkembanganAtlet from "./pages/latihan/Atlet/PerkembanganAtlet";
 import IsiKomentarPage from "./pages/Forum-Cabor/IsiKomentarPage";
 import PageLisensi from "./pages/Pelatih/PageLisensi";
 import LisensiPelatih from "./pages/Pelatih/LisensiPelatih";
+import DataDiriPelatihPage from "./pages/Pelatih/DataPelatihPage";
 
 
 function App() {
@@ -48,7 +49,8 @@ function App() {
           <Route path="/forum/cabor/komentar/:idCabor/:idAtlet" element={<IsiKomentarPage />} />
           <Route path="/pengumuman/:id" element={<DataForum />} />
           <Route path="/daftaradmin" element={<Admin />} />
-          <Route path="/datadiriatlet" element={<DataDiri />} />
+          <Route path="/datadiriatlet" element={<DataDiri />} /> 
+          <Route path="/datadiripelatih" element={<DataDiriPelatihPage />} /> 
           <Route path="/cabor" element={<Cabor />} />
           <Route path="/daftarpelatih" element={<Pelatih />} />
           <Route path="/cabor/atlet/:id" element={<Atlet />} />

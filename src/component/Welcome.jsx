@@ -17,10 +17,14 @@ const Welcome = () => {
   const [jmlPelatih, setJumlahPelatig] = useState("0")
   const [jmlCabor, setJumlahCbor] = useState("0")
   const [jmlForum, setjumlForum] = useState("0")
+  const [jmlAtletcabor, setJumlahAtletcabor] = useState("0");
   const [cabors, setCabor] =useState([])
+  const [atlets, setAtlet] =useState([])
   const [hasilTes, setHasiltes] = useState([])
+  const [jmlKelamin, setKelamin] = useState([]);
 
   const idAtlet = user && user.id_atlet;
+  const idCabor = user && user.id_cabor;
 
   const getPerkembangan = async (id)=> {
     try {
@@ -69,13 +73,12 @@ const Welcome = () => {
       console.log(error);
     }
   }
-  const getForum = async ()=> {
+  const getAtletbyCabor = async(id)=> {
     try {
-      const response = await fetch("http://localhost:5000/forumcabor");
-      const data = await response.json();
-      setjumlForum(data.length)
+      const response = await axios.get(`http://localhost:5000/cabor/atlet/${id}`);
+      setAtlet(response.data)
     } catch (error) {
-      
+      console.log(error);
     }
   }
   const getAtlet = async ()=> {
@@ -87,6 +90,22 @@ const Welcome = () => {
       
     }
   }
+  const getAtletcabor = async (id)=> {
+    try {
+      const response = await fetch(`http://localhost:5000/cabor/atlet/${id}`);
+      const data = await response.json();
+      setJumlahAtletcabor(data.length)
+    } catch (error) {
+      
+    }
+  }
+  const getForumbycabor = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/forumcabor/cabor/${id}`);
+      const data = await response.json();
+      setjumlForum(data.length);
+    } catch (error) {}
+  };
   const getPelatih = async ()=> {
     try {
       const response = await fetch("http://localhost:5000/pelatih");
@@ -106,18 +125,37 @@ const Welcome = () => {
     }
   }
 
+  const kelamin = async(id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/atlet/countByGenderAndCabor/${id}`
+      );
+      setKelamin(response.data);
+      
+    } catch (error) {
+      
+    }
+  }
+
   useEffect(()=> {
+    getForumbycabor(idCabor)
+    getAtletcabor(idCabor)
+    kelamin(idCabor)
     getAllCabor();
     getCabor();
-    getForum();
     getAtlet();
+    getAtletbyCabor(idCabor);
     getPelatih();
     getAdmin();
     getPerkembangan(idAtlet)
 
   },[idAtlet])
 
+const lakilaki = jmlKelamin && jmlKelamin.Laki_Laki;
+const perempuan = jmlKelamin && jmlKelamin.Perempuan;
 
+console.log("Laki-Laki : ", lakilaki);
+console.log("perempuan : ", perempuan);
 
   const data = [
     {
@@ -132,6 +170,17 @@ const Welcome = () => {
     }
 
   ]
+
+  const jmljeniskelamin = [
+    {
+      "name": "Laki-Laki",
+      "Laki-Laki": lakilaki,
+    },
+    {
+      "name": "Perempuan",
+      "Perempuan": perempuan,
+    },
+  ];
 //  const groupedData = hasilTes.reduce((acc, item) => {
 //    const { tgl, Indikator, hasilTes } = item;
 //    const namaIndikator = Indikator && Indikator.namaIndikator;
@@ -362,7 +411,148 @@ const Welcome = () => {
           </div>
         </div>
       )}
-      
+      {user && user.role === "Pelatih" && (
+        <div className="">
+          <div
+            className=" box p-3 mb-2 pb-2"
+            style={{ borderTop: "5px solid #313C9E" }}
+          >
+            <div className=" columns is-multiline is-mobile">
+              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#C75959",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlForum}</p>
+                      <p className="subtitle has-text-light is-6">Forum</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiMiniChatBubbleLeftRight color="#9E3131" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/forum"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#9E3131" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#68C759",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">
+                        {jmlAtletcabor}
+                      </p>
+                      <p className="subtitle has-text-light is-6">Atlet</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiUserGroup color="#409E31" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/daftaratlet-cabor"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#409E31" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+              <div className="column">
+                <table className="table is-bordered is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>uria</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div className=" p-3 mt-1">
+            <div className="columns is-multiline">
+              <div
+                className="column mr-2 mb-0 box"
+                style={{ borderTop: "5px solid #409E31" }}
+              >
+                <label className="label">Daftar Cabang Olahraga</label>
+                <table className="table is-bordered is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Atlet</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {atlets.slice(0, 5).map((atlet, index) => (
+                      <tr key={atlet && atlet.id_atlet}>
+                        <td>{index + 1}</td>
+                        <td>
+                          {atlet && atlet.name_awal}{" "}
+                          {atlet && atlet.nama_tengah}{" "}
+                          {atlet && atlet.nama_akhir}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div
+                className="column ml-2 box"
+                style={{ borderTop: "5px solid #9E3131" }}
+              >
+                <label htmlFor="" className="label">
+                  BarChart - Jenis Kelamin
+                </label>
+                <BarChart width={500} height={250} data={jmljeniskelamin}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Laki-Laki" fill="#409E31" />
+                  <Bar dataKey="Perempuan" fill="#B78F29" />
+                </BarChart>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <AddBerita isActive={modalActive} onClose={closeModal} />
     </div>

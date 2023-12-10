@@ -16,7 +16,9 @@ function Addcabor({ isActive, onClose }) {
         namaCabor: namaCabor,
         kodeCabor: kodeCabor,
       });
-      window.location.reload();
+      onClose();
+      setKodecabor("")
+      setNamacabor("");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);

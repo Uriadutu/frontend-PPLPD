@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { IoSettings } from 'react-icons/io5';
 
 const Indikator = () => {
     const [cabors, setCabor] = useState([]);
@@ -50,7 +51,7 @@ const Indikator = () => {
               <td>{index + 1}</td>
               <td>{cabor.namaCabor}</td>
               <td className="has-text-centered">
-                <Link className='button is-small' to={`/cabor/komponen-indikator/atur/${cabor.id_cabor}`}>Atur</Link>
+                <Link className='' to={`/cabor/komponen-indikator/atur/${cabor.id_cabor}`}><IoSettings color='black'/></Link>
               </td>
             </tr>
           ))}

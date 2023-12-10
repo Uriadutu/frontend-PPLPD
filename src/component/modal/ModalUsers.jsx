@@ -53,7 +53,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
     try {
       await axios.delete(`http://localhost:5000/komponen/cabor/${queryId}`);
       tidakMuncul();
-      window.location.reload();
+      
     } catch (error) {
       console.error("Error:", error);
 

@@ -3,7 +3,7 @@ import Addcabor from "./modal/Addcabor.jsx";
 import ModalUsers from "./modal/ModalUsers.jsx";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { IoAdd } from "react-icons/io5";
+import { IoAdd, IoSettings } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 
 const Caborlist = () => {
@@ -21,6 +21,7 @@ const Caborlist = () => {
 
   const tutupModal = () => {
     setModalUsersAktif(false);
+    getCabor()
     navigate("/cabor");
     setMsg("");
   };
@@ -32,6 +33,7 @@ const Caborlist = () => {
   const closeModal = () => {
     setModalActive(false);
     setMsg("");
+    getCabor()
 
   };
 
@@ -97,7 +99,7 @@ const Caborlist = () => {
       <div className="container mt-5">
         {user && user.role === "Admin" && (
           <Link to={`/cabor/komponen-indikator`} className="button mb-3">
-            Komponen Dan Indikator
+            <IoSettings /> Komponen Dan Indikator
           </Link>
         )}
         <div className="columns is-multiline">

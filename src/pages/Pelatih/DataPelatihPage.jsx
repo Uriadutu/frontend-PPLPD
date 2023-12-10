@@ -1,12 +1,12 @@
-import React,{useEffect} from 'react'
-import Layout from './Layout'
-import Adminlist from '../component/Adminlist'
+import React, { useEffect } from "react";
+import Layout from "../Layout";
+import { getMe } from "../../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import DatadiriPelatihOnly from "../../component/Pelatih/Datadiripelatih";
+import Navbar from "../../component/Navbar";
 
-
-const Admin = () => {
+const DataDiriPelatihPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError, user } = useSelector((state) => state.auth);
@@ -19,15 +19,16 @@ const Admin = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role === "Atlet" || user && user.role === "Pelatih"){
+    if (user && user.role === "Atlet") {
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);
   return (
-    <Layout>
-        <Adminlist/>
-    </Layout>
-  )
-}
+    <div>
+        <Navbar/>
+        <DatadiriPelatihOnly />
+    </div>
+  );
+};
 
-export default Admin
+export default DataDiriPelatihPage;

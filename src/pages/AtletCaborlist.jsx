@@ -18,7 +18,7 @@ const AtletCaborlist = () => {
     if (isError) {
       navigate("/");
     } 
-   if (user && user.role !== "Admin" && user.role !== "Pelatih") {
+   if (user && user.role === "Pelatih" || user && user.role === "Atlet") {
      navigate("/dashboard");
    }
   }, [isError, user, navigate]);

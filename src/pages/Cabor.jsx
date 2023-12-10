@@ -8,7 +8,7 @@ import { getMe } from '../features/authSlice';
 const Cabor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -19,7 +19,14 @@ const Cabor = () => {
       navigate("/");
     }
   }, [isError, navigate]);
-
+useEffect(() => {
+  if (isError) {
+    navigate("/");
+  }
+  if (user && (user.role === "Atlet"|| user.role === "Pelatih")) {
+    navigate("/dashboard");
+  }
+}, [isError, user, navigate]);
   return (
     <Layout>
         <Caborlist/>

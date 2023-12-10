@@ -9,6 +9,7 @@ import {
   IoAlbums,
   IoChatbox,
   IoSettings,
+  IoFootball,
 } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
@@ -49,11 +50,11 @@ const Sidebar = () => {
             <NavLink to={"/dashboard"}>
               <IoHome /> Dashboard
             </NavLink>
-            {user && user.role !== "SuperAdmin" && (
+            {/* {user && user.role !== "SuperAdmin" && (
               <NavLink to={"/pengumuman"}>
                 <HiSpeakerphone /> Pengumuman
               </NavLink>
-            )}
+            )} */}
             {user && user.role !== "SuperAdmin" && (
               <NavLink to={"/forum"}>
                 <IoChatbox /> Forum
@@ -64,20 +65,12 @@ const Sidebar = () => {
                 <MdContactPage /> Lisensi
               </NavLink>
             )}
-            {user && user.role !== "Pelatih" && user.role !== "SuperAdmin" && (
-              <p className="pl-3 is-size-9" style={{ padding: "10px 0px 5px" }}>
-                PPLPD
-              </p>
-            )}
           </li>
-          <ul className="menu-list pl-2">
+          <ul className="menu-list">
             {user && user.role === "Admin" && (
               <li>
                 <NavLink to={"/cabor"}>
                   <IoAlbums /> Cabang Olahraga
-                </NavLink>
-                <NavLink to={"/panduan"}>
-                  <IoBook /> Panduan Pelaksanaan
                 </NavLink>
               </li>
             )}
@@ -105,6 +98,9 @@ const Sidebar = () => {
             <p className="menu-label">Admin</p>
             <ul className="menu-list">
               <li>
+                <NavLink to={"/panduan"}>
+                  <IoBook /> Panduan Pelaksanaan
+                </NavLink>
                 <p className="pl-3 is-size-9">Users</p>
               </li>
               <ul className="menu-list pl-2">
@@ -144,8 +140,11 @@ const Sidebar = () => {
           <div>
             <p className="menu-label">Pelatih</p>
             <ul className="menu-list">
-              <NavLink to={"/datadiriatlet"}>
+              <NavLink to={"/datadiripelatih"}>
                 <IoPerson /> Data Pelatih
+              </NavLink>
+              <NavLink to={"/datadiripelatih"}>
+                <IoFootball /> Club
               </NavLink>
               <li>
                 <p className="pl-3 is-size-9">Users</p>
@@ -163,7 +162,7 @@ const Sidebar = () => {
                   <ul className="menu-list">
                     <li>
                       <NavLink to={`/cabor/komponen-indikator/atur/${idCabor}`}>
-                        <IoPerson /> Pengaturan Cabor
+                        <IoSettings /> Pengaturan Cabor
                       </NavLink>
                     </li>
                   </ul>

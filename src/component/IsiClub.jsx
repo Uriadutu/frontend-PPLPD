@@ -26,10 +26,7 @@ const IsiClub = () => {
     getAtletbyCabor(idCabor);
     getAtletbyclubnol(clubsnol)
     getAtletbyclubisi(clubsisi);
-  },[idClub, idCabor])
-
-  console.log(clubsnol, "ini");
-  console.log(clubsisi, "itu");
+  },[idClub, idCabor]) 
 
   const getAtletbyCabor = async (idCabor)=> {
     try {
