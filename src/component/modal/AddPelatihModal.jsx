@@ -37,6 +37,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [NamaAlumniAtlet, setNamaAlumniAtlet] = useState("");
   const [TahunLulusAtlet, setTahunLulusAtlet] = useState("");
   const [NamaAyah, setNamaAyah] = useState("");
+  const [statusAyah, setStatusAyah] = useState(""); // baru
   const [TempatLahirAyah, setTempatLahirAyah] = useState("");
   const [TglLahirAyah, setTglLahirAyah] = useState("");
   const [AgamaAyah, setAgamaAyah] = useState("");
@@ -45,6 +46,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [NohpAyah, setNohpAyah] = useState("");
   const [EmailAyah, setEmailAyah] = useState("");
   const [NamaIbu, setNamaIbu] = useState("");
+  const [statusIbu, setStatusIbu] = useState(""); // baru
   const [TempatLahirIbu, setTempatLahirIbu] = useState("");
   const [TglLahirIbu, setTglLahirIbu] = useState("");
   const [AgamaIbu, setAgamaIbu] = useState("");
@@ -58,6 +60,14 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [KelurahanOrtu, setKelurahanOrtu] = useState("");
   const [DesaOrtu, setDesaOrtu] = useState("");
   const [NamaJalanOrtu, setNamaJalanOrtu] = useState("");
+  // baru
+  const [ProvinsiIbu, setProvinsiIbu] = useState("");
+  const [KotaIbu, setKotaIbu] = useState("");
+  const [KecamatanIbu, setKecamatanIbu] = useState("");
+  const [KelurahanIbu, setKelurahanIbu] = useState("");
+  const [DesaIbu, setDesaIbu] = useState("");
+  const [NamaJalanIbu, setNamaJalanIbu] = useState("");
+  // batas
   const [NamaWali, setNamaWali] = useState("");
   const [HubKeluargaWali, setHubKeluargaWali] = useState("");
   const [TempatLahirWali, setTempatLahirWali] = useState("");
@@ -76,6 +86,37 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [NamaJalanWali, setNamaJalanWali] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
+  //baruuu
+
+   const [copyToAlamatAyah, setCopyToAlamatAyah] = useState("");
+   const [copyToAlamatIbu, setCopyToAlamatIbu] = useState("");
+   const [copyToAlamatWali, setCopyToAlamatWali] = useState("");
+   const copyAlamatAtletToAyah = () => {
+     setProvinsiOrtu(ProvinsiAtlet);
+     setKotaOrtu(KotaAtlet);
+     setKecamatanOrtu(KecamatanAtlet);
+     setKelurahanOrtu(KelurahanAtlet);
+     setDesaOrtu(DesaAtlet);
+     setNamaJalanOrtu(NamaJalanAtlet);
+   };
+
+   const copyAlamatAtletToIbu = () => {
+     setProvinsiIbu(ProvinsiAtlet);
+     setKotaIbu(KotaAtlet);
+     setKecamatanIbu(KecamatanAtlet);
+     setKelurahanIbu(KelurahanAtlet);
+     setDesaIbu(DesaAtlet);
+     setNamaJalanIbu(NamaJalanAtlet);
+   };
+   const copyAlamatAtletToWali = () => {
+     setProvinsiWali(ProvinsiAtlet);
+     setKotaWali(KotaAtlet);
+     setKecamatanWali(KecamatanAtlet);
+     setKelurahanWali(KelurahanAtlet);
+     setDesaWali(DesaAtlet);
+     setNamaJalanWali(NamaJalanAtlet);
+   };
+
 
   const handleRadioChange = (e) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
@@ -128,6 +169,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("tahun_daftar", TahunGabungAtlet);
     // ayah
     formData.append("nama_ayah", NamaAyah);
+    formData.append("status_ayah", statusAyah); //baru
     formData.append("tmpLahir_ayah", TempatLahirAyah);
     formData.append("tglLahir_ayah", TglLahirAyah);
     formData.append("agama_ayah", AgamaAyah);
@@ -137,6 +179,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("email_ayah", EmailAyah);
     // ibu
     formData.append("nama_ibu", NamaIbu);
+    formData.append("status_ibu", statusIbu); // baru
     formData.append("tmpLahir_ibu", TempatLahirIbu);
     formData.append("tglLahir_ibu", TglLahirIbu);
     formData.append("agama_ibu", AgamaIbu);
@@ -144,13 +187,20 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("noHp_ibu", NohpIbu);
     formData.append("notlp_ibu", NotelpIbu);
     formData.append("email_ibu", EmailIbu);
-
+    // ayah
     formData.append("provinsi_ortu", ProvinsiOrtu);
     formData.append("kota_ortu", KotaOrtu);
     formData.append("kecamatan_ortu", KecamatanOrtu);
     formData.append("kelurahan_ortu", KelurahanOrtu);
     formData.append("desa_ortu", DesaOrtu);
     formData.append("namaJalan_ortu", NamaJalanOrtu);
+    //ibu 
+    formData.append("provinsi_ibu", ProvinsiIbu);
+    formData.append("kota_ibu", KotaIbu);
+    formData.append("kecamatan_ibu", KecamatanIbu);
+    formData.append("kelurahan_ibu", KelurahanIbu);
+    formData.append("desa_ibu", DesaIbu);
+    formData.append("namaJalan_ibu", NamaJalanIbu);
     //wali
     formData.append("nama_wali", NamaWali);
     formData.append("hubkeluarga_wali", HubKeluargaWali);
@@ -169,14 +219,110 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("desa_wali", DesaWali);
     formData.append("namaJalan_wali", NamaJalanWali);
     formData.append("file", file);
+    if (copyToAlamatIbu) {
+      // Jika checkbox alamat ibu dicentang, salin data dari alamat atlet ke alamat ibu
+      formData.append("provinsi_ibu", ProvinsiAtlet);
+      formData.append("kota_ibu", KotaAtlet);
+      formData.append("kecamatan_ibu", KecamatanAtlet);
+      formData.append("kelurahan_ibu", KelurahanAtlet);
+      formData.append("desa_ibu", DesaAtlet);
+      formData.append("namaJalan_ibu", NamaJalanAtlet);
+    }
+    if (copyToAlamatWali) {
+      // Jika checkbox alamat ibu dicentang, salin data dari alamat atlet ke alamat ibu
+      formData.append("provinsi_wali", ProvinsiAtlet);
+      formData.append("kota_wali", KotaAtlet);
+      formData.append("kecamatan_wali", KecamatanAtlet);
+      formData.append("kelurahan_wali", KelurahanAtlet);
+      formData.append("desa_wali", DesaAtlet);
+      formData.append("namaJalan_wali", NamaJalanAtlet);
+    }
     try {
       await axios.post("http://localhost:5000/pelatih", formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
       });
-      window.location.reload();
       tidakMuncul();
+      setNamaDepan("");
+      setNamaTengah("");
+      setNamaBelakang("");
+      setNamaPanggilan("");
+      setTempatLahiratlet("");
+      setTglLahiratlet("");
+      setAgamaAtlet("");
+      setJenisKelaminAtlet("");
+      setGolonganDarahAtlet("");
+      setProvinsiAtlet("");
+      setKotaAtlet("");
+      setKecamatanAtlet("");
+      setKelurahanAtlet("");
+      setDesaAtlet("");
+      setNamaJalanAtlet("");
+      setNotelpAtlet("");
+      setNohpAtlet("");
+      setEmailAtlet("");
+      setTinggiBadanAtlet("");
+      setBeratBadanAtlet("");
+      setTahunGabungAtlet("");
+      setUkuranBaju("");
+      setUkuranSepatu("");
+      setPendidikan("");
+      setNamaSekolahAtlet("");
+      setPendidikanTerakhirAtlet("");
+      setNamaAlumniAtlet("");
+      setTahunLulusAtlet("");
+      setNamaAyah("");
+      setTempatLahirAyah("");
+      setTglLahirAyah("");
+      setAgamaAyah("");
+      setPekerjaanAyah("");
+      setNotelpAyah("");
+      setNohpAyah("");
+      setEmailAyah("");
+      setNamaIbu("");
+      setTempatLahirIbu("");
+      setTglLahirIbu("");
+      setAgamaIbu("");
+      setPekerjaanIbu("");
+      setNotelpIbu("");
+      setNohpIbu("");
+      setEmailIbu("");
+      setProvinsiOrtu("");
+      setKotaOrtu("");
+      setKecamatanOrtu("");
+      setKelurahanOrtu("");
+      setDesaOrtu("");
+      setNamaJalanOrtu("");
+      setNamaWali("");
+      setHubKeluargaWali("");
+      setTempatLahirWali("");
+      setTglLahirWali("");
+      setAgamaWali("");
+      setJenisKelaminWali("");
+      setPekerjaanWali("");
+      setNotelpWali("");
+      setNohpWali("");
+      setEmailWali("");
+      setProvinsiWali("");
+      setKotaWali("");
+      setKecamatanWali("");
+      setKelurahanWali("");
+      setDesaWali("");
+      setNamaJalanWali("");
+      setFile("");
+      setPreview("");
+      setStatusAyah("");
+      setStatusIbu("");
+      setProvinsiIbu("");
+      setKotaIbu("");
+      setKecamatanIbu("");
+      setKelurahanIbu("");
+      setDesaIbu("");
+      setNamaJalanIbu("");
+      setMsg("");
+      setActiveTab("data-diri");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       setMsg(error.response.data.msg);
@@ -837,6 +983,22 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
+                        <label>Status</label>
+                        <div className="control">
+                          <select
+                            className="is-small input "
+                            value={statusAyah}
+                            onChange={(e) => setStatusAyah(e.target.value)}
+                          >
+                            <option value=""></option>
+                            <option value="Masi Hidup">Masi Hidup</option>
+                            <option value="Sudah Meninggal">
+                              Sudah Meninggal
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="field is-full is-justify-content-space-between is-flex column">
                         <label>Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
@@ -939,6 +1101,22 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
+                        <label>Status</label>
+                        <div className="control">
+                          <select
+                            className="is-small input "
+                            value={statusIbu}
+                            onChange={(e) => setStatusIbu(e.target.value)}
+                          >
+                            <option value=""></option>
+                            <option value="Masi Hidup">Masi Hidup</option>
+                            <option value="Sudah Meninggal">
+                              Sudah Meninggal
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="field is-full is-justify-content-space-between is-flex column">
                         <label>Tempat / Tanggal Lahir</label>
                         <div
                           className="control is-flex"
@@ -1026,7 +1204,24 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                     </div>
                     <div className="column">
-                      <p className="label">Alamat :</p>
+                      <p className="label">Alamat Ayah:</p>
+                    </div>
+                    <div className="column">
+                      <input
+                        id="alamatAyah"
+                        type="checkbox"
+                        checked={copyToAlamatAyah}
+                        onChange={(e) => {
+                          setCopyToAlamatAyah(e.target.checked);
+                          if (e.target.checked) {
+                            copyAlamatAtletToAyah();
+                          }
+                        }}
+                      />
+                      <label htmlFor="alamatAyah">
+                        {" "}
+                        Sama Dengan Alamat Pelatih?
+                      </label>
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">
@@ -1095,6 +1290,98 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                             className="input is-small"
                             value={NamaJalanOrtu}
                             onChange={(e) => setNamaJalanOrtu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="column">
+                      <p className="label">Alamat Ibu:</p>
+                    </div>
+                    <div className="column">
+                      <input
+                        id="alamatIbu"
+                        type="checkbox"
+                        checked={copyToAlamatIbu}
+                        onChange={(e) => {
+                          setCopyToAlamatIbu(e.target.checked);
+                          if (e.target.checked) {
+                            copyAlamatAtletToIbu();
+                          }
+                        }}
+                      />
+                      <label htmlFor="alamatIbu">
+                        {" "}
+                        Sama Dengan Alamat Atlet?
+                      </label>
+                    </div>
+                    <div className="is-justify-content-space-between is-flex">
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Provinsi</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={ProvinsiIbu}
+                            onChange={(e) => setProvinsiIbu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Kota</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={KotaIbu}
+                            onChange={(e) => setKotaIbu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="is-justify-content-space-between is-flex">
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Kecamatan</label>
+                        <div className="control">
+                          <input
+                            className="input is-small "
+                            value={KecamatanIbu}
+                            onChange={(e) => setKecamatanIbu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Kelurahan</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={KelurahanIbu}
+                            onChange={(e) => setKelurahanIbu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="is-justify-content-space-between is-flex">
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Desa</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={DesaIbu}
+                            onChange={(e) => setDesaIbu(e.target.value)}
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="field is-justify-content-space-between is-flex column">
+                        <label>Nama Jalan</label>
+                        <div className="control">
+                          <input
+                            className="input is-small"
+                            value={NamaJalanIbu}
+                            onChange={(e) => setNamaJalanIbu(e.target.value)}
                             type="text"
                           />
                         </div>
@@ -1237,6 +1524,23 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     </div>
                     <div className="column">
                       <p className="label">Alamat :</p>
+                    </div>
+                    <div className="column">
+                      <input
+                        id="alamatwali"
+                        type="checkbox"
+                        checked={copyToAlamatWali}
+                        onChange={(e) => {
+                          setCopyToAlamatWali(e.target.checked);
+                          if (e.target.checked) {
+                            copyAlamatAtletToWali();
+                          }
+                        }}
+                      />
+                      <label htmlFor="alamatwali">
+                        {" "}
+                        Sama Dengan Alamat Pelatih?
+                      </label>
                     </div>
                     <div className="is-justify-content-space-between is-flex">
                       <div className="field is-justify-content-space-between is-flex column">

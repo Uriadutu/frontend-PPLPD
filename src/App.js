@@ -63,7 +63,7 @@ function App() {
           <Route path="/akunsaya" element={<Akun />} />
           <Route path="/kontrolatlet" element={<AkunHak />} />
           <Route path="/kontrolatlet/:idCabor" element={<PengaturanAkun />} />
-          <Route path="/cabor/atlet/:id/:id" element={<Perkembangan />} />
+          <Route path="/cabor/atlet/:id/:uuid" element={<Perkembangan />} />
           <Route
             path="/cabor/pelatih/:idcabor/:uuid"
             element={<DataDiriPelatih />}

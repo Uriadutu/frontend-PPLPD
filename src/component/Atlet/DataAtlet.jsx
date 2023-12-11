@@ -2,13 +2,23 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import AddPrestasiAtlet from '../modal/AddPrestasiAtlet';
 
 
 const DataAtlet = () => {
   const [atlets, setAtlet] = useState();
   const [gambars, setGambar] = useState();
+  const [modalAktif, setmodalAktif] = useState(false);
   const {user} = useSelector((state)=>state.auth)
-  const {id} = useParams();
+  const {uuid} = useParams();
+  const [prestasi, setPrestasi] =useState([])
+
+   const bukaModal = () => {
+     setmodalAktif(true);
+   };
+   const TutupModal = () => {
+     setmodalAktif(false);
+   };
 
   const [activeTab, setActiveTab] = useState("dataDiri");
 
@@ -22,9 +32,12 @@ const DataAtlet = () => {
     setShowAll(!showAll);
   };
 
+  const idAtlet = atlets && atlets.id_atlet;
   useEffect(() => {
-      Getatlet(id);
-  }, []);
+      Getatlet(uuid);
+      getPrestasibyAtlet(idAtlet)
+  }, [uuid, idAtlet]);
+
 
   const Getatlet = async (id) => {
     try {
@@ -34,6 +47,25 @@ const DataAtlet = () => {
         console.log(error);
     }
   };
+
+   const getPrestasibyAtlet = async (id) => {
+     try {
+       const response = await axios.get(`http://localhost:5000/prestasi/${id}`);
+       setPrestasi(response.data)
+     } catch (error) {}
+   };
+
+   const deletePrestasi = async (id) => {
+     if (window.confirm("Apa anda yakin ingin menghapus data ini?")) {
+       try {
+         await axios.delete(`http://localhost:5000/prestasi/${id}`);
+         Getatlet(uuid);
+         getPrestasibyAtlet(idAtlet)
+       } catch (error) {
+         console.log(error);
+       }
+     }
+   };
 
   return (
     <div>
@@ -63,22 +95,16 @@ const DataAtlet = () => {
             >
               Tambah Perkembangan Latihan
             </Link>
-            <Link className="button is-success">Tambah Prestasi</Link>
+            <Link
+              className="button is-success"
+              onClick={() => bukaModal(atlets && atlets.id_atlet)}
+            >
+              Tambah Prestasi
+            </Link>
           </div>
         )}
       </div>
-      {user && user.role === "Atlet" && (
-        <Link
-          className="button ml-3 is-success"
-          to={`/cabor/atlet/${
-            atlets && atlets.Cabor && atlets.Cabor.id_cabor
-          }/${atlets && atlets.uuid}?perkembangan-latihan?id=${
-            atlets && atlets.id_atlet
-          }`}
-        >
-          Perkembangan Latihan
-        </Link>
-      )}
+
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">Biodata</p>
@@ -90,7 +116,6 @@ const DataAtlet = () => {
               <div className="is-flex">
                 <div className="field mr-5">
                   <p>Nama</p>
-                  <p>Nama Panggilan</p>
                   <p>Status</p>
                   <p>Atlet</p>
                   <p>Tempat Lahir</p>
@@ -101,18 +126,18 @@ const DataAtlet = () => {
                 <div className="isi">
                   <p>
                     : {atlets && atlets.name_awal}{" "}
-                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}{" "}
+                    ( {atlets && atlets.nama_panggil} )
                   </p>
-                  <p>: {atlets && atlets.nama_panggil}</p>
                   <p>: {atlets && atlets.status}</p>
                   <p>: {atlets && atlets.Cabor && atlets.Cabor.namaCabor}</p>
                   <p>: {atlets && atlets.tmp_lahir}</p>
                   <p>: {atlets && atlets.tgl_lahir}</p>
                   <p>: {atlets && atlets.agama}</p>
                   <p>
-                    : {atlets && atlets.provinsi}, {atlets && atlets.kota},{" "}
-                    {atlets && atlets.kecamatan}, {atlets && atlets.kelurahan},{" "}
-                    {atlets && atlets.desa}, {atlets && atlets.nama_jalan}
+                    : {atlets && atlets.nama_jalan}, {atlets && atlets.desa},{" "}
+                    {atlets && atlets.kelurahan}, {atlets && atlets.kecamatan},{" "}
+                    {atlets && atlets.kota}, {atlets && atlets.provinsi}
                   </p>
                 </div>
               </div>
@@ -137,6 +162,9 @@ const DataAtlet = () => {
                       <a onClick={() => toggleTab("dataOrangTua")}>
                         Data Orang Tua
                       </a>
+                    </li>
+                    <li className={activeTab === "datawali" ? "is-active" : ""}>
+                      <a onClick={() => toggleTab("datawali")}>Data Wali</a>
                     </li>
                     <li
                       className={
@@ -211,9 +239,13 @@ const DataAtlet = () => {
                             <p>No HP/Mobile Phone</p>
                             <p>No Telepon</p>
                             <p>Alamat Email</p>
+                            <p>Alamat</p>
                           </div>
                           <div className="isi">
-                            <p>: {atlets && atlets.nama_ayah}</p>
+                            <p>
+                              : {atlets && atlets.nama_ayah} (
+                              {atlets && atlets.status_ayah})
+                            </p>
                             <p>: {atlets && atlets.tmpLahir_ayah}</p>
                             <p>: {atlets && atlets.tglLahir_ayah}</p>
                             <p>: {atlets && atlets.agama_ayah}</p>
@@ -221,6 +253,14 @@ const DataAtlet = () => {
                             <p>: {atlets && atlets.noHp_ayah}</p>
                             <p>: {atlets && atlets.notlp_ayah}</p>
                             <p>: {atlets && atlets.email_ayah}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_ortu},{" "}
+                              {atlets && atlets.desa_ortu},{" "}
+                              {atlets && atlets.kelurahan_ortu},<br />
+                              {atlets && atlets.kecamatan_ortu},{" "}
+                              {atlets && atlets.kota_ortu},{" "}
+                              {atlets && atlets.provinsi_ortu}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -236,9 +276,13 @@ const DataAtlet = () => {
                             <p>No HP/Mobile Phone</p>
                             <p>No Telepon</p>
                             <p>Alamat Email</p>
+                            <p>Alamat</p>
                           </div>
                           <div className="isi">
-                            <p>: {atlets && atlets.nama_ibu}</p>
+                            <p>
+                              : {atlets && atlets.nama_ibu} (
+                              {atlets && atlets.status_ibu})
+                            </p>
                             <p>: {atlets && atlets.tmpLahir_ibu}</p>
                             <p>: {atlets && atlets.tglLahir_ibu}</p>
                             <p>: {atlets && atlets.agama_ibu}</p>
@@ -246,6 +290,14 @@ const DataAtlet = () => {
                             <p>: {atlets && atlets.noHp_ibu}</p>
                             <p>: {atlets && atlets.notlp_ibu}</p>
                             <p>: {atlets && atlets.email_ibu}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_ibu},{" "}
+                              {atlets && atlets.desa_ibu},{" "}
+                              {atlets && atlets.kelurahan_ibu}, <br />
+                              {atlets && atlets.kecamatan_ibu},{" "}
+                              {atlets && atlets.kota_ibu},{" "}
+                              {atlets && atlets.provinsi_ibu}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -255,15 +307,14 @@ const DataAtlet = () => {
                 {activeTab === "dataPendidikan" && (
                   <div className="is-flex is-justify-content-space-between p-3">
                     <div className="isi">
-                      <label className="label">Pendidikan Formal</label>
-                      <p>Pendidikan sekarang</p>
+                      <p className="label">Pendidikan sekarang</p>
                       <div className="is-flex">
                         <div className="isi">
                           <div className="is-flex">
                             <div className="field mr-5">
                               <p>Pendidikan</p>
                               <p>Nama Sekolah</p>
-                              <p>Jika sudah lulus</p>
+                              <p className="label">Jika sudah lulus</p>
                               <p>Pendidikan Terakhir</p>
                               <p>Nama Sekolah</p>
                               <p>Tahun Lulus</p>
@@ -284,36 +335,90 @@ const DataAtlet = () => {
                     </div>
                   </div>
                 )}
-                {activeTab === "dataParestasi" && (
+                {activeTab === "datawali" && (
                   <div className="is-flex is-justify-content-space-between p-3">
                     <div className="isi">
-                      <label className="label">Pendidikan Formal</label>
-                      <p>Pendidikan sekarang</p>
+                      <p className="label">Data Wali Atlet</p>
                       <div className="is-flex">
                         <div className="isi">
                           <div className="is-flex">
                             <div className="field mr-5">
-                              <p>Pendidikan</p>
-                              <p>Nama Sekolah</p>
-                              <p>Jika sudah lulus</p>
-                              <p>Pendidikan Terakhir</p>
-                              <p>Nama Sekolah</p>
-                              <p>Tahun Lulus</p>
+                              <p>Nama Wali</p>
+                              <p>Hubungan Keluarga</p>
+                              <p>Tempat Lahir</p>
+                              <p>Tanggal Lahir</p>
+                              <p>Agama</p>
+                              <p>Jenis Kelamin</p>
+                              <p>Pekerjaan</p>
+                              <p>Nomor Hp/Mobile</p>
+                              <p>Nomor Telepon</p>
+                              <p>Email</p>
+                              <p>Alamat</p>
                             </div>
                             <div className="isi">
-                              <p>: {atlets && atlets.pendidikan}</p>
-                              <p>: {atlets && atlets.nama_sklh}</p>
+                              <p>: {atlets && atlets.nama_wali}</p>
+                              <p>: {atlets && atlets.hubkeluarga_wali}</p>
+                              <p>: {atlets && atlets.tempLahir_wali}</p>
+                              <p>: {atlets && atlets.tglLahir_wali}</p>
+                              <p>: {atlets && atlets.agama_wali}</p>
+                              <p>: {atlets && atlets.jeniskelamin_wali}</p>
+                              <p>: {atlets && atlets.pekerjaan_wali}</p>
+                              <p>: {atlets && atlets.noHp_wali}</p>
+                              <p>: {atlets && atlets.notlp_wali}</p>
+                              <p>: {atlets && atlets.email_wali}</p>
                               <p>
-                                <br />
+                                : {atlets && atlets.namaJalan_wali},{" "}
+                                {atlets && atlets.desa_wali},{" "}
+                                {atlets && atlets.kelurahan_wali},{" "}
+                                {atlets && atlets.kecamatan_wali},{" "}
+                                {atlets && atlets.kota_wali},{" "}
+                                {atlets && atlets.provinsi_wali}
                               </p>
-                              <p>: {atlets && atlets.pend_terakhir}</p>
-                              <p>: {atlets && atlets.alumni}</p>
-                              <p>: {atlets && atlets.tahun_lulus}</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
+                )}
+                {activeTab === "dataPrestasi" && (
+                  <div className="p-3">
+                    <label className="label">Prestasi</label>
+                    <table className="table is-fullwidth is-bordered">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Club</th>
+                          <th>Nama Event</th>
+                          <th>Tahun</th>
+                          <th>Tingkat</th>
+                          <th>Pencapaian</th>
+                          <th className="has-text-centered">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {prestasi.map((item, index) => (
+                          <tr key={item && item.id_prestasi}>
+                            <td>{index + 1}</td>
+                            <td>{item && item.namaClub}</td>
+                            <td>{item && item.namaEvent}</td>
+                            <td>{item && item.tahunPrestasi}</td>
+                            <td>{item && item.Tingkat}</td>
+                            <td>{item && item.Pencapaian}</td>
+                            <td className="has-text-centered">
+                              <button
+                                className="button is-small is-danger"
+                                onClick={() =>
+                                  deletePrestasi(item.id_prestasi)
+                                }
+                              >
+                                Hapus
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 )}
               </div>
@@ -340,6 +445,7 @@ const DataAtlet = () => {
           </a>
         </footer>
       </div>
+      <AddPrestasiAtlet Muncul={modalAktif} TidakMuncul={TutupModal} />
     </div>
   );
 };

@@ -15,19 +15,19 @@ const DataPelatih = () => {
   const [modalAktif, setmodalAktif] = useState(false);
   const [prestasi, setPrestasi] = useState([]);
   const [pelatih, setPelatih] = useState([]);
-  const getPelatihbyuuid = async (id) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/pelatih/uuid/${id}`
-      );
-      setPelatih(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getPelatihbyuuid(uuid);
-  }, [uuid]);
+  // const getPelatihbyuuid = async (id) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:5000/pelatih/uuid/${id}`
+  //     );
+  //     setPelatih(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getPelatihbyuuid(uuid);
+  // }, [uuid]);
 
   const idPelatih = pelatih && pelatih.id_pelatih;
 
@@ -37,7 +37,7 @@ const DataPelatih = () => {
   };
   const TutupModal = () => {
     setmodalAktif(false);
-    navigate(`/cabor/pelatih/${idcabor}/${uuid}`);
+    Getatlet(uuid)
   };
 
   const [activeTab, setActiveTab] = useState("dataDiri");
@@ -46,7 +46,6 @@ const DataPelatih = () => {
     setActiveTab(tab);
   };
 
-  console.log("data", atlets);
 
   const [showAll, setShowAll] = useState(false);
 
@@ -126,7 +125,6 @@ const DataPelatih = () => {
               <div className="is-flex">
                 <div className="field mr-5">
                   <p>Nama</p>
-                  <p>Nama Panggilan</p>
                   <p>Status</p>
                   <p>Atlet</p>
                   <p>Tempat Lahir</p>
@@ -138,17 +136,17 @@ const DataPelatih = () => {
                   <p>
                     : {atlets && atlets.name_awal}{" "}
                     {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+                    ( {atlets && atlets.nama_panggil} )
                   </p>
-                  <p>: {atlets && atlets.nama_panggil}</p>
                   <p>: {atlets && atlets.status}</p>
                   <p>: {atlets && atlets.Cabor && atlets.Cabor.namaCabor}</p>
                   <p>: {atlets && atlets.tmp_lahir}</p>
                   <p>: {atlets && atlets.tgl_lahir}</p>
                   <p>: {atlets && atlets.agama}</p>
                   <p>
-                    : {atlets && atlets.provinsi}, {atlets && atlets.kota},{" "}
-                    {atlets && atlets.kecamatan}, {atlets && atlets.kelurahan},{" "}
-                    {atlets && atlets.desa}, {atlets && atlets.nama_jalan}
+                    : {atlets && atlets.nama_jalan}, {atlets && atlets.desa},{" "}
+                    {atlets && atlets.kelurahan}, {atlets && atlets.kecamatan},{" "}
+                    {atlets && atlets.kota}, {atlets && atlets.provinsi}
                   </p>
                 </div>
               </div>
@@ -174,6 +172,9 @@ const DataPelatih = () => {
                         Data Orang Tua
                       </a>
                     </li>
+                    <li className={activeTab === "datawali" ? "is-active" : ""}>
+                      <a onClick={() => toggleTab("datawali")}>Data Wali</a>
+                    </li>
                     <li
                       className={
                         activeTab === "dataPendidikan" ? "is-active" : ""
@@ -183,6 +184,7 @@ const DataPelatih = () => {
                         Data Pendidikan
                       </a>
                     </li>
+
                     <li
                       className={
                         activeTab === "dataprestasi" ? "is-active" : ""
@@ -313,6 +315,52 @@ const DataPelatih = () => {
                               <p>: {atlets && atlets.pend_terakhir}</p>
                               <p>: {atlets && atlets.alumni}</p>
                               <p>: {atlets && atlets.tahun_lulus}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {activeTab === "datawali" && (
+                  <div className="is-flex is-justify-content-space-between p-3">
+                    <div className="isi">
+                      <p className="label">Data Wali Atlet</p>
+                      <div className="is-flex">
+                        <div className="isi">
+                          <div className="is-flex">
+                            <div className="field mr-5">
+                              <p>Nama Wali</p>
+                              <p>Hubungan Keluarga</p>
+                              <p>Tempat Lahir</p>
+                              <p>Tanggal Lahir</p>
+                              <p>Agama</p>
+                              <p>Jenis Kelamin</p>
+                              <p>Pekerjaan</p>
+                              <p>Nomor Hp/Mobile</p>
+                              <p>Nomor Telepon</p>
+                              <p>Email</p>
+                              <p>Alamat</p>
+                            </div>
+                            <div className="isi">
+                              <p>: {atlets && atlets.nama_wali}</p>
+                              <p>: {atlets && atlets.hubkeluarga_wali}</p>
+                              <p>: {atlets && atlets.tempLahir_wali}</p>
+                              <p>: {atlets && atlets.tglLahir_wali}</p>
+                              <p>: {atlets && atlets.agama_wali}</p>
+                              <p>: {atlets && atlets.jeniskelamin_wali}</p>
+                              <p>: {atlets && atlets.pekerjaan_wali}</p>
+                              <p>: {atlets && atlets.noHp_wali}</p>
+                              <p>: {atlets && atlets.notlp_wali}</p>
+                              <p>: {atlets && atlets.email_wali}</p>
+                              <p>
+                                : {atlets && atlets.namaJalan_wali},{" "}
+                                {atlets && atlets.desa_wali},{" "}
+                                {atlets && atlets.kelurahan_wali},{" "}
+                                {atlets && atlets.kecamatan_wali},{" "}
+                                {atlets && atlets.kota_wali},{" "}
+                                {atlets && atlets.provinsi_wali}
+                              </p>
                             </div>
                           </div>
                         </div>
