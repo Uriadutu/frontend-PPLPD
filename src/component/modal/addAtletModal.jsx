@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const AddAtletModal = ({ Muncul, tidakMuncul }) => {
 
@@ -339,7 +339,7 @@ const handleRadioChanges = (e) => {
       setMsg(error.response.data.msg);
     }
   };
-
+ 
   
   const getCabor = async () => {
     try {
@@ -362,7 +362,7 @@ const handleRadioChanges = (e) => {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">
-                Tambah Atlet {cabors.namaCabor}
+                Edit Atlet 
               </p>
               <Link
                 className="delete"

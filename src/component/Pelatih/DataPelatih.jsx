@@ -29,9 +29,9 @@ const DataPelatih = () => {
   //   getPelatihbyuuid(uuid);
   // }, [uuid]);
 
-  const idPelatih = pelatih && pelatih.id_pelatih;
+  const idPelatih = atlets && atlets.id_pelatih;
 
-
+console.log(idPelatih);
   const bukaModal = () => {
     setmodalAktif(true);
   };
@@ -249,9 +249,13 @@ const DataPelatih = () => {
                             <p>No HP/Mobile Phone</p>
                             <p>No Telepon</p>
                             <p>Alamat Email</p>
+                            <p>Alamat</p>
                           </div>
                           <div className="isi">
-                            <p>: {atlets && atlets.nama_ayah}</p>
+                            <p>
+                              : {atlets && atlets.nama_ayah} (
+                              {atlets && atlets.status_ayah})
+                            </p>
                             <p>: {atlets && atlets.tmpLahir_ayah}</p>
                             <p>: {atlets && atlets.tglLahir_ayah}</p>
                             <p>: {atlets && atlets.agama_ayah}</p>
@@ -259,6 +263,14 @@ const DataPelatih = () => {
                             <p>: {atlets && atlets.noHp_ayah}</p>
                             <p>: {atlets && atlets.notlp_ayah}</p>
                             <p>: {atlets && atlets.email_ayah}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_ortu},{" "}
+                              {atlets && atlets.desa_ortu},{" "}
+                              {atlets && atlets.kelurahan_ortu},<br />
+                              {atlets && atlets.kecamatan_ortu},{" "}
+                              {atlets && atlets.kota_ortu},{" "}
+                              {atlets && atlets.provinsi_ortu}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -274,9 +286,13 @@ const DataPelatih = () => {
                             <p>No HP/Mobile Phone</p>
                             <p>No Telepon</p>
                             <p>Alamat Email</p>
+                            <p>Alamat</p>
                           </div>
                           <div className="isi">
-                            <p>: {atlets && atlets.nama_ibu}</p>
+                            <p>
+                              : {atlets && atlets.nama_ibu} (
+                              {atlets && atlets.status_ibu})
+                            </p>
                             <p>: {atlets && atlets.tmpLahir_ibu}</p>
                             <p>: {atlets && atlets.tglLahir_ibu}</p>
                             <p>: {atlets && atlets.agama_ibu}</p>
@@ -284,6 +300,14 @@ const DataPelatih = () => {
                             <p>: {atlets && atlets.noHp_ibu}</p>
                             <p>: {atlets && atlets.notlp_ibu}</p>
                             <p>: {atlets && atlets.email_ibu}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_ibu},{" "}
+                              {atlets && atlets.desa_ibu},{" "}
+                              {atlets && atlets.kelurahan_ibu}, <br />
+                              {atlets && atlets.kecamatan_ibu},{" "}
+                              {atlets && atlets.kota_ibu},{" "}
+                              {atlets && atlets.provinsi_ibu}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -293,15 +317,14 @@ const DataPelatih = () => {
                 {activeTab === "dataPendidikan" && (
                   <div className="is-flex is-justify-content-space-between p-3">
                     <div className="isi">
-                      <label className="label">Pendidikan Formal</label>
-                      <p>Pendidikan sekarang</p>
+                      <p className="label">Pendidikan sekarang</p>
                       <div className="is-flex">
                         <div className="isi">
                           <div className="is-flex">
                             <div className="field mr-5">
                               <p>Pendidikan</p>
                               <p>Nama Sekolah</p>
-                              <p>Jika sudah lulus</p>
+                              <p className="label">Jika sudah lulus</p>
                               <p>Pendidikan Terakhir</p>
                               <p>Nama Sekolah</p>
                               <p>Tahun Lulus</p>

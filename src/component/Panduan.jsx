@@ -47,60 +47,41 @@ const Panduan = () => {
         Tambah File
       </button>
       <div className="container card">
-        <div className="column ">
-          <div className="column">
-            <div className="columns is-multiline">
-              {panduanP.map((panduan) => (
-                <div className="column is-one-quarter" key={panduan.id_panduan}>
-                  <div
-                    style={{
-                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                      border: "solid 1px black",
-                    }}
+        <table className="table is-hovered is-fullwidth">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama File</th>
+              <th>Format</th>
+              <th>FIle</th>
+              <th colSpan={2} className="has-text-centered">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {panduanP.map((item, index) => (
+              <tr key={item && item.id_panduan}>
+                <td>{index + 1}</td>
+                <td>{item && item.nama}</td>
+                <td>{item && item.format}</td>
+                <td>{item && item.file}</td>
+                <td className="has-text-centered">
+                  <Link
+                    className="button is-primary is-small"
+                    to={item && item.url}
                   >
-                    <div className="header pt-3 m-0">
-                      <p className="has-text-centered subtitle">
-                        <div>
-                          {panduan.nama}.{panduan.format}
-                        </div>
-                      </p>
-                    </div>
-                    <figure className="image is-centered is-flex is-justify-content-center p-4">
-                      {panduan.format === "pdf" && (
-                        // Menampilkan ikon PDF jika format adalah PDF
-                        <BsFileEarmarkPdf size={64} color="#777" />
-                      )}
-                      {panduan.format === "docx" && (
-                        // Menampilkan ikon PDF jika format adalah PDF
-                        <BsFileEarmarkWord size={64} color="#777" />
-                      )}
-                      {panduan.format === ("jpg", "jpeg", "png") && (
-                        // Menampilkan ikon PDF jika format adalah PDF
-                        <BsFileEarmarkRichtext size={64} color="#777" />
-                      )}
-                    </figure>
-                    <div className=" is-flex">
-                      <Link
-                        to={panduan.url}
-                        className="card-footer-item button is-dark m-0"
-                        style={{ borderRadius: "0px" }}
-                      >
-                        Lihat
-                      </Link>
-                      <button
-                        onClick={() => deletePanduan(panduan.id_panduan)}
-                        className="card-footer-item button is-dark m-0"
-                        style={{ borderRadius: "0px" }}
-                      >
-                        Hapus
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+                    Lihat
+                  </Link>
+                </td>
+                <td className="has-text-centered">
+                  <Link className="button is-danger is-small" onClick={()=> deletePanduan(item && item.id_panduan)}>Hapus</Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        
       </div>
       {/* ... */}
       <AddPanduan Muncul={modalAktif} TidakMuncul={TutupModal} />

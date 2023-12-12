@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import { IoAdd, IoTrashSharp } from "react-icons/io5";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { IoAdd, IoEye, IoPencil, IoTrashSharp } from "react-icons/io5";
+import AddAtletModal from "../modal/addAtletModal";
 import { useSelector } from "react-redux";
-import AddPelatihModal from "../modal/AddPelatihModal";
+import EditAtletModal from "../modal/EditAtletModal";
+import EditPelatihModal from "../modal/EditPelatihModal";
 
-const ListPelatih = () => {
+const ListPelatihEdit = () => {
   const [atlets, setAtlets] = useState([]);
   const [cabors, setCabor] = useState("");
   const { user } = useSelector((state) => state.auth);
+  
 
   const { id } = useParams(); // Mengambil idCabor dari parameter URL
   const [modalUsersAktif, setModalUsersAktif] = useState(false);
+  const [modalEdit, setModalEdit] = useState(true);
 
   useEffect(() => {
     getAtletsbyCabor(id);
@@ -28,7 +32,7 @@ const ListPelatih = () => {
   const getAtletsbyCabor = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/cabor/atlet/${id}`
+        `http://localhost:5000/cabor/pelatih/${id}`
       );
       setAtlets(response.data);
     } catch (error) {
@@ -39,9 +43,8 @@ const ListPelatih = () => {
   const deleteAtlet = async (atletId) => {
     if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
       try {
-        await axios.delete(`http://localhost:5000/atlet/${atletId}`);
-        getAtletsbyCabor();
-        window.location.reload();
+        await axios.delete(`http://localhost:5000/pelatih/${atletId}`);
+        getAtletsbyCabor(id);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -52,9 +55,15 @@ const ListPelatih = () => {
     setModalUsersAktif(true);
   };
 
-  const tutupModal = () => {
-    setModalUsersAktif(false);
-    getAtletsbyCabor();
+  const navigate = useNavigate();
+
+  const bukaModalEdit = (id) => {
+    setModalEdit(true);
+  };
+
+  const tutupModalEdit = () => {
+        navigate(`/cabor/pelatih/${id}`);
+
   };
 
   return (
@@ -76,6 +85,7 @@ const ListPelatih = () => {
             <IoAdd /> Tambah Pelatih
           </Link>
         )}
+        {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
       <table className="table is-striped is-fullwidth">
         <thead>
@@ -101,8 +111,8 @@ const ListPelatih = () => {
                 }/${atlet.uuid}`}
               >
                 <td>
-                  {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
-                  {atlets && atlets.nama_akhir}
+                  {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
+                  {atlet && atlet.nama_akhir}
                 </td>
               </Link>
               <td>{atlet && atlet.hp_mobile}</td>
@@ -110,13 +120,17 @@ const ListPelatih = () => {
               <td className="has-text-centered">
                 <Link
                   className="button is-primary is-small"
-                  to={`/cabor/pelatih/${id}/edit/${atlet && atlet.id_pelatih}`}
+                  onClick={() => bukaModalEdit(atlet && atlet.id_pelatih)}
+                  to={`?id=${atlet && atlet.id_pelatih}`}
                 >
                   Edit
                 </Link>
               </td>
               <td className="has-text-centered">
-                <Link className="button is-danger is-small" onClick={() => deleteAtlet(atlet && atlet.id)}>
+                <Link
+                  className="button is-danger is-small"
+                  onClick={() => deleteAtlet(atlet && atlet.id_pelatih)}
+                >
                   Hapus
                 </Link>
               </td>
@@ -124,9 +138,10 @@ const ListPelatih = () => {
           </tbody>
         ))}
       </table>
-      <AddPelatihModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
+      
+      <EditPelatihModal Muncul={modalEdit} tidakMuncul={tutupModalEdit} />
     </div>
   );
 };
 
-export default ListPelatih;
+export default ListPelatihEdit;

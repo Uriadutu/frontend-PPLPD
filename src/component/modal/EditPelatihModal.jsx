@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
+const EditPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [activeTab, setActiveTab] = useState("data-diri");
   const [msg, setMsg] = useState("");
   const [cabors, setCabor] = useState("");
   const { id } = useParams();
+  const {idAtlet} = useParams();
 
   const [NamaDepan, setNamaDepan] = useState("");
   const [NamaTengah, setNamaTengah] = useState("");
@@ -238,7 +239,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
       formData.append("namaJalan_wali", NamaJalanAtlet);
     }
     try {
-      await axios.post("http://localhost:5000/pelatih", formData, {
+      await axios.patch(`http://localhost:5000/pelatih/${idAtlet}`, formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
@@ -322,10 +323,94 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
       setNamaJalanIbu("");
       setMsg("");
       setActiveTab("data-diri");
+      // window.location.reload();
     } catch (error) {
       console.log(error);
       setMsg(error.response.data.msg);
     }
+  };
+
+  useEffect(() => {
+    getAtletById();
+  }, []);
+  const getAtletById = async () => {
+    const response = await axios.get(`http://localhost:5000/pelatih/${idAtlet}`);
+    setNamaDepan(response.data.name_awal);
+    setNamaTengah(response.data.nama_tengah);
+    setNamaBelakang(response.data.nama_akhir);
+    setNamaPanggilan(response.data.nama_panggil);
+    setTempatLahiratlet(response.data.tmp_lahir);
+    setTglLahiratlet(response.data.tgl_lahir);
+    setAgamaAtlet(response.data.agama);
+    setNamaJalanAtlet(response.data.nama_jalan);
+    setDesaAtlet(response.data.desa);
+    setKelurahanAtlet(response.data.kelurahan);
+    setKecamatanAtlet(response.data.kecamatan);
+    setKotaAtlet(response.data.kota);
+    setProvinsiAtlet(response.data.provinsi);
+    setNotelpAtlet(response.data.no_telp);
+    setNohpAtlet(response.data.hp_mobile);
+    setEmailAtlet(response.data.email);
+    setJenisKelaminAtlet(response.data.kelamin);
+    setGolonganDarahAtlet(response.data.gol_darah);
+    setTinggiBadanAtlet(response.data.tinggi_badan);
+    setBeratBadanAtlet(response.data.berat_badan);
+    setTahunGabungAtlet(response.data.tahun_daftar);
+    setPendidikan(response.data.pendidikan);
+    setNamaSekolahAtlet(response.data.nama_sklh);
+    setPendidikanTerakhirAtlet(response.data.pend_terakhir);
+    setNamaAlumniAtlet(response.data.alumni);
+    setTahunLulusAtlet(response.data.tahun_lulus);
+    setUkuranBaju(response.data.ukuran_baju);
+    setUkuranSepatu(response.data.ukuran_sepatu);
+    setNamaAyah(response.data.nama_ayah);
+    setStatusAyah(response.data.status_ayah);
+    setTempatLahirAyah(response.data.tmpLahir_ayah);
+    setTglLahirAyah(response.data.tglLahir_ayah);
+    setAgamaAyah(response.data.agama_ayah);
+    setPekerjaanAyah(response.data.pekerjaan_ayah);
+    setNohpAyah(response.data.noHp_ayah);
+    setNotelpAyah(response.data.notlp_ayah);
+    setEmailAyah(response.data.email_ayah);
+    setNamaIbu(response.data.nama_ibu);
+    setStatusIbu(response.data.status_ibu);
+    setTempatLahirIbu(response.data.tmpLahir_ibu);
+    setTglLahirIbu(response.data.tglLahir_ibu);
+    setAgamaIbu(response.data.agama_ibu);
+    setPekerjaanIbu(response.data.pekerjaan_ibu);
+    setNohpIbu(response.data.noHp_ibu);
+    setNotelpIbu(response.data.notlp_ibu);
+    setEmailIbu(response.data.email_ibu);
+    setProvinsiOrtu(response.data.provinsi_ortu);
+    setKotaOrtu(response.data.kota_ortu);
+    setKecamatanOrtu(response.data.kecamatan_ortu);
+    setKelurahanOrtu(response.data.kelurahan_ortu);
+    setDesaOrtu(response.data.desa_ortu);
+    setNamaJalanOrtu(response.data.namaJalan_ortu);
+    setProvinsiIbu(response.data.provinsi_ibu);
+    setKotaIbu(response.data.kota_ibu);
+    setKecamatanIbu(response.data.kecamatan_ibu);
+    setKelurahanIbu(response.data.kelurahan_ibu);
+    setDesaIbu(response.data.desa_ibu);
+    setNamaJalanIbu(response.data.namaJalan_ibu);
+    setNamaWali(response.data.nama_wali);
+    setHubKeluargaWali(response.data.hubkeluarga_wali);
+    setTempatLahirWali(response.data.tempLahir_wali);
+    setTglLahirWali(response.data.tglLahir_wali);
+    setAgamaWali(response.data.agama_wali);
+    setJenisKelaminWali(response.data.jeniskelamin_wali);
+    setPekerjaanWali(response.data.pekerjaan_wali);
+    setNohpWali(response.data.noHp_wali);
+    setNotelpWali(response.data.notlp_wali);
+    setEmailWali(response.data.email_wali);
+    setProvinsiWali(response.data.provinsi_wali);
+    setKotaWali(response.data.kota_wali);
+    setKecamatanWali(response.data.kecamatan_wali);
+    setKelurahanWali(response.data.kelurahan_wali);
+    setDesaWali(response.data.desa_wali);
+    setNamaJalanWali(response.data.namaJalan_wali);
+    setFile(response.data.gambar);
+    setPreview(response.data.url);
   };
 
   useEffect(() => {
@@ -350,9 +435,10 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">
-                Tambah Pelatih {cabors.namaCabor}
+                Edit Pelatih {NamaDepan} {NamaTengah} {NamaBelakang}
               </p>
               <Link
+                to={`/cabor/pelatih/${id}`}
                 className="delete"
                 aria-label="close"
                 onClick={() => {
@@ -1619,7 +1705,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
             </section>
             <footer className="modal-card-foot">
               <Link
-                to={`/cabor/atlet/${id}`}
+                to={`/cabor/pelatih/${id}`}
                 className="button is-dark"
                 onClick={() => {
                   tidakMuncul();
@@ -1640,4 +1726,4 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   );
 };
 
-export default AddPelatihModal;
+export default EditPelatihModal;

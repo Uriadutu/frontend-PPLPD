@@ -8,6 +8,8 @@ import { IoIosFootball } from "react-icons/io";
 import { HiMiniChatBubbleLeftRight } from "react-icons/hi2";
 import { HiUserGroup } from "react-icons/hi2";
 import {Bar, BarChart, CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts"
+import PrestasiDashboard from "./FileTerpisah/PrestasiDashboard.jsx";
+import DataSingkatAtlet from "./FileTerpisah/DataSingkatAtlet.jsx";
 const Welcome = () => { 
   const { user } = useSelector((state) => state.auth)
   const [modalActive, setModalActive] = useState(false);
@@ -531,6 +533,45 @@ console.log("perempuan : ", perempuan);
                     ))}
                   </tbody>
                 </table>
+              </div>
+              <div
+                className="column ml-2 box"
+                style={{ borderTop: "5px solid #9E3131" }}
+              >
+                <label htmlFor="" className="label">
+                  BarChart - Jenis Kelamin
+                </label>
+                <BarChart width={500} height={250} data={jmljeniskelamin}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Laki-Laki" fill="#409E31" />
+                  <Bar dataKey="Perempuan" fill="#B78F29" />
+                </BarChart>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {user && user.role === "Atlet" && (
+        <div className="">
+          <div
+            className=" box p-3 mb-2 pb-2"
+            style={{ borderTop: "5px solid #313C9E" }}
+          >
+              <DataSingkatAtlet/>
+            
+          </div>
+          <div className=" p-3 mt-1">
+            <div className="columns is-multiline">
+              <div
+                className="column mr-2 mb-0 box"
+                style={{ borderTop: "5px solid #409E31" }}
+              >
+                <label className="label">Daftar Prestasi</label>
+                <PrestasiDashboard/>
               </div>
               <div
                 className="column ml-2 box"

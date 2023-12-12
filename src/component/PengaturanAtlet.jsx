@@ -42,7 +42,7 @@ const PengaturanAtlet = () => {
   return (
     <div>
       <h1 className="title">Pengaturan Akun</h1>
-      <h2 className="subtitle">Kontrol Akun</h2>
+      <h2 className="subtitle">Kontrol Akun Pelatih dan Atlet</h2>
       <Link to={"/dashboard"} className="button mb-3">
         Dashboard
       </Link>

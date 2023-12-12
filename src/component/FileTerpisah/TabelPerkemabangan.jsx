@@ -5,7 +5,7 @@ const TabelPerkembangan = ({
   komponen,
   hasils,
   uniqueIndikators,
-  groupHasilByTanggal,
+  groupHasilByTanggal
 }) => {
   return (
     <div className="content mt-3">

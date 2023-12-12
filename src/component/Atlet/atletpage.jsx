@@ -9,6 +9,8 @@ const Atletpage = () => {
   const [sortBy, setSortBy] = useState("nama");
   const [searchText, setSearchText] = useState("");
   const { user } = useSelector((state) => state.auth);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [atletsPerPage] = useState(10);
 
   useEffect(() => {
       getAtlet();
@@ -25,6 +27,24 @@ const Atletpage = () => {
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
+  };
+
+  function capitalizeWords(sentence) {
+    return sentence
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+  const deleteAtlet = async (atletId) => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
+      try {
+        await axios.delete(`http://localhost:5000/atlet/${atletId}`);
+        getAtlet();
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
   };
 
   const filteredAndSortedAtlets = atlets
@@ -47,24 +67,24 @@ const Atletpage = () => {
       return 0;
     });
 
-    function capitalizeWords(sentence) {
-      return sentence
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    }
+  const indexOfLastAtlet = currentPage * atletsPerPage;
+  const indexOfFirstAtlet = indexOfLastAtlet - atletsPerPage;
+  const currentAtlets = filteredAndSortedAtlets.slice(
+    indexOfFirstAtlet,
+    indexOfLastAtlet
+  );
 
-    const deleteAtlet = async (atletId) => {
-      if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
-        try {
-          await axios.delete(`http://localhost:5000/atlet/${atletId}`);
-      getAtlet();
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(filteredAndSortedAtlets.length / atletsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
 
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
-    };
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <h1 className="title">Atlet</h1>
@@ -89,7 +109,7 @@ const Atletpage = () => {
           </div>
         </div>
 
-        <div  >
+        <div>
           <input
             type="text"
             className="input is-normal"
@@ -101,45 +121,67 @@ const Atletpage = () => {
       </div>
 
       <table className="table is-striped is-fullwidth">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Username</th>
-          <th>Ctreate By</th>
-          <th>Cabang Olahraga</th>
-          <th>Status</th>
-          <th className="has-text-centered">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredAndSortedAtlets.map((atlet, index) => {
-          // Memformat nama lengkap di setiap iterasi
-          const namaLengkap = capitalizeWords(
-            `${atlet.name_awal || ""} ${atlet.nama_tengah || ""} ${
-              atlet.nama_akhir || ""
-            }`
-          );
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Username</th>
+            <th>Ctreate By</th>
+            <th>Cabang Olahraga</th>
+            <th>Status</th>
+            <th className="has-text-centered">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentAtlets.map((atlet, index) => {
+            const namaLengkap = capitalizeWords(
+              `${atlet.name_awal || ""} ${atlet.nama_tengah || ""} ${
+                atlet.nama_akhir || ""
+              }`
+            );
 
-          return (
-            <tr key={atlet.id_atlet}>
-              <td>{index + 1}</td>
-              {/* Menggunakan variabel 'namaLengkap' langsung di sini */}
-              <td>{namaLengkap}</td>
-              <td>{atlet.username}</td>
-              <td>{atlet?.Admin?.nama}</td>
-              <td>{atlet?.Cabor?.namaCabor}</td>
-              <td>{capitalizeWords(atlet.status)}</td>
-              <td className="has-text-centered">
-                <Link onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
-                  <IoTrashSharp />
-                </Link>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
+            return (
+              <tr key={atlet.id_atlet}>
+                <td>{index + 1}</td>
+                <td>{namaLengkap}</td>
+                <td>{atlet.username}</td>
+                <td>{atlet?.Admin?.nama}</td>
+                <td>{atlet?.Cabor?.namaCabor}</td>
+                <td>{capitalizeWords(atlet.status)}</td>
+                <td className="has-text-centered">
+                  <Link
+                    className="button is-danger is-small"
+                    onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
+                  >
+                    Hapus
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
+      <nav
+        className="pagination is-centered is-small"
+        role="navigation"
+        aria-label="pagination"
+      >
+        <ul className="pagination-list">
+          {pageNumbers.map((number) => (
+            <li key={number}>
+              <a
+                className={`pagination-link ${
+                  currentPage === number ? "is-current" : ""
+                }`}
+                aria-label={`Page ${number}`}
+                onClick={() => paginate(number)}
+              >
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };

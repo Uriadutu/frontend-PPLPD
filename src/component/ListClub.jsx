@@ -8,6 +8,7 @@ const ListClub = () => {
   const {id} = useParams();
 
   const [clubs, setClub]= useState([]);
+  const [cabor, setCabor] = useState([])
 
   const [modalUsersAktif, setModalUsersAktif] = useState(false);
   const bukaModal = () => {
@@ -28,12 +29,13 @@ const ListClub = () => {
   }
   useEffect(() => {
     getClub(id);
+    getCabor(id)
   },[id])
 
-  const hapusClub = async(id)=> {
+  const hapusClub = async(id_club)=> {
     if(window.confirm("Apakah Anda yakin ingin menghapus data ini?")){
       try {
-        await axios.delete(`http://localhost:5000/club/${id}`)
+        await axios.delete(`http://localhost:5000/club/${id_club}`)
         getClub(id)
       } catch (error) {
         console.log(error);
@@ -41,11 +43,19 @@ const ListClub = () => {
     }
     
   }
+  const getCabor = async (id)=> {
+    try {
+      const response = await axios.get(`http://localhost:5000/cabor/${id}`);
+      setCabor(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
  
   return (
     <div>
       <h1 className="title">Club</h1>
-      <h2 className="subtitle">List Club</h2>
+      <h2 className="subtitle">List Club {cabor && cabor.namaCabor}</h2>
       <Link to={"/cabor"} className="button is-dark mr-3">
         Kembali
       </Link>
@@ -61,8 +71,7 @@ const ListClub = () => {
             <tr>
               <th>No</th>
               <th>Nama Club</th>
-              <th>Jumlah Atlet</th>
-              <th colSpan={2} className="has-text-centered">
+              <th className="has-text-centered">
                 Aksi
               </th>
             </tr>
@@ -72,7 +81,6 @@ const ListClub = () => {
               <tr>
                 <td>{index + 1}</td>
                 <td>{club && club.nama_club}</td>
-                <td></td>
                 <td className="has-text-centered">
                   <Link
                     to={`/cabor/club/${id}/${club && club.id_club}`}
@@ -81,8 +89,6 @@ const ListClub = () => {
                   >
                     Atur
                   </Link>
-                </td>
-                <td className="has-text-centered">
                   <Link
                     className="button is-danger is-small"
                     onClick={() => hapusClub(club && club.id_club)}
@@ -90,6 +96,8 @@ const ListClub = () => {
                     Hapus
                   </Link>
                 </td>
+                {/* <td className="has-text-centered">
+                </td> */}
               </tr>
             ))}
           </tbody>

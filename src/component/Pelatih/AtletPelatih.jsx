@@ -78,8 +78,8 @@ const Atletpage = () => {
               <td>{atlet && atlet.Cabor && atlet.Cabor.namaCabor}</td>
               <td>{atlet && atlet.status}</td>
               <td className="has-text-centered">
-                <Link>
-                <IoEye/>
+                <Link className="button is-primary is-small" to={`/datadiriatlet`}>
+                Lihat
                 </Link>
               </td>
             </tr>

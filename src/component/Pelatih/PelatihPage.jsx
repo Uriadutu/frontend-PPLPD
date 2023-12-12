@@ -40,6 +40,17 @@ const PelatihPage = () => {
       return 0;
     });
 
+    const deletePelatih = async (pelatihId) => {
+      if(window.confirm('Anda ingin menghapus pelatih ini?')){
+        try {
+          await axios.delete(`http://localhost:5000/pelatih/${pelatihId}`);
+          getPelatih();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
   return (
     <div>
       <h1 className="title">Pelatih</h1>
@@ -92,15 +103,18 @@ const PelatihPage = () => {
             <tr key={pelatih.id_pelatih}>
               <td>{index + 1}</td>
               <td>
-                {pelatih.nama.charAt(0).toUpperCase() + pelatih.nama.slice(1)}
+                {pelatih.name_awal.charAt(0).toUpperCase() + pelatih.name_awal.slice(1)}{" "}
+                {pelatih.nama_tengah.charAt(0).toUpperCase() + pelatih.nama_tengah.slice(1)}{" "}
+                {pelatih.nama_akhir.charAt(0).toUpperCase() + pelatih.nama_akhir.slice(1)}
               </td>
               <td>{pelatih.username}</td>
               <td>{pelatih && pelatih.Admin && pelatih.Admin.nama}</td>
               <td>{pelatih && pelatih.Cabor && pelatih.Cabor.namaCabor}</td>
               <td>{pelatih && pelatih.status}</td>
               <td className="has-text-centered">
-                <a href="#">Lihat</a>
-                <a href="#">Hapus</a>
+                <Link className="button is-danger is-small" onClick={()=> deletePelatih(pelatih.id_pelatih)}>
+                Hapus
+                </Link>
               </td>
             </tr>
           ))}

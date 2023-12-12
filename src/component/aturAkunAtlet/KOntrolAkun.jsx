@@ -11,6 +11,9 @@ const KontrolAkun = () => {
     getAtlet(idCabor);
   }, [idCabor]);
 
+
+  
+
   const getAtlet = async (id) => {
     try {
       const response = await axios.get(
@@ -53,7 +56,7 @@ const KontrolAkun = () => {
       console.log(error);
     }
   };
-
+ 
   return (
     <div>
       <h1 className="title">Pengaturan Akun</h1>
@@ -65,6 +68,7 @@ const KontrolAkun = () => {
         <p>Tidak ada atlet di cabor ini.</p>
       ) : (
           <form onSubmit={updateStatus}>
+          <label htmlFor="" className="label">Atlet :</label>
         <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
             <table className="table is-striped is-fullwidth">
               <thead>
@@ -119,7 +123,9 @@ const KontrolAkun = () => {
             </table>
         </div>
           </form>
+
       )}
+      
     </div>
   );
 };

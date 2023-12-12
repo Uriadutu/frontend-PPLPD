@@ -6,15 +6,16 @@ import { useSelector } from "react-redux";
 import AddPelatihModal from "../modal/AddPelatihModal";
 
 const PelatihCabor = () => {
-  const [pelatihs, setPelatih] = useState([]);
+  const [atlets, setAtlets] = useState([]);
   const [cabors, setCabor] = useState("");
   const { user } = useSelector((state) => state.auth);
 
   const { id } = useParams(); // Mengambil idCabor dari parameter URL
   const [modalUsersAktif, setModalUsersAktif] = useState(false);
 
+  console.log(id);
   useEffect(() => {
-    getPelatihbyCabor(id);
+    getAtletsbyCabor(id);
     getCaborById(id);
   }, [id]);
 
@@ -25,22 +26,22 @@ const PelatihCabor = () => {
     } catch (error) {}
   };
 
-  const getPelatihbyCabor = async (id) => {
+  const getAtletsbyCabor = async (id) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/pelatih/cabor/${id}`
       );
-      setPelatih(response.data);
+      setAtlets(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  const deleteAtlet = async (idpelatih) => {
-    if (window.confirm("Apakah Anda yakin ingin menghapus atlet ini?")) {
+  const deleteAtlet = async (atletId) => {
+    if (window.confirm("Apakah Anda yakin ingin menghapus pelatih ini?")) {
       try {
-        await axios.delete(`http://localhost:5000/pelatih/${idpelatih}`);
-        getPelatihbyCabor(id);
+        await axios.delete(`http://localhost:5000/pelatih/${atletId}`);
+        getAtletsbyCabor(id);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -53,6 +54,7 @@ const PelatihCabor = () => {
 
   const tutupModal = () => {
     setModalUsersAktif(false);
+    getAtletsbyCabor(id);
   };
 
   return (
@@ -83,30 +85,44 @@ const PelatihCabor = () => {
             <th>No HP</th>
             <th>Email</th>
             {user && user.role === "Admin" && (
-              <th className="has-text-centered">Aksi</th>
+              <th colSpan={2} className="has-text-centered">
+                Aksi
+              </th>
             )}
           </tr>
         </thead>
-        {pelatihs.map((pelatih, index) => (
+        {atlets.map((atlet, index) => (
           <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={pelatih && pelatih.uuid}  >
+            <tr key={atlet && atlet.id_pelatih}>
               <td>{index + 1}</td>
               <Link
                 to={`/cabor/pelatih/${
-                  pelatih && pelatih.Cabor && pelatih.Cabor.id_cabor
-                }/${pelatih.uuid}`}
+                  atlet && atlet.Cabor && atlet.Cabor.id_cabor
+                }/${atlet.uuid}`}
               >
-                <td>{pelatih && pelatih.nama}</td>
-              </Link>
-              <td>{pelatih && pelatih.hp_mobile}</td>
-              <td>{pelatih && pelatih.email}</td>
-              {user && user.role === "Admin" && (
-                <td className="has-text-centered">
-                  <Link onClick={() => deleteAtlet(pelatih && pelatih.id_pelatih)}>
-                    <IoTrashSharp />
-                  </Link>
+                <td>
+                  {atlets && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
+                  {atlets && atlet.nama_akhir}
                 </td>
-              )}
+              </Link>
+              <td>{atlet && atlet.hp_mobile}</td>
+              <td>{atlet && atlet.email}</td>
+              <td className="has-text-centered">
+                <Link
+                  className="button is-primary is-small"
+                  to={`/cabor/pelatih/${id}/edit/${atlet && atlet.id_pelatih}`}
+                >
+                  Edit
+                </Link>
+              </td>
+              <td className="has-text-centered">
+                <Link
+                  className="button is-danger is-small"
+                  onClick={() => deleteAtlet(atlet && atlet.id_pelatih)}
+                >
+                  Hapus
+                </Link>
+              </td>
             </tr>
           </tbody>
         ))}

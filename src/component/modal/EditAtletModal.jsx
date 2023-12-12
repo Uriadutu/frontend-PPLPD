@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
-const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
+const EditAtletModal = ({ Muncul, tidakMuncul }) => {
   const [activeTab, setActiveTab] = useState("data-diri");
   const [msg, setMsg] = useState("");
   const [cabors, setCabor] = useState("");
   const { id } = useParams();
+   const { idAtlet } = useParams();
+
 
   const [NamaDepan, setNamaDepan] = useState("");
   const [NamaTengah, setNamaTengah] = useState("");
@@ -86,42 +88,40 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   const [NamaJalanWali, setNamaJalanWali] = useState("");
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
-  //baruuu
 
-   const [copyToAlamatAyah, setCopyToAlamatAyah] = useState("");
-   const [copyToAlamatIbu, setCopyToAlamatIbu] = useState("");
-   const [copyToAlamatWali, setCopyToAlamatWali] = useState("");
-   const copyAlamatAtletToAyah = () => {
-     setProvinsiOrtu(ProvinsiAtlet);
-     setKotaOrtu(KotaAtlet);
-     setKecamatanOrtu(KecamatanAtlet);
-     setKelurahanOrtu(KelurahanAtlet);
-     setDesaOrtu(DesaAtlet);
-     setNamaJalanOrtu(NamaJalanAtlet);
-   };
+  // set baru
+  const [copyToAlamatAyah, setCopyToAlamatAyah] = useState("");
+  const [copyToAlamatIbu, setCopyToAlamatIbu] = useState("");
+  const [copyToAlamatWali, setCopyToAlamatWali] = useState("");
+  const copyAlamatAtletToAyah = () => {
+    setProvinsiOrtu(ProvinsiAtlet);
+    setKotaOrtu(KotaAtlet);
+    setKecamatanOrtu(KecamatanAtlet);
+    setKelurahanOrtu(KelurahanAtlet);
+    setDesaOrtu(DesaAtlet);
+    setNamaJalanOrtu(NamaJalanAtlet);
+  };
 
-   const copyAlamatAtletToIbu = () => {
-     setProvinsiIbu(ProvinsiAtlet);
-     setKotaIbu(KotaAtlet);
-     setKecamatanIbu(KecamatanAtlet);
-     setKelurahanIbu(KelurahanAtlet);
-     setDesaIbu(DesaAtlet);
-     setNamaJalanIbu(NamaJalanAtlet);
-   };
-   const copyAlamatAtletToWali = () => {
-     setProvinsiWali(ProvinsiAtlet);
-     setKotaWali(KotaAtlet);
-     setKecamatanWali(KecamatanAtlet);
-     setKelurahanWali(KelurahanAtlet);
-     setDesaWali(DesaAtlet);
-     setNamaJalanWali(NamaJalanAtlet);
-   };
-
+  const copyAlamatAtletToIbu = () => {
+    setProvinsiIbu(ProvinsiAtlet);
+    setKotaIbu(KotaAtlet);
+    setKecamatanIbu(KecamatanAtlet);
+    setKelurahanIbu(KelurahanAtlet);
+    setDesaIbu(DesaAtlet);
+    setNamaJalanIbu(NamaJalanAtlet);
+  };
+  const copyAlamatAtletToWali = () => {
+    setProvinsiWali(ProvinsiAtlet);
+    setKotaWali(KotaAtlet);
+    setKecamatanWali(KecamatanAtlet);
+    setKelurahanWali(KelurahanAtlet);
+    setDesaWali(DesaAtlet);
+    setNamaJalanWali(NamaJalanAtlet);
+  };
 
   const handleRadioChange = (e) => {
     setPendidikan(e.target.value); // Mengatur nilai radio yang dipilih ke state
   };
-
   const handleRadioChanges = (e) => {
     setPendidikanTerakhirAtlet(e.target.value);
   };
@@ -132,7 +132,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     setPreview(URL.createObjectURL(selectedFile));
   };
 
-  const saveAtlet = async (e) => {
+  const updateAtlet = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -164,7 +164,6 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("alumni", NamaAlumniAtlet);
     formData.append("tahun_lulus", TahunLulusAtlet);
     formData.append("ukuran_baju", UkuranBaju);
-
     formData.append("ukuran_sepatu", UkuranSepatu);
     formData.append("tahun_daftar", TahunGabungAtlet);
     // ayah
@@ -194,7 +193,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("kelurahan_ortu", KelurahanOrtu);
     formData.append("desa_ortu", DesaOrtu);
     formData.append("namaJalan_ortu", NamaJalanOrtu);
-    //ibu 
+    // ibu
     formData.append("provinsi_ibu", ProvinsiIbu);
     formData.append("kota_ibu", KotaIbu);
     formData.append("kecamatan_ibu", KecamatanIbu);
@@ -219,6 +218,18 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     formData.append("desa_wali", DesaWali);
     formData.append("namaJalan_wali", NamaJalanWali);
     formData.append("file", file);
+
+    // baru
+    if (copyToAlamatAyah) {
+      // Jika checkbox alamat ayah dicentang, salin data dari alamat atlet ke alamat ayah
+      formData.append("provinsi_ortu", ProvinsiAtlet);
+      formData.append("kota_ortu", KotaAtlet);
+      formData.append("kecamatan_ortu", KecamatanAtlet);
+      formData.append("kelurahan_ortu", KelurahanAtlet);
+      formData.append("desa_ortu", DesaAtlet);
+      formData.append("namaJalan_ortu", NamaJalanAtlet);
+    }
+
     if (copyToAlamatIbu) {
       // Jika checkbox alamat ibu dicentang, salin data dari alamat atlet ke alamat ibu
       formData.append("provinsi_ibu", ProvinsiAtlet);
@@ -238,7 +249,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
       formData.append("namaJalan_wali", NamaJalanAtlet);
     }
     try {
-      await axios.post("http://localhost:5000/pelatih", formData, {
+      await axios.patch(`http://localhost:5000/atlet/${idAtlet}`, formData, {
         headers: {
           "Content-type": "multipart/form-data",
         },
@@ -328,9 +339,89 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
     }
   };
 
-  useEffect(() => {
-    getCabor();
-  }, [id]);
+
+   useEffect(() => {
+     getAtletById();
+   }, []);
+   const getAtletById = async () => {
+     const response = await axios.get(`http://localhost:5000/atlet/${idAtlet}`);
+     setNamaDepan(response.data.name_awal);
+     setNamaTengah(response.data.nama_tengah);
+     setNamaBelakang(response.data.nama_akhir);
+     setNamaPanggilan(response.data.nama_panggil);
+     setTempatLahiratlet(response.data.tmp_lahir);
+     setTglLahiratlet(response.data.tgl_lahir);
+     setAgamaAtlet(response.data.agama);
+     setNamaJalanAtlet(response.data.nama_jalan);
+     setDesaAtlet(response.data.desa);
+     setKelurahanAtlet(response.data.kelurahan);
+     setKecamatanAtlet(response.data.kecamatan);
+     setKotaAtlet(response.data.kota);
+     setProvinsiAtlet(response.data.provinsi);
+     setNotelpAtlet(response.data.no_telp);
+     setNohpAtlet(response.data.hp_mobile);
+     setEmailAtlet(response.data.email);
+     setJenisKelaminAtlet(response.data.kelamin);
+     setGolonganDarahAtlet(response.data.gol_darah);
+     setTinggiBadanAtlet(response.data.tinggi_badan);
+     setBeratBadanAtlet(response.data.berat_badan);
+     setTahunGabungAtlet(response.data.tahun_daftar);
+     setPendidikan(response.data.pendidikan);
+     setNamaSekolahAtlet(response.data.nama_sklh);
+     setPendidikanTerakhirAtlet(response.data.pend_terakhir);
+     setNamaAlumniAtlet(response.data.alumni);
+     setTahunLulusAtlet(response.data.tahun_lulus);
+     setUkuranBaju(response.data.ukuran_baju);
+     setUkuranSepatu(response.data.ukuran_sepatu);
+     setNamaAyah(response.data.nama_ayah);
+     setStatusAyah(response.data.status_ayah);
+     setTempatLahirAyah(response.data.tmpLahir_ayah);
+     setTglLahirAyah(response.data.tglLahir_ayah);
+     setAgamaAyah(response.data.agama_ayah);
+     setPekerjaanAyah(response.data.pekerjaan_ayah);
+     setNohpAyah(response.data.noHp_ayah);
+     setNotelpAyah(response.data.notlp_ayah);
+     setEmailAyah(response.data.email_ayah);
+     setNamaIbu(response.data.nama_ibu);
+     setStatusIbu(response.data.status_ibu);
+     setTempatLahirIbu(response.data.tmpLahir_ibu);
+     setTglLahirIbu(response.data.tglLahir_ibu);
+     setAgamaIbu(response.data.agama_ibu);
+     setPekerjaanIbu(response.data.pekerjaan_ibu);
+     setNohpIbu(response.data.noHp_ibu);
+     setNotelpIbu(response.data.notlp_ibu);
+     setEmailIbu(response.data.email_ibu);
+     setProvinsiOrtu(response.data.provinsi_ortu);
+     setKotaOrtu(response.data.kota_ortu);
+     setKecamatanOrtu(response.data.kecamatan_ortu);
+     setKelurahanOrtu(response.data.kelurahan_ortu);
+     setDesaOrtu(response.data.desa_ortu);
+     setNamaJalanOrtu(response.data.namaJalan_ortu);
+     setProvinsiIbu(response.data.provinsi_ibu);
+     setKotaIbu(response.data.kota_ibu);
+     setKecamatanIbu(response.data.kecamatan_ibu);
+     setKelurahanIbu(response.data.kelurahan_ibu);
+     setDesaIbu(response.data.desa_ibu);
+     setNamaJalanIbu(response.data.namaJalan_ibu);
+     setNamaWali(response.data.nama_wali);
+     setHubKeluargaWali(response.data.hubkeluarga_wali);
+     setTempatLahirWali(response.data.tempLahir_wali);
+     setTglLahirWali(response.data.tglLahir_wali);
+     setAgamaWali(response.data.agama_wali);
+     setJenisKelaminWali(response.data.jeniskelamin_wali);
+     setPekerjaanWali(response.data.pekerjaan_wali);
+     setNohpWali(response.data.noHp_wali);
+     setNotelpWali(response.data.notlp_wali);
+     setEmailWali(response.data.email_wali);
+     setProvinsiWali(response.data.provinsi_wali);
+     setKotaWali(response.data.kota_wali);
+     setKecamatanWali(response.data.kecamatan_wali);
+     setKelurahanWali(response.data.kelurahan_wali);
+     setDesaWali(response.data.desa_wali);
+     setNamaJalanWali(response.data.namaJalan_wali);
+     setFile(response.data.gambar);
+     setPreview(response.data.url);
+   };
 
   const getCabor = async () => {
     try {
@@ -338,6 +429,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
       setCabor(response.data);
     } catch (error) {}
   };
+  useEffect(() => {
+    getCabor();
+  }, [id]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
@@ -345,14 +439,15 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
 
   return (
     <div className={`modal ${Muncul ? "is-active" : ""}`}>
-      <form onSubmit={saveAtlet}>
+      <form onSubmit={updateAtlet}>
         <div className="modal-background">
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">
-                Tambah Pelatih {cabors.namaCabor}
+                Edit Atlet {NamaDepan} {NamaTengah} {NamaBelakang}
               </p>
               <Link
+                to={`/cabor/atlet/${id}`}
                 className="delete"
                 aria-label="close"
                 onClick={() => {
@@ -369,7 +464,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       className={activeTab === "data-diri" ? "is-active" : ""}
                       onClick={() => handleTabClick("data-diri")}
                     >
-                      <a>Data Pelatih</a>
+                      <a>Data Atlet</a>
                     </li>
                     <li
                       className={
@@ -402,7 +497,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Data Diri :</p>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Nama Depan</label>
+                        <label>
+                          Nama Depan<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -424,7 +521,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Nama Belakang</label>
+                        <label>
+                          Nama Belakang<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -446,7 +545,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Tempat Lahir</label>
+                        <label>
+                          Tempat Lahir<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -459,7 +560,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Tanggal Lahir</label>
+                        <label>
+                          Tanggal Lahir<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -470,7 +573,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Agama</label>
+                        <label>
+                          Agama<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -492,7 +597,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Jenis Kelamin</label>
+                        <label>
+                          Jenis Kelamin<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <select
                             className="is-small input "
@@ -539,7 +646,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label>Provinsi</label>
+                          <label>
+                            Provinsi<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -550,7 +659,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label>Kota</label>
+                          <label>
+                            Kota<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -563,7 +674,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label>Kecamatan</label>
+                          <label>
+                            Kecamatan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -632,7 +745,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>No HP / Mobile</label>
+                        <label>
+                          No HP / Mobile<wajib>*</wajib>
+                        </label>
                         <div className="control">
                           <input
                             className="input is-small"
@@ -658,7 +773,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label>Tinggi Badan</label>
+                          <label>
+                            Tinggi Badan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -672,7 +789,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-justify-content-space-between is-flex column">
-                          <label>Berat Badan</label>
+                          <label>
+                            Berat Badan<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <input
                               className="input is-small"
@@ -687,24 +806,25 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         </div>
                       </div>
                       <div className="field is-full is-justify-content-space-between is-flex column">
-                        <label>Tahun Bergabung</label>
+                        <label>
+                          Tahun Bergabung<wajib>*</wajib>
+                        </label>
                         <div className="control">
-                          <div className="is-flex">
-                            <p className="has-text-grey-light mr-2">(yyyy)</p>
-                            <input
-                              className="input is-small"
-                              type="text"
-                              value={TahunGabungAtlet}
-                              onChange={(e) =>
-                                setTahunGabungAtlet(e.target.value)
-                              }
-                            />
-                          </div>
+                          <input
+                            className="input is-small"
+                            type="text"
+                            value={TahunGabungAtlet}
+                            onChange={(e) =>
+                              setTahunGabungAtlet(e.target.value)
+                            }
+                          />
                         </div>
                       </div>
                       <div className="is-justify-content-space-between is-flex">
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label>Ukuran Baju</label>
+                          <label>
+                            Ukuran Baju<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -723,7 +843,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                         <div className="field is-half is-justify-content-space-between is-flex column">
-                          <label>Ukuran Sepatu</label>
+                          <label>
+                            Ukuran Sepatu<wajib>*</wajib>
+                          </label>
                           <div className="control">
                             <select
                               className="is-small input "
@@ -745,7 +867,9 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           </div>
                         </div>
                       </div>
-                      <div className="column label">Gambar</div>
+                      <div className="column label">
+                        Gambar<wajib>*</wajib>
+                      </div>
                       <div className="control">
                         <div className="file">
                           <label className="file-label">
@@ -759,6 +883,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                               <span className="file-label">Pilih Gambar</span>
                             </span>
                           </label>
+                          <p>jpg, png, jpeg</p>
                         </div>
                       </div>
                       {file && (
@@ -777,18 +902,13 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                         <p className="label">Pendidikan Formal :</p>
                       </div>
                       <div className=" is-full is-justify-content-space-between is-flex column">
-                        <div
-                          className="is-flex"
-                          style={{ alignItems: "center", gap: "10px" }}
-                        >
-                          <input
-                            type="radio"
-                            name="sekolah"
-                            value=""
-                            checked={Pendidikan === ""} // Mengecek apakah radio ini yang dipilih
-                            onChange={handleRadioChange}
-                          />
-                        </div>
+                        <input
+                          type="radio"
+                          name="sekolah"
+                          value=""
+                          checked={Pendidikan === ""} // Mengecek apakah radio ini yang dipilih
+                          onChange={handleRadioChange}
+                        />
                         <div
                           className="is-flex"
                           style={{ alignItems: "center", gap: "10px" }}
@@ -860,6 +980,13 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                     <label className="column">Pendidikan Terakhir :</label>
                     <div className="field is-full is-justify-content-space-between is-flex column">
                       <div className=" is-full is-justify-content-space-between is-flex column">
+                        <input
+                          type="radio"
+                          name="alumni"
+                          value=""
+                          checked={PendidikanTerakhirAtlet === ""} // Mengecek apakah radio ini yang dipilih
+                          onChange={handleRadioChanges}
+                        />
                         <div
                           className="is-flex"
                           style={{ alignItems: "center", gap: "10px" }}
@@ -867,8 +994,8 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                           <input
                             type="radio"
                             name="alumni"
-                            value=""
-                            checked={PendidikanTerakhirAtlet === ""} // Mengecek apakah radio ini yang dipilih
+                            value="TK"
+                            checked={PendidikanTerakhirAtlet === "TK"} // Mengecek apakah radio ini yang dipilih
                             onChange={handleRadioChanges}
                           />
                           <label>TK</label>
@@ -1219,7 +1346,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       />
                       <label htmlFor="alamatAyah">
                         {" "}
-                        Sama Dengan Alamat Pelatih?
+                        Sama Dengan Alamat Atlet?
                       </label>
                     </div>
                     <div className="is-justify-content-space-between is-flex">
@@ -1538,7 +1665,7 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                       />
                       <label htmlFor="alamatwali">
                         {" "}
-                        Sama Dengan Alamat Pelatih?
+                        Sama Dengan Alamat Atlet?
                       </label>
                     </div>
                     <div className="is-justify-content-space-between is-flex">
@@ -1622,11 +1749,12 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
                 to={`/cabor/atlet/${id}`}
                 className="button is-dark"
                 onClick={() => {
+                  getCabor();
                   tidakMuncul();
                   setMsg(""); // Mengatur pesan menjadi string kosong saat tombol ditutup
                 }}
               >
-                Kembali
+                Batal
               </Link>
               <button className="button is-success" type="submit">
                 Simpan
@@ -1640,4 +1768,4 @@ const AddPelatihModal = ({ Muncul, tidakMuncul }) => {
   );
 };
 
-export default AddPelatihModal;
+export default EditAtletModal;

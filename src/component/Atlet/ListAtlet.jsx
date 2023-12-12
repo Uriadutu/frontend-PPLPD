@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import { IoAdd, IoTrashSharp } from "react-icons/io5";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { IoAdd, IoEye, IoPencil, IoTrashSharp } from "react-icons/io5";
 import AddAtletModal from "../modal/addAtletModal";
 import { useSelector } from "react-redux";
+import EditAtletModal from "../modal/EditAtletModal";
 
 const ListAtlet = () => {
   const [atlets, setAtlets] = useState([]);
@@ -12,6 +13,7 @@ const ListAtlet = () => {
 
   const { id } = useParams(); // Mengambil idCabor dari parameter URL
   const [modalUsersAktif, setModalUsersAktif] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
 
   useEffect(() => {
     getAtletsbyCabor(id);
@@ -58,6 +60,8 @@ const ListAtlet = () => {
     getAtletsbyCabor(id);
 
   };
+  
+
 
   return (
     <div>
@@ -77,7 +81,6 @@ const ListAtlet = () => {
           >
             <IoAdd /> Tambah Atlet
           </Link>
-          
         )}
         {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
@@ -89,13 +92,15 @@ const ListAtlet = () => {
             <th>No HP</th>
             <th>Email</th>
             {user && user.role === "Admin" && (
-              <th className="has-text-centered">Aksi</th>
+              <th colSpan={2} className="has-text-centered">
+                Aksi
+              </th>
             )}
           </tr>
         </thead>
         {atlets.map((atlet, index) => (
           <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={atlet && atlet.uuid}  >
+            <tr key={atlet && atlet.uuid}>
               <td>{index + 1}</td>
               <Link
                 to={`/cabor/atlet/${
@@ -109,18 +114,22 @@ const ListAtlet = () => {
               </Link>
               <td>{atlet && atlet.hp_mobile}</td>
               <td>{atlet && atlet.email}</td>
-              {user && user.role === "Admin" && (
-                <td className="has-text-centered">
-                  <Link onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
-                    <IoTrashSharp />
-                  </Link>
-                </td>
-              )}
+              <td className="has-text-centered">
+                <Link className="button is-primary is-small" to={`/cabor/atlet/${id}/edit/${atlet && atlet.id_atlet}`}>
+                Edit
+                </Link>
+              </td>
+              <td className="has-text-centered">
+                <Link className="button is-danger is-small" onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
+                 Hapus
+                </Link>
+              </td>
             </tr>
           </tbody>
         ))}
       </table>
       <AddAtletModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
+      {/* <EditAtletModal Muncul={modalEdit} tidakMuncul={tutupModalEdit} /> */}
     </div>
   );
 };
