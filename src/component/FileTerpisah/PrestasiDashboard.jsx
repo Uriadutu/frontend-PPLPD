@@ -7,9 +7,10 @@ const PrestasiDashboard = () => {
 
     const {user} = useSelector((state)=>state.auth)
 
-    const getPrestasi = async () => {
+    const idAtlet = user && user.id_atlet;
+    const getPrestasi = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:5000/prestasi/${user.id_atlet}`)
+            const response = await axios.get(`http://localhost:5000/prestasi/${id}`)
             setPrestasi(response.data)
         } catch (error) {
             console.log(error)
@@ -17,12 +18,12 @@ const PrestasiDashboard = () => {
     }
 
     useEffect(() => {
-        getPrestasi(user.id_atlet)
-    })
+        getPrestasi(idAtlet)
+    }, [idAtlet])
 
   return (
     <div>
-        <table className="table is-fullwidth is-hoverable">
+        <table className="table is-fullwidth is-hoverable is-6" style={{fontSize : "14px"}}>
             <thead>
                 <tr>
                     <th>No</th>
@@ -34,8 +35,8 @@ const PrestasiDashboard = () => {
                 </tr>
             </thead>
             <tbody>
-                {prestasis.slice(5).map((prestasi, index) => (
-                    <tr key={index}>
+                {prestasis.map((prestasi, index) => (
+                    <tr key={prestasi && prestasi.id_prestasi}>
                         <td>{index + 1}</td>
                         <td>{prestasi.namaClub}</td>
                         <td>{prestasi.namaEvent}</td>

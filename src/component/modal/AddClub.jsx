@@ -24,7 +24,6 @@ const AddClub = ({ Muncul, TidakMuncul }) => {
     }
   };
 
-  console.log(id);
   return (
     <div className={`modal ${Muncul ? "is-active" : ""}`}>
       <div className="modal-background">

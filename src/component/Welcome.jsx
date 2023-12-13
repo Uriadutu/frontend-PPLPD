@@ -156,8 +156,6 @@ const Welcome = () => {
 const lakilaki = jmlKelamin && jmlKelamin.Laki_Laki;
 const perempuan = jmlKelamin && jmlKelamin.Perempuan;
 
-console.log("Laki-Laki : ", lakilaki);
-console.log("perempuan : ", perempuan);
 
   const data = [
     {

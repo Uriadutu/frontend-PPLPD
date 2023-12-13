@@ -66,7 +66,7 @@ const ListClub = () => {
       </Link>
 
       <div className=" mt-3">
-        <table className="table is- is-fullwidth is-bordered">
+        <table className="table is- is-fullwidth is-striped">
           <thead>
             <tr>
               <th>No</th>
@@ -85,7 +85,7 @@ const ListClub = () => {
                   <Link
                     to={`/cabor/club/${id}/${club && club.id_club}`}
                     onClick={() => club && club.id_club}
-                    className="button is-small is-primary"
+                    className="button is-small is-primary mr-3"
                   >
                     Atur
                   </Link>

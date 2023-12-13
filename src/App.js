@@ -36,6 +36,7 @@ import LisensiPelatih from "./pages/Pelatih/LisensiPelatih";
 import DataDiriPelatihPage from "./pages/Pelatih/DataPelatihPage";
 import PageEditAtletList from "./pages/PageEditAtletList";
 import PageEditPelatihList from "./pages/PageEditPelatihList";
+import PageAtletClub from "./pages/PageAtletClub";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path="/datadiriatlet" element={<DataDiri />} /> 
           <Route path="/datadiripelatih" element={<DataDiriPelatihPage />} /> 
           <Route path="/cabor" element={<Cabor />} />
+          <Route path="/clubatlet" element={<PageAtletClub />} />
           <Route path="/daftarpelatih" element={<Pelatih />} />
           <Route path="/cabor/atlet/:id" element={<Atlet />} />
           <Route path="/cabor/atlet/:id/edit/:idAtlet" element={<PageEditAtletList />} />

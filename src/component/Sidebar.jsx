@@ -79,6 +79,9 @@ const Sidebar = () => {
                 <NavLink to={"/datadiriatlet"}>
                   <IoPerson /> Data Atlet
                 </NavLink>
+                <NavLink to={"/clubatlet"}>
+                  <IoFootball /> Club
+                </NavLink>
                 <NavLink to={`/perkembangan-latihan/${user && user.id_atlet}`}>
                   <GiSprint /> Perkembangan Latihan
                 </NavLink>
@@ -143,7 +146,7 @@ const Sidebar = () => {
               <NavLink to={"/datadiripelatih"}>
                 <IoPerson /> Data Pelatih
               </NavLink>
-              <NavLink to={"/datadiripelatih"}>
+              <NavLink to={"/clubatlet"}>
                 <IoFootball /> Club
               </NavLink>
               <li>
