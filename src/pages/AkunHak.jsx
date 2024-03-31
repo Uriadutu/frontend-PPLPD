@@ -19,7 +19,6 @@ const AkunHak = () => {
       navigate("/");
     }
   }, [isError, navigate]);
-
   return (
     <Layout>
         <PengaturanAtlet/>      

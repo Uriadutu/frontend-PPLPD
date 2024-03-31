@@ -74,43 +74,49 @@ const ProgramLatihan = () => {
           Dashboard
         </Link>
       )}
-
-      <div className="columns is-multiline mt-3">
-        {programs.map((program) => (
-          <div
-            className="column is-one-fifth"
-            key={program && program.id_program}
-          >
-            <div
-              className="card"
-              style={{ boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)" }}
-            >
-              <div className="image has-text-centered">
-                <h1 className="p-6 has-text-centered">
-                  {program && program.nama_Program}
-                </h1>
-              </div>
-              <footer className="card-footer has-background-dark">
-                <Link
-                  className="card-footer-item  button is-dark"
-                  to={program.url}
-                >
-                  Lihat
-                </Link>
-                {user && user.role === "Admin" && (
-                  
-                <button
-                  className="card-footer-item button is-dark has-text-light"
-                  onClick={() => hapusProgram(program.id_program)} // Perbaikan di sini, kirim ID ke fungsi hapusKomponen
-                >
-                  Hapus
-                </button>
-                )}
-              </footer>
-            </div>
-          </div>
-        ))}
-      </div>
+      <table
+        className="table is-fullwidth is-striped mt-3 is-narrow"
+        style={{ overflowX: "auto" }}
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Program</th>
+            <th>File</th>
+            <th colspan="2">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {programs.map((program, index) => (
+            <tr key={program && program.id_program}>
+              <td>{index + 1}</td>
+              <td>{program && program.nama_Program}</td>
+              <td>{program && program.File}</td>
+              {user && user.role === "Atlet" && (
+                <td>
+                  <Link
+                    className="button is-small is-primary"
+                    to={program && program.url}
+                  >
+                    Lihat
+                  </Link>
+                </td>
+              )}
+              {user && user.role === "Admin" && (
+                <td>
+                  {" "}
+                  <button
+                    className="is-small button is-dark has-text-light"
+                    onClick={() => hapusProgram(program.id_program)} // Perbaikan di sini, kirim ID ke fungsi hapusKomponen
+                  >
+                    Hapus
+                  </button>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <ProgramModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
     </div>
   );

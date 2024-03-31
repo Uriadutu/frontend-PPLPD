@@ -40,6 +40,7 @@ const IsiKomen = () => {
       try {
         await axios.delete(`http://localhost:5000/forumcabor/${id}`);
         window.location.reload();
+        
       } catch (error) {
         console.log(error);
       }

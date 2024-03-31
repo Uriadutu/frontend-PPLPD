@@ -6,7 +6,7 @@ import { IoTrashSharp } from "react-icons/io5";
 
 const Atletpage = () => {
   const [atlets, setAtlet] = useState([]);
-  const [sortBy, setSortBy] = useState("nama");
+  const [sortBy, setSortBy] = useState("name_awal");
   const [searchText, setSearchText] = useState("");
   const { user } = useSelector((state) => state.auth);
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,14 +51,14 @@ const Atletpage = () => {
     .filter((atlet) => {
       const lowerCaseSearchText = searchText.toLowerCase();
       return (
-        atlet.nama.toLowerCase().includes(lowerCaseSearchText) ||
+        atlet.name_awal.toLowerCase().includes(lowerCaseSearchText) ||
         (atlet.username &&
           atlet.username.toLowerCase().includes(lowerCaseSearchText))
       );
     })
     .sort((a, b) => {
-      if (sortBy === "nama") {
-        return a.nama.localeCompare(b.nama);
+      if (sortBy === "name_awal") {
+        return a.name_awal.localeCompare(b.name_awal);
       } else if (sortBy === "username") {
         const usernameA = a.username || "";
         const usernameB = b.username || "";
@@ -103,7 +103,7 @@ const Atletpage = () => {
               value={sortBy}
               onChange={handleSortChange}
             >
-              <option value="nama">Nama</option>
+              <option value="name_awal">Nama</option>
               <option value="username">Username</option>
             </select>
           </div>
@@ -126,7 +126,7 @@ const Atletpage = () => {
             <th>No</th>
             <th>Nama</th>
             <th>Username</th>
-            <th>Ctreate By</th>
+            <th>Create By</th>
             <th>Cabang Olahraga</th>
             <th>Status</th>
             <th className="has-text-centered">Aksi</th>

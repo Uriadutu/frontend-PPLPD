@@ -39,9 +39,9 @@ const Sidebar = () => {
   return (
     <div>
       <aside
-        className={`menu pl-3 pt-2 has-shadow`}
+        className={`menu mt-3 pl-3 pt-2`}
         style={{
-          position: "fixed",
+          position: "",
         }}
       >
         <p className="menu-label">General</p>
@@ -79,9 +79,9 @@ const Sidebar = () => {
                 <NavLink to={"/datadiriatlet"}>
                   <IoPerson /> Data Atlet
                 </NavLink>
-                <NavLink to={"/clubatlet"}>
+                {/* <NavLink to={"/clubatlet"}>
                   <IoFootball /> Club
-                </NavLink>
+                </NavLink> */}
                 <NavLink to={`/perkembangan-latihan/${user && user.id_atlet}`}>
                   <GiSprint /> Perkembangan Latihan
                 </NavLink>
@@ -146,18 +146,15 @@ const Sidebar = () => {
               <NavLink to={"/datadiripelatih"}>
                 <IoPerson /> Data Pelatih
               </NavLink>
-              <NavLink to={"/clubatlet"}>
+              {/* <NavLink to={"/clubatlet"}>
                 <IoFootball /> Club
-              </NavLink>
+              </NavLink> */}
               <li>
-                <p className="pl-3 is-size-9">Users</p>
+                <NavLink to={"/daftaratlet-cabor"}>
+                  <IoPerson /> Atlet
+                </NavLink>
               </li>
-              <ul className="menu-list pl-2">
-                <li>
-                  <NavLink to={"/daftaratlet-cabor"}>
-                    <IoPerson /> Atlet
-                  </NavLink>
-                </li>
+              {user && user.role !== "Pelatih" && (
                 <ul className="menu-list mt-3">
                   <li className="pl-1">
                     <p>Control</p>
@@ -170,7 +167,7 @@ const Sidebar = () => {
                     </li>
                   </ul>
                 </ul>
-              </ul>
+              )}
             </ul>
           </div>
         )}

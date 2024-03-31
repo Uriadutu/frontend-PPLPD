@@ -1,92 +1,64 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import AddPrestasiPelatih from "../modal/AddPrestasiPelatih";
+import { Link, useParams } from "react-router-dom";
 
-const DataPelatih = () => {
-  const [atlets, setAtlet] = useState();
-  const { user } = useSelector((state) => state.auth);
-  const uuid = user && user.uuid;
-  const [modalAktif, setmodalAktif] = useState(false);
+const DataAtletPelatih = () => {
+  const [atlets, setAtlet] = useState("");
   const [prestasi, setPrestasi] = useState([]);
-
-  const idPelatih = atlets && atlets.id_pelatih;
-
-  console.log(idPelatih);
-  const bukaModal = () => {
-    setmodalAktif(true);
-  };
-  const TutupModal = () => {
-    setmodalAktif(false);
-    Getatlet(uuid);
-  };
-
   const [activeTab, setActiveTab] = useState("dataDiri");
-
   const toggleTab = (tab) => {
     setActiveTab(tab);
   };
-
-  const [showAll, setShowAll] = useState(false);
-
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
 
-  useEffect(() => {
-    Getatlet(uuid);
-    getPrestasibyUuid(idPelatih);
-  }, [uuid, idPelatih]);
+  const { idAtlet } = useParams();
+  const [showAll, setShowAll] = useState(false);
 
-  const getPrestasibyUuid = async (id) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/prestasi/pelatih/${id}`
-      );
-      setPrestasi(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { user } = useSelector((state) => state.auth);
 
-  const Getatlet = async (id) => {
+
+  const getAtlet = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/pelatih/uuid/${id}`
-      );
+      const response = await axios.get(`http://localhost:5000/atlet/${id}`);
       setAtlet(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
-  const deletePrestasi = async (id) => {
-    if (window.confirm("Apa anda yakin ingin menghapus data ini?")) {
-      try {
-        await axios.delete(`http://localhost:5000/prestasi/pelatih/${id}`);
-        Getatlet(uuid);
-        getPrestasibyUuid(idPelatih);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  console.log(idAtlet);
+  console.log(atlets.id_atlet);
+
+  useEffect(() => {
+    getAtlet(idAtlet);
+    getPrestasibyAtlet(idAtlet);
+  }, [idAtlet]);
+
+  const getPrestasibyAtlet = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/prestasi/${id}`);
+      setPrestasi(response.data);
+    } catch (error) {}
   };
   return (
-    <div className="mt-5 p-3">
-      <h1 className="title mt-5">
-        Data Pelatih - {atlets && atlets.Cabor && atlets.Cabor.namaCabor}
-      </h1>
-      <h2 className="subtitle mb-5">
+    <div className="has-background-light p-3 mt-5">
+      <h1 className="title mt-5">Data Atlet</h1>
+      <h2 className="subtitle">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>
-      <Link className="button mb-3" to={`/dashboard`}>
-        Dashboard
+      <Link to={"/daftaratlet-cabor"} className="button is-dark mr-3 mb-3">
+        Kemabli
       </Link>
+
+      <Link to={`/pelatih/perkembangan/atlet/${atlets && atlets.id_atlet}`} className="button is-success">
+        Perkembangan Atlet
+      </Link>
+
       <div className="card">
-        <header className="card-header">
-          <p className="card-header-title">Biodata</p>
+        <header className="card-header ">
+          <p className="card-header-title">Data Diri Atlet</p>
         </header>
 
         <div className="card-content">
@@ -105,7 +77,7 @@ const DataPelatih = () => {
                 <div className="isi">
                   <p>
                     : {atlets && atlets.name_awal}{" "}
-                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}
+                    {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}{" "}
                     ( {atlets && atlets.nama_panggil} )
                   </p>
                   <p>: {atlets && atlets.status}</p>
@@ -122,7 +94,7 @@ const DataPelatih = () => {
               </div>
               <div className="column is-one-quarter">
                 <figure className="image is-1by1 card gambar-atlet">
-                  <img src={atlets && atlets.url} alt="Foto Pelatih" />
+                  <img src={atlets && atlets.url} alt="Foto Atlet" />
                 </figure>
               </div>
             </div>
@@ -154,13 +126,12 @@ const DataPelatih = () => {
                         Data Pendidikan
                       </a>
                     </li>
-
                     <li
                       className={
-                        activeTab === "dataprestasi" ? "is-active" : ""
+                        activeTab === "dataPrestasi" ? "is-active" : ""
                       }
                     >
-                      <a onClick={() => toggleTab("dataprestasi")}>
+                      <a onClick={() => toggleTab("dataPrestasi")}>
                         Data Prestasi
                       </a>
                     </li>
@@ -361,7 +332,7 @@ const DataPelatih = () => {
                     </div>
                   </div>
                 )}
-                {activeTab === "dataprestasi" && (
+                {activeTab === "dataPrestasi" && (
                   <div className="p-3">
                     <label className="label">Prestasi</label>
                     <table className="table is-fullwidth is-bordered">
@@ -373,28 +344,17 @@ const DataPelatih = () => {
                           <th>Tahun</th>
                           <th>Tingkat</th>
                           <th>Pencapaian</th>
-                          <th className="has-text-centered">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
                         {prestasi.map((item, index) => (
-                          <tr key={item && item.id_prestasi_pelatih}>
+                          <tr key={item && item.id_prestasi}>
                             <td>{index + 1}</td>
                             <td>{item && item.namaClub}</td>
                             <td>{item && item.namaEvent}</td>
                             <td>{item && item.tahunPrestasi}</td>
                             <td>{item && item.Tingkat}</td>
                             <td>{item && item.Pencapaian}</td>
-                            <td className="has-text-centered">
-                              <button
-                                className="button is-small is-danger"
-                                onClick={() =>
-                                  deletePrestasi(item.id_prestasi_pelatih)
-                                }
-                              >
-                                Hapus
-                              </button>
-                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -425,8 +385,8 @@ const DataPelatih = () => {
           </a>
         </footer>
       </div>
-      <AddPrestasiPelatih Muncul={modalAktif} TidakMuncul={TutupModal} />
     </div>
   );
 };
-export default DataPelatih;
+
+export default DataAtletPelatih;

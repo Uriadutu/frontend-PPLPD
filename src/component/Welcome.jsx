@@ -7,38 +7,49 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { IoIosFootball } from "react-icons/io";
 import { HiMiniChatBubbleLeftRight } from "react-icons/hi2";
 import { HiUserGroup } from "react-icons/hi2";
-import {Bar, BarChart, CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts"
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import PrestasiDashboard from "./FileTerpisah/PrestasiDashboard.jsx";
 import DataSingkatAtlet from "./FileTerpisah/DataSingkatAtlet.jsx";
-const Welcome = () => { 
-  const { user } = useSelector((state) => state.auth)
+
+const Welcome = () => {
+  const { user } = useSelector((state) => state.auth);
   const [modalActive, setModalActive] = useState(false);
   const [msg, setMsg] = useState("");
-  const [jmlAtlet, setJumlahAtlet] = useState("0")
-  const [jmlAdmin, setJumlAdmint] = useState("0")
-  const [jmlPelatih, setJumlahPelatig] = useState("0")
-  const [jmlCabor, setJumlahCbor] = useState("0")
-  const [jmlForum, setjumlForum] = useState("0")
+  const [jmlAtlet, setJumlahAtlet] = useState("0");
+  const [jmlAdmin, setJumlAdmint] = useState("0");
+  const [jmlPelatih, setJumlahPelatig] = useState("0");
+  const [jmlCabor, setJumlahCbor] = useState("0");
+  const [jmlForum, setjumlForum] = useState("0");
   const [jmlAtletcabor, setJumlahAtletcabor] = useState("0");
-  const [cabors, setCabor] =useState([])
-  const [atlets, setAtlet] =useState([])
-  const [hasilTes, setHasiltes] = useState([])
+  const [cabors, setCabor] = useState([]);
+  const [atlets, setAtlet] = useState([]);
+  const [hasilTes, setHasiltes] = useState([]);
   const [jmlKelamin, setKelamin] = useState([]);
 
   const idAtlet = user && user.id_atlet;
   const idCabor = user && user.id_cabor;
 
-  const getPerkembangan = async (id)=> {
+  const getPerkembangan = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/perkembangan/atlet/${id}`);
+      const response = await axios.get(
+        `http://localhost:5000/perkembangan/atlet/${id}`
+      );
       setHasiltes(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  
-  
   const openModal = () => {
     setModalActive(true);
   };
@@ -57,181 +68,174 @@ const Welcome = () => {
     return value > 100 ? 100 : value; // Normalisasi nilai untuk tidak melebihi maksimum
   };
 
-  const getCabor = async ()=> {
+  const getCabor = async () => {
     try {
       const response = await fetch("http://localhost:5000/cabor");
       const data = await response.json();
-      setJumlahCbor(data.length)
-    } catch (error) {
-      
-    }
-  }
+      setJumlahCbor(data.length);
+    } catch (error) {}
+  };
 
-  const getAllCabor = async()=> {
+  const getAllCabor = async () => {
     try {
       const response = await axios.get("http://localhost:5000/cabor");
-      setCabor(response.data)
+      setCabor(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
-  const getAtletbyCabor = async(id)=> {
+  };
+  const getAtletbyCabor = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/cabor/atlet/${id}`);
-      setAtlet(response.data)
+      const response = await axios.get(
+        `http://localhost:5000/cabor/atlet/${id}`
+      );
+      setAtlet(response.data);
     } catch (error) {
       console.log(error);
     }
-  }
-  const getAtlet = async ()=> {
+  };
+  const getAtlet = async () => {
     try {
       const response = await fetch("http://localhost:5000/atlet");
       const data = await response.json();
-      setJumlahAtlet(data.length)
-    } catch (error) {
-      
-    }
-  }
-  const getAtletcabor = async (id)=> {
+      setJumlahAtlet(data.length);
+    } catch (error) {}
+  };
+  const getAtletcabor = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/cabor/atlet/${id}`);
       const data = await response.json();
-      setJumlahAtletcabor(data.length)
-    } catch (error) {
-      
-    }
-  }
+      setJumlahAtletcabor(data.length);
+    } catch (error) {}
+  };
   const getForumbycabor = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/forumcabor/cabor/${id}`);
+      const response = await fetch(
+        `http://localhost:5000/forumcabor/cabor/${id}`
+      );
       const data = await response.json();
       setjumlForum(data.length);
     } catch (error) {}
   };
-  const getPelatih = async ()=> {
+  const getPelatih = async () => {
     try {
       const response = await fetch("http://localhost:5000/pelatih");
       const data = await response.json();
-      setJumlahPelatig(data.length)
-    } catch (error) {
-      
-    }
-  }
-  const getAdmin = async ()=> {
+      setJumlahPelatig(data.length);
+    } catch (error) {}
+  };
+  const getAdmin = async () => {
     try {
       const response = await fetch("http://localhost:5000/admin");
       const data = await response.json();
-      setJumlAdmint(data.length)
-    } catch (error) {
-      
-    }
-  }
+      setJumlAdmint(data.length);
+    } catch (error) {}
+  };
 
-  const kelamin = async(id) => {
+  const kelamin = async (id) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/atlet/countByGenderAndCabor/${id}`
       );
       setKelamin(response.data);
-      
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  };
 
-  useEffect(()=> {
-    getForumbycabor(idCabor)
-    getAtletcabor(idCabor)
-    kelamin(idCabor)
+  useEffect(() => {
+    getForumbycabor(idCabor);
+    getAtletcabor(idCabor);
+    kelamin(idCabor);
     getAllCabor();
     getCabor();
     getAtlet();
     getAtletbyCabor(idCabor);
     getPelatih();
     getAdmin();
-    getPerkembangan(idAtlet)
+    getPerkembangan(idAtlet);
+  }, [idAtlet]);
 
-  },[idAtlet])
-
-const lakilaki = jmlKelamin && jmlKelamin.Laki_Laki;
-const perempuan = jmlKelamin && jmlKelamin.Perempuan;
-
+  const lakilaki = jmlKelamin && jmlKelamin.Laki_Laki;
+  const perempuan = jmlKelamin && jmlKelamin.Perempuan;
 
   const data = [
     {
-      "name" : "Atlet",
-      "Atlet" : jmlAtlet,
-    }, {
-      "name" : "Pelatih",
-      "Pelatih" : jmlPelatih,
-    }, {
-      "name" : "Admin",
-      "Admin" : jmlAdmin,
-    }
-
-  ]
+      name: "Atlet",
+      Atlet: jmlAtlet,
+    },
+    {
+      name: "Pelatih",
+      Pelatih: jmlPelatih,
+    },
+    {
+      name: "Admin",
+      Admin: jmlAdmin,
+    },
+  ];
 
   const jmljeniskelamin = [
     {
-      "name": "Laki-Laki",
+      name: "Laki-Laki",
       "Laki-Laki": lakilaki,
     },
     {
-      "name": "Perempuan",
-      "Perempuan": perempuan,
+      name: "Perempuan",
+      Perempuan: perempuan,
     },
   ];
-//  const groupedData = hasilTes.reduce((acc, item) => {
-//    const { tgl, Indikator, hasilTes } = item;
-//    const namaIndikator = Indikator && Indikator.namaIndikator;
+  //  const groupedData = hasilTes.reduce((acc, item) => {
+  //    const { tgl, Indikator, hasilTes } = item;
+  //    const namaIndikator = Indikator && Indikator.namaIndikator;
 
-//    if (!acc[tgl]) {
-//      acc[tgl] = { tgl };
-//    }
+  //    if (!acc[tgl]) {
+  //      acc[tgl] = { tgl };
+  //    }
 
-//    acc[tgl][namaIndikator] = hasilTes;
-//    return acc;
-//  }, {});
+  //    acc[tgl][namaIndikator] = hasilTes;
+  //    return acc;
+  //  }, {});
 
-//  // Mengonversi objek hasil kelompokan ke dalam array
-//  const transformedData = Object.values(groupedData);
-// //  console.log(transformedData);
- 
-//  const data = [];
+  //  // Mengonversi objek hasil kelompokan ke dalam array
+  //  const transformedData = Object.values(groupedData);
+  // //  console.log(transformedData);
 
-//  transformedData.forEach((item) => {
-//    const { tgl, ...indikatorHasil } = item;
-//    Object.entries(indikatorHasil).forEach(([indikator, hasil]) => {
-//      data.push({ tgl, indikator, hasil });
-//    });
-//  });
+  //  const data = [];
 
-//  console.log(data);
+  //  transformedData.forEach((item) => {
+  //    const { tgl, ...indikatorHasil } = item;
+  //    Object.entries(indikatorHasil).forEach(([indikator, hasil]) => {
+  //      data.push({ tgl, indikator, hasil });
+  //    });
+  //  });
 
-//  const hasil = data.map((item) => [
-//     {tgl : item.tgl},
-//     {indikator : item.indikator},
-//     {nilai : item.hasil},
-//  ])
+  //  console.log(data);
 
-//  console.log(hasil);
+  //  const hasil = data.map((item) => [
+  //     {tgl : item.tgl},
+  //     {indikator : item.indikator},
+  //     {nilai : item.hasil},
+  //  ])
+
+  //  console.log(hasil);
 
   return (
     <div>
       <div className="is-flex is-justify-content-space-between mb-2">
         <div>
-          <h1 className="title">Dashboard</h1>
-          <h2 className="subtitle">Selamat Datang Di SI Atlet PPLPD</h2>
+          <h1 className="title is-size-6-mobile">Dashboard</h1>
+          <h2 className="subtitle is-size-7-mobile">Selamat Datang Di SI Atlet PPLPD</h2>
         </div>
       </div>
-      {user && user.role === "Admin" && (
+      {user && (user.role === "Admin" || user.role === "SuperAdmin") && (
         <div className="">
           <div
             className=" box p-3 mb-2 pb-2"
             style={{ borderTop: "5px solid #313C9E" }}
           >
             <div className=" columns is-multiline is-mobile">
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -264,7 +268,10 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -297,7 +304,10 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -330,7 +340,10 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -365,47 +378,54 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
               </div>
             </div>
           </div>
-          <div className=" p-3 mt-1">
-            <div className="columns is-multiline">
-              <div
-                className="column mr-2 mb-0 box"
-                style={{ borderTop: "5px solid #409E31" }}
-              >
-                <label className="label">Daftar Cabang Olahraga</label>
-                <table className="table is-bordered is-fullwidth">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Cabang Olahraga</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cabors.slice(0, 5).map((cabor, index) => (
-                      <tr key={cabor && cabor.id_cabor}>
-                        <td>{index + 1}</td>
-                        <td>{cabor && cabor.namaCabor}</td>
+          <div className=" mt-1">
+            <div className="columns is-multiline is-mobile">
+              <div className="column is-full-mobile is-half-tablet is-half-desktop overflow-x-scroll-mobile">
+                <div
+                  style={{ borderTop: "5px solid #409E31" }}
+                  className=" box overflow-x-scroll-mobile"
+                >
+                  <label className="label">Daftar Cabang Olahraga</label>
+                  <table className="table is-bordered is-fullwidth">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Cabang Olahraga</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {cabors.slice(0, 5).map((cabor, index) => (
+                        <tr key={cabor && cabor.id_cabor}>
+                          <td>{index + 1}</td>
+                          <td>{cabor && cabor.namaCabor}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div
-                className="column ml-2 box"
-                style={{ borderTop: "5px solid #9E3131" }}
+                className="column is-full-mobile is-half-tablet is-half-desktop overflow-x-scroll-mobile mt-0"
+                style={{}}
               >
-                <label htmlFor="" className="label">
-                  BarChart - Aktor
-                </label>
-                <BarChart width={500} height={250} data={data}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Atlet" fill="#409E31" />
-                  <Bar dataKey="Pelatih" fill="#B78F29" />
-                  <Bar dataKey="Admin" fill="#313C9E" />
-                </BarChart>
+                <div
+                  className=" box overflow-x-scroll-mobile"
+                  style={{ borderTop: "5px solid #9E3131" }}
+                >
+                  <label htmlFor="" className="label">
+                    BarChart - Aktor
+                  </label>
+                  <BarChart width={500} height={220} data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    {/* <Legend /> */}
+                    <Bar dataKey="Atlet" fill="#409E31" />
+                    <Bar dataKey="Pelatih" fill="#B78F29" />
+                    <Bar dataKey="Admin" fill="#313C9E" />
+                  </BarChart>
+                </div>
               </div>
             </div>
           </div>
@@ -418,7 +438,10 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
             style={{ borderTop: "5px solid #313C9E" }}
           >
             <div className=" columns is-multiline is-mobile">
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -451,7 +474,10 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter" style={{ opacity: "70%" }}>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
                 <div>
                   <div
                     className="card"
@@ -486,22 +512,7 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
                   </div>
                 </div>
               </div>
-              <div className="column">
-                <table className="table is-bordered is-fullwidth">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>uria</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <div className="column"></div>
             </div>
           </div>
           <div className=" p-3 mt-1">
@@ -556,37 +567,19 @@ const perempuan = jmlKelamin && jmlKelamin.Perempuan;
       {user && user.role === "Atlet" && (
         <div className="">
           <div
-            className=" box p-3 mb-2 pb-2"
+            className=" box mt-5 mb-2 pb-2"
             style={{ borderTop: "5px solid #313C9E" }}
           >
-              <DataSingkatAtlet/>
-            
+            <DataSingkatAtlet />
           </div>
-          <div className=" p-3 mt-1">
-            <div className="columns is-multiline">
+          <div className="m-3">
+            <div className="columns is-multiline mt-3">
               <div
-                className="column mr-2 mb-0 box"
+                className="box column is-full-mobile is-full-tablet is-full-desktop overflow-x-scroll-mobile"
                 style={{ borderTop: "5px solid #409E31" }}
               >
                 <label className="label">Daftar Prestasi</label>
-                <PrestasiDashboard/>
-              </div>
-              <div
-                className="column ml-2 box"
-                style={{ borderTop: "5px solid #9E3131" }}
-              >
-                <label htmlFor="" className="label">
-                  BarChart - Jenis Kelamin
-                </label>
-                <BarChart width={500} height={250} data={jmljeniskelamin}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Laki-Laki" fill="#409E31" />
-                  <Bar dataKey="Perempuan" fill="#B78F29" />
-                </BarChart>
+                <PrestasiDashboard />
               </div>
             </div>
           </div>

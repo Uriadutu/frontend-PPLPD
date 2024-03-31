@@ -19,7 +19,8 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
         uuid_penulis :uuidTulis
       });
       tutupmodal();
-      window.location.reload();
+      setIsi("")
+      setMsg("")
     } catch (error) {
       if (error) {
         setMsg(error.response.data.msg);
@@ -34,6 +35,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
         className="modal-background"
         onClick={() => {
           setMsg("");
+          setIsi("")
           tutupmodal();
         }}
       ></div>
@@ -45,6 +47,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
             aria-label="close"
             onClick={() => {
               setMsg("");
+              setIsi("")
               tutupmodal();
             }}
           ></button>
@@ -75,6 +78,7 @@ const KomentarModal = ({ tutupmodal, Lihat }) => {
               onClick={() => {
                 tutupmodal();
                 setMsg("");
+                setIsi("")
               }}
             >
               Batal

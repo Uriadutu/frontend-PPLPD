@@ -39,7 +39,7 @@ const Sidebarres = () => {
   return (
     <div>
       <aside
-        className={`menu pl-3 pt-2 has-shadow`}
+        className={`menu pl-3 pt-2`}
       >
         <p className="menu-label">General</p>
         <ul className="menu-list">
@@ -74,11 +74,11 @@ const Sidebarres = () => {
             {user && user.role === "Atlet" && (
               <li>
                 <NavLink to={"/datadiriatlet"}>
-                  <IoPerson /> Data Atlet
+                  <IoPerson /> Data Atleth
                 </NavLink>
-                <NavLink to={"/clubatlet"}>
+                {/* <NavLink to={"/clubatlet"}>
                   <IoFootball /> Club
-                </NavLink>
+                </NavLink> */}
                 <NavLink to={`/perkembangan-latihan/${user && user.id_atlet}`}>
                   <GiSprint /> Perkembangan Latihan
                 </NavLink>
@@ -143,9 +143,9 @@ const Sidebarres = () => {
               <NavLink to={"/datadiripelatih"}>
                 <IoPerson /> Data Pelatih
               </NavLink>
-              <NavLink to={"/clubatlet"}>
+              {/* <NavLink to={"/clubatlet"}>
                 <IoFootball /> Club
-              </NavLink>
+              </NavLink> */}
               <li>
                 <p className="pl-3 is-size-9">Users</p>
               </li>

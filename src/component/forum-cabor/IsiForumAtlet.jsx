@@ -55,29 +55,29 @@ const IsiForumAtlet = () => {
   }, [idCabor, idCaboratlet]);
   const handleClose = () => {
     setShowModal();
+    getForumByCabor(idCaboratlet);
+
   };
   const tutupmodal = () => {
     setLihatModal();
   };
   return (
     <div>
-      <h1 className="title">Forum</h1>
-      <h2 className="subtitle">
+      <h1 className="title is-size-6-mobile">Forum</h1>
+      <h2 className="subtitle is-size-7-mobile">
         Diskusi Cabang Olahraga {cabors && cabors.namaCabor}
       </h2>
       <div className="is-flex is-justify-content-space-between mb-3">
-        <div  >
+        <div>
           {user && user.role !== "Admin" && (
-
-          <Link className="button" to={"/dashboard"}>
-            Dashboard
-          </Link>
+            <Link className="button" to={"/dashboard"}>
+              Dashboard
+            </Link>
           )}
           {user && user.role === "Admin" && (
-
-          <Link className="button is-dark" to={"/forum"}>
-            Kembali
-          </Link>
+            <Link className="button is-dark" to={"/forum"}>
+              Kembali
+            </Link>
           )}
           {user && user.role !== "Admin" && (
             <Link
@@ -103,13 +103,13 @@ const IsiForumAtlet = () => {
           </Link>
         )}
       </div>
-      <div  >
-        <div  >
-          <div  >
+      <div>
+        <div>
+          <div>
             {user &&
               user.role !== "Admin" &&
               (forums.length === 0 ? (
-                <p>Belum ada percakapan</p>
+                <p>Belum ada Postingan</p>
               ) : (
                 forums.map((forum) => (
                   <div className="box card" key={forum && forum.id_ForumCabor}>
@@ -142,27 +142,33 @@ const IsiForumAtlet = () => {
                           </p>
                         </figure>
                       </div>
-                      <div className="media-content is-flex is-justify-content-space-between is-align-items-">
-                        <div className="pl-3">
-                          <p className="title is-4">
-                            {forum && forum.judul_forum}
-                          </p>
-                          <p
-                            className="subtitle is-6"
-                            style={{ maxWidth: "96%" }}
-                          >
-                            {forum && forum.isi_forum}
-                          </p>
+                      <div className="media-content columns is-full-mobile is-full-tablet is-align-items-">
+                        <div className="column is-full-mobile">
+                          <div className="pl-3">
+                            <p className="title is-4 is-size-6-mobile">
+                              {forum && forum.judul_forum}
+                            </p>
+                            <p
+                              className="subtitle is-6 is-size-7-mobile is-full-mobile"
+                              style={{ maxWidth: "96%" }}
+                            >
+                              {forum && forum.isi_forum}
+                            </p>
+                          </div>
                         </div>
-                        <div  >
+                        <div className="column is-flex is-justify-content-end">
                           <Link
                             className="button is-small is-primary"
-                            to={`/forum/cabor/${idCabor}?Komen=${forum.id_ForumCabor}&penulis=${forum &&
+                            to={`/forum/cabor/${idCabor}?Komen=${
+                              forum.id_ForumCabor
+                            }&penulis=${
+                              forum &&
                               (forum.Atlet && forum.Atlet.uuid
                                 ? forum.Atlet.uuid
                                 : forum.Pelatih && forum.Pelatih.uuid
                                 ? forum.Pelatih.uuid
-                                : null)}`}
+                                : null)
+                            }`}
                             onClick={() => setLihatModal(true)}
                           >
                             Komentar
@@ -215,7 +221,7 @@ const IsiForumAtlet = () => {
                         </figure>
                       </div>
                       <div className="media-content is-flex is-justify-content-space-between">
-                        <div  >
+                        <div>
                           <p className="title is-4">
                             {forum && forum.judul_forum}
                           </p>

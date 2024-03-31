@@ -1,51 +1,47 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { shortenName } from "../../../utils/helper.js";
 
 const DataDiriAtlet = () => {
-    const [atlets, setAtlet]= useState("");
-    const [prestasi, setPrestasi] = useState([])
-    const [activeTab, setActiveTab] = useState("dataDiri");
-    const toggleTab = (tab) => {
-      setActiveTab(tab);
-    };
-     const toggleShowAll = () => {
-       setShowAll(!showAll);
-     };
-    const [showAll, setShowAll] = useState(false);
+  const [atlets, setAtlet] = useState("");
+  const [prestasi, setPrestasi] = useState([]);
+  const [activeTab, setActiveTab] = useState("dataDiri");
+  const toggleTab = (tab) => {
+    setActiveTab(tab);
+  };
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+  const [showAll, setShowAll] = useState(false);
 
-    const {user} = useSelector((state)=> state.auth)
+  const { user } = useSelector((state) => state.auth);
 
-    const idAtlet = user && user.id_atlet;
+  const idAtlet = user && user.id_atlet;
 
-    const getAtlet = async (id) => {
-        try {
-            const response = await axios.get(`http://localhost:5000/atlet/${id}`);
-            setAtlet(response.data);
+  const getAtlet = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/atlet/${id}`);
+      setAtlet(response.data);
+    } catch (error) {}
+  };
 
-        } catch (error) {
-            
-        }
-    }
+  useEffect(() => {
+    getAtlet(idAtlet);
+    getPrestasibyAtlet(idAtlet);
+  }, [idAtlet]);
 
-    useEffect(()=>{
-        getAtlet(idAtlet);
-        getPrestasibyAtlet(idAtlet)
-    },[idAtlet])
-
-    const getPrestasibyAtlet = async (id) => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/prestasi/${id}`
-        );
-        setPrestasi(response.data);
-      } catch (error) {}
-    };
+  const getPrestasibyAtlet = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/prestasi/${id}`);
+      setPrestasi(response.data);
+    } catch (error) {}
+  };
   return (
-    <div className="has-background-grey-light p-3 mt-5">
-      <h1 className="title mt-5">Data Atlet</h1>
-      <h2 className="subtitle">
+    <div className="has-background-light p-3 mt-5">
+      <h1 className="title mt-5 is-size-6-mobile">Data Atlet</h1>
+      <h2 className="subtitle is-size-7-mobile">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>
@@ -55,14 +51,14 @@ const DataDiriAtlet = () => {
 
       <div className="card">
         <header className="card-header ">
-          <p className="card-header-title">Data Diri Atlet</p>
+          <p className="card-header-title">Data Diri Atlettt</p>
         </header>
 
-        <div className="card-content">
-          <div className="column content">
-            <div className=" is-flex is-justify-content-space-between">
-              <div className="is-flex">
-                <div className="field mr-5">
+        <div className="card-content is-size-7-mobile is-size-4-tablet is-size-6-desktop p-0">
+          <div className=" content p-0">
+            <div className="columns is-full-desktop is-full-tablet is-full-mobile  is-multiline is-flex is-justify-content-space-between p-5">
+              <div className="is-flex is-justify-content-space-between columns is-full-mobile is-half-desktop is-full-tablet p-0">
+                <div className="field column is-one-third-mobile ">
                   <p>Nama</p>
                   <p>Status</p>
                   <p>Atlet</p>
@@ -71,8 +67,8 @@ const DataDiriAtlet = () => {
                   <p>Agama</p>
                   <p>Alamat</p>
                 </div>
-                <div className="isi">
-                  <p>
+                <div className="isi column">
+                  <p className="">
                     : {atlets && atlets.name_awal}{" "}
                     {atlets && atlets.nama_tengah} {atlets && atlets.nama_akhir}{" "}
                     ( {atlets && atlets.nama_panggil} )
@@ -89,14 +85,18 @@ const DataDiriAtlet = () => {
                   </p>
                 </div>
               </div>
-              <div className="column is-one-quarter">
-                <figure className="image is-1by1 card gambar-atlet">
-                  <img src={atlets && atlets.url} alt="Foto Atlet" />
+              <div className="column is-one-third-desktop is-one-third-tablet m-0 p-0">
+                <figure className=" is-64x64-mobile is-96x96-tablet is-one-quarter-desktop card gambar-atlet p-0">
+                  <img
+                    className="is-64x64-desktop"
+                    src={atlets && atlets.url}
+                    alt="Foto Atlet"
+                  />
                 </figure>
               </div>
             </div>
             {showAll && (
-              <div className="mt-5 cont-tabs">
+              <div className="mt-5 cont-tabs ">
                 <div className="tabs tabs-data">
                   <ul>
                     <li className={activeTab === "dataDiri" ? "is-active" : ""}>
@@ -135,117 +135,130 @@ const DataDiriAtlet = () => {
                   </ul>
                 </div>
                 {activeTab === "dataDiri" && (
-                  <div className="is-flex is-justify-content-space-between p-3">
-                    <div className="is-flex">
-                      <div className="field mr-5">
-                        <p>NO HP/Mobile</p>
-                        <p>NO Telepon</p>
-                        <p>Email</p>
-                        <p>Golongan Darah</p>
-                        <p>Jenis Kelamanin</p>
-                        <p>Tinggi Badan</p>
-                        <p>Berat Badan</p>
-                      </div>
-                      <div className="isi">
-                        <p>: {atlets && atlets.hp_mobile}</p>
-                        <p>: {atlets && atlets.no_telp}</p>
-                        <p>: {atlets && atlets.email}</p>
-                        <p>: {atlets && atlets.gol_darah}</p>
-                        <p>: {atlets && atlets.kelamin}</p>
-                        <p>: {atlets && atlets.tinggi_badan}</p>
-                        <p>: {atlets && atlets.berat_badan}</p>
+                  <div className="column is-size-7-mobile is-full-desktop">
+                    <div className="isi">
+                      <div className="is-flex">
+                        <div className="field mr-6">
+                          <p>NO HP/Mobile</p>
+                          <p>NO Telepon</p>
+                          <p>Email</p>
+                          <p>Golongan Darah</p>
+                          <p>Jenis Kelamanin</p>
+                          <p>Tinggi Badan</p>
+                          <p>Berat Badan</p>
+                        </div>
+                        <div className="isi">
+                          <p>: {atlets && atlets.hp_mobile}</p>
+                          <p>: {atlets && atlets.no_telp}</p>
+                          <p>: {atlets && atlets.email}</p>
+                          <p>: {atlets && atlets.gol_darah}</p>
+                          <p>: {atlets && atlets.kelamin}</p>
+                          <p>: {atlets && atlets.tinggi_badan}</p>
+                          <p>: {atlets && atlets.berat_badan}</p>
+                        </div>
                       </div>
                     </div>
                     <div className="isi">
-                      <label className="label ">Perlengkapan (Outfit)</label>
-                      <div className="is-flex">
-                        <div className="field mr-5">
-                          <p>Ukuran Baju</p>
-                          <p>Ukuran Sepatu</p>
-                        </div>
-                        <div className="isi">
-                          <p>: {atlets && atlets.ukuran_baju}</p>
-                          <p>: {atlets && atlets.ukuran_sepatu}</p>
+                      <div className="mt-3">
+                        <label className="label ">Perlengkapan (Outfit)</label>
+                        <div className="is-flex">
+                          <div className="field mr-6">
+                            <p>Ukuran Baju</p>
+                            <p>Ukuran Sepatu</p>
+                          </div>
+                          <div className="isi">
+                            <p>: {atlets && atlets.ukuran_baju}</p>
+                            <p>: {atlets && atlets.ukuran_sepatu}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
                 {activeTab === "dataOrangTua" && (
-                  <div className="isi p-3">
-                    <label className="label">Data Orang Tua Atlet</label>
-                    <div className="is-flex is-justify-content-space-between">
-                      <div className="isi">
-                        <p>Data Ayah</p>
-                        <div className="is-flex">
-                          <div className="field mr-5">
-                            <p>Nama Ayah</p>
-                            <p>Tempat Lahir</p>
-                            <p>Tanggal Lahir</p>
-                            <p>Agama</p>
-                            <p>Pekerjaan</p>
-                            <p>No HP/Mobile Phone</p>
-                            <p>No Telepon</p>
-                            <p>Alamat Email</p>
-                            <p>Alamat</p>
-                          </div>
-                          <div className="isi">
-                            <p>
-                              : {atlets && atlets.nama_ayah} (
-                              {atlets && atlets.status_ayah})
-                            </p>
-                            <p>: {atlets && atlets.tmpLahir_ayah}</p>
-                            <p>: {atlets && atlets.tglLahir_ayah}</p>
-                            <p>: {atlets && atlets.agama_ayah}</p>
-                            <p>: {atlets && atlets.pekerjaan_ayah}</p>
-                            <p>: {atlets && atlets.noHp_ayah}</p>
-                            <p>: {atlets && atlets.notlp_ayah}</p>
-                            <p>: {atlets && atlets.email_ayah}</p>
-                            <p>
-                              : {atlets && atlets.namaJalan_ortu},{" "}
-                              {atlets && atlets.desa_ortu},{" "}
-                              {atlets && atlets.kelurahan_ortu},<br />
-                              {atlets && atlets.kecamatan_ortu},{" "}
-                              {atlets && atlets.kota_ortu},{" "}
-                              {atlets && atlets.provinsi_ortu}
-                            </p>
+                  <div className="scrol">
+                    <div className="isi p-3">
+                      <div className="columns is-full-desktop">
+                        <div className="isi column is-half-desktop">
+                          <p className="label">Data Ayah</p>
+                          <div className="is-flex">
+                            <div className="field mr-2">
+                              <p>Nama Ayah</p>
+                              <p>Status</p>
+                              <p>Tempat Lahir</p>
+                              <p>Tanggal Lahir</p>
+                              <p>Agama</p>
+                              <p>Pekerjaan</p>
+                              <p>No HP</p>
+                              <p>No Telepon</p>
+                              <p>Alamat Email</p>
+                              <p>Alamat</p>
+                            </div>
+                            <div className="isi">
+                              <p className="is-hidden-desktop is-hidden-tablet">
+                                : {atlets && shortenName(atlets.nama_ayah)}
+                              </p>
+                              <p className="is-hidden-mobile">
+                                : {atlets && atlets.nama_ayah}
+                              </p>
+                              <p>: {atlets && atlets.status_ayah}</p>
+                              <p>: {atlets && atlets.tmpLahir_ayah}</p>
+                              <p>: {atlets && atlets.tglLahir_ayah}</p>
+                              <p>: {atlets && atlets.agama_ayah}</p>
+                              <p>: {atlets && atlets.pekerjaan_ayah}</p>
+                              <p>: {atlets && atlets.noHp_ayah}</p>
+                              <p>: {atlets && atlets.notlp_ayah}</p>
+                              <p>: {atlets && atlets.email_ayah}</p>
+                              <p>
+                                : {atlets && atlets.namaJalan_ortu},{" "}
+                                {atlets && atlets.desa_ortu},{" "}
+                                {atlets && atlets.kelurahan_ortu},<br />
+                                {atlets && atlets.kecamatan_ortu},{" "}
+                                {atlets && atlets.kota_ortu},{" "}
+                                {atlets && atlets.provinsi_ortu}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="isi">
-                        <p>Data Ibu</p>
-                        <div className="is-flex">
-                          <div className="field mr-5">
-                            <p>Nama Ibu</p>
-                            <p>Tempat Lahir</p>
-                            <p>Tanggal Lahir</p>
-                            <p>Agama</p>
-                            <p>Pekerjaan</p>
-                            <p>No HP/Mobile Phone</p>
-                            <p>No Telepon</p>
-                            <p>Alamat Email</p>
-                            <p>Alamat</p>
-                          </div>
-                          <div className="isi">
-                            <p>
-                              : {atlets && atlets.nama_ibu} (
-                              {atlets && atlets.status_ibu})
-                            </p>
-                            <p>: {atlets && atlets.tmpLahir_ibu}</p>
-                            <p>: {atlets && atlets.tglLahir_ibu}</p>
-                            <p>: {atlets && atlets.agama_ibu}</p>
-                            <p>: {atlets && atlets.pekerjaan_ibu}</p>
-                            <p>: {atlets && atlets.noHp_ibu}</p>
-                            <p>: {atlets && atlets.notlp_ibu}</p>
-                            <p>: {atlets && atlets.email_ibu}</p>
-                            <p>
-                              : {atlets && atlets.namaJalan_ibu},{" "}
-                              {atlets && atlets.desa_ibu},{" "}
-                              {atlets && atlets.kelurahan_ibu}, <br />
-                              {atlets && atlets.kecamatan_ibu},{" "}
-                              {atlets && atlets.kota_ibu},{" "}
-                              {atlets && atlets.provinsi_ibu}
-                            </p>
+                        <div className="isi column">
+                          <p className="label">Data Ibu</p>
+                          <div className="is-flex">
+                            <div className="field mr-2">
+                              <p>Nama Ibu</p>
+                              <p>Status</p>
+                              <p>Tempat Lahir</p>
+                              <p>Tanggal Lahir</p>
+                              <p>Agama</p>
+                              <p>Pekerjaan</p>
+                              <p>No HP</p>
+                              <p>No Telepon</p>
+                              <p>Alamat Email</p>
+                              <p>Alamat</p>
+                            </div>
+                            <div className="isi">
+                              <p className="is-hidden-desktop is-hidden-tablet">
+                                : {atlets && shortenName(atlets.nama_ibu)}
+                              </p>
+                              <p className="is-hidden-mobile">
+                                : {atlets && atlets.nama_ibu}
+                              </p>
+                              <p>: {atlets && atlets.status_ibu}</p>
+                              <p>: {atlets && atlets.tmpLahir_ibu}</p>
+                              <p>: {atlets && atlets.tglLahir_ibu}</p>
+                              <p>: {atlets && atlets.agama_ibu}</p>
+                              <p>: {atlets && atlets.pekerjaan_ibu}</p>
+                              <p>: {atlets && atlets.noHp_ibu}</p>
+                              <p>: {atlets && atlets.notlp_ibu}</p>
+                              <p>: {atlets && atlets.email_ibu}</p>
+                              <p>
+                                : {atlets && atlets.namaJalan_ibu},{" "}
+                                {atlets && atlets.desa_ibu},{" "}
+                                {atlets && atlets.kelurahan_ibu}, <br />
+                                {atlets && atlets.kecamatan_ibu},{" "}
+                                {atlets && atlets.kota_ibu},{" "}
+                                {atlets && atlets.provinsi_ibu}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -284,45 +297,89 @@ const DataDiriAtlet = () => {
                   </div>
                 )}
                 {activeTab === "datawali" && (
-                  <div className="is-flex is-justify-content-space-between p-3">
+                  <div className="column is-size-7-mobile is-full-desktop">
                     <div className="isi">
-                      <p className="label">Data Wali Atlet</p>
-                      <div className="is-flex">
-                        <div className="isi">
-                          <div className="is-flex">
-                            <div className="field mr-5">
-                              <p>Nama Wali</p>
-                              <p>Hubungan Keluarga</p>
-                              <p>Tempat Lahir</p>
-                              <p>Tanggal Lahir</p>
-                              <p>Agama</p>
-                              <p>Jenis Kelamin</p>
-                              <p>Pekerjaan</p>
-                              <p>Nomor Hp/Mobile</p>
-                              <p>Nomor Telepon</p>
-                              <p>Email</p>
-                              <p>Alamat</p>
-                            </div>
-                            <div className="isi">
-                              <p>: {atlets && atlets.nama_wali}</p>
-                              <p>: {atlets && atlets.hubkeluarga_wali}</p>
-                              <p>: {atlets && atlets.tempLahir_wali}</p>
-                              <p>: {atlets && atlets.tglLahir_wali}</p>
-                              <p>: {atlets && atlets.agama_wali}</p>
-                              <p>: {atlets && atlets.jeniskelamin_wali}</p>
-                              <p>: {atlets && atlets.pekerjaan_wali}</p>
-                              <p>: {atlets && atlets.noHp_wali}</p>
-                              <p>: {atlets && atlets.notlp_wali}</p>
-                              <p>: {atlets && atlets.email_wali}</p>
-                              <p>
-                                : {atlets && atlets.namaJalan_wali},{" "}
-                                {atlets && atlets.desa_wali},{" "}
-                                {atlets && atlets.kelurahan_wali},{" "}
-                                {atlets && atlets.kecamatan_wali},{" "}
-                                {atlets && atlets.kota_wali},{" "}
-                                {atlets && atlets.provinsi_wali}
-                              </p>
-                            </div>
+                      <div className="is-hidden-desktop">
+                        <div className="is-flex columns">
+                          <div className="field column mr-5 is-half">
+                            <p>Nama Wali</p>
+                            <p>Hubungan Kel.</p>
+                            <p>Tempat Lahir</p>
+                            <p>Tanggal Lahir</p>
+                            <p>Agama</p>
+                            <p>Jenis Kelamin</p>
+                            <p>Pekerjaan</p>
+                            <p>Nomor Hp</p>
+                            <p>Nomor Telepon</p>
+                            <p>Email</p>
+                            <p>Alamat</p>
+                          </div>
+                          <div className="isi column">
+                            <p className="is-hidden-desktop is-hidden-tablet">
+                              : {atlets && shortenName(atlets.nama_wali)}
+                            </p>
+                            <p className="is-hidden-mobile">
+                              : {atlets && atlets.nama_wali}
+                            </p>
+                            <p>: {atlets && atlets.hubkeluarga_wali}</p>
+                            <p>: {atlets && atlets.tempLahir_wali}</p>
+                            <p>: {atlets && atlets.tglLahir_wali}</p>
+                            <p>: {atlets && atlets.agama_wali}</p>
+                            <p>: {atlets && atlets.jeniskelamin_wali}</p>
+                            <p>: {atlets && atlets.pekerjaan_wali}</p>
+                            <p>: {atlets && atlets.noHp_wali}</p>
+                            <p>: {atlets && atlets.notlp_wali}</p>
+                            <p>: {atlets && atlets.email_wali}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_wali},{" "}
+                              {atlets && atlets.desa_wali},{" "}
+                              {atlets && atlets.kelurahan_wali},{" "}
+                              {atlets && atlets.kecamatan_wali},{" "}
+                              {atlets && atlets.kota_wali},{" "}
+                              {atlets && atlets.provinsi_wali}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="is-hidden-mobile">
+                        <div className="is-flex ">
+                          <div className="field mr-6">
+                            <p>Nama Wali</p>
+                            <p>Hubungan Kel.</p>
+                            <p>Tempat Lahir</p>
+                            <p>Tanggal Lahir</p>
+                            <p>Agama</p>
+                            <p>Jenis Kelamin</p>
+                            <p>Pekerjaan</p>
+                            <p>Nomor Hp</p>
+                            <p>Nomor Telepon</p>
+                            <p>Email</p>
+                            <p>Alamat</p>
+                          </div>
+                          <div className="isi ">
+                            <p className="is-hidden-desktop is-hidden-tablet">
+                              : {atlets && atlets.nama_wali}
+                            </p>
+                            <p className="is-hidden-mobile">
+                              : {atlets && atlets.nama_wali}
+                            </p>
+                            <p>: {atlets && atlets.hubkeluarga_wali}</p>
+                            <p>: {atlets && atlets.tempLahir_wali}</p>
+                            <p>: {atlets && atlets.tglLahir_wali}</p>
+                            <p>: {atlets && atlets.agama_wali}</p>
+                            <p>: {atlets && atlets.jeniskelamin_wali}</p>
+                            <p>: {atlets && atlets.pekerjaan_wali}</p>
+                            <p>: {atlets && atlets.noHp_wali}</p>
+                            <p>: {atlets && atlets.notlp_wali}</p>
+                            <p>: {atlets && atlets.email_wali}</p>
+                            <p>
+                              : {atlets && atlets.namaJalan_wali},{" "}
+                              {atlets && atlets.desa_wali},{" "}
+                              {atlets && atlets.kelurahan_wali},{" "}
+                              {atlets && atlets.kecamatan_wali},{" "}
+                              {atlets && atlets.kota_wali},{" "}
+                              {atlets && atlets.provinsi_wali}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -330,32 +387,33 @@ const DataDiriAtlet = () => {
                   </div>
                 )}
                 {activeTab === "dataPrestasi" && (
-                  <div className="p-3">
-                    <label className="label">Prestasi</label>
-                    <table className="table is-fullwidth is-bordered">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama Club</th>
-                          <th>Nama Event</th>
-                          <th>Tahun</th>
-                          <th>Tingkat</th>
-                          <th>Pencapaian</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {prestasi.map((item, index) => (
-                          <tr key={item && item.id_prestasi}>
-                            <td>{index + 1}</td>
-                            <td>{item && item.namaClub}</td>
-                            <td>{item && item.namaEvent}</td>
-                            <td>{item && item.tahunPrestasi}</td>
-                            <td>{item && item.Tingkat}</td>
-                            <td>{item && item.Pencapaian}</td>
+                  <div className="">
+                    <div className=" is-full-mobile is-full-tablet is-full-desktop overflow-x-scroll-mobile p-3">
+                      <table className="table is-fullwidth is-bordered">
+                        <thead>
+                          <tr>
+                            <th>No</th>
+                            <th>Nama Club</th>
+                            <th>Nama Event</th>
+                            <th>Tahun</th>
+                            <th>Tingkat</th>
+                            <th>Pencapaian</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {prestasi.map((item, index) => (
+                            <tr key={item && item.id_prestasi}>
+                              <td>{index + 1}</td>
+                              <td>{item && item.namaClub}</td>
+                              <td>{item && item.namaEvent}</td>
+                              <td>{item && item.tahunPrestasi}</td>
+                              <td>{item && item.Tingkat}</td>
+                              <td>{item && item.Pencapaian}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 )}
               </div>
@@ -364,7 +422,7 @@ const DataDiriAtlet = () => {
         </div>
 
         <footer className="card-footer">
-          <a
+          {/* <a
             href="#"
             className="card-header-icon"
             aria-label="more options"
@@ -376,7 +434,7 @@ const DataDiriAtlet = () => {
                 aria-hidden="true"
               ></i>
             </span>
-          </a>
+          </a> */}
           <a href="#" className="card-footer-item" onClick={toggleShowAll}>
             Show {showAll ? "Less" : "All"}
           </a>
@@ -384,6 +442,6 @@ const DataDiriAtlet = () => {
       </div>
     </div>
   );
-}
+};
 
-export default DataDiriAtlet
+export default DataDiriAtlet;

@@ -1,20 +1,44 @@
-import React, { useState } from 'react'
-import {Link, NavLink} from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "../img/Logosiatlet.png";
-import Dispora from "../img/Dispora.png"
-import {useMediaQuery} from "react-responsive";
-import { useSelector } from 'react-redux';
-import Sidebarres from './SidebarRes';
+import Dispora from "../img/Dispora.png";
+import { useMediaQuery } from "react-responsive";
+import { useDispatch, useSelector } from "react-redux";
+import Sidebarres from "./SidebarRes";
+import {
+  IoAlbums,
+  IoBook,
+  IoChatbox,
+  IoFootball,
+  IoHome,
+  IoLogOut,
+  IoPerson,
+  IoSettings,
+} from "react-icons/io5";
+import { GiSprint } from "react-icons/gi";
+import { TbBarbell } from "react-icons/tb";
+import { LogOut, reset } from "../features/authSlice";
+import { MdContactPage } from "react-icons/md";
 
 const Navbar = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const {user} = useSelector((state) => state.auth);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-device-width: 768px)" });
+  const { user } = useSelector((state) => state.auth);
+  const [isActive, setIsActive] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(LogOut());
+    dispatch(reset());
+    navigate("/");
+  };
 
   const handleBurgerClick = () => {
-    setShowSidebar(!showSidebar);
+    setIsActive(!isActive);
   };
-  
+
+  const idCabor = user && user.Cabor && user.Cabor.id_cabor;
 
   return (
     <div>
@@ -32,7 +56,9 @@ const Navbar = () => {
             >
               <div className="">
                 <button
-                  className={`navbar-burger burger`}
+                  className={`navbar-burger burger ${
+                    isActive ? "is-active" : ""
+                  }`}
                   aria-label="menu"
                   aria-expanded="false"
                   data-target="navbarBasicExample"
@@ -43,25 +69,210 @@ const Navbar = () => {
                   <span aria-hidden="true"></span>
                 </button>
               </div>
+              <div
+                id="navbarBasicExample"
+                className={`navbar-menu ${isActive ? "is-active" : ""}`}
+              >
+                <div className="navbar-start">
+                  <aside className={`menu pl-3 pt-2 has-shadow`}>
+                    <p className="menu-label">General</p>
+                    <ul className="menu-list">
+                      <li>
+                        <NavLink to={"/dashboard"}>
+                          <IoHome /> Dashboard
+                        </NavLink>
+                        {/* {user && user.role !== "SuperAdmin" && (
+              <NavLink to={"/pengumuman"}>
+                <HiSpeakerphone /> Pengumuman
+              </NavLink>
+            )} */}
+                        {user && user.role !== "SuperAdmin" && (
+                          <NavLink to={"/forum"}>
+                            <IoChatbox /> Forum
+                          </NavLink>
+                        )}
+                        {user && user.role === "Pelatih" && (
+                          <NavLink to={`/lisensi/${user && user.uuid}`}>
+                            <MdContactPage /> Lisensi
+                          </NavLink>
+                        )}
+                      </li>
+                      <ul className="menu-list">
+                        {user && user.role === "Admin" && (
+                          <li>
+                            <NavLink to={"/cabor"}>
+                              <IoAlbums /> Cabang Olahraga
+                            </NavLink>
+                          </li>
+                        )}
+                        {user && user.role === "Atlet" && (
+                          <li>
+                            <NavLink to={"/datadiriatlet"}>
+                              <IoPerson /> Data Atleth
+                            </NavLink>
+                            {/* <NavLink to={"/clubatlet"}>
+                  <IoFootball /> Club
+                </NavLink> */}
+                            <NavLink
+                              to={`/perkembangan-latihan/${
+                                user && user.id_atlet
+                              }`}
+                            >
+                              <GiSprint /> Perkembangan Latihan
+                            </NavLink>
+                            <NavLink
+                              to={`/cabor/program/${
+                                user && user.Cabor && user.Cabor.id_cabor
+                              }`}
+                            >
+                              <TbBarbell /> Program Latihan
+                            </NavLink>
+                          </li>
+                        )}
+                      </ul>
+                    </ul>
+                    {user && user.role === "Admin" && (
+                      <div>
+                        <p className="menu-label">Admin</p>
+                        <ul className="menu-list">
+                          <li>
+                            <NavLink to={"/panduan"}>
+                              <IoBook /> Panduan Pelaksanaan
+                            </NavLink>
+                            <p className="pl-3 is-size-9">Users</p>
+                          </li>
+                          <ul className="menu-list pl-2">
+                            <li>
+                              {user && user.role !== "Pelatih" && (
+                                <div className="">
+                                  <NavLink to={"/daftaradmin"}>
+                                    <IoPerson /> Admin
+                                  </NavLink>
+
+                                  <NavLink to={"/daftarpelatih"}>
+                                    <IoPerson /> Pelatih
+                                  </NavLink>
+                                </div>
+                              )}
+                              <NavLink to={"/daftaratlet"}>
+                                <IoPerson /> Atlet
+                              </NavLink>
+                            </li>
+                            <ul className="menu-list mt-3">
+                              <li className="pl-1">
+                                <p>Control</p>
+                              </li>
+                              <ul className="menu-list">
+                                <li>
+                                  <NavLink to={"/kontrolatlet"}>
+                                    <IoSettings /> Pengaturan Akun
+                                  </NavLink>
+                                </li>
+                              </ul>
+                            </ul>
+                          </ul>
+                        </ul>
+                      </div>
+                    )}
+                    {user && user.role === "Pelatih" && (
+                      <div>
+                        <p className="menu-label">Pelatih</p>
+                        <ul className="menu-list">
+                          <NavLink to={"/datadiripelatih"}>
+                            <IoPerson /> Data Pelatih
+                          </NavLink>
+                          {/* <NavLink to={"/clubatlet"}>
+                <IoFootball /> Club
+              </NavLink> */}
+                          <li>
+                            <p className="pl-3 is-size-9">Users</p>
+                          </li>
+                          <ul className="menu-list pl-2">
+                            <li>
+                              <NavLink to={"/daftaratlet-cabor"}>
+                                <IoPerson /> Atlet
+                              </NavLink>
+                            </li>
+                            <ul className="menu-list mt-3">
+                              <li className="pl-1">
+                                <p>Control</p>
+                              </li>
+                              <ul className="menu-list">
+                                <li>
+                                  <NavLink
+                                    to={`/cabor/komponen-indikator/atur/${idCabor}`}
+                                  >
+                                    <IoSettings /> Pengaturan Cabor
+                                  </NavLink>
+                                </li>
+                              </ul>
+                            </ul>
+                          </ul>
+                        </ul>
+                      </div>
+                    )}
+
+                    {user && user.role === "SuperAdmin" && (
+                      <div>
+                        <p className="menu-label">Admin</p>
+                        <ul className="menu-list">
+                          <li>
+                            <p className="pl-3 is-size-9">Users</p>
+                          </li>
+                          <ul className="menu-list pl-2">
+                            <li>
+                              <NavLink to={"/daftaradmin"}>
+                                <IoPerson /> Admin
+                              </NavLink>
+                            </li>
+                          </ul>
+                        </ul>
+                      </div>
+                    )}
+                    <p className="menu-label">Settings</p>
+                    <ul className="menu-list">
+                      <li className="pl-3">
+                        <button
+                          onClick={logout}
+                          className="button is-white pl-0"
+                        >
+                          <IoLogOut /> Log Out
+                        </button>
+                      </li>
+                    </ul>
+                  </aside>
+                </div>
+              </div>
+
               {user && user.role === "Atlet" && (
-                <div className=" is-flex is-align-items-center mr-4">
-                  <img
-                    className="mr-2"
-                    style={{
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                      aspectRatio: "1/1",
-                    }}
-                    src={user && user.url}
-                    alt=""
-                  />
-                  <Link to={"/datadiriatlet"} className="has-text-dark">
-                    {user && user.name_awal} {user && user.nama_tengah}{" "}
-                    {user && user.nama_akhir} -{" "}
-                  </Link>
-                  <label className="label ml-1 "> Atlet</label>
+                <div className="columns is-mobile is-vcentered mr-4">
+                  <div className="column is-narrow">
+                    {/* <figure className="image is-48x48">
+        <img
+          className="is-rounded"
+          src={user && user.url}
+          alt=""
+        />
+      </figure> */}
+                  </div>
+                  <div className="column ml-2">
+                    <div className="is-flex-tablet">
+                      <Link
+                        to={"/datadiriatlet"}
+                        className="has-text-dark is-size-7-mobile"
+                      >
+                        {user && user.name_awal} {user && user.nama_tengah}{" "}
+                        {user && user.nama_akhir} -{" "}
+                      </Link>
+                      <label className="label ml-1 is-size-7-mobile">
+                        {" "}
+                        Atlet
+                      </label>
+                    </div>
+                  </div>
                 </div>
               )}
+
               {user && user.role === "Admin" && (
                 <div className=" is-flex is-align-items-center mr-4">
                   <p>{user.nama} -</p>
@@ -74,9 +285,16 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
         {!isMobile && (
           <div className="navbar-menu p=2">
-          <img className='ml-2' src={Logo} alt="" width={80} style={{ objectFit: "cover" }} />
+            <img
+              className="ml-2"
+              src={Logo}
+              alt=""
+              width={80}
+              style={{ objectFit: "cover" }}
+            />
             <div className="navbar-end">
               <div className="navbar-item is-flex is-align-items-center p-0">
                 {user && user.role === "Atlet" && (
@@ -113,9 +331,9 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-      {showSidebar && <Sidebarres />}
+      {isActive && <Sidebarres />}
     </div>
   );
 };
 
-export default Navbar
+export default Navbar;

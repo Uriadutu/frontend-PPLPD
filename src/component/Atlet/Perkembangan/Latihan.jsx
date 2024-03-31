@@ -52,7 +52,6 @@ const Latihan = () => {
       console.log(error);
     }
   };
-  console.log("Id komponen :", indiKomponens);
 
   const getIndikatorByKomponen = async (idKomponen) => {
     try {

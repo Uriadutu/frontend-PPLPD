@@ -43,11 +43,9 @@ const Atletpage = () => {
           <Link to={"/dashboard"} className="button mr-3">
             Dashboard
           </Link>
-
-         
         </div>
 
-        <div  >
+        <div>
           <input
             type="text"
             className="input is-normal"
@@ -73,13 +71,20 @@ const Atletpage = () => {
           {atlets.map((atlet, index) => (
             <tr key={atlet.id_atlet}>
               <td>{index + 1}</td>
-              <td>{capitalizeWords(atlet.nama)}</td>
+              <td>
+                {capitalizeWords(atlet && atlet.name_awal)}{" "}
+                {capitalizeWords(atlet && atlet.nama_tengah)}{" "}
+                {capitalizeWords(atlet && atlet.nama_akhir)}
+              </td>
               <td>{atlet && atlet.Admin && atlet.Admin.nama}</td>
               <td>{atlet && atlet.Cabor && atlet.Cabor.namaCabor}</td>
-              <td>{atlet && atlet.status}</td>
+              <td>{capitalizeWords(atlet && atlet.status)}</td>
               <td className="has-text-centered">
-                <Link className="button is-primary is-small" to={`/datadiriatlet`}>
-                Lihat
+                <Link
+                  className="button is-primary is-small"
+                  to={`/pelatih/datadiri/atlet/${atlet && atlet.id_atlet}`}
+                >
+                  Lihat
                 </Link>
               </td>
             </tr>

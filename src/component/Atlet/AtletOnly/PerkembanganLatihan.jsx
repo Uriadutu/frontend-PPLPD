@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import logoDinas from "../../../img/LogoPemkot.png";
 import {useReactToPrint} from 'react-to-print'
-
 const PerkembanganLatihan = () => {
   const {user} = useSelector((state) => state.auth);
   const [rekams, setRekam] = useState([]);
@@ -85,12 +84,12 @@ const renderTablesByKomponen = () => {
   return (
     <div>
       {uniqueKomponen.map((komponen) => (
-        <div>
-          <div className="mt-1 box tutup-print" key={komponen}>
-            <h1 className="subtitle mt-1">
-              {" "}
-              {komponen.slice(0, -7)}
-            </h1>
+        <div className="">
+          <div
+            className="mt-1 box tutup-print overflow-x-scroll-mobile is-full-mobile is-full-tablet is-full-desktop p-3"
+            key={komponen}
+          >
+            <h1 className="subtitle mt-1"> {komponen.slice(0, -7)}</h1>
             <table
               className="table is-fullwidth is-striped is-hoverable "
               style={{ border: "1px solid #ccc" }}
@@ -134,9 +133,7 @@ const renderTablesByKomponen = () => {
             </table>
           </div>
           <div className="mt-1 pl-5 pr-5 pb-5 mt-0 pt-0 none" key={komponen}>
-            <h1 className="subtitle mt-2">
-              {komponen.slice(0, -7)}
-            </h1>
+            <h1 className="subtitle mt-2">{komponen.slice(0, -7)}</h1>
             <table
               className="table is-fullwidth is-bordered "
               style={{ border: "1px solid #ccc" }}
@@ -190,11 +187,12 @@ const renderTablesByKomponen = () => {
       className="has-background-light p-3 mt-5"
       style={{ minHeight: "100vh" }}
     >
-      <h1 className=" title mt-5">Perkembangan</h1>
-      <h2 className="subtitle mb-5">
+      <h1 className=" title mt-5 is-size-6-mobile">Perkembangan</h1>
+      <h2 className="subtitle mb-5 is-size-7-mobile">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>
+      
       <Link to={"/dashboard"} className="button mr-3">
         Dashboard
       </Link>

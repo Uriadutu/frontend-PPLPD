@@ -57,23 +57,24 @@ const ForumAtlet = () => {
     );
   return (
     <div>
-      <h1 className="title">Forum</h1>
-      <h2 className="subtitle">Cabang Olahraga {cabors && cabors.namaCabor}</h2>
+      <h1 className="title is-size-6-mobile">Forum</h1>
+      <h2 className="subtitle is-size-7-mobile">
+        Cabang Olahraga {cabors && cabors.namaCabor}
+      </h2>
       <div className="is-flex is-justify-content-space-between is-align-items-center  mb-3">
         <Link to="/dashboard" className="button">
           Dashboard
         </Link>
         {user && user.role === "Admin" && (
-          
-        <div className="search-container">
-          <input
-            className="input"
-            type="text"
-            placeholder="Cari Cabor..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </div>
+          <div className="search-container">
+            <input
+              className="input"
+              type="text"
+              placeholder="Cari Cabor..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
         )}
       </div>
       {user && user.role === "Admin" && (
@@ -113,24 +114,24 @@ const ForumAtlet = () => {
               <th>No</th>
               <th>Kode Cabor</th>
               <th>Nama Cabor</th>
-              <th className='has-text-centered'>Jumlah Aksi</th>
+              <th className="has-text-centered">Jumlah Aksi</th>
               <th className="has-text-centered">Aksi</th>
             </tr>
           </thead>
           <tbody>
-              <tr key={caborsaja && caborsaja.id_cabor}>
-                <td>1</td>
-                <td>{caborsaja && caborsaja.kodeCabor}</td>
-                <td>{caborsaja && caborsaja.namaCabor}</td>
-                <td className="has-text-centered">
-                  {countforum[caborsaja.id_cabor] || 0}
-                </td>
-                <td className="has-text-centered">
-                  <Link to={`/forum/cabor/${caborsaja && caborsaja.id_cabor}`}>
-                    <IoEye />
-                  </Link>
-                </td>
-              </tr>
+            <tr key={caborsaja && caborsaja.id_cabor}>
+              <td>1</td>
+              <td>{caborsaja && caborsaja.kodeCabor}</td>
+              <td>{caborsaja && caborsaja.namaCabor}</td>
+              <td className="has-text-centered">
+                {countforum[caborsaja.id_cabor] || 0}
+              </td>
+              <td className="has-text-centered">
+                <Link to={`/forum/cabor/${caborsaja && caborsaja.id_cabor}`}>
+                  <IoEye />
+                </Link>
+              </td>
+            </tr>
           </tbody>
         </table>
       )}

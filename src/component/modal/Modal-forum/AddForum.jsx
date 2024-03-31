@@ -16,7 +16,9 @@ const createForum = async(e)=>{
           isi_forum: isi,
         });
         handleClose();
-        window.location.reload();
+        setIsi("")
+        setJudul("")
+        // window.location.reload();
     } catch (error) {
         if(error) {
             setMsg(error.response.data.msg)
