@@ -70,7 +70,7 @@ useEffect(()=> {
                 <textarea
                   className="textarea"
                   placeholder="Isi Post"
-                  rows={10}
+                  rows={7}
                   style={{ resize: "none" }}
                   value={isi}
                   onChange={(e) => setIsi(e.target.value)}

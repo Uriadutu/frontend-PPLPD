@@ -62,7 +62,7 @@ const IsiForumAtlet = () => {
     setLihatModal();
   };
   return (
-    <div>
+    <div className="p-3">
       <h1 className="title is-size-6-mobile">Forum</h1>
       <h2 className="subtitle is-size-7-mobile">
         Diskusi Cabang Olahraga {cabors && cabors.namaCabor}
@@ -237,8 +237,10 @@ const IsiForumAtlet = () => {
           </div>
         </div>
       </div>
-      <Modal show={showModal} handleClose={handleClose} />
-      <KomentarModal Lihat={lihatModal} tutupmodal={tutupmodal} />
+      <div className="p-3">
+        <Modal show={showModal} handleClose={handleClose} />
+        <KomentarModal Lihat={lihatModal} tutupmodal={tutupmodal} />
+      </div>
     </div>
   );
 };

@@ -218,11 +218,13 @@ const Welcome = () => {
   //  console.log(hasil);
 
   return (
-    <div>
+    <div className="p-3">
       <div className="is-flex is-justify-content-space-between mb-2">
         <div>
           <h1 className="title is-size-6-mobile">Dashboard</h1>
-          <h2 className="subtitle is-size-7-mobile">Selamat Datang Di SI Atlet PPLPD</h2>
+          <h2 className="subtitle is-size-7-mobile">
+            Selamat Datang Di SI Atlet PPLPD
+          </h2>
         </div>
       </div>
       {user && (user.role === "Admin" || user.role === "SuperAdmin") && (

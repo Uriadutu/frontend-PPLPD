@@ -56,7 +56,7 @@ const ForumAtlet = () => {
       cabor.namaCabor.toLowerCase().includes(searchTerm.toLowerCase())
     );
   return (
-    <div>
+    <div className='p-3'>
       <h1 className="title is-size-6-mobile">Forum</h1>
       <h2 className="subtitle is-size-7-mobile">
         Cabang Olahraga {cabors && cabors.namaCabor}

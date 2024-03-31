@@ -58,9 +58,9 @@ const IsiKomen = () => {
   };
 
   return (
-    <div>
-      <h1 className="title">Balasan / Komentar</h1>
-      <h2 className="subtitle">Postingan Anda</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Balasan / Komentar</h1>
+      <h2 className="subtitle is-size-7-mobile">Postingan Anda</h2>
       <Link to={`/forum/cabor/${idCabor}`} className="button is-dark mb-3">
         Kembali
       </Link>
@@ -106,7 +106,7 @@ const IsiKomen = () => {
               </div>
             </div>
           </div>
-          <div  >
+          <div>
             <p>Komentar :</p>
             {comments
               .filter(
@@ -177,13 +177,12 @@ const IsiKomen = () => {
           )}
           <footer className="card-foot">
             <p className="is-flex is-justify-content-end">
-                <button
-                  onClick={() => deleteForumKomen(forum.id_ForumCabor)}
-                  className="is-small ml-3 p-2"
-                >
-                  Hapus Post dan Komentar <IoTrashSharp />
-                </button>
-
+              <button
+                onClick={() => deleteForumKomen(forum.id_ForumCabor)}
+                className="is-small ml-3 p-2"
+              >
+                Hapus Post dan Komentar <IoTrashSharp />
+              </button>
             </p>
           </footer>
         </div>

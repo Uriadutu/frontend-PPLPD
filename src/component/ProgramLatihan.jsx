@@ -54,9 +54,9 @@ const ProgramLatihan = () => {
   };
 
   return (
-    <div>
-      <h1 className="title">Program Latihan</h1>
-      <h2 className="subtitle">
+    <div className='p-3'>
+      <h1 className="title is-size-6-mobile">Program Latihan</h1>
+      <h2 className="subtitle is-size-7-mobile">
         List Program Latihan {cabors && cabors.namaCabor}
       </h2>
       {user && user.role === "Admin" && (

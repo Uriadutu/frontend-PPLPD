@@ -85,14 +85,29 @@ const DataDiriAtlet = () => {
                   </p>
                 </div>
               </div>
-              <div className="column is-one-third-desktop is-one-third-tablet m-0 p-0">
-                <figure className=" is-64x64-mobile is-96x96-tablet is-one-quarter-desktop card gambar-atlet p-0">
-                  <img
-                    className="is-64x64-desktop"
-                    src={atlets && atlets.url}
-                    alt="Foto Atlet"
-                  />
-                </figure>
+              <div className="column p-0 is-flex is-justify-content-center">
+                <div className="columns m-0 p-0 is-flex is-justify-content-center">
+                  <div className="p-0">
+                    <div
+                      className=""
+                      style={{
+                        width: "240px",
+                        height: "300px",
+                        overflow: "hidden",
+                      }}>
+                      <img
+                        className=""
+                        src={atlets && atlets.url}
+                        alt="Foto Atlet"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             {showAll && (

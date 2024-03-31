@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
         )}
 
         <div
-          className="column pl-3"
+          className="column pl-3 p-0"
           style={{
             background: "#e7e7e7",
           }}

@@ -3,7 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 
 const NavForum = () => {
   return (
-    <div>
+    <div className='p-3'>
       <div
         className="nav is-fixed-top"
         style={{
