@@ -64,10 +64,12 @@ const ListAtlet = () => {
 
 
   return (
-    <div>
-      <h1 className="title">Atlet</h1>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Atlet</h1>
 
-      <h2 className="subtitle">List Atlet {cabors && cabors.namaCabor}</h2>
+      <h2 className="subtitle is-size-7-mobile">
+        List Atlet {cabors && cabors.namaCabor}
+      </h2>
 
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">
@@ -84,6 +86,8 @@ const ListAtlet = () => {
         )}
         {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
+      <div className="overflow-x-scroll-mobile is-full-mobile">
+
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
@@ -115,19 +119,26 @@ const ListAtlet = () => {
               <td>{atlet && atlet.hp_mobile}</td>
               <td>{atlet && atlet.email}</td>
               <td className="has-text-centered">
-                <Link className="button is-primary is-small" to={`/cabor/atlet/${id}/edit/${atlet && atlet.id_atlet}`}>
-                Edit
+                <Link
+                  className="button is-primary is-small"
+                  to={`/cabor/atlet/${id}/edit/${atlet && atlet.id_atlet}`}
+                >
+                  Edit
                 </Link>
               </td>
               <td className="has-text-centered">
-                <Link className="button is-danger is-small" onClick={() => deleteAtlet(atlet && atlet.id_atlet)}>
-                 Hapus
+                <Link
+                  className="button is-danger is-small"
+                  onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
+                >
+                  Hapus
                 </Link>
               </td>
             </tr>
           </tbody>
         ))}
       </table>
+      </div>
       <AddAtletModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
       {/* <EditAtletModal Muncul={modalEdit} tidakMuncul={tutupModalEdit} /> */}
     </div>

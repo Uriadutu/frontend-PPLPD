@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import ProgramModal from './modal/ProgramModal';
 import { useSelector } from 'react-redux';
+import { namaSingkat } from '../utils/helper';
 
 const ProgramLatihan = () => {
     const [cabors, setCabor] = useState([]);
@@ -54,7 +55,7 @@ const ProgramLatihan = () => {
   };
 
   return (
-    <div className='p-3'>
+    <div className="p-3">
       <h1 className="title is-size-6-mobile">Program Latihan</h1>
       <h2 className="subtitle is-size-7-mobile">
         List Program Latihan {cabors && cabors.namaCabor}
@@ -74,49 +75,49 @@ const ProgramLatihan = () => {
           Dashboard
         </Link>
       )}
-      <table
-        className="table is-fullwidth is-striped mt-3 is-narrow"
-        style={{ overflowX: "auto" }}
-      >
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Program</th>
-            <th>File</th>
-            <th colspan="2">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {programs.map((program, index) => (
-            <tr key={program && program.id_program}>
-              <td>{index + 1}</td>
-              <td>{program && program.nama_Program}</td>
-              <td>{program && program.File}</td>
-              {user && user.role === "Atlet" && (
-                <td>
-                  <Link
-                    className="button is-small is-primary"
-                    to={program && program.url}
-                  >
-                    Lihat
-                  </Link>
-                </td>
-              )}
-              {user && user.role === "Admin" && (
-                <td>
-                  {" "}
-                  <button
-                    className="is-small button is-dark has-text-light"
-                    onClick={() => hapusProgram(program.id_program)} // Perbaikan di sini, kirim ID ke fungsi hapusKomponen
-                  >
-                    Hapus
-                  </button>
-                </td>
-              )}
+      <div className="overflow-x-scroll-mobile column p-0">
+        <table
+          className="table is-fullwidth is-full-mobile is-striped mt-3 is-narrow p-2"
+          style={{ overflowX: "auto" }}
+        >
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Program</th>
+              <th>File</th>
+              <th colspan="2">Aksi</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {programs.map((program, index) => (
+              <tr key={program && program.id_program}>
+                <td>{index + 1}</td>
+                <td>{program && program.nama_Program}</td>
+                <td>{program && namaSingkat(program.File)}</td>
+                  <td>
+                    <Link
+                      className="button is-small is-primary"
+                      to={program && program.url}
+                    >
+                      Lihat
+                    </Link>
+                  </td>
+                {user && user.role === "Admin" && (
+                  <td>
+                    {" "}
+                    <button
+                      className="is-small button is-dark has-text-light"
+                      onClick={() => hapusProgram(program.id_program)} // Perbaikan di sini, kirim ID ke fungsi hapusKomponen
+                    >
+                      Hapus
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <ProgramModal Muncul={modalUsersAktif} tidakMuncul={tutupModal} />
     </div>
   );

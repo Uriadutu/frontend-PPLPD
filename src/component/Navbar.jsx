@@ -5,6 +5,7 @@ import Dispora from "../img/Dispora.png";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebarres from "./SidebarRes";
+
 import {
   IoAlbums,
   IoBook,
@@ -234,7 +235,7 @@ const Navbar = () => {
                       <li className="pl-3">
                         <button
                           onClick={logout}
-                          className="button is-white pl-0"
+                          className="button is-ghost pl-0 text-balck has-text-black"
                         >
                           <IoLogOut /> Log Out
                         </button>
@@ -246,29 +247,15 @@ const Navbar = () => {
 
               {user && user.role === "Atlet" && (
                 <div className="columns is-mobile is-vcentered mr-4">
-                  <div className="column is-narrow">
-                    {/* <figure className="image is-48x48">
-        <img
-          className="is-rounded"
-          src={user && user.url}
-          alt=""
-        />
-      </figure> */}
-                  </div>
-                  <div className="column ml-2">
-                    <div className="is-flex-tablet">
-                      <Link
-                        to={"/datadiriatlet"}
-                        className="has-text-dark is-size-7-mobile"
-                      >
-                        {user && user.name_awal} {user && user.nama_tengah}{" "}
-                        {user && user.nama_akhir} -{" "}
-                      </Link>
-                      <label className="label ml-1 is-size-7-mobile">
-                        {" "}
-                        Atlet
-                      </label>
-                    </div>
+                  <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
+                    <Link to="/">
+                    <img
+                      src={Logo}
+                      alt="logoApk"
+                      width={70}
+                      style={{ objectFit: "cover" }}
+                    />
+                    </Link>
                   </div>
                 </div>
               )}
@@ -298,22 +285,13 @@ const Navbar = () => {
             <div className="navbar-end">
               <div className="navbar-item is-flex is-align-items-center p-0">
                 {user && user.role === "Atlet" && (
-                  <div className=" is-flex is-align-items-center mr-4">
+                  <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
                     <img
-                      className="mr-2"
-                      style={{
-                        borderRadius: "50%",
-                        objectFit: "cover",
-                        aspectRatio: "1/1",
-                      }}
-                      src={user && user.url}
-                      alt=""
+                      src={Logo}
+                      alt="logoApk"
+                      width={80}
+                      style={{ objectFit: "cover" }}
                     />
-                    <Link to={"/datadiriatlet"} className="has-text-dark">
-                      {user && user.name_awal} {user && user.nama_tengah}{" "}
-                      {user && user.nama_akhir} -{" "}
-                    </Link>
-                    <label className="label ml-1 "> Atlet</label>
                   </div>
                 )}
                 {user && user.role === "Admin" && (

@@ -56,7 +56,7 @@ const ForumAtlet = () => {
       cabor.namaCabor.toLowerCase().includes(searchTerm.toLowerCase())
     );
   return (
-    <div className='p-3'>
+    <div className="p-3">
       <h1 className="title is-size-6-mobile">Forum</h1>
       <h2 className="subtitle is-size-7-mobile">
         Cabang Olahraga {cabors && cabors.namaCabor}
@@ -78,34 +78,36 @@ const ForumAtlet = () => {
         )}
       </div>
       {user && user.role === "Admin" && (
-        <table className="table is-striped is-fullwidth">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Kode Cabor</th>
-              <th>Nama Cabor</th>
-              <th className="has-text-centered">Jumlah Post</th>
-              <th className="has-text-centered">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredCabors.map((cabor, index) => (
-              <tr key={cabor && cabor.id_cabor}>
-                <td>{index + 1}</td>
-                <td>{cabor && cabor.kodeCabor}</td>
-                <td>{cabor && cabor.namaCabor}</td>
-                <td className="has-text-centered">
-                  {countforum[cabor.id_cabor] || 0}
-                </td>
-                <td className="has-text-centered">
-                  <Link to={`/forum/cabor/${cabor && cabor.id_cabor}`}>
-                    <IoEye />
-                  </Link>
-                </td>
+        <div className="column p-0 overflow-x-scroll-mobile">
+          <table className="table is-striped is-fullwidth">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kode Cabor</th>
+                <th>Nama Cabor</th>
+                <th className="has-text-centered">Jumlah Post</th>
+                <th className="has-text-centered">Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredCabors.map((cabor, index) => (
+                <tr key={cabor && cabor.id_cabor}>
+                  <td>{index + 1}</td>
+                  <td>{cabor && cabor.kodeCabor}</td>
+                  <td>{cabor && cabor.namaCabor}</td>
+                  <td className="has-text-centered">
+                    {countforum[cabor.id_cabor] || 0}
+                  </td>
+                  <td className="has-text-centered">
+                    <Link to={`/forum/cabor/${cabor && cabor.id_cabor}`}>
+                      <IoEye />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
       {user && user.role !== "Admin" && (
         <table className="table is-striped is-fullwidth">

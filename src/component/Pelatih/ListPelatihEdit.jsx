@@ -67,11 +67,19 @@ const ListPelatihEdit = () => {
   };
 
   return (
-    <div>
-      <h1 className="title">Pelatih</h1>
-
-      <h2 className="subtitle">List Pelatih {cabors && cabors.namaCabor}</h2>
-
+    <div className="p-3">
+      <h1
+        className="title 
+is-size-6-mobile"
+      >
+        Pelatihhh
+      </h1>
+      <h2
+        className="subtitle 
+is-size-7-mobile"
+      >
+        List Pelatih {cabors && cabors.namaCabor}
+      </h2>
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">
           <a className="button is-dark">Kembali</a>
@@ -87,6 +95,8 @@ const ListPelatihEdit = () => {
         )}
         {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
+      <div className="overflow-x-scroll-mobile">
+
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
@@ -138,7 +148,7 @@ const ListPelatihEdit = () => {
           </tbody>
         ))}
       </table>
-      
+      </div>
       <EditPelatihModal Muncul={modalEdit} tidakMuncul={tutupModalEdit} />
     </div>
   );

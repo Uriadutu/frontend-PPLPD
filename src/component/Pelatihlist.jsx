@@ -35,9 +35,9 @@ const Pelatihlist = () => {
 
 
   return (
-    <div>
-      <h1 className="title">Pelatih</h1>
-      <h2 className="subtitle">List Pelatih</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Pelatih</h1>
+      <h2 className="subtitle  is-size-7-mobile">List Pelatih</h2>
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>

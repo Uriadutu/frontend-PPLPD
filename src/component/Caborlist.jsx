@@ -93,18 +93,26 @@ const Caborlist = () => {
 
   
   return (
-    <div>
-      <h1 className="title">Cabang Olahraga</h1>
-      <h2 className="subtitle">List Cabang Olahraga</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Cabang Olahraga</h1>
+      <h2 className="subtitle is-size-7-mobile">List Cabang Olahraga</h2>
       <div className="container mt-5">
         {user && user.role === "Admin" && (
-          <Link to={`/cabor/komponen-indikator`} className="button mb-3">
-            <IoSettings /> Komponen Dan Indikator
+          <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
+
+          <Link to={`/cabor/komponen-indikator`} className="button ">
+            <IoSettings />{" "}
+            <p className="is-hidden-mobile">Komponen Dan Indikator</p>
           </Link>
+          <div className="button is-success is-hidden-desktop" onClick={openModal}><IoAdd/></div>
+          </div>
         )}
         <div className="columns is-multiline">
           {caborr.map((cabor, index) => (
-            <div className="column is-one-quarter" key={cabor.id}>
+            <div
+              className="column is-one-quarter-desktop is-one-quarter-tablet"
+              key={cabor.id}
+            >
               <Link
                 to={`/cabor?id=${cabor.kodeCabor}`}
                 onClick={() => bukaModal(cabor.kodeCabor)}
@@ -138,7 +146,7 @@ const Caborlist = () => {
           ))}
 
           {user && user.role === "Admin" && (
-            <div className="column is-one-quarter">
+            <div className="column is-one-quarter is-hidden-mobile">
               <div
                 className="card"
                 onClick={openModal}

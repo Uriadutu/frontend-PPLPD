@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AddKomponenModal from "../modal/Perkembangan/AddKomponenModal";
 import { useSelector } from "react-redux";
+import { IoAdd } from "react-icons/io5";
 
 
 const AturIndikator = () => {
@@ -86,30 +87,35 @@ const AturIndikator = () => {
 
 
   return (
-    <div>
-      <h1 className="title">Komponen</h1>
-      <h2 className="subtitle">List Komponen {cabors && cabors.namaCabor}</h2>
-      <div className="is-flex is-align-items-center mb-5">
-        {user && user.role !== "Pelatih" && (
-          <Link className="button is-dark" to={"/cabor/komponen-indikator"}>
-            Kembali
-          </Link>
-        )}
-        {user && user.role === "Pelatih" && (
-          <Link className="button" to={"/dashboard"}>
-            Dashboard
-          </Link>
-        )}
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Komponen</h1>
+      <h2 className="subtitle is-size-7-mobile">
+        List Komponen {cabors && cabors.namaCabor}
+      </h2>
+      <div className="is-flex is-align-items-center mb-5 is-justify-content-space-between">
+        <div className="">
+          {user && user.role !== "Pelatih" && (
+            <Link className="button is-dark" to={"/cabor/komponen-indikator"}>
+              Kembali
+            </Link>
+          )}
+          {user && user.role === "Pelatih" && (
+            <Link className="button" to={"/dashboard"}>
+              Dashboard
+            </Link>
+          )}
 
-        <Link
-          className="ml-3 button is-success"
-          onClick={() => bukaModal()}
-          to={`/cabor/komponen-indikator/atur/${id}?tambah-komponen`}
-        >
-          Tambah Komponen
-        </Link>
-        <div className="is-flex is-align-items-center ml-3">
-          <label className="mr-2 label">Periode :</label>
+          <Link
+            className="ml-3 button is-success"
+            onClick={() => bukaModal()}
+            to={`/cabor/komponen-indikator/atur/${id}?tambah-komponen`}
+          >
+            <IoAdd />
+            <p className="is-hidden-mobile">Tambah Komponen</p>
+          </Link>
+        </div>
+        <div className="is-flex is-align-items-center ml-3 ">
+          <label className="mr-2 label is-size-7-mobile">Periode :</label>
           <select className="select" onChange={handleSelectChange}>
             <option value={komponennya.periode}></option>
             {uniquePeriodes.map((periode, index) => (

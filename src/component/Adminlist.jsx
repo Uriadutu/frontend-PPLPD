@@ -40,9 +40,9 @@ const Adminlist = () => {
   });
 
   return (
-    <div>
-      <h1 className="title">Admin</h1>
-      <h2 className="subtitle">List Admin</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Admin</h1>
+      <h2 className="subtitle is-size-7-mobile">List Admin</h2>
       <div className="is-flex is-justify-content-space-between mb-3 ">
         {user && user.role === "SuperAdmin" && (
           <Link to={"/daftaradmin/tambah"} className="button is-success">
@@ -59,6 +59,7 @@ const Adminlist = () => {
           />
         </div>
       </div>
+<div className="overflow-x-scroll-mobile">
 
       <table className="table is-striped is-fullwidth">
         <thead>
@@ -71,7 +72,7 @@ const Adminlist = () => {
         </thead>
         <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
           {filteredAdmin.map((admin, index) => (
-            <tr key={admin.uuid} >
+            <tr key={admin.uuid}>
               <td>{index + 1}</td>
               <td>{admin.nama}</td>
               <td>{admin.no_hp}</td>
@@ -89,6 +90,7 @@ const Adminlist = () => {
           ))}
         </tbody>
       </table>
+</div>
     </div>
   );
 };

@@ -65,10 +65,12 @@ const ListAtletEdit = () => {
   };
 
   return (
-    <div>
-      <h1 className="title">Atlet</h1>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Atlet</h1>
 
-      <h2 className="subtitle">List Atlet {cabors && cabors.namaCabor}</h2>
+      <h2 className="subtitle is-size-7-mobile">
+        List Atlet {cabors && cabors.namaCabor}
+      </h2>
 
       <div className="is-flex  mb-3">
         <Link to={"/cabor"} className="mr-2">
@@ -85,58 +87,60 @@ const ListAtletEdit = () => {
         )}
         {/* <Link className="button is-success ml-2" to={"/prestasi/atlet"}>Prestasi</Link> */}
       </div>
-      <table className="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>No HP</th>
-            <th>Email</th>
-            {user && user.role === "Admin" && (
-              <th colSpan={2} className="has-text-centered">
-                Aksi
-              </th>
-            )}
-          </tr>
-        </thead>
-        {atlets.map((atlet, index) => (
-          <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-            <tr key={atlet && atlet.uuid}>
-              <td>{index + 1}</td>
-              <Link
-                to={`/cabor/atlet/${
-                  atlet && atlet.Cabor && atlet.Cabor.id_cabor
-                }/${atlet.uuid}`}
-              >
-                <td>
-                  {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
-                  {atlet && atlet.nama_akhir}
-                </td>
-              </Link>
-              <td>{atlet && atlet.hp_mobile}</td>
-              <td>{atlet && atlet.email}</td>
-              <td className="has-text-centered">
-                <Link
-                  className="button is-primary is-small"
-                  onClick={() => bukaModalEdit(atlet && atlet.id_atlet)}
-                  to={`?id=${atlet && atlet.id_atlet}`}
-                >
-                  Edit
-                </Link>
-              </td>
-              <td className="has-text-centered">
-                <Link
-                  className="button is-danger is-small"
-                  onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
-                >
-                  Hapus
-                </Link>
-              </td>
+      <div className="overflow-x-scroll-mobile">
+        <table className="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>No HP</th>
+              <th>Email</th>
+              {user && user.role === "Admin" && (
+                <th colSpan={2} className="has-text-centered">
+                  Aksi
+                </th>
+              )}
             </tr>
-          </tbody>
-        ))}
-      </table>
-      
+          </thead>
+          {atlets.map((atlet, index) => (
+            <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
+              <tr key={atlet && atlet.uuid}>
+                <td>{index + 1}</td>
+                <Link
+                  to={`/cabor/atlet/${
+                    atlet && atlet.Cabor && atlet.Cabor.id_cabor
+                  }/${atlet.uuid}`}
+                >
+                  <td>
+                    {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
+                    {atlet && atlet.nama_akhir}
+                  </td>
+                </Link>
+                <td>{atlet && atlet.hp_mobile}</td>
+                <td>{atlet && atlet.email}</td>
+                <td className="has-text-centered">
+                  <Link
+                    className="button is-primary is-small"
+                    onClick={() => bukaModalEdit(atlet && atlet.id_atlet)}
+                    to={`?id=${atlet && atlet.id_atlet}`}
+                  >
+                    Edit
+                  </Link>
+                </td>
+                <td className="has-text-centered">
+                  <Link
+                    className="button is-danger is-small"
+                    onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
+                  >
+                    Hapus
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
+
       <EditAtletModal Muncul={modalEdit} tidakMuncul={tutupModalEdit} />
     </div>
   );

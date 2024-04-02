@@ -52,10 +52,9 @@ const PelatihPage = () => {
     }
 
   return (
-    <div>
-      <h1 className="title">Pelatih</h1>
-      <h2 className="subtitle">List Pelatih</h2>
-
+    <div className="p-3">
+      <h1 className="title  is-size-6-mobile">Pelatih</h1>
+      <h2 className="subtitle  is-size-7-mobile">List Pelatih</h2>
       <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
         <div className="is-flex is-align-items-center">
           <Link to={"/dashboard"} className="button mr-3">
@@ -63,7 +62,7 @@ const PelatihPage = () => {
           </Link>
 
           <div className="is-flex is-align-items-center">
-            <label className="mr-2">Urut Berdasarkan:</label>
+            <label className="mr-2  is-size-7-mobile">Urut:</label>
             <select
               className="is-normal select"
               value={sortBy}
@@ -75,7 +74,7 @@ const PelatihPage = () => {
           </div>
         </div>
 
-        <div  >
+        <div>
           <input
             type="text"
             className="input is-normal"
@@ -85,6 +84,7 @@ const PelatihPage = () => {
           />
         </div>
       </div>
+      <div className="overflow-x-scroll-mobile">
 
       <table className="table is-striped is-fullwidth">
         <thead>
@@ -103,23 +103,30 @@ const PelatihPage = () => {
             <tr key={pelatih.id_pelatih}>
               <td>{index + 1}</td>
               <td>
-                {pelatih.name_awal.charAt(0).toUpperCase() + pelatih.name_awal.slice(1)}{" "}
-                {pelatih.nama_tengah.charAt(0).toUpperCase() + pelatih.nama_tengah.slice(1)}{" "}
-                {pelatih.nama_akhir.charAt(0).toUpperCase() + pelatih.nama_akhir.slice(1)}
+                {pelatih.name_awal.charAt(0).toUpperCase() +
+                  pelatih.name_awal.slice(1)}{" "}
+                {pelatih.nama_tengah.charAt(0).toUpperCase() +
+                  pelatih.nama_tengah.slice(1)}{" "}
+                {pelatih.nama_akhir.charAt(0).toUpperCase() +
+                  pelatih.nama_akhir.slice(1)}
               </td>
               <td>{pelatih.username}</td>
               <td>{pelatih && pelatih.Admin && pelatih.Admin.nama}</td>
               <td>{pelatih && pelatih.Cabor && pelatih.Cabor.namaCabor}</td>
               <td>{pelatih && pelatih.status}</td>
               <td className="has-text-centered">
-                <Link className="button is-danger is-small" onClick={()=> deletePelatih(pelatih.id_pelatih)}>
-                Hapus
+                <Link
+                  className="button is-danger is-small"
+                  onClick={() => deletePelatih(pelatih.id_pelatih)}
+                >
+                  Hapus
                 </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

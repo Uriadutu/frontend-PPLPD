@@ -33,10 +33,15 @@ const Indikator = () => {
 
     
   return (
-    <div>
-      <h1 className="title">Komponen dan Indikator</h1>
-      <h2 className="subtitle">List Cabang Olahraga</h2>
-      <Link to={"/cabor"} className='button is-dark mb-3'> Kembali</Link>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Komponen dan Indikator</h1>
+      <h2 className="subtitle is-size-7-mobile">List Cabang Olahraga</h2>
+      <Link to={"/cabor"} className="button is-dark mb-3">
+        {" "}
+        Kembali
+      </Link>
+      <div className="overflow-x-scroll-mobile">
+
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
@@ -51,12 +56,18 @@ const Indikator = () => {
               <td>{index + 1}</td>
               <td>{cabor.namaCabor}</td>
               <td className="has-text-centered">
-                <Link className='' to={`/cabor/komponen-indikator/atur/${cabor.id_cabor}`}><IoSettings color='black'/></Link>
+                <Link
+                  className=""
+                  to={`/cabor/komponen-indikator/atur/${cabor.id_cabor}`}
+                >
+                  <IoSettings color="black" />
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

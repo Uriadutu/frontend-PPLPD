@@ -156,7 +156,36 @@ wajib {
   margin-bottom: 0;
 }
 
+@media screen and (max-width: 425px) {
+
+}
 @media screen and (max-width: 768px) {
+  .modal-card {
+    margin: 3px 0;
+    
+  }
+  .menu-list {
+
+    font-size: 13px;
+  }
+  .button {
+    font-size: 12px;
+    /* padding: 1px 3px; */
+  }
+  .modal-card-title {
+    font-size: 15px;
+  }
+  .input {
+  font-size: 12px;
+  padding : 5px;
+    
+  }
+  .modal-card-body {
+    font-size: 12px;
+  }
+  table {
+    font-size: 12px;
+  }
   .overflow-x-scroll-mobile {
     overflow-x: auto;
   }
@@ -182,6 +211,7 @@ wajib {
 
 /* Reset properties for larger screens */
 @media screen and (min-width: 769px) {
+  
   .navbar-menu {
     position: static;
     top: auto;

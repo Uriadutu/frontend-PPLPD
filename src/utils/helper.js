@@ -29,3 +29,17 @@ export function shortenName(fullName) {
   return shortenedName;
 }
 
+export function namaSingkat (fullName){
+  const kata = fullName.split("")
+  let singkat;
+  if (kata.length === 1) {
+    return fullName.charAt(0).toUpperCase() + fullName.slice(1);
+  }
+  if (kata.length >= 20) {
+    singkat = kata.slice(-20 );
+  } 
+
+    
+
+  return singkat;
+}

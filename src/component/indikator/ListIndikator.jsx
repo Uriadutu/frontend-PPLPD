@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import { IoTrashSharp } from 'react-icons/io5';
+import { IoAdd, IoTrashSharp } from 'react-icons/io5';
 
 
 
@@ -76,9 +76,9 @@ const ListIndikator = () => {
 
 
   return (
-    <div>
-      <h1 className="title">Indikator</h1>
-      <h2 className="subtitle">
+    <div className='p-3'>
+      <h1 className="title is-size-6-mobile">Indikator</h1>
+      <h2 className="subtitle is-size-7-mobile">
         List Indikator {komponens && komponens.namaKomponen.split("-")[0].slice(0, -4)}
       </h2>
 
@@ -100,10 +100,11 @@ const ListIndikator = () => {
             placeholder="Indikator baru"
           />
           <button type="submit" className="button is-success">
-            Tambah
+            <IoAdd/><p className='is-hidden-mobile'>Tambah</p>
           </button>
         </form>
       </div>
+      <div className="overflow-x-scroll-mobile">
 
       <table className="table is-striped is-fullwidth">
         <thead>
@@ -127,6 +128,7 @@ const ListIndikator = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

@@ -222,10 +222,10 @@ const IsiForumAtlet = () => {
                       </div>
                       <div className="media-content is-flex is-justify-content-space-between">
                         <div>
-                          <p className="title is-4">
+                          <p className="title is-4 is-size-6-mobile">
                             {forum && forum.judul_forum}
                           </p>
-                          <p className="subtitle is-6">
+                          <p className="subtitle is-size-7-mobile">
                             {forum && forum.isi_forum}
                           </p>
                         </div>
