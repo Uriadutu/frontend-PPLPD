@@ -35,9 +35,9 @@ const Formaddadmin = () => {
   }
 
   return (
-    <div>
-      <h1 className="title">Admin</h1>
-      <h2 className="subtitle">Tambah Admin</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Admin</h1>
+      <h2 className="subtitle is-size-7-mobile">Tambah Admin</h2>
       <div className="card is-shadowless">
         <div
           className="card-content"
@@ -113,8 +113,12 @@ const Formaddadmin = () => {
               </div>
               <div className="field">
                 <div className="control">
-                  <button onClick={Kembali} className="button is-dark mr-3">Batal</button>
-                  <button type='submit' className="button is-success">Save</button>
+                  <button onClick={Kembali} className="button is-dark mr-3">
+                    Batal
+                  </button>
+                  <button type="submit" className="button is-success">
+                    Save
+                  </button>
                 </div>
               </div>
             </form>

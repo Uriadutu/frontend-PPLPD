@@ -11,9 +11,8 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
   const [msg, setMsg] = useState("");
   const location = useLocation(); // Gunakan useLocation untuk mengambil lokasi saat ini
 
-  const {user} =  useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const [atlet, setAtlet] = useState("");
-
 
   const [queryId, setQueryId] = useState(null);
 
@@ -29,12 +28,12 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
 
   const getAtlet = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/atlet" ) 
+      const response = await axios.get("http://localhost:5000/atlet");
       setAtlet(response.data);
     } catch (error) {
       setMsg(error.response.data.msg);
     }
-  }
+  };
   const getCaborById = async (queryId) => {
     try {
       const response = await axios.get(
@@ -53,7 +52,6 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
     try {
       await axios.delete(`http://localhost:5000/komponen/cabor/${queryId}`);
       tidakMuncul();
-      
     } catch (error) {
       console.error("Error:", error);
 
@@ -91,8 +89,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                           border: "solid 1px black",
                         }}
                       >
-                        <div className="header p-2 m-0">
-                        </div>
+                        <div className="header p-2 m-0"></div>
                         <img
                           src={User}
                           className="mb-0 p-0 image is-128x128"
@@ -114,8 +111,7 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
                           border: "solid 1px black",
                         }}
                       >
-                        <div className="header p-2 m-0">
-                        </div>
+                        <div className="header p-2 m-0"></div>
                         <img
                           src={User}
                           className="mb-0 p-0 image is-128x128"
@@ -135,19 +131,29 @@ const ModalUsers = ({ Muncul, tidakMuncul }) => {
             </div>
           </section>
           <footer className="modal-card-foot">
-            {user && user.role === "Admin" && (
-              <div  >
-                <button
-                  className="button is-danger"
-                  onClick={() => deleteCabor(queryId)}
-                >
-                  <IoTrashOutline /> Hapus {caborr.namaCabor}
-                </button>
+            <div className="">
+              <div className="is-flex">
+                {user && user.role === "Admin" && (
+                  <div>
+                    <button
+                      className="button is-danger"
+                      onClick={() => deleteCabor(queryId)}
+                    >
+                      <IoTrashOutline /> Hapus {caborr.namaCabor}
+                    </button>
+                  </div>
+                )}
+              <Link
+                to={`/cabor/program/${queryId}`}
+                className="button is-primary ml-3"
+              >
+                Program Latihan
+              </Link>
               </div>
-            )}
-            <Link to={`/cabor/program/${queryId}`} className="button is-primary ml-3">Program Latihan</Link>
-            {/* <Link to={`/cabor/club/${queryId}`} className="button is-primary">Club</Link> */}
-            <p>{msg}</p>
+            <div className="">
+              <p>{msg}</p>
+            </div>
+            </div>
           </footer>
         </div>
       </div>

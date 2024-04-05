@@ -187,8 +187,8 @@ const KembangAtletPelatih = () => {
       className="has-background-light p-3 mt-5"
       style={{ minHeight: "100vh" }}
     >
-      <h1 className=" title mt-5">Perkembangan</h1>
-      <h2 className="subtitle mb-5">
+      <h1 className=" title mt-5 is-size-6-mobile">Perkembangan</h1>
+      <h2 className="subtitle mb-5 is-size-7-mobile">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>

@@ -62,9 +62,9 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
             </header>
             <form onSubmit={savePrestasi}>
               <section className="modal-card-body">
-                <div className="box is-flex columns is-justify-content-space-between">
-                  <div className="komp">
-                    <div className="field">
+                <div className="p-0 m-0">
+                  <div className="is-full">
+                    <div className="field is-flex is-justify-content-space-between">
                       <label className="label">Nama Club</label>
                       <div className="control">
                         <input
@@ -76,7 +76,7 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
                         />
                       </div>
                     </div>
-                    <div className="field">
+                    <div className="field is-flex is-justify-content-space-between">
                       <label className="label">Nama Event</label>
                       <div className="control">
                         <input
@@ -88,7 +88,7 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
                         />
                       </div>
                     </div>
-                    <div className="field">
+                    <div className="field is-flex is-justify-content-space-between">
                       <label className="label">Tahun Prestasi</label>
                       <div className="control">
                         <input
@@ -100,7 +100,7 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
                         />
                       </div>
                     </div>
-                    <div className="field">
+                    <div className="field is-flex is-justify-content-space-between">
                       <label className="label">Tingkat</label>
                       <div className="control">
                         <select
@@ -120,7 +120,7 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
                         </select>
                       </div>
                     </div>
-                    <div className="field">
+                    <div className="field is-flex is-justify-content-space-between">
                       <label className="label">Pencapaian</label>
                       <div className="control">
                         <select
@@ -149,10 +149,10 @@ const AddPrestasiAtlet = ({ Muncul, TidakMuncul }) => {
                   >
                     Batal
                   </a>
-                  <button className="button is-success ml-4" type="submit">
+                  <button className="button is-success" type="submit">
                     Simpan
                   </button>
-                  <p className="ml-3">{msg}</p>
+                  <p className="">{msg}</p>
                 </div>
               </footer>
             </form>

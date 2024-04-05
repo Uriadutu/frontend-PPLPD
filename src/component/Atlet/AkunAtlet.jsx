@@ -25,9 +25,9 @@ const AkunAtlet = () => {
   }, [user]);
 
   return (
-    <div>
-      <h1 className="title">Akun Anda</h1>
-      <h2 className="subtitle">{user && user.nama}</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Akun Anda</h1>
+      <h2 className="subtitle is-size-7-mobile">{user && user.nama}</h2>
       <div className="card mt-3">
         <div className="columns is-multiple">
           <div className="column">

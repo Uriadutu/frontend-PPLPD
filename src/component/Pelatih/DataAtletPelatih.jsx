@@ -42,9 +42,9 @@ const DataAtletPelatih = () => {
     } catch (error) {}
   };
   return (
-    <div className="has-background-light p-3 mt-5">
-      <h1 className="title mt-5">Data Atlet</h1>
-      <h2 className="subtitle">
+    <div className="has-background-light p-3">
+      <h1 className="title mt-5 is-size-6-mobile">Data Atlet</h1>
+      <h2 className="subtitle is-size-7-mobile">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>
@@ -52,7 +52,10 @@ const DataAtletPelatih = () => {
         Kemabli
       </Link>
 
-      <Link to={`/pelatih/perkembangan/atlet/${atlets && atlets.id_atlet}`} className="button is-success">
+      <Link
+        to={`/pelatih/perkembangan/atlet/${atlets && atlets.id_atlet}`}
+        className="button is-success"
+      >
         Perkembangan Atlet
       </Link>
 

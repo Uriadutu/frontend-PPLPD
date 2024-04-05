@@ -2,9 +2,9 @@ import React from "react";
 
 const Formeditadmin = () => {
   return (
-    <div>
-      <h1 className="title">Admin</h1>
-      <h2 className="subtitle">Perbaharui Admin</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Admin</h1>
+      <h2 className="subtitle is-size-7-mobile">Perbaharui Admin</h2>
       <div className="card is-shadowless">
         <div
           className="card-content"

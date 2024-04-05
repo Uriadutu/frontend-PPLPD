@@ -73,11 +73,11 @@ const DataPelatih = () => {
     }
   };
   return (
-    <div className="mt-5 p-3">
-      <h1 className="title mt-5">
+    <div className="p-3">
+      <h1 className="title mt-5 is-size-6-mobile">
         Data Pelatih - {atlets && atlets.Cabor && atlets.Cabor.namaCabor}
       </h1>
-      <h2 className="subtitle mb-5">
+      <h2 className="subtitle mb-5 is-size-7-mobile">
         {atlets && atlets.name_awal} {atlets && atlets.nama_tengah}{" "}
         {atlets && atlets.nama_akhir}
       </h2>

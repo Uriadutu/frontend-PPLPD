@@ -218,7 +218,7 @@ const Welcome = () => {
   //  console.log(hasil);
 
   return (
-    <div className="p-3">
+    <div className="p-3 pr-0">
       <div className="is-flex is-justify-content-space-between mb-2">
         <div>
           <h1 className="title is-size-6-mobile">Dashboard</h1>

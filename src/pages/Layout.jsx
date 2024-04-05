@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <Navbar />
-      <div className="columns mt-6" style={{ minHeight: "100vh" }}>
+      <div className="columns mt-6 p-0" style={{ minHeight: "100vh" }}>
         {isMobile ? null : (
           <div
             className="column is-2 "
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
         )}
 
         <div
-          className="column pl-3 p-0"
+          className="column p-0 m-0 pl-3"
           style={{
             background: "#e7e7e7",
           }}
@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
             maxWidth: "100%",
             background: "white",
           }}>
-        <div className="content has-text-centered is-size-7-mobile is-size-6-desktop is-size-6-tablet">
+        <div className="content has-text-centered is-size-7-mobile is-size-6-desktop is-size-6-tablet p-0 m-0">
           <p>
           © 2023-{currentYear} <strong>Dinas Pemuda Dan Olahraga Kota Manado</strong> 
 

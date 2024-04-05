@@ -58,18 +58,20 @@ const KontrolAkun = () => {
   };
  
   return (
-    <div>
-      <h1 className="title">Pengaturan Akun</h1>
-      <h2 className="subtitle">Kontrol Akun</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Pengaturan Akun</h1>
+      <h2 className="subtitle is-size-7-mobile">Kontrol Akun</h2>
       <Link to={"/kontrolatlet"} className="button mb-3 is-dark">
         Kembali
       </Link>
       {atlets.length === 0 ? (
         <p>Tidak ada atlet di cabor ini.</p>
       ) : (
-          <form onSubmit={updateStatus}>
-          <label htmlFor="" className="label">Atlet :</label>
-        <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
+        <form onSubmit={updateStatus}>
+          <label htmlFor="" className="label">
+            Atlet :
+          </label>
+          <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
             <table className="table is-striped is-fullwidth">
               <thead>
                 <tr>
@@ -121,11 +123,9 @@ const KontrolAkun = () => {
                 })}
               </tbody>
             </table>
-        </div>
-          </form>
-
+          </div>
+        </form>
       )}
-      
     </div>
   );
 };

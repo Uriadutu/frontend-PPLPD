@@ -40,9 +40,11 @@ const PengaturanAtlet = () => {
       setCabor(caborWithAtletCount);
     };
   return (
-    <div>
-      <h1 className="title">Pengaturan Akun</h1>
-      <h2 className="subtitle">Kontrol Akun Pelatih dan Atlet</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Pengaturan Akun</h1>
+      <h2 className="subtitle is-size-7-mobile">
+        Kontrol Akun Pelatih dan Atlet
+      </h2>
       <Link to={"/dashboard"} className="button mb-3">
         Dashboard
       </Link>

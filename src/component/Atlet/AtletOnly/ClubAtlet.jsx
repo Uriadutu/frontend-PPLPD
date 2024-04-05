@@ -56,9 +56,9 @@ const ClubAtlet = () => {
 
 
   return (
-    <div>
-      <h1 className="title">Club {listclub && listclub.nama_club}</h1>
-      <h2 className="subtitle">List Atlet</h2>
+    <div className='p-3'>
+      <h1 className="title is-size-6-mobile">Club {listclub && listclub.nama_club}</h1>
+      <h2 className="subtitle is-size-7-mobile">List Atlet</h2>
       <Link to={`/dashboard`} className="button mb-3">
         Dashboard
       </Link>

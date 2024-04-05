@@ -43,7 +43,7 @@ function Addcabor({ isActive, onClose }) {
           </header>
           <form onSubmit={saveCabor}>
             <section className="modal-card-body">
-              <div className="box is-flex columns is-justify-content-space-between">
+              <div className="is-flex columns is-justify-content-space-between">
                 <div className="komp">
                   <div className="field">
                     <label htmlFor="namaCabang" className="label">

@@ -86,9 +86,9 @@ const Atletpage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
-      <h1 className="title">Atlet</h1>
-      <h2 className="subtitle">List Atlet</h2>
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">Atlet</h1>
+      <h2 className="subtitle is-size-7-mobile">List Atlet</h2>
 
       <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
         <div className="is-flex is-align-items-center">

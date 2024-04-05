@@ -34,9 +34,9 @@ const ListLisensi = () => {
         getLisensiByPelatih(idPelatih);
     },[idPelatih]);
   return (
-    <div>
-      <h1 className="title">List Lisensi</h1>
-      <h2 className="subtitle">
+    <div className="p-3">
+      <h1 className="title is-size-6-mobile">List Lisensi</h1>
+      <h2 className="subtitle is-size-7-mobile">
         {Pelatih && Pelatih.name_awal} {Pelatih && Pelatih.nama_tengah}{" "}
         {Pelatih && Pelatih.nama_akhir}
       </h2>
@@ -81,7 +81,7 @@ const ListLisensi = () => {
             </div>
           </div>
         </div>
-        <div className="box" style={{borderRadius: "0"}}>
+        <div className="box" style={{ borderRadius: "0" }}>
           <table className="table is-fullwidth is-bordered">
             <thead>
               <tr>
