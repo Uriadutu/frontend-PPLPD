@@ -51,7 +51,7 @@ const DataDiriAtlet = () => {
 
       <div className="card">
         <header className="card-header ">
-          <p className="card-header-title">Data Diri Atlettt</p>
+          <p className="card-header-title">Data Diri Atlet</p>
         </header>
 
         <div className="card-content is-size-7-mobile is-size-4-tablet is-size-6-desktop p-0">
