@@ -418,7 +418,7 @@ const Welcome = () => {
                   <label htmlFor="" className="label">
                     BarChart - Aktor
                   </label>
-                  <BarChart width={lebar} height={220} data={data}>
+                  <BarChart width={lebar} height={247} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
@@ -556,7 +556,7 @@ const Welcome = () => {
                   <label htmlFor="" className="label">
                     BarChart - Jenis Kelamin
                   </label>
-                  <BarChart width={500} height={250} data={jmljeniskelamin}>
+                  <BarChart width={500} height={247} data={jmljeniskelamin}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />

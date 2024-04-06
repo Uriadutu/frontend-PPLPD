@@ -77,12 +77,6 @@ const Adminlist = () => {
                 <td>{admin.no_hp}</td>
                 {user && user.role === "SuperAdmin" && (
                   <td>
-                    <Link
-                      to={`/daftaradmin/edit/${admin.uuid}`}
-                      className="mr-3"
-                    >
-                      <FaPencil />
-                    </Link>
                     <Link onClick={() => deleteAdmin(admin.uuid)}>
                       <IoTrashSharp />
                     </Link>
