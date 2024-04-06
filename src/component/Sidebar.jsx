@@ -40,9 +40,7 @@ const Sidebar = () => {
     <div>
       <aside
         className={`menu mt-3 pl-3 pt-2`}
-        style={{
-          position: "",
-        }}
+       
       >
         <p className="menu-label">General</p>
         <ul className="menu-list">

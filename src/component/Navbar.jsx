@@ -249,12 +249,26 @@ const Navbar = () => {
                 <div className="columns is-mobile is-vcentered mr-4">
                   <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
                     <Link to="/">
-                    <img
-                      src={Logo}
-                      alt="logoApk"
-                      width={70}
-                      style={{ objectFit: "cover" }}
-                    />
+                      <img
+                        src={Logo}
+                        alt="logoApk"
+                        width={70}
+                        style={{ objectFit: "cover" }}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              )}
+              {user && user.role === "Pelatih" && (
+                <div className="columns is-mobile is-vcentered mr-4">
+                  <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
+                    <Link to="/">
+                      <img
+                        src={Logo}
+                        alt="logoApk"
+                        width={70}
+                        style={{ objectFit: "cover" }}
+                      />
                     </Link>
                   </div>
                 </div>

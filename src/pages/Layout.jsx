@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import Sidebar from "../component/Sidebar";
 import { useMediaQuery } from "react-responsive";
+import BackgroundTop from "../img/BgTop.png"
 
 const Layout = ({ children }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -24,7 +25,10 @@ const Layout = ({ children }) => {
             className="column is-2 "
             style={{
               width: "240px",
-              // boxShadow: "4px 0px 6px rgba(0, 0, 0, 0.3)",
+              // backgroundColor :"black",
+              // color : "white"
+              // boxShadow: "4px 0px 8px rgba(0, 0, 0, 0.3)",
+              borderRight: "1px solid rgb(220, 220, 220)",
             }}
           >
             <Sidebar />
@@ -34,7 +38,10 @@ const Layout = ({ children }) => {
         <div
           className="column p-0 m-0 pl-3 pr-3 is-hidden-mobile"
           style={{
-            background: "#e7e7e7",
+            backgroundImage: `url(${BackgroundTop})`,
+            //   backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            //   backgroundPosition: "center",
           }}
         >
           <main className="" style={{ minHeight: "100vh", maxWidth: "100%" }}>
@@ -44,7 +51,7 @@ const Layout = ({ children }) => {
         <div
           className="column p-0 m-0 pl-3 is-hidden-desktop"
           style={{
-            background: "#e7e7e7",
+            background: "white",
           }}
         >
           <main className="" style={{ minHeight: "100vh", maxWidth: "100%" }}>
@@ -52,18 +59,18 @@ const Layout = ({ children }) => {
           </main>
         </div>
       </div>
-      
 
-      <div className="mt-5"
-          style={{
-            minHeight: "10vh",
-            maxWidth: "100%",
-            background: "white",
-          }}>
+      <div
+        className="pt-5"
+        style={{
+          minHeight: "10vh",
+          maxWidth: "100%",
+        }}
+      >
         <div className="content has-text-centered is-size-7-mobile is-size-6-desktop is-size-6-tablet p-0 m-0">
           <p>
-          © 2023-{currentYear} <strong>Dinas Pemuda Dan Olahraga Kota Manado</strong> 
-
+            © 2023-{currentYear}{" "}
+            <strong>Dinas Pemuda Dan Olahraga Kota Manado</strong>
           </p>
         </div>
       </div>
