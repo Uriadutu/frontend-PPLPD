@@ -104,12 +104,15 @@ const PelatihPage = () => {
             <tr key={pelatih.id_pelatih}>
               <td>{index + 1}</td>
               <td>
+                <div className="" style={{width:"130px"}}>
+
                 {pelatih.name_awal.charAt(0).toUpperCase() +
                   pelatih.name_awal.slice(1)}{" "}
                 {pelatih.nama_tengah.charAt(0).toUpperCase() +
                   pelatih.nama_tengah.slice(1)}{" "}
                 {pelatih.nama_akhir.charAt(0).toUpperCase() +
                   pelatih.nama_akhir.slice(1)}
+                </div>
               </td>
               <td>{pelatih.username}</td>
               <td>{pelatih && pelatih.Admin && pelatih.Admin.nama}</td>

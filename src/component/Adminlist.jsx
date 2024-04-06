@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  IoTrashSharp,
-} from "react-icons/io5";
+import { IoTrashSharp } from "react-icons/io5";
 import { FaPencil } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 const Adminlist = () => {
   const [adminn, setAdmin] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const {user} = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     getAdmin();
@@ -29,8 +27,6 @@ const Adminlist = () => {
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
   };
-
-
 
   const filteredAdmin = adminn.filter((admin) => {
     return (
@@ -59,38 +55,44 @@ const Adminlist = () => {
           />
         </div>
       </div>
-<div className="overflow-x-scroll-mobile">
-
-      <table className="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>No HP</th>
-            {user && user.role === "SuperAdmin" && <th>Aksi</th>}
-          </tr>
-        </thead>
-        <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
-          {filteredAdmin.map((admin, index) => (
-            <tr key={admin.uuid}>
-              <td>{index + 1}</td>
-              <td>{admin.nama}</td>
-              <td>{admin.no_hp}</td>
-              {user && user.role === "SuperAdmin" && (
-                <td>
-                  <Link to={`/daftaradmin/edit/${admin.uuid}`} className="mr-3">
-                    <FaPencil />
-                  </Link>
-                  <Link onClick={() => deleteAdmin(admin.uuid)}>
-                    <IoTrashSharp />
-                  </Link>
-                </td>
-              )}
+      <div className="overflow-x-scroll-mobile">
+        <table className="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>No HP</th>
+              {user && user.role === "SuperAdmin" && <th>Aksi</th>}
             </tr>
-          ))}
-        </tbody>
-      </table>
-</div>
+          </thead>
+          <tbody style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}>
+            {filteredAdmin.map((admin, index) => (
+              <tr key={admin.uuid}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="" style={{ width: "130px" }}>
+                    {admin.nama}
+                  </div>
+                </td>
+                <td>{admin.no_hp}</td>
+                {user && user.role === "SuperAdmin" && (
+                  <td>
+                    <Link
+                      to={`/daftaradmin/edit/${admin.uuid}`}
+                      className="mr-3"
+                    >
+                      <FaPencil />
+                    </Link>
+                    <Link onClick={() => deleteAdmin(admin.uuid)}>
+                      <IoTrashSharp />
+                    </Link>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -39,7 +39,6 @@ const Welcome = () => {
   const idAtlet = user && user.id_atlet;
   const idCabor = user && user.id_cabor;
 
-
   const getPerkembangan = async (id) => {
     try {
       const response = await axios.get(
@@ -219,315 +218,311 @@ const Welcome = () => {
   //  console.log(hasil);
 
   let lebar = 500;
-    return (
-      <div className="p-3 pr-0">
-        <div className="is-flex is-justify-content-space-between mb-2">
-          <div>
-            <h1 className="title is-size-6-mobile">Dashboard</h1>
-            <h2 className="subtitle is-size-7-mobile">
-              Selamat Datang Di SI Atlet PPLPD
-            </h2>
+  return (
+    <div className="p-3 pr-0">
+      <div className="is-flex is-justify-content-space-between mb-2">
+        <div>
+          <h1 className="title is-size-6-mobile">Dashboard</h1>
+          <h2 className="subtitle is-size-7-mobile">
+            Selamat Datang Di SI Atlet PPLPD
+          </h2>
+        </div>
+      </div>
+      {user && (user.role === "Admin" || user.role === "SuperAdmin") && (
+        <div className="">
+          <div
+            className=" box p-3 mb-2 pb-2"
+            style={{ borderTop: "5px solid #313C9E" }}
+          >
+            <div className=" columns is-multiline is-mobile">
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#C75959",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlCabor}</p>
+                      <p className="subtitle has-text-light is-6">Cabor</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <IoIosFootball color="#9E3131" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/cabor"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#9E3131" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#68C759",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlAtlet}</p>
+                      <p className="subtitle has-text-light is-6">Atlet</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiUserGroup color="#409E31" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/daftaratlet"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#409E31" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#D7B04B",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlPelatih}</p>
+                      <p className="subtitle has-text-light is-6">Pelatih</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiUserGroup color="#B78F29" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/daftarpelatih"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#B78F29" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#6159C7",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlAdmin}</p>
+                      <p className="subtitle has-text-light is-6">Admin</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiUserGroup color="#313C9E" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/daftaradmin"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#313C9E" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className=" mt-1">
+            <div className="columns is-multiline is-mobile">
+              <div
+                className="column is-full-mobile is-half-tablet is-half-desktop overflow-x-scroll-mobile overflow-y-scroll-desktop "
+                // style={{ height: "220px" }}
+              >
+                <div
+                  style={{ borderTop: "5px solid #409E31" }}
+                  className=" box overflow-x-scroll-mobile"
+                >
+                  <label className="label">Daftar Cabang Olahraga</label>
+                  <table className="table is-bordered is-fullwidth">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Cabang Olahraga</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cabors.slice(0, 5).map((cabor, index) => (
+                        <tr key={cabor && cabor.id_cabor}>
+                          <td>{index + 1}</td>
+                          <td>{cabor && cabor.namaCabor}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="column is-full-mobile is-half-tablet is-half-desktop is-half-widescreen mt-0">
+                <div
+                  className=" box overflow-x-scroll-mobile overflow-x-scroll-desktop overflow-x-scroll-tablet"
+                  style={{ borderTop: "5px solid #9E3131" }}
+                >
+                  <label htmlFor="" className="label">
+                    BarChart - Aktor
+                  </label>
+                  <BarChart width={lebar} height={220} data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    {/* <Legend /> */}
+                    <Bar dataKey="Atlet" fill="#409E31" />
+                    <Bar dataKey="Pelatih" fill="#B78F29" />
+                    <Bar dataKey="Admin" fill="#313C9E" />
+                  </BarChart>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        {user && (user.role === "Admin" || user.role === "SuperAdmin") && (
-          <div className="">
-            <div
-              className=" box p-3 mb-2 pb-2"
-              style={{ borderTop: "5px solid #313C9E" }}
-            >
-              <div className=" columns is-multiline is-mobile">
-                <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#C75959",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">{jmlCabor}</p>
-                        <p className="subtitle has-text-light is-6">Cabor</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <IoIosFootball color="#9E3131" size={90} />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/cabor"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#9E3131" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
+      )}
+      {user && user.role === "Pelatih" && (
+        <div className="">
+          <div
+            className=" box p-3 mb-2 pb-2"
+            style={{ borderTop: "5px solid #313C9E" }}
+          >
+            <div className=" columns is-multiline is-mobile">
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#C75959",
+                    }}
+                  >
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">{jmlForum}</p>
+                      <p className="subtitle has-text-light is-6">Forum</p>
                     </div>
-                  </div>
-                </div>
-                <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#68C759",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">{jmlAtlet}</p>
-                        <p className="subtitle has-text-light is-6">Atlet</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <HiUserGroup color="#409E31" size={90} />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/daftaratlet"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#409E31" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiMiniChatBubbleLeftRight color="#9E3131" size={90} />
+                      </h1>
                     </div>
-                  </div>
-                </div>
-                <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#D7B04B",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">
-                          {jmlPelatih}
-                        </p>
-                        <p className="subtitle has-text-light is-6">Pelatih</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <HiUserGroup color="#B78F29" size={90} />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/daftarpelatih"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#B78F29" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#6159C7",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">{jmlAdmin}</p>
-                        <p className="subtitle has-text-light is-6">Admin</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <HiUserGroup color="#313C9E" size={90} />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/daftaradmin"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#313C9E" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
-                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/forum"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#9E3131" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className=" mt-1">
-              <div className="columns is-multiline is-mobile">
-                <div className="column is-full-mobile is-half-tablet is-half-desktop overflow-x-scroll-mobile">
+              <div
+                className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+                style={{ opacity: "70%" }}
+              >
+                <div>
                   <div
-                    style={{ borderTop: "5px solid #409E31" }}
-                    className=" box overflow-x-scroll-mobile"
+                    className="card"
+                    style={{
+                      boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
+                      background: "#68C759",
+                    }}
                   >
-                    <label className="label">Daftar Cabang Olahraga</label>
-                    <table className="table is-bordered is-fullwidth">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Nama Cabang Olahraga</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {cabors.slice(0, 5).map((cabor, index) => (
-                          <tr key={cabor && cabor.id_cabor}>
-                            <td>{index + 1}</td>
-                            <td>{cabor && cabor.namaCabor}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div
-                  className="column is-full-mobile is-half-tablet is-half-desktop is-half-widescreen mt-0"
-                  style={{}}
-                >
-                  <div
-                    className=" box overflow-x-scroll-mobile overflow-x-scroll-desktop overflow-x-scroll-tablet"
-                    style={{ borderTop: "5px solid #9E3131" }}
-                  >
-                    <label htmlFor="" className="label">
-                      BarChart - Aktor
-                    </label>
-                    <BarChart width={lebar} height={220} data={data}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      {/* <Legend /> */}
-                      <Bar dataKey="Atlet" fill="#409E31" />
-                      <Bar dataKey="Pelatih" fill="#B78F29" />
-                      <Bar dataKey="Admin" fill="#313C9E" />
-                    </BarChart>
+                    <div className="p-2 " style={{ position: "absolute" }}>
+                      <p className="title is-3 has-text-light">
+                        {jmlAtletcabor}
+                      </p>
+                      <p className="subtitle has-text-light is-6">Atlet</p>
+                    </div>
+                    <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
+                      <h1 className="">
+                        <HiUserGroup color="#409E31" size={90} />
+                      </h1>
+                    </div>
+                    <footer className="card-footer">
+                      <Link
+                        to={"/daftaratlet-cabor"}
+                        className="card-footer-item has-text-light"
+                        style={{ background: "#409E31" }}
+                      >
+                        <div className="has-text-centered has-text-light is-flex is-align-items-center">
+                          <p className="mb-1 mr-2">Info Lengkap</p>{" "}
+                          <FaRegArrowAltCircleRight />
+                        </div>
+                      </Link>
+                    </footer>
                   </div>
                 </div>
               </div>
+              <div className="column"></div>
             </div>
           </div>
-        )}
-        {user && user.role === "Pelatih" && (
-          <div className="">
-            <div
-              className=" box p-3 mb-2 pb-2"
-              style={{ borderTop: "5px solid #313C9E" }}
-            >
-              <div className=" columns is-multiline is-mobile">
+          <div className="mt-1">
+            <div className="columns is-multiline is-mobile">
+              <div className="column is-full-mobile is-half-tablet is-half-desktop overflow-x-scroll-mobile">
                 <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#C75959",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">{jmlForum}</p>
-                        <p className="subtitle has-text-light is-6">Forum</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <HiMiniChatBubbleLeftRight
-                            color="#9E3131"
-                            size={90}
-                          />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/forum"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#9E3131" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-                  style={{ opacity: "70%" }}
-                >
-                  <div>
-                    <div
-                      className="card"
-                      style={{
-                        boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.3)",
-                        background: "#68C759",
-                      }}
-                    >
-                      <div className="p-2 " style={{ position: "absolute" }}>
-                        <p className="title is-3 has-text-light">
-                          {jmlAtletcabor}
-                        </p>
-                        <p className="subtitle has-text-light is-6">Atlet</p>
-                      </div>
-                      <div className="image is-flex is-justify-content-end mr-3 p-0 mt-2 ">
-                        <h1 className="">
-                          <HiUserGroup color="#409E31" size={90} />
-                        </h1>
-                      </div>
-                      <footer className="card-footer">
-                        <Link
-                          to={"/daftaratlet-cabor"}
-                          className="card-footer-item has-text-light"
-                          style={{ background: "#409E31" }}
-                        >
-                          <div className="has-text-centered has-text-light is-flex is-align-items-center">
-                            <p className="mb-1 mr-2">Info Lengkap</p>{" "}
-                            <FaRegArrowAltCircleRight />
-                          </div>
-                        </Link>
-                      </footer>
-                    </div>
-                  </div>
-                </div>
-                <div className="column"></div>
-              </div>
-            </div>
-            <div className=" p-3 mt-1">
-              <div className="columns is-multiline">
-                <div
-                  className="column mr-2 mb-0 box"
+                  className="box overflow-x-scroll-mobile"
                   style={{ borderTop: "5px solid #409E31" }}
                 >
                   <label className="label">Daftar Cabang Olahraga</label>
@@ -552,8 +547,10 @@ const Welcome = () => {
                     </tbody>
                   </table>
                 </div>
+              </div>
+              <div className="column is-full-mobile is-half-tablet is-half-desktop is-half-widescreen mt-0">
                 <div
-                  className="column ml-2 box"
+                  className="box overflow-x-scroll-mobile overflow-x-scroll-desktop overflow-x-scroll-tablet"
                   style={{ borderTop: "5px solid #9E3131" }}
                 >
                   <label htmlFor="" className="label">
@@ -564,7 +561,7 @@ const Welcome = () => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
+                    {/* <Legend /> */}
                     <Bar dataKey="Laki-Laki" fill="#409E31" />
                     <Bar dataKey="Perempuan" fill="#B78F29" />
                   </BarChart>
@@ -572,32 +569,33 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-        )}
-        {user && user.role === "Atlet" && (
-          <div className="">
-            <div
-              className=" box mt-5 mb-2 pb-2"
-              style={{ borderTop: "5px solid #313C9E" }}
-            >
-              <DataSingkatAtlet />
-            </div>
-            <div className="m-3">
-              <div className="columns is-multiline mt-3">
-                <div
-                  className="box column is-full-mobile is-full-tablet is-full-desktop overflow-x-scroll-mobile"
-                  style={{ borderTop: "5px solid #409E31" }}
-                >
-                  <label className="label">Daftar Prestasi</label>
-                  <PrestasiDashboard />
-                </div>
+        </div>
+      )}
+      {user && user.role === "Atlet" && (
+        <div className="">
+          <div
+            className=" box mt-5 mb-2 pb-2"
+            style={{ borderTop: "5px solid #313C9E" }}
+          >
+            <DataSingkatAtlet />
+          </div>
+          <div className="m-3">
+            <div className="columns is-multiline mt-3">
+              <div
+                className="box column is-full-mobile is-full-tablet is-full-desktop overflow-x-scroll-mobile"
+                style={{ borderTop: "5px solid #409E31" }}
+              >
+                <label className="label">Daftar Prestasi</label>
+                <PrestasiDashboard />
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        <AddBerita isActive={modalActive} onClose={closeModal} />
-      </div>
-    );
+      <AddBerita isActive={modalActive} onClose={closeModal} />
+    </div>
+  );
 };
 
 export default Welcome;

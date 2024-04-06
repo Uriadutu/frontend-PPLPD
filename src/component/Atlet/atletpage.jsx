@@ -13,12 +13,12 @@ const Atletpage = () => {
   const [atletsPerPage] = useState(10);
 
   useEffect(() => {
-      getAtlet();
+    getAtlet();
   }, []);
 
   const getAtlet = async () => {
     try {
-        const response = await axios.get("http://localhost:5000/atlet");
+      const response = await axios.get("http://localhost:5000/atlet");
       setAtlet(response.data);
     } catch (error) {
       console.log(error);
@@ -97,8 +97,12 @@ const Atletpage = () => {
           </Link>
 
           <div className="is-flex is-align-items-center">
-            <label className="mr-2 is-size-7-mobile is-hidden-desktop">Urut:</label>
-            <label className="mr-2 is-size-7-mobile is-hidden-mobile">Urut Berdasarkan:</label>
+            <label className="mr-2 is-size-7-mobile is-hidden-desktop">
+              Urut:
+            </label>
+            <label className="mr-2 is-size-7-mobile is-hidden-mobile">
+              Urut Berdasarkan:
+            </label>
             <select
               className="is-normal select"
               value={sortBy}
@@ -121,48 +125,51 @@ const Atletpage = () => {
         </div>
       </div>
       <div className="overflow-x-scroll-mobile">
+        <table className="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Username</th>
+              <th>Create By</th>
+              <th>Cabang Olahraga</th>
+              <th>Status</th>
+              <th className="has-text-centered">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentAtlets.map((atlet, index) => {
+              const namaLengkap = capitalizeWords(
+                `${atlet.name_awal || ""} ${atlet.nama_tengah || ""} ${
+                  atlet.nama_akhir || ""
+                }`
+              );
 
-      <table className="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Username</th>
-            <th>Create By</th>
-            <th>Cabang Olahraga</th>
-            <th>Status</th>
-            <th className="has-text-centered">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentAtlets.map((atlet, index) => {
-            const namaLengkap = capitalizeWords(
-              `${atlet.name_awal || ""} ${atlet.nama_tengah || ""} ${
-                atlet.nama_akhir || ""
-              }`
-            );
-
-            return (
-              <tr key={atlet.id_atlet}>
-                <td>{index + 1}</td>
-                <td>{namaLengkap}</td>
-                <td>{atlet.username}</td>
-                <td>{atlet?.Admin?.nama}</td>
-                <td>{atlet?.Cabor?.namaCabor}</td>
-                <td>{capitalizeWords(atlet.status)}</td>
-                <td className="has-text-centered">
-                  <Link
-                    className="button is-danger is-small"
-                    onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
-                  >
-                    Hapus
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              return (
+                <tr key={atlet.id_atlet}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="" style={{ width: "130px" }}>
+                      {namaLengkap}
+                    </div>
+                  </td>
+                  <td>{atlet.username}</td>
+                  <td>{atlet?.Admin?.nama}</td>
+                  <td>{atlet?.Cabor?.namaCabor}</td>
+                  <td>{capitalizeWords(atlet.status)}</td>
+                  <td className="has-text-centered">
+                    <Link
+                      className="button is-danger is-small"
+                      onClick={() => deleteAtlet(atlet && atlet.id_atlet)}
+                    >
+                      Hapus
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
       <nav
         className="pagination is-centered is-small"

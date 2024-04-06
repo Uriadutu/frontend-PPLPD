@@ -112,6 +112,7 @@ const ListAtlet = () => {
                 }/${atlet.uuid}`}
               >
                 <td>
+                  <div className="" style={{width:"130px"}}></div>
                   {atlet && atlet.name_awal} {atlet && atlet.nama_tengah}{" "}
                   {atlet && atlet.nama_akhir}
                 </td>
