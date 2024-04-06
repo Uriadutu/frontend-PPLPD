@@ -97,7 +97,8 @@ const Atletpage = () => {
           </Link>
 
           <div className="is-flex is-align-items-center">
-            <label className="mr-2">Urut Berdasarkan:</label>
+            <label className="mr-2 is-size-7-mobile is-hidden-desktop">Urut:</label>
+            <label className="mr-2 is-size-7-mobile is-hidden-mobile">Urut Berdasarkan:</label>
             <select
               className="is-normal select"
               value={sortBy}
@@ -119,6 +120,7 @@ const Atletpage = () => {
           />
         </div>
       </div>
+      <div className="overflow-x-scroll-mobile">
 
       <table className="table is-striped is-fullwidth">
         <thead>
@@ -161,6 +163,7 @@ const Atletpage = () => {
           })}
         </tbody>
       </table>
+      </div>
       <nav
         className="pagination is-centered is-small"
         role="navigation"

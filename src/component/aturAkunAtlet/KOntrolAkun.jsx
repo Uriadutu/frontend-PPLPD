@@ -68,10 +68,7 @@ const KontrolAkun = () => {
         <p>Tidak ada atlet di cabor ini.</p>
       ) : (
         <form onSubmit={updateStatus}>
-          <label htmlFor="" className="label">
-            Atlet :
-          </label>
-          <div className="is-flex is-justify-content-space-between is-align-items-center mb-3">
+          <div className="is-flex is-justify-content-space-between is-align-items-center mb-3 overflow-x-scroll-mobile">
             <table className="table is-striped is-fullwidth">
               <thead>
                 <tr>

@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`navbar is-fixed-top has-shadow has-background-`}
+        className={`navbar is-fixed-top has-shadow`}
         role="navigation"
         aria-label="main navigation"
         style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}
@@ -274,7 +274,7 @@ const Navbar = () => {
         </div>
 
         {!isMobile && (
-          <div className="navbar-menu p=2">
+          <div className="navbar-menu p-0">
             <img
               className="ml-2"
               src={Logo}
@@ -283,7 +283,7 @@ const Navbar = () => {
               style={{ objectFit: "cover" }}
             />
             <div className="navbar-end">
-              <div className="navbar-item is-flex is-align-items-center p-0">
+              <div className="navbar-item is-flex is-align-items-center p-0 pr-3">
                 {user && user.role === "Atlet" && (
                   <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
                     <img

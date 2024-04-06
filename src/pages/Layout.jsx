@@ -32,7 +32,17 @@ const Layout = ({ children }) => {
         )}
 
         <div
-          className="column p-0 m-0 pl-3"
+          className="column p-0 m-0 pl-3 pr-3 is-hidden-mobile"
+          style={{
+            background: "#e7e7e7",
+          }}
+        >
+          <main className="" style={{ minHeight: "100vh", maxWidth: "100%" }}>
+            {children}
+          </main>
+        </div>
+        <div
+          className="column p-0 m-0 pl-3 is-hidden-desktop"
           style={{
             background: "#e7e7e7",
           }}
