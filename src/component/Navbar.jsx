@@ -47,7 +47,11 @@ const Navbar = () => {
         className={`navbar is-fixed-top has-shadow`}
         role="navigation"
         aria-label="main navigation"
-        style={{ boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}
+        style={{
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+          // background: "rgba(255, 255, 255, 0.1)",
+          // backdropFilter: "blur(10px)",
+        }}
       >
         <div className="navbar-brand">
           {isMobile && (
@@ -288,7 +292,14 @@ const Navbar = () => {
         </div>
 
         {!isMobile && (
-          <div className="navbar-menu p-0">
+          <div
+            className="navbar-menu p-0 "
+            style={{
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+              background: "rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
             <img
               className="ml-2"
               src={Logo}
