@@ -224,7 +224,7 @@ const Welcome = () => {
         <div>
           <h1 className="title is-size-6-mobile">Dashboard</h1>
           <h2 className="subtitle is-size-7-mobile">
-            Selamat Datang Di SI Atlet PPLPD
+            Sistem Informasi Atlet PPLPD
           </h2>
         </div>
       </div>

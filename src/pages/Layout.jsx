@@ -44,16 +44,21 @@ const Layout = ({ children }) => {
         <div
           className="column p-0 m-0 pl-3 is-hidden-desktop"
           style={{
-            
+            backgroundImage: `url(${bghp})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
             // background: "white",
+            backgroundPosition: "center",
           }}
         >
-          <main className="" style={{ minHeight: "100vh", Width: "100%",
-         backgroundImage: `url(${bghp})`,
-              backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-              backgroundPosition: "center", 
-          }}>
+          <main
+            className=""
+            style={{
+              minHeight: "100vh",
+              Width: "100%",
+
+            }}
+          >
             {children}
           </main>
         </div>

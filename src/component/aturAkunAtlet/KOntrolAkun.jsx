@@ -73,7 +73,7 @@ const KontrolAkun = () => {
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama</th>
+                  <th >Nama</th>
                   <th>Username</th>
                   <th>Status</th>
                   <td className="has-text-centered">Aksi</td>
@@ -88,8 +88,14 @@ const KontrolAkun = () => {
                   return (
                     <tr key={atlet.id_atlet}>
                       <td>{index + 1}</td>
-                      <td>{namaLengkap}</td>
+                      <td>
+                        <div className="" style={{width:"130px"}}>
+                          {namaLengkap}
+                          </div>
+                          </td>
                       <td>{atlet.username}</td>
+
+                      
                       <td>
                         <select
                           className="select is-small"
