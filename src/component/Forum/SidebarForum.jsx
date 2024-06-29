@@ -63,7 +63,7 @@ const SidebarForum = () => {
 
             {/* Gambar Profil Forum dan Nama Forum */}
             <div className="navbar-item is-fixed">
-              <span className="has-text-weight-semibold">Forum PPLPD</span>
+              <span className="has-text-weight-semibold">Forum</span>
             </div>
           </div>
           {user && user.role === "Admin" && (

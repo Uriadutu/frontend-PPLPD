@@ -93,7 +93,7 @@ const Sidebar = () => {
               </li>
             )}
           </ul>
-        </ul>
+        </ul> 
         {user && user.role === "Admin" && (
           <div>
             <p className="menu-label">Admin</p>

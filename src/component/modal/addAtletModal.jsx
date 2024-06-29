@@ -362,7 +362,7 @@ const handleRadioChanges = (e) => {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">
-                Edit Atlet 
+                Tambah Atlet 
               </p>
               <Link
                 className="delete"

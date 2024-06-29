@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Logo from "../img/Logosiatlet.png";
+import Logo from "../img/logoApl.png";
 import Dispora from "../img/Dispora.png";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
@@ -113,7 +113,7 @@ const Navbar = () => {
                         {user && user.role === "Atlet" && (
                           <li>
                             <NavLink to={"/datadiriatlet"}>
-                              <IoPerson /> Data Atleth
+                              <IoPerson /> Data Atlet
                             </NavLink>
                             {/* <NavLink to={"/clubatlet"}>
                   <IoFootball /> Club
@@ -250,7 +250,7 @@ const Navbar = () => {
               </div>
 
               {user && user.role === "Atlet" && (
-                <div className="columns is-mobile is-vcentered mr-4">
+                <div className="columns is-mobile is-centered mr-4">
                   <div className=" is-flex is-align-items-center is-justify-content-end mr-4 is-full-mobile is-hidden-desktop">
                     <Link to="/">
                       <img
@@ -300,13 +300,20 @@ const Navbar = () => {
               backdropFilter: "blur(10px)",
             }}
           >
-            <img
-              className="ml-2"
-              src={Logo}
-              alt=""
-              width={80}
+            <Link
+            to={"/"}
+              className="is-flex is-align-items-center pl-3"
               style={{ objectFit: "cover" }}
-            />
+            >
+              <img
+                className="ml-2"
+                src={Logo}
+                alt=""
+                width={90}
+
+                // style={{ objectFit: "cover" }}
+              />
+            </Link>
             <div className="navbar-end">
               <div className="navbar-item is-flex is-align-items-center p-0 pr-3">
                 {user && user.role === "Atlet" && (

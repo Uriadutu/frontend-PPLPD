@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import {loginUser, reset} from "../features/authSlice";
 import Bg from "../img/Background.png";
-import Logo_pl from "../img/PPLPDlogo.png";
+import Logo_pl from "../img/logoApl.png";
 import Dispora from "../img/Dispora.png";
 
 
@@ -73,7 +73,7 @@ const Login = () => {
               >
                 <div className="logo has-text-centered">
                   <img src={Logo_pl} alt="" style={{ width: "150px" }} />
-                  <p style={{ color: "white" }}>Sistem Informasi Atlet PPLPD</p>
+                  <p style={{ color: "white" }}>Sistem Informasi Atlet</p>
                 </div>
                 {isError && (
                   <div className="erro is-flex is-justify-content-center">

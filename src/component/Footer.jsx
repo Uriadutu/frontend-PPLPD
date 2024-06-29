@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Logopplpd from "../img/PPLPDlogo.png";
-
 
 const Footer = () => {
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -22,7 +20,7 @@ const Footer = () => {
       {/* <div className="content has-text-centered is-size-7-mobile is-size-6-desktop is-size-6-tablet p-0 m-0">
           <p>
             © 2023-{currentYear}{" "}
-            <strong>Dinas Pemuda Dan Olahraga Kota Manado</strong>
+            <strong>Dinas Pemuda Dan Olahraga Minahasa Selatan</strong>
           </p>
         </div> */}
       <div
@@ -41,7 +39,7 @@ const Footer = () => {
           <p className="has-text-grey is-size-7-mobile">
             © 2023-{currentYear}{" "}
             <strong className="has-text-grey is-size-7-mobile">
-              Dinas Pemuda Dan Olahraga Kota Manado
+              Dinas Pemuda Dan Olahraga Minahasa Selatan
             </strong>
           </p>
         </div>

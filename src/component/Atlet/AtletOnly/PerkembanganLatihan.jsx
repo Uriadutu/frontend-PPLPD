@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import logoDinas from "../../../img/LogoPemkot.png";
+import logoDinas from "../../../img/logominsel.png";
 import {useReactToPrint} from 'react-to-print'
 const PerkembanganLatihan = () => {
   const {user} = useSelector((state) => state.auth);
@@ -206,12 +206,12 @@ const renderTablesByKomponen = () => {
               <img src={logoDinas} />
               <div className="sub-print">
                 <h1 className="title is-5">
-                  Dinas Pemuda Dan Olahraga Kota Manado
+                  Dinas Pemuda Dan Olahraga Minahasa Selatan
                 </h1>
                 <h2 className="subtitle is-6">
                   JL. Balikota, Tikala, Tikala Kumaraka, Kec. Wanang,
                   <br />
-                  Kota Manado, Sulawesi, Indonesia
+                  Minahasa Selatan, Sulawesi, Indonesia
                   <br />
                   <p>
                     Telp. (0432) 845215
