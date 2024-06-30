@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import logoDinas from "../../img/logominsel.png";
+import logoDinas from "../../img/LogoPemkot.png";
 import { useReactToPrint } from "react-to-print";
 
 const KembangAtletPelatih = () => {
@@ -205,12 +205,12 @@ const KembangAtletPelatih = () => {
               <img src={logoDinas} />
               <div className="sub-print">
                 <h1 className="title is-5">
-                  Dinas Pemuda Dan Olahraga Minahasa Selatan
+                  Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan
                 </h1>
                 <h2 className="subtitle is-6">
-                  JL. Balikota, Tikala, Tikala Kumaraka, Kec. Wanang,
+                  JL.Bobara Kompleks TK Pembina Desa.Lopana Satu Kec.Amurang Timur
                   <br />
-                  Minahasa Selatan, Sulawesi, Indonesia
+                  Minahasa Selatan, Sulawesi Utara, Indonesia
                   <br />
                   <p>
                     Telp. (0432) 845215

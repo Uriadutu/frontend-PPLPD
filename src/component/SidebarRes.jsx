@@ -74,7 +74,7 @@ const Sidebarres = () => {
             {user && user.role === "Atlet" && (
               <li>
                 <NavLink to={"/datadiriatlet"}>
-                  <IoPerson /> Data Atleth
+                  <IoPerson /> Data Atlet
                 </NavLink>
                 {/* <NavLink to={"/clubatlet"}>
                   <IoFootball /> Club

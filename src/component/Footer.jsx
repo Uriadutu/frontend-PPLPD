@@ -39,7 +39,7 @@ const Footer = () => {
           <p className="has-text-grey is-size-7-mobile">
             © 2023-{currentYear}{" "}
             <strong className="has-text-grey is-size-7-mobile">
-              Dinas Pemuda Dan Olahraga Minahasa Selatan
+              Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan
             </strong>
           </p>
         </div>

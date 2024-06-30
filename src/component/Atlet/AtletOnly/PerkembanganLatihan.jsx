@@ -206,12 +206,12 @@ const renderTablesByKomponen = () => {
               <img src={logoDinas} />
               <div className="sub-print">
                 <h1 className="title is-5">
-                  Dinas Pemuda Dan Olahraga Minahasa Selatan
+                  Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan
                 </h1>
                 <h2 className="subtitle is-6">
-                  JL. Balikota, Tikala, Tikala Kumaraka, Kec. Wanang,
+                  JL.Bobara Kompleks TK Pembina Desa.Lopana Satu Kec.Amurang Timur
                   <br />
-                  Minahasa Selatan, Sulawesi, Indonesia
+                  Kabupaten Minahasa Selatan, Sulawesi Utara, Indonesia
                   <br />
                   <p>
                     Telp. (0432) 845215
