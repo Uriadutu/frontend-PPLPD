@@ -6,7 +6,6 @@ import Bg from "../img/Background.png";
 import Logo_pl from "../img/logoApl.png";
 import Dispora from "../img/Dispora.png";
 
-
 const lebar = 100; 
 const tinggi = lebar * (9 / 16);
 const Login = () => {
